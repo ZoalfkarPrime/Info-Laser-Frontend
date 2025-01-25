@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Лазерные станки",
+      "slug": "lazernyie-stanki",
+      "description": "",
+      "products": [
+        {
+          "id": 1,
+          "name": "Лазерный станок WATTSAN micro 0203",
+          "slug": "wattsan-micro-0203",
+          "description": "",
+          "orderPrice": 30000,
+          "stockPrice": 50000,
+          "newPrice": 0,
+          "image": {
+            "url": "https://infolaser.ru/assets/cache_image/products/52/micro0203_220x220_abc.jpg",
+            "alt": "Лазерный станок WATTSAN micro 0203",
+            "width": "220",
+            "height": "220"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Лазерный станок ZERDER MINI 2030",
+          "slug": "zerder-mini-2030",
+          "description": "",
+          "orderPrice": 45000,
+          "stockPrice": 50000,
+          "newPrice": 0,
+          "image": {
+            "url": "https://infolaser.ru/assets/cache_image/products/469/mini-2030-3_220x220_abc.jpg",
+            "alt": "Лазерный станок ZERDER MINI 2030",
+            "width": "220",
+            "height": "220"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Листогибы",
+      "slug": "listogiby",
+      "description": "",
+      "products": [
+        {
+          "id": 3,
+          "name": "Гидравлический листогибочный пресс Wattsan E 4016 BP",
+          "slug": "gidravlicheskij-listogibochnyj-press-wattsan-e-4016-bp",
+          "description": "",
+          "orderPrice": 5095,
+          "stockPrice": 96000,
+          "newPrice": 0,
+          "image": {
+            "url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
+            "alt": "Гидравлический листогибочный пресс Wattsan E 4016 BP",
+            "width": "220",
+            "height": "220"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Электрогидравлический листогибочный пресс Wattsan А1 6325 PB",
+          "slug": "elektrogidravlicheskij-listogibochnyj-press-wattsan-a1-6325-pb",
+          "description": "",
+          "orderPrice": 25000,
+          "stockPrice": 57000,
+          "newPrice": 0,
+          "image": {
+            "url": "https://infolaser.ru/assets/cache_image/products/556/seriaaaaaaaaa-2_220x220_2b9.png",
+            "alt": "Электрогидравлический листогибочный пресс Wattsan А1 6325 PB",
+            "width": "220",
+            "height": "220"
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 2
+    }
+  }
+}

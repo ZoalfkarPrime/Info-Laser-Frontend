@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {ArrowRight, ShoppingCart, User} from "lucide-react";
+import {Categories} from "@/components/shared/categories";
 
 interface Props {
   className?: string,
@@ -19,6 +20,8 @@ export const Header: React.FC<Props> = ({className}) => {
         <Link href={'/'}>
           <Image src='/logo.svg' width={170} height={23} alt={'logo'}/>
         </Link>
+
+        <Categories/>
 
         {/*  Авторизация + Корзина*/}
         <div className="flex items-center gap-3">

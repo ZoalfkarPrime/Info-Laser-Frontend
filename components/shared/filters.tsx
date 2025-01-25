@@ -1,6 +1,5 @@
 import React from 'react';
 import {cn} from "@/lib/utils";
-import {Title} from "@/components/shared/title";
 import {Input} from "@/components/ui/input";
 import {RangeSlider} from "@/components/ui/range-slider";
 import {CheckboxFilterGroup} from "@/components/shared/checkbox-filter-group";
@@ -14,8 +13,8 @@ interface Props {
 export const Filters: React.FC<Props> = ({className}) => {
   return (
     <form
-      className={cn('', className)}>
-      <Title text="Фильтрация" size="sm" className="mb-5 font-semibold"/>
+      className={cn('w-[250px] shadow-md shadow-md p-5 rounded-xl border border-gray-200', className)}>
+      <h2 className="mb-5 font-semibold">Фильтрация</h2>
 
       <fieldset className="mb-3">
         <legend className="font-semibold mb-3">Цена от и до:</legend>
