@@ -6,15 +6,15 @@ import {Category} from "@/types/category";
 
 
 async function getCategories(): Promise<Category[]> {
-  const response = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Categories`, {
+  const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Categories`, {
     next: {revalidate: 60},
   });
 
-  if (!response.ok) {
+  if (!res.ok) {
     throw new Error('Ошибка загрузки категорий');
   }
 
-  return response.json();
+  return res.json();
 }
 
 export const Categories: React.FC<ClassName> = async ({className}) => {

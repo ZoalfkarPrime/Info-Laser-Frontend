@@ -4,9 +4,37 @@ import {SortPopup} from "@/components/shared/Sort-popup";
 import {Filters} from "@/components/shared/Filters";
 import React from "react";
 import {ProductsGroupList} from "@/components/shared/Products-group-list";
+import {Product} from "@/types/product";
+import {notFound} from "next/navigation";
+
+interface CategoryPageProps {
+  params: {
+    category: string;
+  };
+}
+
+async function getProductsByCategory(categorySlug: string): Promise<Product[]> {
+  const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Products?categorySlug=${categorySlug}`, {
+    next: {revalidate: 60},
+  });
+
+  if (!res.ok) {
+    throw new Error('Ошибка загрузки продуктов');
+  }
+
+  return await res.json();
+}
 
 
-const Category = ({}) => {
+const CategoryPage = async ({params}: CategoryPageProps) => {
+
+  const {category} = params;
+  const products = await getProductsByCategory(category);
+
+  if (products.length === 0) {
+    notFound();
+  }
+
   return (
     <>
       <Container className="pt-5">
@@ -30,7 +58,7 @@ const Category = ({}) => {
           </div>
 
           {/* Контент */}
-          <ProductsGroupList/>
+          <ProductsGroupList products={products}/>
 
         </div>
       </Container>
@@ -38,4 +66,4 @@ const Category = ({}) => {
   );
 };
 
-export default Category;
+export default CategoryPage;

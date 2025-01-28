@@ -2,7 +2,7 @@ import {Container} from "@/components/shared/Container";
 import {Button} from "@/components/ui/Button";
 import Link from "next/link";
 
-export default function Main() {
+export default function MainPage() {
   return (
     <>
 

@@ -10,24 +10,29 @@ import {Product} from "@/types/product";
 export const ProductCard: React.FC<Product> = (
   {
     name,
-    image,
+    slug,
     orderPrice,
     stockPrice,
-    slug,
-    category,
+    categorySlug,
+    categoryName,
+    imageUrl,
+    imageAlt,
+    imageWidth,
+    imageHeight,
   }) => {
   return (
     <li
       className={cn('flex flex-col border border-gray-200 p-8 rounded-xl shadow-md  hover:shadow-xl transition-shadow')}>
 
-      <Link className="block mb-2" href={`/catalog/${category.slug}/${slug}`}>
-        <Image className="hover:scale-110 transition-transform" src={image.url} alt={name} width={220} height={220}/>
+      <Link className="block mb-2" href={`/catalog/${categorySlug}/${slug}`}>
+        <Image className="hover:scale-110 transition-transform" src={imageUrl} alt={imageAlt} width={imageWidth}
+               height={imageHeight}/>
       </Link>
 
-      <p className="text-sm text-gray-400 mb-1 leading-none">{category.name}</p>
+      <p className="text-sm text-gray-400 mb-1 leading-none">{categoryName}</p>
 
       <Link className="text-[#6941f9] transition-colors hover:text-[#b82c2c] leading-5 mb-3 block"
-            href={`/catalog/${category.slug}/${slug}`}>
+            href={`/catalog/${categorySlug}/${slug}}`}>
         <h3 className={ptMono.className}>{name}</h3>
       </Link>
 
@@ -53,7 +58,7 @@ export const ProductCard: React.FC<Product> = (
         </Button>
         <Link
           className="text-[16px] text-center text-[#6941f9] border-b border-gray-300 hover:text-[#b82c2c] transition-colors"
-          href={`/catalog/${category.slug}/${slug}`}>Подробнее</Link>
+          href={`/catalog/${categorySlug}/${slug}`}>Подробнее</Link>
       </div>
     </li>
   )

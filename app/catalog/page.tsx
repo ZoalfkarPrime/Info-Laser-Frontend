@@ -1,7 +1,7 @@
 import {Container} from "@/components/shared/Container";
 import {Categories} from "@/components/shared/Categories";
 
-const Catalog = () => {
+const CatalogPage = () => {
   return (
     <>
       <Container className="pt-5">
@@ -18,4 +18,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default CatalogPage;

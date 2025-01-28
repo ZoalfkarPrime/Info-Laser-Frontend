@@ -1,6 +1,6 @@
 import {Container} from "@/components/shared/Container";
 
-const Product = () => {
+const ProductPage = () => {
 
   return (
     <>
@@ -11,4 +11,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductPage;

@@ -1,6 +1,3 @@
-import {Image} from "@/types/types";
-import {Category} from "@/types/category";
-
 export interface Product {
   id: number;
   name: string;
@@ -9,6 +6,10 @@ export interface Product {
   orderPrice: number;
   stockPrice: number;
   newPrice: number;
-  category: Category;
-  image: Image;
+  categorySlug: string;
+  categoryName: string;
+  imageUrl: string;
+  imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
 }
