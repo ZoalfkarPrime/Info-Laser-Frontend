@@ -1,31 +1,15 @@
 import {cn} from '@/lib/utils';
 import React from 'react';
 import Link from "next/link";
-import {ClassName} from "@/types/types";
-import {Category} from "@/types/category";
+import {CategoriesProps} from "@/types/category";
 
-
-async function getCategories(): Promise<Category[]> {
-  const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Categories`, {
-    next: {revalidate: 60},
-  });
-
-  if (!res.ok) {
-    throw new Error('Ошибка загрузки категорий');
-  }
-
-  return res.json();
-}
-
-export const Categories: React.FC<ClassName> = async ({className}) => {
-
-  const categories = await getCategories();
+export const Categories: React.FC<CategoriesProps> = async ({categories, className}) => {
 
   return (
     <ul className={cn('inline-flex gap-1 bg-gray-50 p-2 rounded-2xl', className)}>
       {
-        categories.map((category, index) => (
-          <li key={index}>
+        categories.map((category) => (
+          <li key={category.id}>
 
             <Link
               href={`/catalog/${category.slug}`}

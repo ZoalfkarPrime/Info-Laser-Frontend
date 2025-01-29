@@ -1,11 +1,7 @@
 import {cn} from "@/lib/utils";
 import {ProductCard} from "@/components/shared/Product-card";
 import React from "react";
-import {Product} from "@/types/product";
-
-interface ProductsGroupListProps {
-  products: Product[];
-}
+import {ProductsGroupListProps} from "@/types/product";
 
 export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({products}) => {
 

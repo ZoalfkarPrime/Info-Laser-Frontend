@@ -4,23 +4,20 @@ import Link from "next/link";
 
 export default function MainPage() {
   return (
-    <>
 
+    <section className="my-5">
       <Container>
-        <section className="my-5">
-          
-          <div className="flex gap-20 items-center">
 
-            <Link href="/catalog">
-              <Button className="">Каталог</Button>
-            </Link>
-          </div>
+        <div className="flex gap-20 items-center">
 
-        </section>
+          <Link href="/catalog">
+            <Button className="">Каталог</Button>
+          </Link>
+        </div>
 
         Контент главной страницы
       </Container>
+    </section>
 
-    </>
   );
 }

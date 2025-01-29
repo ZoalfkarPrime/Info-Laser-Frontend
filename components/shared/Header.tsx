@@ -5,10 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import {Button} from "@/components/ui/Button";
 import {ArrowRight, ShoppingCart, User} from "lucide-react";
-import {Categories} from "@/components/shared/Categories";
 import {ClassName} from "@/types/types";
+import {getCategories} from "@/lib/api";
+import {Categories} from "@/components/shared/Categories";
 
-export const Header: React.FC<ClassName> = ({className}) => {
+export const Header: React.FC<ClassName> = async ({className}) => {
+  const categories = await getCategories();
+
   return (
     <header className={cn('shadow-xs border-b border-gray-300', className)}>
       <Container className="flex items-center justify-between py-2">
@@ -18,7 +21,7 @@ export const Header: React.FC<ClassName> = ({className}) => {
           <Image src='/logo.svg' width={170} height={23} alt={'logo'} priority={true}/>
         </Link>
 
-        <Categories/>
+        <Categories categories={categories}/>
 
         {/*  Авторизация + Корзина*/}
         <div className="flex items-center gap-3">

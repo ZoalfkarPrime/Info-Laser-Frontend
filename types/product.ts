@@ -13,3 +13,7 @@ export interface Product {
   imageWidth: number;
   imageHeight: number;
 }
+
+export interface ProductsGroupListProps {
+  products: Product[];
+}
