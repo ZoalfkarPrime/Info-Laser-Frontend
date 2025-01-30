@@ -1,18 +1,11 @@
-import React from "react";
-
-export interface FilterCheckbox {
-  text: string;
-  value: string;
-  endAdornment?: React.ReactNode;
-  onCheckedChange?: (checked: boolean) => void;
-  checked?: boolean;
-  name?: string;
+export interface FilterItems {
+  name: string,
+  value: string,
 }
 
-export interface CheckboxFilterProps {
+export interface FilterGroup {
   title: string,
   items: FilterItems[],
+  defaultOpen?: boolean
   className?: string,
 }
-
-export type FilterItems = FilterCheckbox;
