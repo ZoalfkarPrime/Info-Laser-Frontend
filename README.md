@@ -9,6 +9,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 - [Embla Carouse](https://www.embla-carousel.com/examples/predefined/) - Слайдер
 - [React-use](https://streamich.github.io/react-use/?path=/story/components-usekey--demo) - Полезные кастомные хуки (
   например, useClickAway, useSet)
+- [qs](https://www.npmjs.com/package/qs) - Библиотека анализа и преобразования строк запросов
 
   ## Можно подключить в дальнейшем:
 
