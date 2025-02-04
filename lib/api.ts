@@ -13,6 +13,17 @@ export async function getCategories(): Promise<Category[]> {
   return res.json();
 }
 
+export async function getAllProducts(): Promise<Product[]> {
+  const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Products`, {
+    next: {revalidate: 60},
+  });
+
+  if (!res.ok) {
+    throw new Error('Ошибка загрузки продуктов');
+  }
+
+  return await res.json();
+}
 
 export async function getProductsByCategory(categorySlug: string): Promise<Product[]> {
   const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Products?categorySlug=${categorySlug}`, {
@@ -26,8 +37,8 @@ export async function getProductsByCategory(categorySlug: string): Promise<Produ
   return await res.json();
 }
 
-export async function getAllProducts(): Promise<Product[]> {
-  const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Products`, {
+export async function getProductsBySlug(slug: string): Promise<Product[]> {
+  const res = await fetch(`https://64feeebff8b9eeca9e294f18.mockapi.io/Products?slug=${slug}`, {
     next: {revalidate: 60},
   });
 

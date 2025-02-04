@@ -22,3 +22,7 @@ export interface Product {
 export interface ProductsGroupListProps {
   products: Product[];
 }
+
+export interface ProductPageProps {
+  params: Promise<{ product: string }>;
+}
