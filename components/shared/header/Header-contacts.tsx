@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {Mail, Phone} from "lucide-react";
 
-export const ContactsHeader = () => {
+export const HeaderContacts = () => {
   return (
     <dl className="flex items-center gap-x-5">
       <div>

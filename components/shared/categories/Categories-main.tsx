@@ -15,11 +15,7 @@ export const CategoriesMain: React.FC<CategoriesProps> = async ({categories, cla
               href={`/catalog/${category.slug}`}
               className={cn('flex items-center font-medium h-10 rounded-2xl px-5 hover:text-[#b82c2c] transition-colors border border-gray-300')}
             >
-              <button className="hover:cursor-pointer">
-                <h3>
-                  {category.name}
-                </h3>
-              </button>
+              {category.name}
             </Link>
           </li>
         ))

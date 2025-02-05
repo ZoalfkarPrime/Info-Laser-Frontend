@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import {Header} from "@/components/shared/Header";
+import {Header} from "@/components/shared/header/Header";
 import {ptSans} from './fonts'
 
 export const metadata: Metadata = {

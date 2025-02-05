@@ -1,12 +1,12 @@
 import {Container} from "@/components/shared/Container";
 import {Button} from "@/components/ui/Button";
-import {BannerMain} from "@/components/shared/banners/Banner-main";
+import {BannerMain} from "@/components/shared/carousels/banners/Banner-main";
 import Link from "next/link";
 
 export default function MainPage() {
   return (
     <>
-      <section className="my-5">
+      <section className="mb-5">
         <h2 className="hidden">Основные акции и новости компании</h2>
         <BannerMain/>
       </section>
