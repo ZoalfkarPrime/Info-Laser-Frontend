@@ -7,16 +7,16 @@ export default function MainPage() {
   return (
     <>
       <section className="my-5">
+        <h2 className="hidden">Основные акции и новости компании</h2>
+        <BannerMain/>
+      </section>
+
+      <section className="my-5">
         <Container>
           <Link href="/catalog">
             <Button className="">Каталог</Button>
           </Link>
         </Container>
-      </section>
-
-      <section>
-        <h2 className="hidden">Основные акции и новости компании</h2>
-        <BannerMain/>
       </section>
     </>
   );

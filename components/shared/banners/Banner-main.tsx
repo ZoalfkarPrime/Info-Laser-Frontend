@@ -5,51 +5,44 @@ import Link from "next/link";
 import Image from "next/image";
 import {CarouselDots} from "@/components/shared/banners/Carousel-dots";
 import React from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 
 export const BannerMain = () => {
 
   return (
     <Carousel
-      className="max-w-[1000px] mx-auto rounded-2xl"
+      className=""
       opts={{
         loop: true,
       }}
-      plugins={[
-        // Autoplay({
-        // delay: 5000,
-        // }),
-      ]}
+      // plugins={[
+      //   Autoplay({
+      //     delay: 7000,
+      //   }),
+      // ]}
     >
 
       <CarouselContent>
 
         <CarouselItem>
           <Link href="#">
-            <Image src='/img/main-banner/main-banner-2-1440x585.png'
-                   width={1440}
-                   height={585}
-                   alt={'logo'}
+            <Image
+              src='/img/main-banner/main-banner-1.webp'
+              width={1920}
+              height={450}
+              alt={'logo'}
             />
           </Link>
         </CarouselItem>
 
         <CarouselItem>
           <Link href="#">
-            <Image src='/img/main-banner/main-banner-1-1440x585.png'
-                   width={1440}
-                   height={585}
-                   alt={'logo'}
-            />
-          </Link>
-        </CarouselItem>
-
-        <CarouselItem>
-          <Link href="#">
-            <Image src='/img/main-banner/main-banner-3-1440x585.png'
-                   width={1440}
-                   height={585}
-                   alt={'logo'}
+            <Image
+              src='/img/main-banner/main-banner-2.webp'
+              width={1920}
+              height={450}
+              alt={'logo'}
             />
           </Link>
         </CarouselItem>
