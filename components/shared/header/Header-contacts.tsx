@@ -1,9 +1,13 @@
+import React from "react";
 import Link from "next/link";
-import {Mail, Phone} from "lucide-react";
+import {Phone} from "lucide-react";
+import {CallbackModal} from "@/components/shared/Callback-modal";
 
 export const HeaderContacts = () => {
+
+
   return (
-    <dl className="flex items-center gap-x-5">
+    <dl className="flex items-center flex-col gap-y-1 ml-5">
       <div>
         <dt className="hidden">Phone</dt>
         <dd>
@@ -17,18 +21,8 @@ export const HeaderContacts = () => {
         </dd>
       </div>
 
-      <div>
-        <dt className="hidden">Mail</dt>
-        <dd>
-          <Link
-            href="mailto:info@lasercut.ru"
-            className="flex items-center gap-x-2 hover:text-[#b82c2c] transition-colors"
-          >
-            <Mail size={18}/>
-            info@infolaser.ru
-          </Link>
-        </dd>
-      </div>
+      <CallbackModal/>
+
     </dl>
   );
 };

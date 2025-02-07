@@ -5,8 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {CarouselDots} from "@/components/shared/carousels/Carousel-dots";
 import React from "react";
-import Autoplay from "embla-carousel-autoplay";
-
+// import Autoplay from "embla-carousel-autoplay";
 
 export const BannerMain = () => {
 

@@ -84,23 +84,24 @@ export const HeaderSearch = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
 
-
   }, [isOpen]);
 
   return (
     <>
-
       <Overlay isOpen={isOpen}/>
+
+      <span className="w-[1px] h-6 bg-gray-300"></span>
 
       {/* Триггер для спойлера */}
       <button
-        className="relative hover:text-[#6941f9] hover:cursor-pointer hover:bg-gray-200 p-1 rounded-md transition-colors duration-300 z-30"
+        className="relative hover:text-[#6941f9] hover:cursor-pointer hover:bg-gray-200 p-1 mx-2 rounded-md transition-colors duration-300 z-30"
         type="button"
         onClick={() => setIsOpen(true)}
       >
         <Search size={18}/>
       </button>
 
+      <span className="w-[1px] h-6 bg-gray-300"></span>
 
       {/* Контент спойлера */}
       <div ref={contentRef} className={cn(
