@@ -4,12 +4,15 @@ import Image from "next/image";
 import {cn} from "@/lib/utils";
 import {ptMono} from "@/app/fonts";
 import {Product} from "@/types/product";
-import {Check, Plus, X} from "lucide-react";
+import {Check, X} from "lucide-react";
 import {CallbackBtnProduct} from "@/components/shared/btns/Callback-btn-product";
-import {Button} from "@/components/ui/Button";
+import {AddToCartButton} from "@/components/shared/btns/Add-to-cart-btn-product";
 
 export const ProductCard: React.FC<Product> = (
   {
+    id,
+    description,
+    newPrice,
     name,
     slug,
     orderPrice,
@@ -19,9 +22,8 @@ export const ProductCard: React.FC<Product> = (
     categorySlug,
     categoryName,
     image,
-    className
+    className,
   }) => {
-
   return (
     <div
       className={cn('flex flex-col h-full overflow-hidden border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-shadow', className)}>
@@ -30,12 +32,12 @@ export const ProductCard: React.FC<Product> = (
         className="relative flex justify-center bg-gray-400/20 rounded-xl mb-2"
         href={`/catalog/${categorySlug}/${slug}`}
       >
-
-        {String(isHit).toLowerCase() === "true" ?
+        {String(isHit).toLowerCase() === "true" && (
           <span
-            className="flex items-center justify-center absolute top-2 left-2 uppercase py-1 px-3 rounded-2xl bg-red-500 text-white z-20">хит</span>
-          : ''}
-
+            className="flex items-center justify-center absolute top-2 left-2 uppercase py-1 px-3 rounded-2xl bg-red-500 text-white z-20">
+            хит
+          </span>
+        )}
         {image && (
           <Image
             className="hover:scale-110 transition-transform z-10"
@@ -48,10 +50,7 @@ export const ProductCard: React.FC<Product> = (
       </Link>
 
       <div className="flex flex-col h-full p-3">
-
-        <span
-          className="flex items-center gap-x-1 text-sm text-gray-400 mb-1 leading-none"
-        >
+        <span className="flex items-center gap-x-1 text-sm text-gray-400 mb-1 leading-none">
           {String(inStock).toLowerCase() === "true" ? <Check className="text-green-400" size={12}/> :
             <X className='text-red-500' size={12}/>}
 
@@ -79,18 +78,27 @@ export const ProductCard: React.FC<Product> = (
         </ul>
 
         <CallbackBtnProduct/>
-
-        <Button variant="outline" className="text-base font-bold mb-2">
-          <Plus className="w-5 h-5 mr-1"/>
-          В корзину
-        </Button>
+        
+        <AddToCartButton
+          product={{
+            id,
+            name,
+            slug,
+            description,
+            newPrice,
+            orderPrice,
+            stockPrice,
+            inStock,
+            isHit,
+            categorySlug,
+            categoryName,
+            image
+          }}/>
 
         <span className="flex items-center justify-center gap-x-1 text-sm text-center text-gray-400 leading-none">
-          <Check className="text-green-400" size={12}/>
-          Гарантия 1 год
+          <Check className="text-green-400" size={12}/> Гарантия 1 год
         </span>
-
       </div>
     </div>
-  )
+  );
 };
