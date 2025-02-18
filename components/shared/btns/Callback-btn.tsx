@@ -6,19 +6,28 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog"
+import {cn} from "@/lib/utils";
+import {ClassName} from "@/types/types";
 
-export const CallbackBtnHeader = () => {
+type CallbackBtnProps = {
+  title: string;
+} & ClassName;
+
+export const CallbackBtn: React.FC<CallbackBtnProps> = ({title, className}) => {
 
   return (
     <Dialog>
 
       <DialogTrigger asChild>
-        <Button>Заказать обратный звонок</Button>
+        <Button className={cn('', className)}>
+          {title}
+        </Button>
       </DialogTrigger>
 
+      <DialogDescription className="hidden"></DialogDescription>
+
       <DialogContent>
-        <DialogTitle>Заказать звонок</DialogTitle>
-        <DialogDescription className="hidden"></DialogDescription>
+        <DialogTitle>Заказать обратный звонок</DialogTitle>
 
         <form>
           <input

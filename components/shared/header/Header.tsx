@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
     <header className="relative bg-white shadow shadow-gray-200/80 py-2 z-50">
       <Container className="flex items-center justify-between">
 
-        <Logo/>
+        <Logo className="mr-7"/>
 
         <HeaderCity/>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import {Phone} from "lucide-react";
-import {CallbackBtnHeader} from "@/components/shared/btns/Callback-btn-header";
+import {CallbackBtn} from "@/components/shared/btns/Callback-btn";
 
 export const HeaderContacts = () => {
 
@@ -21,7 +21,7 @@ export const HeaderContacts = () => {
           </dd>
         </div>
 
-        <CallbackBtnHeader/>
+        <CallbackBtn title={'Заказать обратный звонок'}></CallbackBtn>
 
       </dl>
     </>

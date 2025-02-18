@@ -5,8 +5,8 @@ import {cn} from "@/lib/utils";
 import {ptMono} from "@/app/fonts";
 import {Product} from "@/types/product";
 import {Check, X} from "lucide-react";
-import {CallbackBtnProduct} from "@/components/shared/btns/Callback-btn-product";
 import {AddToCartButton} from "@/components/shared/btns/Add-to-cart-btn-product";
+import {CallbackBtn} from "@/components/shared/btns/Callback-btn";
 
 export const ProductCard: React.FC<Product> = (
   {
@@ -77,8 +77,8 @@ export const ProductCard: React.FC<Product> = (
           </li>
         </ul>
 
-        <CallbackBtnProduct/>
-        
+        <CallbackBtn className='mb-2' title={'Заказать'}></CallbackBtn>
+
         <AddToCartButton
           product={{
             id,
