@@ -6,30 +6,109 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {Overlay} from "@/components/shared/Overlay";
 import {ChevronDown} from "lucide-react";
-
 import {Category} from "@/types/category";
 import {useMedia} from "react-use";
-import {Product} from "@/types/product";
-import {getAllProducts} from "@/api/products";
 import {getCategories} from "@/api/categories";
+import Image from "next/image";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
+import {Button} from "@/components/ui/Button";
+import {ProductCard} from "@/components/shared/products/Product-card";
 
 export const HeaderProductItem: React.FC = () => {
 
   const isMobile = useMedia("(max-width: 1280px)");
 
-  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isSpoilerOpen, setIsSpoilerOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  useEffect(() => {
-    getAllProducts()
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Ошибка при загрузке продуктов:", error));
-  }, []);
+  const accessories = [
+    {
+      id: "77",
+      name: "Комплектующие для лазерных станков",
+      description: "Описание для Комплектующие для лазерных станков",
+      slug: "dlya-lazernyh-stankov",
+      products: [
+        {
+          id: "7",
+          name: "Чиллеры и системы охлаждения лазерных трубок",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-laser-app_170x170_1ad.jpg",
+          slug: "chillery",
+        },
+        {
+          id: "8",
+          name: "Лазерные трубки, СО2 трубки",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
+          slug: "lazernye-trubki",
+        },
+        {
+          id: "9",
+          name: "test 3",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
+          slug: "lazernye-trubki",
+        },
+        {
+          id: "10",
+          name: "Test 4",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
+          slug: "lazernye-trubki",
+        },
+        {
+          id: "11",
+          name: "test 5",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
+          slug: "lazernye-trubki",
+        },
+      ],
+    },
+    {
+      id: "78",
+      name: "Комплектующие для маркеров",
+      description: "Описание для Комплектующие для маркеров",
+      slug: "dlya-markerov",
+      products: [
+        {
+          id: "12",
+          name: "Контроллеры",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-display-app_170x170_1ad.jpg",
+          slug: "kontrollery",
+        },
+        {
+          id: "13",
+          name: "Линзы",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
+          slug: "linzy",
+        },
+        {
+          id: "14",
+          name: "Test 5",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
+          slug: "linzy",
+        },
+        {
+          id: "15",
+          name: "Test 6",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
+          slug: "linzy",
+        },
+        {
+          id: "16",
+          name: "Test 7",
+          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
+          slug: "linzy",
+        },
+      ],
+    },
+  ];
 
   useEffect(() => {
     getCategories()
-      .then((data) => setCategories(data))
+      .then((data) => {
+        setCategories(data);
+        if (data.length > 0) {
+          setActiveCategory(data[0].id);
+        }
+      })
       .catch((error) => console.error("Ошибка при загрузке категорий:", error));
   }, []);
 
@@ -45,13 +124,12 @@ export const HeaderProductItem: React.FC = () => {
     };
   }, [isSpoilerOpen, isMobile]);
 
-
   return (
     <>
       <Overlay isOpen={!isMobile && isSpoilerOpen}/>
 
       <li
-        onMouseLeave={() => setIsSpoilerOpen(false)}
+        onMouseLeave={() => setIsSpoilerOpen(true)}
         className={cn('max-xl:w-full')}
       >
         <button
@@ -77,7 +155,7 @@ export const HeaderProductItem: React.FC = () => {
 
         <div
           className={cn(
-            "absolute top-[64px] left-0 right-0 bg-white xl:border-t xl:border-t-gray-300  transition-all duration-300 ease-in-out z-30",
+            "absolute top-[80px] h-[85dvh] left-0 right-0 bg-gray-200 xl:border-t xl:border-t-gray-300  transition-all duration-300 ease-in-out overflow-hidden z-30",
             "max-xl:static max-xl:overflow-hidden",
             isSpoilerOpen ? "max-xl:max-h-full" : "max-xl:max-h-0",
             isSpoilerOpen ? "visible opacity-100" : "invisible opacity-0"
@@ -85,22 +163,141 @@ export const HeaderProductItem: React.FC = () => {
         >
           <Container
             className={cn(
-              "relative xl:py-5 transition-all duration-300 ease-in-out",
+              "relative xl:py-5 h-full transition-all duration-300 ease-in-out",
               "max-lg: px-4",
               isSpoilerOpen ? "top-0 " : "-top-3"
             )}
           >
-            <ul>
-              {categories.length > 0 ? (
-                categories.map((category) => (
-                  <li key={category.id}>
-                    <Link href={`/catalog/${category.slug}`}>{category.name}</Link>
-                  </li>
-                ))
-              ) : (
-                <li>Загрузка...</li>
-              )}
-            </ul>
+
+            {
+              activeCategory ? (
+                <Tabs value={activeCategory} onValueChange={setActiveCategory} className="flex gap-10">
+                  <div className={"basis-sm"}>
+                    <TabsList
+                      className={"flex flex-col items-start justify-start bg-inherit h-auto mb-1"}
+                      asChild
+                    >
+                      <div>
+                        <p className={"text-black uppercase font-semibold mb-2"}>Лазерные станки</p>
+                        <ul className="flex flex-col w-full space-y-2 mb-3">
+                          {categories.map((category) => (
+                            <TabsTrigger
+                              asChild
+                              key={category.id}
+                              value={category.id}
+                              onMouseEnter={() => setActiveCategory(category.id)}
+                            >
+                              <Link
+                                className={cn(
+                                  "flex items-center justify-start gap-x-3 font-semibold bg-white rounded-lg px-3 py-2 mb-0",
+                                  activeCategory && 'bg-inherit',
+                                )}
+                                href={`/catalog/${category.slug}`}
+                                onClick={() => setIsSpoilerOpen(false)}
+                              >
+                                <Image src={category.imageUrl} alt={"#"} width={45} height={45}></Image>
+                                {category.name}
+
+                              </Link>
+                            </TabsTrigger>
+                          ))}
+                        </ul>
+
+                      </div>
+                    </TabsList>
+
+                    <TabsList
+                      className={"flex flex-col items-start justify-start bg-inherit h-auto"}
+                      asChild
+                    >
+                      <div>
+                        <p className={"text-black uppercase font-semibold mb-2"}>Комплектующие</p>
+                        <ul className="flex flex-col w-full space-y-2 mb-3">
+                          {accessories.map((accessory) => (
+                            <TabsTrigger
+                              asChild
+                              key={accessory.id}
+                              value={accessory.id}
+                              onMouseEnter={() => setActiveCategory(accessory.id)}
+                            >
+                              <Link
+                                className={cn(
+                                  "flex items-center justify-start gap-x-3 font-semibold bg-white rounded-lg px-3 py-2 mb-0",
+                                  activeCategory && 'bg-inherit',
+                                )}
+                                href={`/acessories/${accessory.slug}`}
+                                onClick={() => setIsSpoilerOpen(false)}
+                              >
+                                {accessory.name}
+                              </Link>
+                            </TabsTrigger>
+                          ))}
+                        </ul>
+                      </div>
+                    </TabsList>
+
+                    <Button className={"rounded-2xl"}>Демонстрация онлайн</Button>
+                  </div>
+
+                  <div className={"flex-1"}>
+                    {categories.map((category) => (
+                      <TabsContent asChild key={category.id} value={category.id}>
+                        <div className={'flex-1 overflow-y-scroll'}>
+                          <p className={"text-2xl"}>{category.name}</p>
+                          <div className={"flex justify-between mb-3"}>
+                            <p>{category.description}</p>
+                            <Link onClick={() => setIsSpoilerOpen(false)} href={`/catalog/${category.slug}`}>
+                              <Button className={"block rounded-2xl"}> Смотреть все</Button>
+                            </Link>
+                          </div>
+
+                          <ul className="grid grid-cols-3 gap-2">
+                            {category.products.map((product) => (
+                              <li key={product.id}>
+                                <ProductCard {...product} image={product.images?.[0]}/>
+                              </li>
+                            ))}
+                          </ul>
+
+                        </div>
+                      </TabsContent>
+                    ))}
+
+                    {accessories.map((accessory) => (
+                      <TabsContent asChild key={accessory.id} value={accessory.id}>
+                        <div className={'flex-1 overflow-y-scroll'}>
+                          <p className={"text-2xl"}>{accessory.name}</p>
+                          <div className={"flex justify-between mb-3"}>
+                            <p>{accessory.description}</p>
+                            <Link
+                              onClick={() => setIsSpoilerOpen(false)}
+                              href={`/accessories`}
+                            >
+                              <Button className={"block rounded-2xl"}> Смотреть все</Button>
+                            </Link>
+                          </div>
+
+                          <ul className="grid grid-cols-4 gap-2">
+                            {accessory.products.map((product) => (
+                              <li key={product.id}>
+                                <Link
+                                  onClick={() => setIsSpoilerOpen(false)}
+                                  className={"flex items-center gap-2 h-full bg-white rounded-xl leading-4 overflow-hidden p-2 hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300 ease-in-out"}
+                                  href={"/accessories"}
+                                >
+                                  <Image src={product.image} alt={product.name} width={50} height={50}/>
+                                  {product.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </TabsContent>
+                    ))}
+                  </div>
+                </Tabs>
+              ) : (<p>Загрузка...</p>)
+            }
           </Container>
         </div>
       </li>

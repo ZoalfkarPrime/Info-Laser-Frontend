@@ -26,10 +26,10 @@ export const ProductCard: React.FC<Product> = (
   }) => {
   return (
     <div
-      className={cn('flex flex-col h-full overflow-hidden border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-shadow', className)}>
+      className={cn('flex flex-col h-full overflow-hidden bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-shadow p-2', className)}>
 
       <Link
-        className="relative flex justify-center bg-gray-400/20 rounded-xl mb-2"
+        className="relative flex justify-center bg-gray-400/20 rounded-xl mb-2 overflow-hidden min-h-[220px]"
         href={`/catalog/${categorySlug}/${slug}`}
       >
         {String(isHit).toLowerCase() === "true" && (
