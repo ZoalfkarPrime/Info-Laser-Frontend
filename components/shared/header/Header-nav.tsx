@@ -46,7 +46,7 @@ export const HeaderNav: React.FC = () => {
         ref={navRef}
         className={cn(
           "bg-white ml-auto mr-4",
-          "max-xl:fixed max-xl:top-20 max-xl:left-[-110%] max-xl:h-full max-xl:w-2/3 max-xl:transition-all max-xl:ease-in-out max-xl:duration-300 max-xl:shadow-lg max-xl:border-t max-xl:border-t-gray-300",
+          "max-xl:fixed max-xl:top-20 max-xl:left-[-110%] max-xl:h-full max-xl:w-2/3 max-xl:transition-all max-xl:ease-in-out max-xl:duration-300 max-xl:shadow-lg max-xl:border-t max-xl:border-t-gray-300 max-xl:overflow-y-scroll max-xl:max-h-[90dvh]",
           isMenuOpen && "max-xl:left-0"
         )}
       >

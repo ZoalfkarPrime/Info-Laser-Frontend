@@ -132,7 +132,8 @@ export const HeaderProductItem: React.FC = () => {
         onMouseLeave={() => setIsSpoilerOpen(false)}
         className={cn('max-xl:w-full')}
       >
-        <button
+        <Link
+          href={"/catalog"}
           type="button"
           className={cn(
             "relative flex items-center gap-x-1 rounded-md xl:bg-gray-400/30 hover:text-[#6941f9] transition-colors duration-300 px-3 lg:py-1",
@@ -141,7 +142,7 @@ export const HeaderProductItem: React.FC = () => {
             isSpoilerOpen ? "text-[#6941f9] xl:bg-gray-400/50 " : "",
           )}
           onMouseEnter={() => !isMobile && setIsSpoilerOpen(true)}
-          onClick={() => isMobile && setIsSpoilerOpen(!isSpoilerOpen)}
+          onClick={() => isMobile ? setIsSpoilerOpen(!isSpoilerOpen) : setIsSpoilerOpen(false)}
         >
           Каталог
           <ChevronDown
@@ -151,7 +152,7 @@ export const HeaderProductItem: React.FC = () => {
               isSpoilerOpen ? "top-0.5" : " top-0"
             )}
           />
-        </button>
+        </Link>
 
         <div
           className={cn(

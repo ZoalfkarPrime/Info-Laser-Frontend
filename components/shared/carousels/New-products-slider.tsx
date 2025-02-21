@@ -11,7 +11,7 @@ export const NewProductsSlider: React.FC<ClassName> = async ({className}) => {
   const products = await getAllProducts();
 
   return (
-    <section className={cn('', className)}>
+    <section className={cn('py-10', className)}>
       <Container>
         <h2 className={cn("text-2xl font-bold text-center mb-5")}>Новинки оборудования InfoLaser</h2>
 
