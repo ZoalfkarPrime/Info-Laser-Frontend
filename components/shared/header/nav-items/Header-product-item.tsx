@@ -13,6 +13,7 @@ import Image from "next/image";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import {Button} from "@/components/ui/Button";
 import {ProductCard} from "@/components/shared/products/Product-card";
+import {DemoBtn} from "@/components/shared/btns/Demo-btn";
 
 export const HeaderProductItem: React.FC = () => {
 
@@ -27,37 +28,36 @@ export const HeaderProductItem: React.FC = () => {
       id: "77",
       name: "Комплектующие для лазерных станков",
       description: "Описание для Комплектующие для лазерных станков",
-      slug: "dlya-lazernyh-stankov",
       products: [
         {
           id: "7",
           name: "Чиллеры и системы охлаждения лазерных трубок",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-laser-app_170x170_1ad.jpg",
-          slug: "chillery",
+          slug: "dlya-lazernyh-stankov",
         },
         {
           id: "8",
           name: "Лазерные трубки, СО2 трубки",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "lazernye-trubki",
+          slug: "dlya-lazernyh-stankov",
         },
         {
           id: "9",
           name: "test 3",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "lazernye-trubki",
+          slug: "dlya-lazernyh-stankov",
         },
         {
           id: "10",
           name: "Test 4",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "lazernye-trubki",
+          slug: "dlya-lazernyh-stankov",
         },
         {
           id: "11",
           name: "test 5",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "lazernye-trubki",
+          slug: "dlya-lazernyh-stankov",
         },
       ],
     },
@@ -71,31 +71,31 @@ export const HeaderProductItem: React.FC = () => {
           id: "12",
           name: "Контроллеры",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-display-app_170x170_1ad.jpg",
-          slug: "kontrollery",
+          slug: "dlya-markerov",
         },
         {
           id: "13",
           name: "Линзы",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "linzy",
+          slug: "dlya-markerov",
         },
         {
           id: "14",
           name: "Test 5",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "linzy",
+          slug: "dlya-markerov",
         },
         {
           id: "15",
           name: "Test 6",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "linzy",
+          slug: "dlya-markerov",
         },
         {
           id: "16",
           name: "Test 7",
           image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "linzy",
+          slug: "dlya-markerov",
         },
       ],
     },
@@ -129,7 +129,7 @@ export const HeaderProductItem: React.FC = () => {
       <Overlay isOpen={!isMobile && isSpoilerOpen}/>
 
       <li
-        onMouseLeave={() => setIsSpoilerOpen(true)}
+        onMouseLeave={() => setIsSpoilerOpen(false)}
         className={cn('max-xl:w-full')}
       >
         <button
@@ -236,7 +236,7 @@ export const HeaderProductItem: React.FC = () => {
                       </div>
                     </TabsList>
 
-                    <Button className={"rounded-2xl"}>Демонстрация онлайн</Button>
+                    <DemoBtn title={'Демонстрация онлайн'} className={"rounded-2xl"}/>
                   </div>
 
                   <div className={"flex-1"}>
