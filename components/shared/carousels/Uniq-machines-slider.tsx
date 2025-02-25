@@ -5,7 +5,7 @@ import {Container} from "@/components/shared/Container";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {Category} from "@/types/category";
-import {getCategories} from "@/api/categories";
+import {getCategories} from "@/api/api";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import Image from "next/image";
 import {Button} from "@/components/ui/Button";

@@ -1,19 +1,16 @@
+import React from "react";
 import {Container} from "@/components/shared/Container";
 import {SortPopup} from "@/components/shared/Sort-popup";
 import {Filters} from "@/components/shared/filters/Filters";
-import React from "react";
 import {ProductsGroupList} from "@/components/shared/products/Products-group-list";
 import {notFound} from "next/navigation";
-
 import {CategoriesCatalog} from "@/components/shared/categories/Categories-catalog";
 import {CategoryPageProps} from "@/types/category";
-import {getProductsByCategory} from "@/api/products";
-import {getCategories} from "@/api/categories";
+import {getCategories, getProductsByCategory} from "@/api/api";
 
 const CategoryPage = async ({params}: CategoryPageProps) => {
 
   const {category} = await params;
-
   const products = await getProductsByCategory(category);
   const categories = await getCategories();
 

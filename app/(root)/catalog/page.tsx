@@ -1,5 +1,5 @@
 import {CategoriesCatalog} from "@/components/shared/categories/Categories-catalog";
-import {getCategories} from "@/api/categories";
+import {getCategories} from "@/api/api";
 import {OfflineOrOnline} from "@/components/shared/OfflineOrOnline";
 import {PartnersSlider} from "@/components/shared/carousels/Partners-slider";
 

@@ -8,7 +8,7 @@ import {Overlay} from "@/components/shared/Overlay";
 import {ChevronDown} from "lucide-react";
 import {Category} from "@/types/category";
 import {useMedia} from "react-use";
-import {getCategories} from "@/api/categories";
+import {getCategories} from "@/api/api";
 import Image from "next/image";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import {Button} from "@/components/ui/Button";
@@ -153,7 +153,7 @@ export const HeaderProductItem: React.FC = () => {
             )}
           />
         </Link>
-        
+
         <div
           className={cn(
             "absolute top-[80px] h-[85dvh] left-0 right-0 bg-gray-200 xl:border-t xl:border-t-gray-300  transition-all duration-300 ease-in-out overflow-hidden z-30",

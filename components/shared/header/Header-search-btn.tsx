@@ -4,12 +4,11 @@ import React, {useEffect, useRef, useState} from "react";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
-
 import {Product} from "@/types/product";
 import {Container} from "@/components/shared/Container";
 import {ptMono} from "@/app/fonts";
 import {Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger} from "@/components/ui/Sheet";
-import {getAllProducts} from "@/api/products";
+import {getProducts} from "@/api/api";
 
 export const HeaderSearchBtn = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -28,11 +27,10 @@ export const HeaderSearchBtn = () => {
     closeAndClear();
   };
 
-  // Получение всех продуктов
   useEffect(() => {
     const fetchProducts = async () => {
-      const data: Product[] = await getAllProducts();
-      setProducts(data);
+      const allProducts = await getProducts();
+      setProducts(allProducts);
     };
 
     fetchProducts();
@@ -58,14 +56,6 @@ export const HeaderSearchBtn = () => {
       setTimeout(() => {
         inputRef.current?.focus();
       }, 50);
-    }
-  }, [isOpen]);
-
-  // Очистка данных при закрытии спойлера
-  useEffect(() => {
-    if (!isOpen) {
-      setQuery('');
-      setFilteredProducts([]);
     }
   }, [isOpen]);
 
