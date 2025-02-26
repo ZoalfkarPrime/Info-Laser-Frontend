@@ -78,7 +78,6 @@
     }
 }
 
-
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -178,3 +177,14 @@
 /*#nprogress .spinner-icon {*/
 /*    @apply border-t-primary! border-l-primary!;*/
 /*}*/
+/*
+  ---break---
+*/
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+}

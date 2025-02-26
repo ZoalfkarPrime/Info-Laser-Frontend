@@ -8,7 +8,7 @@ import {cn} from "@/lib/utils";
 import {getProductBySlug} from "@/api/api";
 
 const ProductPage = async ({params}: ProductPageProps) => {
-  const {product: productSlug} = params;
+  const {product: productSlug} = await params;
   const product = await getProductBySlug(productSlug);
 
   if (!product) {

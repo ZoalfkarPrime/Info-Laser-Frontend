@@ -1,0 +1,184 @@
+{
+  "success": true,
+  "message": null,
+  "code": 200,
+  "data": {
+    "categories": {
+      "product": [
+        {
+          "id": 1,
+          "name": "CO2",
+          "slug": "co2",
+          "type": "product",
+          "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png"
+        },
+        {
+          "id": 2,
+          "name": "Markers",
+          "slug": "markers",
+          "type": "product",
+          "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png"
+        },
+        {
+          "id": 3,
+          "name": "Laser Machines",
+          "slug": "laser-machines",
+          "type": "product",
+          "banner_image_url": "https://example.com/banner1.jpg"
+        },
+        {
+          "id": 4,
+          "name": "CO2 Lasers",
+          "slug": "co2-lasers",
+          "type": "product",
+          "banner_image_url": "https://example.com/banner2.jpg"
+        },
+        {
+          "id": 6,
+          "name": "Fiber Laser Equipment",
+          "slug": "fiber-laser-equipment",
+          "type": "product",
+          "banner_image_url": "https://example.com/banner4.jpg"
+        }
+      ],
+      "accessory": [
+        {
+          "id": 5,
+          "name": "Laser Accessories",
+          "slug": "laser-accessories",
+          "type": "accessory",
+          "banner_image_url": "https://example.com/banner3.jpg"
+        }
+      ]
+    },
+    "selected_category": {
+      "id": 1,
+      "name": "CO2",
+      "slug": "co2",
+      "description": "All CO2 laser machines",
+      "order": 1,
+      "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
+      "type": "product",
+      "created_at": "2025-02-24T13:37:15.000000Z",
+      "updated_at": "2025-02-24T13:37:15.000000Z"
+    },
+    "products": {
+      "draw": 0,
+      "recordsTotal": 2,
+      "recordsFiltered": 2,
+      "data": [
+        {
+          "id": 9,
+          "name": "KC2001",
+          "slug": "kc-fiber-laser-cutter",
+          "description": "High-power fiber laser machine designed for precision metal cutting.",
+          "orderPrice": 27000,
+          "stockPrice": 25000,
+          "newPrice": 24000,
+          "inStock": 1,
+          "rating": "4.8",
+          "isAccessory": 0,
+          "guarantee": 3,
+          "guaranteeContent": "3-year full warranty with service support",
+          "created_at": "2025-02-25T12:41:34.000000Z",
+          "updated_at": "2025-02-25T12:41:34.000000Z",
+          "categories": [
+            {
+              "id": 1,
+              "name": "CO2",
+              "slug": "co2",
+              "description": "All CO2 laser machines",
+              "order": 1,
+              "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
+              "type": "product",
+              "created_at": "2025-02-24T13:37:15.000000Z",
+              "updated_at": "2025-02-24T13:37:15.000000Z",
+              "pivot": {
+                "product_id": 9,
+                "category_id": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Laser Machine X2000 Pro",
+          "slug": "hm-fiber-laser-cutter",
+          "description": "High-power fiber laser machine designed for precision metal cutting.",
+          "orderPrice": 27000,
+          "stockPrice": 25000,
+          "newPrice": 24000,
+          "inStock": 1,
+          "rating": "4.8",
+          "isAccessory": 0,
+          "guarantee": 3,
+          "guaranteeContent": "3-year full warranty with service support",
+          "created_at": "2025-02-25T12:05:01.000000Z",
+          "updated_at": "2025-02-25T12:38:08.000000Z",
+          "categories": [
+            {
+              "id": 1,
+              "name": "CO2",
+              "slug": "co2",
+              "description": "All CO2 laser machines",
+              "order": 1,
+              "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
+              "type": "product",
+              "created_at": "2025-02-24T13:37:15.000000Z",
+              "updated_at": "2025-02-24T13:37:15.000000Z",
+              "pivot": {
+                "product_id": 8,
+                "category_id": 1
+              }
+            }
+          ]
+        }
+      ],
+      "disableOrdering": false,
+      "input": []
+    },
+    "accessories": {
+      "draw": 0,
+      "recordsTotal": 2,
+      "recordsFiltered": 2,
+      "data": [
+        {
+          "id": 13,
+          "name": "Protective Glass Set",
+          "slug": "protective-glass-set",
+          "description": "Protective glass for high-power laser machines",
+          "orderPrice": 3000,
+          "stockPrice": 2700,
+          "newPrice": 2800,
+          "inStock": 1,
+          "rating": "4.3",
+          "isAccessory": 1,
+          "guarantee": 1,
+          "guaranteeContent": "1-year protection",
+          "created_at": "2025-02-25T12:35:00.000000Z",
+          "updated_at": "2025-02-25T12:35:00.000000Z",
+          "categories": []
+        },
+        {
+          "id": 12,
+          "name": "Laser Lens Kit",
+          "slug": "laser-lens-kit",
+          "description": "High precision lenses for laser machines",
+          "orderPrice": 5000,
+          "stockPrice": 4500,
+          "newPrice": 4700,
+          "inStock": 1,
+          "rating": "4.5",
+          "isAccessory": 1,
+          "guarantee": 1,
+          "guaranteeContent": "1-year lens warranty",
+          "created_at": "2025-02-25T12:30:00.000000Z",
+          "updated_at": "2025-02-25T12:30:00.000000Z",
+          "categories": []
+        }
+      ],
+      "disableOrdering": false,
+      "input": []
+    }
+  }
+}
