@@ -4,16 +4,13 @@ import React from "react";
 import {ProductsGroupListProps} from "@/types/product";
 
 export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({products}) => {
-  
-  return (
-    <section>
-      <h1 className="text-2xl font-semibold mb-3">Вы выбрали: {products[0].categoryName} </h1>
 
-      <ul className={cn('grid grid-cols-3 gap-[20px]')}>
-        {products.map((product) => (
+  return (
+    <ul className={cn('grid grid-cols-3 gap-10')}>
+      {products.map((product) => (
+        <li key={product.id}>
           <ProductCard
             className={cn('')}
-            key={product.id}
             id={product.id}
             name={product.name}
             slug={product.slug}
@@ -27,8 +24,9 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({products}) 
             newPrice={0}
             image={product.images?.[0]}
           />
-        ))}
-      </ul>
-    </section>
+        </li>
+      ))}
+
+    </ul>
   );
 };

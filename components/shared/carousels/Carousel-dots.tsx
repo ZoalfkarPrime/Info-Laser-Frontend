@@ -42,7 +42,7 @@ export const CarouselDots = React.forwardRef<
             className={cn(
               "mx-1 h-1.5 w-1.5 rounded-full p-0",
               i === currentSlide
-                ? "scale-125 transform bg-[#007aff] hover:bg-[#007aff]"
+                ? "scale-125 transform bg-[#6941f9] hover:bg-[#6941f9]"
                 : "bg-gray-300 hover:bg-gray-300"
             )}
             aria-label={`Перейти к слайду ${i + 1}`}

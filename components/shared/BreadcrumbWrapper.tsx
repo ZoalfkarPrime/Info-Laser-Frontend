@@ -11,7 +11,6 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/Breadcrumb";
 import React from "react";
-import {Slash} from "lucide-react";
 import {Container} from "@/components/shared/Container";
 
 export function BreadcrumbWrapper() {
@@ -41,9 +40,8 @@ export function BreadcrumbWrapper() {
 
           {breadcrumbs.map((crumb) => (
             <React.Fragment key={crumb.href}>
-              <BreadcrumbSeparator>
-                <Slash/>
-              </BreadcrumbSeparator>
+              <BreadcrumbSeparator/>
+
               <BreadcrumbItem>
                 {crumb.isLast ? (
                   <BreadcrumbPage>

@@ -68,72 +68,73 @@ export const Filters: React.FC = () => {
   }, [prices, selectedMaterials, selectedManufacturers, router]);
 
   return (
-    <form className={cn('w-[250px] shadow-md p-5 rounded-xl border border-gray-200')}>
-      <h2 className="text-xl mb-5 font-semibold">Фильтрация</h2>
+    <div>
+      <form className={cn('w-[250px] shadow-md p-5 rounded-xl border border-gray-200')}>
 
-      <fieldset className="mb-3">
-        <legend className="font-semibold mb-3">Цена от и до:</legend>
+        <fieldset className="mb-3">
+          <legend className="font-semibold mb-3">Цена от и до:</legend>
 
-        <div className="flex gap-3 mb-5">
+          <div className="flex gap-3 mb-5">
 
-          <Input
-            type="number"
+            <Input
+              type="number"
+              min={0}
+              max={150000}
+              placeholder="0"
+              value={String(prices.priceFrom)}
+              onChange={(e) => updatePrice('priceFrom', Number(e.target.value))}
+            />
+
+            <Input
+              type="number"
+              min={100}
+              max={150000}
+              placeholder="150000"
+              value={String(prices.priceTo)}
+              onChange={(e) => updatePrice('priceTo', Number(e.target.value))}
+            />
+          </div>
+
+          <RangeSlider
             min={0}
             max={150000}
-            placeholder="0"
-            value={String(prices.priceFrom)}
-            onChange={(e) => updatePrice('priceFrom', Number(e.target.value))}
+            step={10}
+            value={[prices.priceFrom || 0, prices.priceTo || 150000]}
+            onValueChange={([priceFrom, priceTo]) => setPrice({priceFrom, priceTo})}
           />
 
-          <Input
-            type="number"
-            min={100}
-            max={150000}
-            placeholder="150000"
-            value={String(prices.priceTo)}
-            onChange={(e) => updatePrice('priceTo', Number(e.target.value))}
-          />
-        </div>
+        </fieldset>
 
-        <RangeSlider
-          min={0}
-          max={150000}
-          step={10}
-          value={[prices.priceFrom || 0, prices.priceTo || 150000]}
-          onValueChange={([priceFrom, priceTo]) => setPrice({priceFrom, priceTo})}
+        <FiltersGroup
+          title={'Материалы обработки'}
+          items={materials}
+          defaultOpen={true}
+          selectedIds={selectedMaterials}
+          onClickCheckbox={toggleMaterial}
         />
 
-      </fieldset>
+        <FiltersGroup
+          title={'Производитель'}
+          items={manufacturer}
+          selectedIds={selectedManufacturers}
+          onClickCheckbox={toggleManufacturer}
+        />
 
-      <FiltersGroup
-        title={'Материалы обработки'}
-        items={materials}
-        defaultOpen={true}
-        selectedIds={selectedMaterials}
-        onClickCheckbox={toggleMaterial}
-      />
-
-      <FiltersGroup
-        title={'Производитель'}
-        items={manufacturer}
-        selectedIds={selectedManufacturers}
-        onClickCheckbox={toggleManufacturer}
-      />
-
-      <button
-        type="button"
-        className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors duration-300 hover:cursor-pointer"
-        onClick={() => {
-          setPrice({priceFrom: undefined, priceTo: undefined});
-          selectedMaterials.clear();
-          selectedManufacturers.clear();
-          router.push("?", {scroll: false});
-        }}
-      >
-        Сбросить фильтр
-      </button>
+        <button
+          type="button"
+          className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors duration-300 hover:cursor-pointer"
+          onClick={() => {
+            setPrice({priceFrom: undefined, priceTo: undefined});
+            selectedMaterials.clear();
+            selectedManufacturers.clear();
+            router.push("?", {scroll: false});
+          }}
+        >
+          Сбросить фильтр
+        </button>
 
 
-    </form>
+      </form>
+    </div>
   );
 };

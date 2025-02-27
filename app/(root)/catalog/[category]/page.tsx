@@ -3,47 +3,38 @@ import {Container} from "@/components/shared/Container";
 import {SortPopup} from "@/components/shared/Sort-popup";
 import {Filters} from "@/components/shared/filters/Filters";
 import {ProductsGroupList} from "@/components/shared/products/Products-group-list";
-import {notFound} from "next/navigation";
-import {CategoriesCatalog} from "@/components/shared/categories/Categories-catalog";
 import {CategoryPageProps} from "@/types/category";
 import {getCategories, getProductsByCategory} from "@/api/api";
+import {CategoriesGoods} from "@/components/shared/categories/Categories-goods";
 
 const CategoryPage = async ({params}: CategoryPageProps) => {
-
   const {category} = await params;
   const products = await getProductsByCategory(category);
   const categories = await getCategories();
 
-  if (products.length === 0) {
-    notFound();
-  }
+  const currentCategory = categories.find((cat) => cat.slug === category);
 
   return (
     <>
-      <Container className="pt-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold mb-3">Все категории</h2>
-            <CategoriesCatalog categories={categories}/>
-          </div>
+      <Container>
+        <section className="py-3 mb-3">
+          <h1 className={"text-3xl mb-1"}>{currentCategory?.name}</h1>
+          <p>{currentCategory?.description}</p>
+        </section>
 
-          <SortPopup/>
-        </div>
-      </Container>
+        <section className="flex gap-x-5">
+          <h2 className="hidden">{currentCategory?.name}</h2>
 
-      <Container className="mt-10">
-
-        <div className="flex gap-10">
-
-          {/* Фильтрация */}
-          <div>
+          <aside>
             <Filters/>
+          </aside>
+
+          <div className="flex-1">
+            <CategoriesGoods className="mb-3" categories={categories}/>
+            <SortPopup/>
+            <ProductsGroupList className="mb-3" products={products}/>
           </div>
-
-          {/* Контент */}
-          <ProductsGroupList products={products}/>
-
-        </div>
+        </section>
       </Container>
     </>
   );
