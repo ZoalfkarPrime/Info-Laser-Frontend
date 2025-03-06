@@ -30,23 +30,19 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
 
   return (
 
-    <section className={cn("bg-gray-400/20 py-10")}>
+    <section className={cn("py-10")}>
 
       <Container>
-
-        <h2 className={"text-3xl font-bold text-center mb-5"}>Представляем самые передовые и универсальные машины</h2>
-
+        <h2 className={"text-4xl font-bold text-center mb-5"}>Представляем самые передовые и универсальные машины</h2>
         {
           activeCategory ? (
             <Tabs value={activeCategory} onValueChange={setActiveCategory} className="flex flex-col">
               <TabsList
-                className={cn(
-                  "rounded-3xl"
-                )}
+                className={cn("rounded-3xl")}
                 asChild
               >
                 <ul className={cn(
-                  "flex place-self-center gap-x-1 mb-3 h-auto bg-white py-2 px-3",
+                  "flex place-self-center gap-x-1 mb-3 h-auto rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2",
                 )}>
                   {categories.map((category) => (
                     <li key={category.id}>
@@ -55,8 +51,8 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                         className={cn(
                           "rounded-3xl  px-3 py-2 mb-0 hover:cursor-pointer",
                           activeCategory === category.id
-                            ? "data-[state=active]:bg-gray-600 data-[state=active]:text-white"
-                            : "bg-white text-black"
+                            ? "data-[state=active]:bg-[#4F26E9]/80 data-[state=active]:text-white"
+                            : "text-black"
                         )}
                       >
                         {category.name}
@@ -65,7 +61,6 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                   ))}
                 </ul>
               </TabsList>
-
               {categories.map((category) => (
                 <TabsContent asChild key={category.id} value={category.id}>
                   <Carousel
@@ -76,34 +71,63 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                     <CarouselContent>
                       {category.products.map((product) => (
                         <CarouselItem key={product.id} className={"basis-1/3"}>
-                          <div className={"flex flex-col h-full bg-white p-5 rounded-3xl"}>
-                            <p className={"text-xl mb-2"}>{product.name}</p>
-                            <ul className={cn("flex flex-wrap text-sm gap-2 mb-2")}>
-                              <li className={cn("text-gray-500 bg-gray-200 rounded-xl px-3 py-1")}>Преимущество</li>
-                              <li className={cn("text-gray-500 bg-gray-200 rounded-xl px-3 py-1")}>Преимущество</li>
-                              <li className={cn("text-gray-500 bg-gray-200 rounded-xl px-3 py-1")}>Преимущество</li>
-                              <li className={cn("text-gray-500 bg-gray-200 rounded-xl px-3 py-1")}>Преимущество</li>
-                            </ul>
-                            <Image
-                              src={product.images?.[0]?.url ?? product.image?.url ?? ''}
-                              alt={product.name}
+
+                          <Link
+                            href={"/catalog/" + category.slug + "/" + product.slug}
+                            className={cn(
+                              "relative flex flex-col h-full bg-[#F8F9FD] border border-[#ABB4D7]/10 p-5 rounded-3xl overflow-hidden",
+                              "group"
+                            )}
+                          >
+                            <div className={"z-20"}>
+                              <p className={"text-[#4F26E9] uppercase text-sm mb-3 group-hover:text-white"}>Wattsan</p>
+                              <p className={"text-2xl leading-6 mb-5 group-hover:text-white"}>{product.name}</p>
+                              <ul className={cn("flex flex-wrap text-sm gap-2 mb-3 group-hover:text-white")}>
+                                <li
+                                  className={cn("bg-gray-200 rounded-3xl px-3 py-1 group-hover:bg-white/20")}
+                                >
+                                  Рабочее поле 200x300 мм
+                                </li>
+                                <li
+                                  className={cn("bg-gray-200 rounded-3xl px-3 py-1 group-hover:bg-white/20")}
+                                >
+                                  Мощность лазера 40 Вт
+                                </li>
+                                <li
+                                  className={cn("bg-gray-200 rounded-3xl px-3 py-1 group-hover:bg-white/20")}
+                                >
+                                  Мелкосерийное производство
+                                </li>
+                              </ul>
+                              <Image
+                                src={product.images?.[0]?.url ?? product.image?.url ?? ''}
+                                alt={product.name}
+                                width={230}
+                                height={170}
+                                className={cn(
+                                  "self-center mb-3",
+                                  "group-hover:opacity-0"
+                                )}
+                              />
+                              <Button className={"rounded-3xl place-self-start"}>Узнать больше</Button>
+                            </div>
+
+                            <video
+                              src="/video/ringcut-4.mp4"
                               width={230}
                               height={170}
-                              className={"self-center mb-2"}
+                              muted
+                              loop
+                              autoPlay
+                              className={cn(
+                                "absolute top-0 left-0 w-full h-full object-cover z-[10] hidden",
+                                "group-hover:block"
+                              )}
                             />
-                            <Button asChild className={"rounded-3xl place-self-start"}>
-                              <Link
-                                href={`/catalog/${category.slug}/${product.slug}`}
-                                className={""}
-                              >
-                                Узнать больше
-                              </Link>
-                            </Button>
-                          </div>
+                          </Link>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-
                     {category.products.length >= 3 && (
                       <>
                         <CarouselPrevious className={cn('-left-[40px] max-2xl:-left-[20px]', className)}/>
@@ -113,12 +137,10 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                   </Carousel>
                 </TabsContent>
               ))}
-
             </Tabs>
           ) : (<p>Загрузка...</p>)
         }
       </Container>
-
     </section>
   );
 };
