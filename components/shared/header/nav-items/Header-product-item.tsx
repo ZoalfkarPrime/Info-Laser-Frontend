@@ -129,7 +129,7 @@ export const HeaderProductItem: React.FC = () => {
       <Overlay isOpen={!isMobile && isSpoilerOpen}/>
 
       <li
-        onMouseLeave={() => setIsSpoilerOpen(true)}
+        onMouseLeave={() => setIsSpoilerOpen(false)}
         className={cn('max-xl:w-full')}
       >
         <button
