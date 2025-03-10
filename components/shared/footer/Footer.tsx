@@ -20,8 +20,8 @@ export const Footer: React.FC<ClassName> = ({className}) => {
         )}>
 
           <div className="text-white">
-            <Logo className="mb-2"/>
-            <p className="">Лазерные и фрезерные станки</p>
+            <Logo name={"logo-white"} className="mb-2"/>
+            <p className="text-[#9298AF]">Лазерные и фрезерные станки</p>
             <p className="mt-4">Наши соцсети:</p>
             <ul className="flex gap-3 mt-2">
               <li>
@@ -66,13 +66,13 @@ export const Footer: React.FC<ClassName> = ({className}) => {
               </li>
 
             </ul>
-            <p className="mt-4">
+            <p className="mt-4 text-[#9298AF]">
               Товары, представленные на сайте, не являются публичной офертой
             </p>
           </div>
 
           <div className="text-white">
-            <h3 className="font-semibold uppercase border-b border-gray-300 pb-1 mb-2">Компания</h3>
+            <h3 className="font-semibold uppercase border-b border-gray-300 pb-1 mb-2 text-[#9298AF]">Компания</h3>
             <ul className="space-y-1 ">
               <li>
                 <Link
@@ -123,7 +123,8 @@ export const Footer: React.FC<ClassName> = ({className}) => {
           </div>
 
           <div className="text-white">
-            <h3 className="font-semibold uppercase border-b border-gray-300 pb-1 mb-2">Лазерные станки</h3>
+            <h3 className="font-semibold uppercase border-b border-gray-300 pb-1 mb-2 text-[#9298AF]">Лазерные
+              станки</h3>
             <ul className="space-y-1 ">
               <li>
                 <Link
@@ -171,7 +172,7 @@ export const Footer: React.FC<ClassName> = ({className}) => {
           </div>
 
           <div className="text-white">
-            <h3 className="font-semibold uppercase border-b border-gray-300 pb-1 mb-2">Комплектующие</h3>
+            <h3 className="font-semibold uppercase border-b border-gray-300 pb-1 mb-2 text-[#9298AF]">Комплектующие</h3>
             <ul className="space-y-1 ">
               <li>
                 <Link
@@ -215,9 +216,9 @@ export const Footer: React.FC<ClassName> = ({className}) => {
           <dl className="text-white">
 
             <div className="flex gap-x-2 mb-4">
-              <Mail size={16}/>
+              <Mail className={"text-[#9298AF]"} size={16}/>
               <div>
-                <dt className="uppercase">Почта</dt>
+                <dt className="uppercase text-[#9298AF]">Почта</dt>
                 <dd>
                   <Link
                     className="font-semibold hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
@@ -230,9 +231,9 @@ export const Footer: React.FC<ClassName> = ({className}) => {
             </div>
 
             <div className="flex gap-x-2 mb-4">
-              <Phone size={16}/>
+              <Phone className={"text-[#9298AF]"} size={16}/>
               <div>
-                <dt className="uppercase">Телефон</dt>
+                <dt className="uppercase text-[#9298AF]">Телефон</dt>
                 <dd>
                   <Link
                     className="font-semibold hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
@@ -244,12 +245,15 @@ export const Footer: React.FC<ClassName> = ({className}) => {
               </div>
             </div>
 
-            <CallbackBtn className="text-white rounded-3xl mb-4" title={"Обратный звонок"}/>
+            <CallbackBtn
+              className="text-white rounded-3xl border border-gray-600 mb-4 bg-[#ABB4D71A]"
+              title={"Обратный звонок"}
+            />
 
             <div className="flex gap-x-2">
-              <Clock size={16}/>
+              <Clock className={"text-[#9298AF]"} size={16}/>
               <div>
-                <dt className="uppercase">Время работы</dt>
+                <dt className="uppercase text-[#9298AF]">Время работы</dt>
                 <dd><span className="uppercase">пн-пт: 9.00-19.00</span></dd>
               </div>
             </div>

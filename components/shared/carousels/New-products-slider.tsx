@@ -22,18 +22,8 @@ export const NewProductsSlider: React.FC<ClassName> = async ({className}) => {
                 className="basis-1/4 pl-5 max-2xl:basis-1/3 max-lg:basis-1/2 max-sm:basis-1/1 max-sm:pl-2"
               >
                 <ProductCard
-                  id={product.id}
-                  name={product.name}
-                  slug={product.slug}
-                  stockPrice={product.stockPrice}
-                  orderPrice={product.orderPrice}
-                  categorySlug={product.categorySlug}
-                  categoryName={product.categoryName}
-                  description={product.description}
-                  newPrice={0}
+                  {...product}
                   image={product.images?.[0]}
-                  inStock={product.inStock}
-                  isHit={product.isHit}
                 />
               </CarouselItem>
             ))}
