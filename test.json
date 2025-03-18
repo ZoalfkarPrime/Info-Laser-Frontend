@@ -4,7 +4,7 @@
   "code": 200,
   "data": {
     "categories": {
-      "product": [
+      "data": [
         {
           "id": 1,
           "name": "CO2",
@@ -25,8 +25,7 @@
               "stockPrice": 25000,
               "newPrice": 24000,
               "inStock": 1,
-              "rating": "4.8",
-              "isAccessory": 0,
+              "rating": 4.8,
               "guarantee": 3,
               "guaranteeContent": "3-year full warranty with service support",
               "created_at": "2025-02-25T09:05:01.000000Z",
@@ -79,212 +78,22 @@
                   }
                 }
               ],
-              "product_attachments": []
-            },
-            {
-              "id": 9,
-              "name": "KC2001",
-              "slug": "kc-fiber-laser-cutter",
-              "description": "High-power fiber laser machine designed for precision metal cutting.",
-              "orderPrice": 27000,
-              "stockPrice": 25000,
-              "newPrice": 24000,
-              "inStock": 1,
-              "rating": "4.8",
-              "isAccessory": 0,
-              "guarantee": 3,
-              "guaranteeContent": "3-year full warranty with service support",
-              "created_at": "2025-02-25T09:41:34.000000Z",
-              "updated_at": "2025-02-25T09:41:34.000000Z",
-              "order": 0,
-              "pivot": {
-                "category_id": 1,
-                "product_id": 9
-              },
-              "categories": [
-                {
-                  "id": 1,
-                  "name": "CO2",
-                  "slug": "co2",
-                  "description": "All CO2 laser machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-24T10:37:15.000000Z",
-                  "updated_at": "2025-02-24T10:37:15.000000Z",
-                  "pivot": {
-                    "product_id": 9,
-                    "category_id": 1
-                  }
-                }
-              ],
-              "labels": [],
               "product_attachments": [
                 {
-                  "id": 3,
-                  "product_id": 9,
-                  "external_url": null,
-                  "internal_path": "uploads/videos/machine_demo.mp4",
-                  "type": "video",
-                  "is_main": 0,
-                  "order": 3,
-                  "width": null,
-                  "height": null,
-                  "created_at": "2025-02-27T12:20:12.000000Z",
-                  "updated_at": "2025-02-27T12:20:12.000000Z",
-                  "name": "Demo video"
+                  "id": 13,
+                  "product_id": 8,
+                  "external_url": "https://infolaser.ru/assets/images/products/52/big/wattsan-0203-1.jpg",
+                  "internal_path": null,
+                  "type": "image",
+                  "is_main": 1,
+                  "order": 1,
+                  "width": 800,
+                  "height": 600,
+                  "created_at": "2025-03-12T11:38:20.000000Z",
+                  "updated_at": "2025-03-12T11:38:20.000000Z",
+                  "name": "Main Image"
                 }
               ]
-            },
-            {
-              "id": 17,
-              "name": "Test FROM CMS",
-              "slug": "test-from-cms",
-              "description": "test-from-cmstest-from-cmstest-from-cmstest-from-cmstest-from-cmstest-from-cmstest-from-cmstest-from-cmstest-from-cms",
-              "orderPrice": 3000,
-              "stockPrice": 4000,
-              "newPrice": 2999,
-              "inStock": 1,
-              "rating": "1",
-              "isAccessory": 0,
-              "guarantee": 2,
-              "guaranteeContent": "Бог в помощь",
-              "created_at": "2025-03-07T12:33:32.000000Z",
-              "updated_at": "2025-03-07T12:33:32.000000Z",
-              "order": 1,
-              "pivot": {
-                "category_id": 1,
-                "product_id": 17
-              },
-              "categories": [
-                {
-                  "id": 1,
-                  "name": "CO2",
-                  "slug": "co2",
-                  "description": "All CO2 laser machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-24T10:37:15.000000Z",
-                  "updated_at": "2025-02-24T10:37:15.000000Z",
-                  "pivot": {
-                    "product_id": 17,
-                    "category_id": 1
-                  }
-                }
-              ],
-              "labels": [],
-              "product_attachments": []
-            },
-            {
-              "id": 19,
-              "name": "Laser Cutter X5000",
-              "slug": "laser-cutter-x5009",
-              "description": "High precision laser cutting machine",
-              "orderPrice": 75000,
-              "stockPrice": 70000,
-              "newPrice": 72000,
-              "inStock": 1,
-              "rating": "4",
-              "isAccessory": 0,
-              "guarantee": 3,
-              "guaranteeContent": "3-year full warranty",
-              "created_at": "2025-03-07T13:27:55.000000Z",
-              "updated_at": "2025-03-07T13:27:55.000000Z",
-              "order": 2,
-              "pivot": {
-                "category_id": 1,
-                "product_id": 19
-              },
-              "categories": [
-                {
-                  "id": 1,
-                  "name": "CO2",
-                  "slug": "co2",
-                  "description": "All CO2 laser machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-24T10:37:15.000000Z",
-                  "updated_at": "2025-02-24T10:37:15.000000Z",
-                  "pivot": {
-                    "product_id": 19,
-                    "category_id": 1
-                  }
-                },
-                {
-                  "id": 2,
-                  "name": "Markers",
-                  "slug": "markers",
-                  "description": "All markers machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-25T10:07:40.000000Z",
-                  "updated_at": "2025-02-25T10:07:40.000000Z",
-                  "pivot": {
-                    "product_id": 19,
-                    "category_id": 2
-                  }
-                }
-              ],
-              "labels": [],
-              "product_attachments": []
-            },
-            {
-              "id": 20,
-              "name": "Laser Cutter X5000",
-              "slug": "laser-cutter-x5001",
-              "description": "High precision laser cutting machine",
-              "orderPrice": 75000,
-              "stockPrice": 70000,
-              "newPrice": 72000,
-              "inStock": 1,
-              "rating": "4",
-              "isAccessory": 0,
-              "guarantee": 3,
-              "guaranteeContent": "3-year full warranty",
-              "created_at": "2025-03-07T13:29:51.000000Z",
-              "updated_at": "2025-03-07T13:29:51.000000Z",
-              "order": 2,
-              "pivot": {
-                "category_id": 1,
-                "product_id": 20
-              },
-              "categories": [
-                {
-                  "id": 1,
-                  "name": "CO2",
-                  "slug": "co2",
-                  "description": "All CO2 laser machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-24T10:37:15.000000Z",
-                  "updated_at": "2025-02-24T10:37:15.000000Z",
-                  "pivot": {
-                    "product_id": 20,
-                    "category_id": 1
-                  }
-                },
-                {
-                  "id": 2,
-                  "name": "Markers",
-                  "slug": "markers",
-                  "description": "All markers machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-25T10:07:40.000000Z",
-                  "updated_at": "2025-02-25T10:07:40.000000Z",
-                  "pivot": {
-                    "product_id": 20,
-                    "category_id": 2
-                  }
-                }
-              ],
-              "labels": [],
-              "product_attachments": []
             }
           ]
         },
@@ -308,8 +117,7 @@
               "stockPrice": 70000,
               "newPrice": 72000,
               "inStock": 1,
-              "rating": "4",
-              "isAccessory": 0,
+              "rating": 4,
               "guarantee": 3,
               "guaranteeContent": "3-year full warranty",
               "created_at": "2025-03-07T13:27:55.000000Z",
@@ -352,167 +160,24 @@
                 }
               ],
               "labels": [],
-              "product_attachments": []
-            },
-            {
-              "id": 20,
-              "name": "Laser Cutter X5000",
-              "slug": "laser-cutter-x5001",
-              "description": "High precision laser cutting machine",
-              "orderPrice": 75000,
-              "stockPrice": 70000,
-              "newPrice": 72000,
-              "inStock": 1,
-              "rating": "4",
-              "isAccessory": 0,
-              "guarantee": 3,
-              "guaranteeContent": "3-year full warranty",
-              "created_at": "2025-03-07T13:29:51.000000Z",
-              "updated_at": "2025-03-07T13:29:51.000000Z",
-              "order": 2,
-              "pivot": {
-                "category_id": 2,
-                "product_id": 20
-              },
-              "categories": [
+              "product_attachments": [
                 {
-                  "id": 1,
-                  "name": "CO2",
-                  "slug": "co2",
-                  "description": "All CO2 laser machines",
+                  "id": 24,
+                  "product_id": 19,
+                  "external_url": "https://infolaser.ru/assets/images/products/156/fl-hh.jpg",
+                  "internal_path": null,
+                  "type": "image",
+                  "is_main": 1,
                   "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-24T10:37:15.000000Z",
-                  "updated_at": "2025-02-24T10:37:15.000000Z",
-                  "pivot": {
-                    "product_id": 20,
-                    "category_id": 1
-                  }
-                },
-                {
-                  "id": 2,
-                  "name": "Markers",
-                  "slug": "markers",
-                  "description": "All markers machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-25T10:07:40.000000Z",
-                  "updated_at": "2025-02-25T10:07:40.000000Z",
-                  "pivot": {
-                    "product_id": 20,
-                    "category_id": 2
-                  }
+                  "width": 800,
+                  "height": 600,
+                  "created_at": "2025-03-12T11:38:20.000000Z",
+                  "updated_at": "2025-03-12T11:38:20.000000Z",
+                  "name": "Main Image"
                 }
-              ],
-              "labels": [],
-              "product_attachments": []
+              ]
             }
           ]
-        },
-        {
-          "id": 3,
-          "name": "Laser Machines",
-          "slug": "laser-machines",
-          "description": "All types of industrial laser machines",
-          "order": 1,
-          "banner_image_url": "https://example.com/banner1.jpg",
-          "type": "product",
-          "created_at": "2025-02-25T11:18:41.000000Z",
-          "updated_at": "2025-02-25T11:18:41.000000Z",
-          "products": []
-        },
-        {
-          "id": 4,
-          "name": "CO2 Lasers",
-          "slug": "co2-lasers",
-          "description": "High-performance CO2 laser machines",
-          "order": 2,
-          "banner_image_url": "https://example.com/banner2.jpg",
-          "type": "product",
-          "created_at": "2025-02-25T11:18:41.000000Z",
-          "updated_at": "2025-02-25T11:18:41.000000Z",
-          "products": []
-        },
-        {
-          "id": 6,
-          "name": "Fiber Laser Equipment",
-          "slug": "fiber-laser-equipment",
-          "description": "Fiber laser-based cutting and welding solutions",
-          "order": 4,
-          "banner_image_url": "https://example.com/banner4.jpg",
-          "type": "product",
-          "created_at": "2025-02-25T11:18:41.000000Z",
-          "updated_at": "2025-02-25T11:18:41.000000Z",
-          "products": []
-        },
-        {
-          "id": 7,
-          "name": "Markers001",
-          "slug": "markers001",
-          "description": "All markers machines",
-          "order": 1,
-          "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-          "type": "product",
-          "created_at": "2025-02-28T10:58:18.000000Z",
-          "updated_at": "2025-02-28T10:58:18.000000Z",
-          "products": [
-            {
-              "id": 16,
-              "name": "Laser Cutter X5000 Pro",
-              "slug": "test-product-1",
-              "description": "opa-opa-pa-pa",
-              "orderPrice": 77000,
-              "stockPrice": 4200,
-              "newPrice": 0,
-              "inStock": 1,
-              "rating": "1",
-              "isAccessory": 0,
-              "guarantee": 1,
-              "guaranteeContent": "1-year protection",
-              "created_at": "2025-03-06T15:35:37.000000Z",
-              "updated_at": "2025-03-07T14:19:17.000000Z",
-              "order": 0,
-              "pivot": {
-                "category_id": 7,
-                "product_id": 16
-              },
-              "categories": [
-                {
-                  "id": 7,
-                  "name": "Markers001",
-                  "slug": "markers001",
-                  "description": "All markers machines",
-                  "order": 1,
-                  "banner_image_url": "https://infolaser.ru/assets/cache_image/products/550/e1-3015-bp-10_220x220_2b9.png",
-                  "type": "product",
-                  "created_at": "2025-02-28T10:58:18.000000Z",
-                  "updated_at": "2025-02-28T10:58:18.000000Z",
-                  "pivot": {
-                    "product_id": 16,
-                    "category_id": 7
-                  }
-                }
-              ],
-              "labels": [],
-              "product_attachments": []
-            }
-          ]
-        }
-      ],
-      "accessory": [
-        {
-          "id": 5,
-          "name": "Laser Accessories",
-          "slug": "laser-accessories",
-          "description": "Accessories for laser machines",
-          "order": 3,
-          "banner_image_url": "https://example.com/banner3.jpg",
-          "type": "accessory",
-          "created_at": "2025-02-25T11:18:41.000000Z",
-          "updated_at": "2025-02-25T11:18:41.000000Z",
-          "products": []
         }
       ]
     }

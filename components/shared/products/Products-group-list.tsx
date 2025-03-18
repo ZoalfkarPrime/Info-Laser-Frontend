@@ -1,32 +1,23 @@
+import React from "react";
 import {cn} from "@/lib/utils";
 import {ProductCard} from "@/components/shared/products/Product-card";
-import React from "react";
-import {ProductsGroupListProps} from "@/types/product";
+import {Product} from "@/types/types";
+import {ClassName} from "@/types/types";
 
-export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({products}) => {
+interface ProductsGroupListProps extends ClassName {
+  products: Product[];
+}
 
+export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({products, className}) => {
   return (
-    <ul className={cn('grid grid-cols-3 gap-10')}>
+    <ul className={cn("grid grid-cols-3 gap-10", className)}>
       {products.map((product) => (
         <li key={product.id}>
           <ProductCard
-            className={cn('')}
-            id={product.id}
-            name={product.name}
-            slug={product.slug}
-            stockPrice={product.stockPrice}
-            orderPrice={product.orderPrice}
-            inStock={product.inStock}
-            isHit={product.isHit}
-            categorySlug={product.categorySlug}
-            categoryName={product.categoryName}
-            description={product.description}
-            newPrice={0}
-            image={product.images?.[0]}
+            {...product}
           />
         </li>
       ))}
-
     </ul>
   );
 };

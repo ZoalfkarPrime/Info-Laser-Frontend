@@ -1,25 +1,27 @@
 'use client'
 import {Search, X} from "lucide-react";
 import React, {useEffect, useRef, useState} from "react";
+import {useDebounce} from "react-use";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
-import {Product} from "@/types/product";
 import {Container} from "@/components/shared/Container";
 import {ptMono} from "@/app/fonts";
 import {Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger} from "@/components/ui/Sheet";
 import {getProducts} from "@/api/api";
+import {Product} from "@/types/types";
 
 export const HeaderSearchBtn = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const closeAndClear = () => {
     setIsOpen(false);
-    setQuery('');
+    setQuery("");
     setFilteredProducts([]);
   };
 
@@ -36,19 +38,24 @@ export const HeaderSearchBtn = () => {
     fetchProducts();
   }, []);
 
-  // Фильтрация продуктов
+  // Debounce для запроса
+  useDebounce(() => {
+    setDebouncedQuery(query);
+  }, 300, [query]);
+
+  // Фильтрация продуктов после debounce
   useEffect(() => {
-    if (query.trim() === "") {
+    if (debouncedQuery.trim() === "") {
       setFilteredProducts([]);
       return;
     }
 
     const filtered = products.filter(product =>
-      product.name.toLowerCase().includes(query.toLowerCase())
+      product.name.toLowerCase().includes(debouncedQuery.toLowerCase())
     );
 
     setFilteredProducts(filtered);
-  }, [query, products]);
+  }, [debouncedQuery, products]);
 
   // Фокус в input, если спойлер открыт
   useEffect(() => {
@@ -75,7 +82,7 @@ export const HeaderSearchBtn = () => {
       <SheetDescription className="hidden"/>
       <SheetContent className="[&>button]:hidden" side="top">
         <SheetTitle className="hidden"/>
-        <Container className="py-10 max-w-[1200px]">
+        <Container className="py-10 max-w-[1200px] max-h-[90dvh] overflow-hidden">
 
           {/* Заголовок + Кнопка закрытия */}
           <div className="flex justify-between items-center mb-5">
@@ -123,23 +130,26 @@ export const HeaderSearchBtn = () => {
 
           {/* Результаты поиска */}
           {filteredProducts.length > 0 && (
-            <div className={cn('w-full rounded-lg shadow-md')}>
+            <div className={cn('w-full rounded-lg shadow-md max-h-[63dvh] overflow-y-auto')}>
               {filteredProducts.map((product) => (
                 <Link
                   className="flex items-center gap-4 hover:bg-[#f2f2f2] p-2"
-                  href={`/catalog/${product.categorySlug}/${product.slug}`}
+                  href={`/catalog/${product.categories?.[0]?.slug || "default-category"}/${product.slug}`}
                   key={product.id}
                   onClick={onItemClick}
                 >
-                  {product.images?.length ? (
-                    <Image
-                      className="h-8 w-8"
-                      src={product.images[0].url}
-                      alt={product.images[0].alt}
-                      width={product.images[0].width}
-                      height={product.images[0].height}
-                    />
-                  ) : null}
+                  {product.product_attachments && product.product_attachments.map((item) =>
+                    item.is_main ? (
+                      <Image
+                        key={item.id}
+                        className="size-8"
+                        src={item.external_url}
+                        alt={item.name}
+                        width={32}
+                        height={32}
+                      />
+                    ) : null
+                  )}
                   <span className="leading-4">
                     {product.name}
                   </span>

@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {Container} from "@/components/shared/Container";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
-import {Category} from "@/types/category";
+import {Category} from "@/types/types";
 import {getCategories} from "@/api/api";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import Image from "next/image";
@@ -22,7 +22,7 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
       .then((data) => {
         setCategories(data);
         if (data.length > 0) {
-          setActiveCategory(data[0].id);
+          setActiveCategory(String(data[0].id));
         }
       })
       .catch((error) => console.error("Ошибка при загрузке категорий:", error));
@@ -47,10 +47,10 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                   {categories.map((category) => (
                     <li key={category.id}>
                       <TabsTrigger
-                        value={category.id}
+                        value={String(category.id)}
                         className={cn(
                           "rounded-3xl  px-3 py-2 mb-0 hover:cursor-pointer",
-                          activeCategory === category.id
+                          activeCategory === String(category.id)
                             ? "data-[state=active]:bg-[#4F26E9]/80 data-[state=active]:text-white"
                             : "text-black"
                         )}
@@ -62,7 +62,7 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                 </ul>
               </TabsList>
               {categories.map((category) => (
-                <TabsContent asChild key={category.id} value={category.id}>
+                <TabsContent asChild key={category.id} value={String(category.id)}>
                   <Carousel
                     opts={{
                       align: "start",
@@ -99,16 +99,21 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                                   Мелкосерийное производство
                                 </li>
                               </ul>
-                              <Image
-                                src={product.images?.[0]?.url ?? product.image?.url ?? ''}
-                                alt={product.name}
-                                width={230}
-                                height={170}
-                                className={cn(
-                                  "self-center mb-3",
-                                  "group-hover:opacity-0"
-                                )}
-                              />
+                              {product.product_attachments && product.product_attachments.map((item) =>
+                                  Boolean(item && item.is_main) && (
+                                    <Image
+                                      key={item.id}
+                                      className={cn(
+                                        "self-center mb-3",
+                                        "group-hover:opacity-0"
+                                      )}
+                                      src={item.external_url}
+                                      alt={item.name}
+                                      width={230}
+                                      height={170}
+                                    />
+                                  )
+                              )}
                               <Button className={"rounded-3xl place-self-start"}>Узнать больше</Button>
                             </div>
 

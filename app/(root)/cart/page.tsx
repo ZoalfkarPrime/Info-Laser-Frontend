@@ -4,10 +4,10 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {useCart} from "@/context/Cart-context";
-import {Product} from "@/types/product";
 import {Container} from "@/components/shared/Container";
 import {Minus, Plus, Trash2} from "lucide-react";
 import {cn} from "@/lib/utils";
+import {Product} from "@/types/types";
 
 const CartPage = () => {
   const {cart, updateQuantity, removeFromCart, clearCart} = useCart();
@@ -32,23 +32,28 @@ const CartPage = () => {
                   <div
                     className=" flex-shrink-0 bg-gray-300 rounded-2xl overflow-hidden w-[90px] h-[80px] flex items-center justify-center"
                   >
-                    <Image
-                      src={item.images?.[0]?.url ?? item.image?.url ?? ''}
-                      alt={item.name}
-                      width={60}
-                      height={50}
-                    />
+                    {item.product_attachments && item.product_attachments.map((item) =>
+                        Boolean(item && item.is_main) && (
+                          <Image
+                            key={item.id}
+                            className="hover:scale-110 transition-transform z-10"
+                            src={item.external_url}
+                            alt={item.name}
+                            width={60}
+                            height={50}
+                          />
+                        )
+                    )}
                   </div>
 
                   {/* Название (ссылка) */}
                   <Link
-                    href={`/catalog/${item.categorySlug}/${item.slug}`}
+                    href={`/catalog/${item.categories?.[0]?.slug ?? "default-category"}/${item.slug}`}
                     className="leading-4 hover:text-[#6941f9] focus:text-[#6941f9] transition-colors"
                   >
                     {item.name}
                   </Link>
                 </div>
-
 
                 {/* Цена за единицу */}
                 <span className="text-center">

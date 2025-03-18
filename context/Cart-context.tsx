@@ -1,8 +1,8 @@
 'use client'
 
 import React, {createContext, useContext, useEffect, useState} from "react";
-import {Product} from "@/types/product";
 import toast from "react-hot-toast";
+import {Product} from "@/types/types";
 
 // Тип корзины (массив товаров с количеством)
 interface CartItem extends Product {

@@ -4,12 +4,37 @@ import React, {useState, useEffect, useCallback} from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import {ThumbButton} from "@/components/shared/carousels/Product/Thumb-button";
+import {Attachments} from "@/types/types";
 
-interface ProductGalleryProps {
-  images: { url: string; alt: string; type?: "image" | "video"; thumbnail?: string }[];
+interface ProductGallerySliderProps {
+  images: Attachments[];
 }
 
-export const ProductGallerySlider: React.FC<ProductGalleryProps> = ({images}) => {
+export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({images}) => {
+  const getYouTubeThumbnail = (url: string) => {
+    const match = url.match(/[?&]v=([^&]+)/);
+    return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
+  };
+
+  const processedImages = images
+    .map((img) => {
+      const isVideo = img.type === "video";
+      const youtubeThumbnail = isVideo ? getYouTubeThumbnail(img.external_url) : null;
+      const videoEmbedUrl = isVideo
+        ? `https://www.youtube.com/embed/${new URL(img.external_url).searchParams.get("v")}`
+        : null;
+
+      return {
+        url: img.external_url,
+        thumbnail: isVideo ? youtubeThumbnail ?? "/placeholder.jpg" : img.external_url,
+        alt: img.name || "Изображение товара",
+        type: img.type,
+        videoEmbedUrl,
+        isMain: img.is_main ?? false,
+      };
+    })
+    .sort((a, b) => (b.isMain ? 1 : -1));
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({loop: true});
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -43,13 +68,13 @@ export const ProductGallerySlider: React.FC<ProductGalleryProps> = ({images}) =>
         {/* Миниатюры */}
         <div ref={emblaThumbsRef}>
           <div className="flex flex-col gap-2">
-            {images.map((image, idx) => (
+            {processedImages.map((image, idx) => (
               <ThumbButton
                 key={idx}
                 index={idx}
                 onClick={() => onThumbClick(idx)}
                 selected={idx === selectedIndex}
-                image={image}
+                image={{...image, url: image.thumbnail}}
               />
             ))}
           </div>
@@ -58,10 +83,19 @@ export const ProductGallerySlider: React.FC<ProductGalleryProps> = ({images}) =>
         {/* Основной слайдер */}
         <div className="overflow-hidden" ref={emblaMainRef}>
           <div className="flex">
-            {images.map((image, idx) => (
+            {processedImages.map((image, idx) => (
               <div className="min-w-full flex justify-center bg-gray-300 rounded-lg p-3" key={idx}>
                 {image.type === "video" ? (
-                  <video className="w-full max-w-2xl rounded-lg" controls autoPlay src={image.url}/>
+                  image.videoEmbedUrl ? (
+                    <iframe
+                      className="w-full max-w-2xl rounded-lg aspect-video"
+                      src={image.videoEmbedUrl}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video className="w-full max-w-2xl rounded-lg" muted autoPlay loop controls src={image.url}/>
+                  )
                 ) : (
                   <Image src={image.url} alt={image.alt} width={450} height={350}/>
                 )}

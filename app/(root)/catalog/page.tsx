@@ -3,7 +3,6 @@ import {getCategories} from "@/api/api";
 import {OfflineOrOnline} from "@/components/shared/OfflineOrOnline";
 import {PartnersSlider} from "@/components/shared/carousels/Partners-slider";
 
-
 const CatalogPage = async () => {
   const categories = await getCategories();
 

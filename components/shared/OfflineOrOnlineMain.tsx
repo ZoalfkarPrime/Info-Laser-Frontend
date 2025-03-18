@@ -59,11 +59,11 @@ export default function OfflineOrOnlineMain() {
             <DemoBtn className={cn("rounded-3xl")} title={"Записаться на демонстрацию"}/>
           </div>
           <Image
-            src="/img/demo-bg/demo-lap-1.png"
+            src="/img/demo-bg/demo-lap-2.png"
             alt="Laser Machine"
             width={430}
             height={300}
-            className={"scale-x-[-1] self-end"}
+            className={"relative right-[-100px] bottom-[-85px] self-end"}
           />
         </div>
       </Container>

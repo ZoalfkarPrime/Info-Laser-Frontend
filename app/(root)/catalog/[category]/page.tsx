@@ -3,7 +3,7 @@ import {Container} from "@/components/shared/Container";
 import {SortPopup} from "@/components/shared/Sort-popup";
 import {Filters} from "@/components/shared/filters/Filters";
 import {ProductsGroupList} from "@/components/shared/products/Products-group-list";
-import {getCategories, getProductsByCategory} from "@/api/api";
+import {getCategories} from "@/api/api";
 import {CategoriesGoods} from "@/components/shared/categories/Categories-goods";
 
 interface CategoryProps {
@@ -11,10 +11,8 @@ interface CategoryProps {
 }
 
 const CategoryPage: React.FC<CategoryProps> = async ({params}) => {
-  const {category} = await params;
-
-  const products = await getProductsByCategory(category);
   const categories = await getCategories();
+  const {category} = await params;
   const currentCategory = categories.find((cat) => cat.slug === category);
 
   return (
@@ -31,9 +29,10 @@ const CategoryPage: React.FC<CategoryProps> = async ({params}) => {
         </aside>
 
         <div className="flex-1">
-          <CategoriesGoods className="mb-3" categories={categories}/>
+          <CategoriesGoods className="mb-3" categories={categories} activeCategory={currentCategory?.slug}/>
           <SortPopup/>
-          <ProductsGroupList className="mb-3" products={products}/>
+          <ProductsGroupList className="mb-3" products={currentCategory?.products || []}/>
+
         </div>
       </section>
     </Container>

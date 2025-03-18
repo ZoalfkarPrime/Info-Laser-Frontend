@@ -3,11 +3,11 @@
 import React from "react";
 import {ShoppingCart} from "lucide-react";
 import {useCart} from "@/context/Cart-context";
-import {Product} from "@/types/product";
 import {cn} from "@/lib/utils";
+import {Product} from "@/types/types";
+import {ClassName} from "@/types/types";
 
-interface AddToCartButtonProps {
-  className?: string;
+interface AddToCartButtonProps extends ClassName {
   product: Product;
 }
 

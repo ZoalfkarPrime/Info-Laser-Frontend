@@ -1,9 +1,5 @@
-import type {NextConfig} from "next";
-
-const nextConfig: NextConfig = {
+module.exports = {
   images: {
-    domains: ['infolaser.ru'],
+    domains: ['img.youtube.com', 'infolaser.ru', 'example.com'],
   },
 };
-
-export default nextConfig;

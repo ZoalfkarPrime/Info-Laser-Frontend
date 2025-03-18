@@ -6,107 +6,36 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {Overlay} from "@/components/shared/Overlay";
 import {ChevronDown} from "lucide-react";
-import {Category} from "@/types/category";
+import {Category} from "@/types/types";
 import {useMedia} from "react-use";
-import {getCategories} from "@/api/api";
+import {getCatalogData} from "@/api/api";
 import Image from "next/image";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import {Button} from "@/components/ui/Button";
-import {ProductCard} from "@/components/shared/products/Product-card";
 import {DemoBtn} from "@/components/shared/btns/Demo-btn";
+import {ProductCardHeader} from "@/components/shared/products/Product-card-header";
 
 export const HeaderProductItem: React.FC = () => {
 
   const isMobile = useMedia("(max-width: 1280px)");
 
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<{ product: Category[]; accessory: Category[] }>({
+    product: [],
+    accessory: [],
+  });
+
   const [isSpoilerOpen, setIsSpoilerOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const accessories = [
-    {
-      id: "77",
-      name: "Комплектующие для лазерных станков",
-      description: "Описание для Комплектующие для лазерных станков",
-      products: [
-        {
-          id: "7",
-          name: "Чиллеры и системы охлаждения лазерных трубок",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-laser-app_170x170_1ad.jpg",
-          slug: "dlya-lazernyh-stankov",
-        },
-        {
-          id: "8",
-          name: "Лазерные трубки, СО2 трубки",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "dlya-lazernyh-stankov",
-        },
-        {
-          id: "9",
-          name: "test 3",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "dlya-lazernyh-stankov",
-        },
-        {
-          id: "10",
-          name: "Test 4",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "dlya-lazernyh-stankov",
-        },
-        {
-          id: "11",
-          name: "test 5",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-tube-app_170x170_1ad.jpg",
-          slug: "dlya-lazernyh-stankov",
-        },
-      ],
-    },
-    {
-      id: "78",
-      name: "Комплектующие для маркеров",
-      description: "Описание для Комплектующие для маркеров",
-      slug: "dlya-markerov",
-      products: [
-        {
-          id: "12",
-          name: "Контроллеры",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-display-app_170x170_1ad.jpg",
-          slug: "dlya-markerov",
-        },
-        {
-          id: "13",
-          name: "Линзы",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "dlya-markerov",
-        },
-        {
-          id: "14",
-          name: "Test 5",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "dlya-markerov",
-        },
-        {
-          id: "15",
-          name: "Test 6",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "dlya-markerov",
-        },
-        {
-          id: "16",
-          name: "Test 7",
-          image: "https://infolaser.ru/assets/cache_image/img/upload/infolazer-linza-app_170x170_1ad.jpg",
-          slug: "dlya-markerov",
-        },
-      ],
-    },
-  ];
-
   useEffect(() => {
-    getCategories()
+    getCatalogData()
       .then((data) => {
         setCategories(data);
-        if (data.length > 0) {
-          setActiveCategory(data[0].id);
+
+        if (data.product.length > 0) {
+          setActiveCategory(String(data.product[0].id));
+        } else if (data.accessory.length > 0) {
+          setActiveCategory(String(data.accessory[0].id));
         }
       })
       .catch((error) => console.error("Ошибка при загрузке категорий:", error));
@@ -180,12 +109,12 @@ export const HeaderProductItem: React.FC = () => {
                       <div>
                         <p className={"text-black uppercase font-semibold mb-2"}>Лазерные станки</p>
                         <ul className="flex flex-col w-full mb-3">
-                          {categories.map((category) => (
+                          {categories.product.map((category) => (
                             <li key={category.id}>
                               <TabsTrigger
                                 asChild
-                                value={category.id}
-                                onMouseEnter={() => setActiveCategory(category.id)}
+                                value={String(category.id)}
+                                onMouseEnter={() => setActiveCategory(String(category.id))}
                               >
 
                                 <Link
@@ -196,14 +125,20 @@ export const HeaderProductItem: React.FC = () => {
                                   href={`/catalog/${category.slug}`}
                                   onClick={() => setIsSpoilerOpen(false)}
                                 >
-                                  <Image src={category.imageUrl} alt={"#"} width={45} height={45}/>
+                                  {category.banner_image_url && (
+                                    <Image
+                                      src={category.banner_image_url}
+                                      alt={category.name}
+                                      width={45}
+                                      height={45}
+                                    />
+                                  )}
                                   {category.name}
                                 </Link>
                               </TabsTrigger>
                             </li>
                           ))}
                         </ul>
-
                       </div>
                     </TabsList>
 
@@ -214,21 +149,29 @@ export const HeaderProductItem: React.FC = () => {
                       <div>
                         <p className={"text-black uppercase font-semibold mb-2"}>Комплектующие</p>
                         <ul className="flex flex-col w-full mb-3">
-                          {accessories.map((accessory) => (
+                          {categories.accessory.map((accessory) => (
                             <li key={accessory.id}>
                               <TabsTrigger
                                 asChild
-                                value={accessory.id}
-                                onMouseEnter={() => setActiveCategory(accessory.id)}
+                                value={String(accessory.id)}
+                                onMouseEnter={() => setActiveCategory(String(accessory.id))}
                               >
                                 <Link
                                   className={cn(
                                     "flex items-center justify-start w-full gap-x-3 font-semibold bg-white rounded-lg px-3 py-2 mb-0",
                                     activeCategory && 'bg-inherit',
                                   )}
-                                  href={`/accessories/${accessory.slug}`}
+                                  href={`/catalog/${accessory.slug}`}
                                   onClick={() => setIsSpoilerOpen(false)}
                                 >
+                                  {accessory.banner_image_url && (
+                                    <Image
+                                      src={accessory.banner_image_url}
+                                      alt={accessory.name}
+                                      width={45}
+                                      height={45}
+                                    />
+                                  )}
                                   {accessory.name}
                                 </Link>
                               </TabsTrigger>
@@ -242,58 +185,74 @@ export const HeaderProductItem: React.FC = () => {
                   </div>
 
                   <div className={"flex-1"}>
-                    {categories.map((category) => (
-                      <TabsContent asChild key={category.id} value={category.id}>
+                    {categories.product.map((category) => (
+                      <TabsContent
+                        asChild key={category.id}
+                        value={String(category.id)}
+                      >
                         <div className={'flex-1 max-h-[85dvh] overflow-y-auto pr-3 pb-10'}>
                           <p className={"text-2xl"}>{category.name}</p>
                           <div className={"flex justify-between mb-3"}>
                             <p>{category.description}</p>
                             <Link onClick={() => setIsSpoilerOpen(false)} href={`/catalog/${category.slug}`}>
-                              <Button className={"block rounded-2xl"}> Смотреть все</Button>
+                              <Button className={"block rounded-2xl"}>Смотреть все</Button>
                             </Link>
                           </div>
 
                           <ul className="grid grid-cols-3 gap-2">
                             {category.products.map((product) => (
                               <li key={product.id}>
-
-                                <ProductCard
+                                <ProductCardHeader
                                   onClick={() => setIsSpoilerOpen(false)}
                                   {...product}
-                                  image={product.images?.[0]}
+                                  inStock={Boolean(product.inStock)}
                                 />
                               </li>
                             ))}
                           </ul>
-
                         </div>
                       </TabsContent>
                     ))}
 
-                    {accessories.map((accessory) => (
-                      <TabsContent asChild key={accessory.id} value={accessory.id}>
+                    {categories.accessory.map((accessory) => (
+                      <TabsContent
+                        asChild
+                        key={accessory.id}
+                        value={String(accessory.id)}
+                      >
                         <div className={'flex-1 max-h-[85dvh] overflow-y-auto pr-3 pb-10'}>
                           <p className={"text-2xl"}>{accessory.name}</p>
                           <div className={"flex justify-between mb-3"}>
                             <p>{accessory.description}</p>
                             <Link
                               onClick={() => setIsSpoilerOpen(false)}
-                              href={`/accessories`}
+                              href={`/catalog/${accessory.slug}`}
                             >
-                              <Button className={"block rounded-2xl"}> Смотреть все</Button>
+                              <Button className={"block rounded-2xl"}>Смотреть все</Button>
                             </Link>
                           </div>
 
                           <ul className="grid grid-cols-4 gap-2">
-                            {accessory.products.map((product) => (
-                              <li key={product.id}>
+                            {accessory.products.map((accessory) => (
+                              <li key={accessory.id}>
                                 <Link
                                   onClick={() => setIsSpoilerOpen(false)}
                                   className={"flex items-center gap-2 h-full bg-white rounded-xl leading-4 overflow-hidden p-2 hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300 ease-in-out"}
-                                  href={"/accessories"}
+                                  href={`/catalog/${accessory.slug}`}
                                 >
-                                  <Image src={product.image} alt={product.name} width={50} height={50}/>
-                                  {product.name}
+                                  {accessory.product_attachments && accessory.product_attachments.map((item) =>
+                                      Boolean(item && item.is_main) && (
+                                        <Image
+                                          key={item.id}
+                                          className="hover:scale-110 transition-transform z-10"
+                                          src={item.external_url}
+                                          alt={item.name}
+                                          width={50}
+                                          height={50}
+                                        />
+                                      )
+                                  )}
+                                  <p>{accessory.name}</p>
                                 </Link>
                               </li>
                             ))}
