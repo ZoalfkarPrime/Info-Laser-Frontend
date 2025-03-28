@@ -71,8 +71,8 @@ export const SimplerTabsMain = () => {
                       <TabsTrigger
                         value={tab.tabName}
                         className={cn(
-                          "text-white  px-4 py-2 rounded-3xl transition",
-                          "data-[state=active]:bg-[#4F26E9]/80 data-[state=active]:text-white",
+                          "text-white px-4 py-2 rounded-3xl transition",
+                          "data-[state=active]:bg-[var(--violet)]/80 data-[state=active]:text-white",
                           "hover:cursor-pointer"
                         )}
                       >

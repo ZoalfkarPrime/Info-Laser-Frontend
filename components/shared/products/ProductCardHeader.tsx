@@ -17,7 +17,7 @@ export const ProductCardHeader: React.FC<Product> = (
 
   return (
     <div
-      className={cn('relative flex flex-col h-full overflow-hidden bg-[#F8F9FD] border border-gray-200 rounded-3xl p-2', className)}>
+      className={cn('relative flex flex-col h-full overflow-hidden bg-[var(--gray)] border border-gray-200 rounded-3xl p-2', className)}>
 
       <Link
         className="flex justify-center mb-2 overflow-hidden max-h-[250px]"
@@ -41,7 +41,7 @@ export const ProductCardHeader: React.FC<Product> = (
       <div className="flex flex-col p-3">
 
         <Link
-          className="flex-auto hover:text-[#6941f9] focus:text-[#6941f9] text-[18px] font-semibold transition-colors leading-5 mb-3 block"
+          className="flex-auto hover:text-[var(--violet)] focus:text-[var(--violet)] text-lg font-semibold transition-colors leading-5 mb-3 block"
           href={`/catalog/${categories && categories[0].slug}/${slug}`}
           onClick={onClick}
         >

@@ -28,22 +28,31 @@ export const Sorting: React.FC<ClassName> = ({className}) => {
   };
 
   return (
-    <div className={cn("flex items-center gap-10 mb-5", className)}>
+    <div className={cn("flex items-center text-sm gap-3 mb-5", className)}>
       <p className="text-gray-400">Сортировать:</p>
       <p
-        className={cn("hover:text-[#4F26E9] cursor-pointer", sortBy === "price" && "text-[#4F26E9]")}
+        className={cn(
+          "hover:text-[var(--violet)] cursor-pointer p-3 bg-[var(--gray)] rounded-3xl border transition-colors",
+          sortBy === "price" && "text-[var(--violet)] !border-[var(--violet-dark)]",
+        )}
         onClick={() => updateSorting("price")}
       >
         По цене {sortBy === "price" ? (sortDirection === "desc" ? "↓" : "↑") : ""}
       </p>
       <p
-        className={cn("hover:text-[#4F26E9] cursor-pointer", sortBy === "popularity" && "text-[#4F26E9]")}
+        className={cn(
+          "hover:text-[var(--violet)] cursor-pointer p-3 bg-[var(--gray)] rounded-3xl border transition-colors",
+          sortBy === "popularity" && "text-[var(--violet)] !border-[var(--violet-dark)]"
+        )}
         onClick={() => updateSorting("popularity")}
       >
         По популярности {sortBy === "popularity" ? (sortDirection === "desc" ? "↓" : "↑") : ""}
       </p>
       <p
-        className={cn("hover:text-[#4F26E9] cursor-pointer", sortBy === "sale" && "text-[#4F26E9]")}
+        className={cn(
+          "hover:text-[var(--violet)] cursor-pointer p-3 bg-[var(--gray)] rounded-3xl border transition-colors",
+          sortBy === "sale" && "text-[var(--violet)] !border-[var(--violet-dark)]"
+        )}
         onClick={() => updateSorting("sale")}
       >
         Действует акция

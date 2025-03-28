@@ -52,8 +52,8 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
       <div className={cn('relative mr-3', className)} onMouseLeave={() => setIsSpoilerOpen(false)}>
         <button
           className={cn(
-            'flex items-center gap-x-1 text-[14px] bg-white hover:text-[#6941f9] transition-colors duration-300',
-            isSpoilerOpen ? 'text-[#6941f9] before:content-[] before:absolute before:left-0 before:bottom-[-40px] before:h-[40px] before:w-full' : '',
+            'flex items-center gap-x-1 text-[14px] bg-white hover:text-[var(--violet)] transition-colors duration-300',
+            isSpoilerOpen ? 'text-[var(--violet)] before:content-[] before:absolute before:left-0 before:bottom-[-40px] before:h-[40px] before:w-full' : '',
           )}
           onMouseEnter={() => setIsSpoilerOpen(true)}
         >
@@ -78,7 +78,7 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
             {Object.keys(citySubdomains).map((city) => (
               <li key={city}>
                 <button
-                  className="block w-full text-left hover:text-[#6941f9] py-2 px-4"
+                  className="block w-full text-left hover:text-[var(--violet)] py-2 px-4"
                   onClick={() => handleCitySelect(city)}
                 >
                   {city}

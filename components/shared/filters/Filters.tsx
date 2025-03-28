@@ -4,7 +4,7 @@ import React from 'react';
 import {cn} from '@/lib/utils';
 import {Input} from '@/components/ui/Input';
 import {RangeSlider} from '@/components/ui/Range-slider';
-import {FiltersGroup} from "@/components/shared/filters/Filters-group";
+import {FiltersGroup} from "@/components/shared/filters/FiltersGroup";
 import {useSet} from "react-use";
 import {PriceProps} from "@/types/filter";
 import qs from 'qs';
@@ -69,7 +69,7 @@ export const Filters: React.FC = () => {
 
   return (
     <div>
-      <form className={cn('w-[250px] shadow-md p-5 rounded-xl border border-gray-200')}>
+      <form className={cn('text-sm min-w-[250px] bg-[var(--gray)] p-5 rounded-3xl border border-gray-200')}>
 
         <fieldset className="mb-3">
           <legend className="font-semibold mb-3">Цена от и до:</legend>
@@ -83,6 +83,7 @@ export const Filters: React.FC = () => {
               placeholder="0"
               value={String(prices.priceFrom)}
               onChange={(e) => updatePrice('priceFrom', Number(e.target.value))}
+              className={"rounded-3xl bg-white"}
             />
 
             <Input
@@ -92,6 +93,7 @@ export const Filters: React.FC = () => {
               placeholder="150000"
               value={String(prices.priceTo)}
               onChange={(e) => updatePrice('priceTo', Number(e.target.value))}
+              className={"rounded-3xl bg-white"}
             />
           </div>
 
@@ -122,7 +124,7 @@ export const Filters: React.FC = () => {
 
         <button
           type="button"
-          className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors duration-300 hover:cursor-pointer"
+          className="mt-4 w-full bg-red-500 text-white py-2 rounded-3xl hover:bg-red-600 transition-colors duration-300 hover:cursor-pointer"
           onClick={() => {
             setPrice({priceFrom: undefined, priceTo: undefined});
             selectedMaterials.clear();
@@ -132,8 +134,6 @@ export const Filters: React.FC = () => {
         >
           Сбросить фильтр
         </button>
-
-
       </form>
     </div>
   );

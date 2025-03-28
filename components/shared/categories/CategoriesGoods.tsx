@@ -17,25 +17,34 @@ export const CategoriesGoods: React.FC<CategoriesProps> = async ({categories, cl
             <li key={category.id}>
               {isActive ? (
                 <div
-                  className="flex items-center gap-x-3 rounded-2xl max-w-[170px] leading-4 border border-red-500 overflow-hidden p-3">
+                  className={cn(
+                    "flex items-center text-sm bg-[#F8F9FD] rounded-2xl max-w-[200px] leading-4 overflow-hidden py-1 px-3",
+                    "text-[var(--violet)]",
+                    "border-2 !border-[var(--violet-dark)]"
+                  )}
+                >
                   <Image
                     src={category.banner_image_url}
                     alt={category.name}
-                    width={40} height={40}
-                    className="max-w-[40px]"
+                    width={80} height={80}
+                    className="max-w-[80px] mr-1"
                   />
                   {category.name}
                 </div>
               ) : (
                 <Link
                   href={`/catalog/${category.slug}`}
-                  className="flex items-center gap-x-3 rounded-2xl max-w-[170px] leading-4 border border-gray-200 overflow-hidden hover:text-[#b82c2c] transition-colors p-3"
+                  className={cn(
+                    "flex items-center text-sm bg-[#F8F9FD] rounded-2xl max-w-[200px] leading-4 border-2 !border-gray-100 transition-colors",
+                    "overflow-hidden transition-colors py-1 px-3",
+                    "hover:text-[var(--violet)]",
+                  )}
                 >
                   <Image
                     src={category.banner_image_url}
                     alt={category.name}
-                    width={40} height={40}
-                    className="max-w-[40px]"
+                    width={80} height={80}
+                    className="max-w-[80px] mr-3"
                   />
                   {category.name}
                 </Link>

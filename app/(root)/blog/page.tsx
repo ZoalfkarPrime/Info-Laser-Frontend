@@ -1,8 +1,8 @@
 import {Container} from "@/components/shared/Container";
-import {ArticleCategories} from "@/components/shared/articles/Articles-categories";
+import {ArticleCategories} from "@/components/shared/articles/ArticlesCategories";
 import React from "react";
 import {cn} from "@/lib/utils";
-import {ArticlesCard} from "@/components/shared/articles/Articles-card";
+import {ArticlesCard} from "@/components/shared/articles/ArticlesCard";
 
 const ArticlesPage: React.FC = () => {
   const data = {
@@ -103,7 +103,7 @@ const ArticlesPage: React.FC = () => {
 
           <ul className={cn("grid grid-cols-2 col-span-2")}>
             {data.articles.map((article) => (
-              <li key={article.id} className={"bg-[#F8F9FD] rounded-xl p-3 max-w-[445px]"}>
+              <li key={article.id} className={"bg-[var(--gray)] rounded-xl p-3 max-w-[445px]"}>
                 <ArticlesCard {...article}/>
               </li>
             ))}

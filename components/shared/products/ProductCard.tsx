@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {cn} from "@/lib/utils";
 import {Check, Clock3, Star} from "lucide-react";
-import {AddToCartButton} from "@/components/shared/btns/Add-to-cart-btn-product";
+import {AddToCartButton} from "@/components/shared/btns/AddToCartBtnProduct";
 import {Button} from "@/components/ui/Button";
 import {Product} from "@/types/types";
 
@@ -30,7 +30,7 @@ export const ProductCard: React.FC<Product> = (
 
   return (
     <div
-      className={cn('relative flex flex-col h-full overflow-hidden bg-[#F8F9FD] border border-gray-200 rounded-3xl p-2', className)}>
+      className={cn('relative flex flex-col h-full overflow-hidden bg-[var(--gray)] border border-gray-200 rounded-3xl p-2', className)}>
 
       {labels && labels.map((label) => (
         (label.slug === 'hit' || label.slug === 'in_sale') && (
@@ -38,7 +38,7 @@ export const ProductCard: React.FC<Product> = (
             key={label.id}
             className={cn(
               "absolute block w-[73px] h-[73px] text-[15px] top-[-28px] left-[-28px] rounded-full text-white uppercase z-20",
-              label.slug === 'hit' ? "bg-[#00A94C] -rotate-45" : "bg-[#CF26E9] rotate-0"
+              label.slug === 'hit' ? "bg-[var(--green)] -rotate-45" : "bg-[var(--pink)] rotate-0"
             )}
           >
           <span
@@ -73,26 +73,25 @@ export const ProductCard: React.FC<Product> = (
       </Link>
 
       <div className="flex flex-col p-3 h-full">
-
         {Boolean(inStock) ?
           (
             <span
-              className="inline-flex items-center gap-x-1 place-self-start text-sm text-[#4F26E9] bg-[#3E1EB5]/10 rounded-2xl px-2 py-2 mb-3 leading-none">
-              <Check className="text-[#4F26E9]" size={12}/>
+              className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--violet)] bg-[var(--violet-dark)] rounded-2xl p-2 mb-3 leading-none">
+              <Check className="text-[var(--violet)]" size={12}/>
               В наличии
             </span>
           ) :
           (
             <span
-              className="inline-flex items-center gap-x-1 place-self-start text-sm text-[#00A94C] bg-[#00A94C]/10 rounded-2xl px-2 py-2 mb-3 leading-none">
-              <Clock3 className='text-[#00A94C]' size={12}/>
+              className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--green)] bg-[var(--green)] rounded-2xl p-2 mb-3 leading-none">
+              <Clock3 className='text-[var(--green)]' size={12}/>
               Под заказ
             </span>
           )
         }
 
         <Link
-          className="flex-auto hover:text-[#6941f9] focus:text-[#6941f9] text-[18px] font-semibold transition-colors leading-5 mb-3 block"
+          className="flex-auto hover:text-[var(--violet)] focus:text-[var(--violet)] text-[18px] font-semibold transition-colors leading-5 mb-3 block"
           href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}
           onClick={onClick}
         >
@@ -102,9 +101,9 @@ export const ProductCard: React.FC<Product> = (
         <dl className="flex justify-between mb-3">
           {Boolean(inStock) && (
             <div>
-              <dt>Цена без НДС</dt>
+              <dt className={"text-xs"}>Цена без НДС</dt>
               <dd>
-                <b className="text-[18px] font-normal">
+                <b className="text-[18px]">
                   {formatPrice(stockPrice)}
                   <span className="ml-1">₽</span>
                 </b>
@@ -113,9 +112,9 @@ export const ProductCard: React.FC<Product> = (
           )}
 
           <div>
-            <dt>Под заказ без НДС</dt>
+            <dt className={"text-xs"}>Под заказ без НДС</dt>
             <dd>
-              <b className="text-[18px] font-normal">
+              <b className="text-[18px]">
                 {formatPrice(orderPrice)}
                 <span className="ml-1">₽</span>
               </b>
@@ -132,7 +131,6 @@ export const ProductCard: React.FC<Product> = (
                 </dd>
               </Fragment>
             )}
-
           </div>
         </dl>
 
@@ -158,13 +156,13 @@ export const ProductCard: React.FC<Product> = (
           />
         </div>
 
-        <div className={"flex items-center gap-x-5"}>
-          <span className="flex items-center justify-center gap-x-1 text-sm text-center leading-none">
-            <Star fill="#E99826" strokeWidth={0} size={12}/>
+        <div className={"flex items-center text-xs gap-x-5"}>
+          <span className="flex items-center justify-center gap-x-1 text-center leading-none">
+            <Star className={"fill-[var(--gold)]"} strokeWidth={0} size={12}/>
             {rating}
           </span>
-          <p className="flex items-center justify-center gap-x-1 text-sm text-center leading-none">
-            <Check className="text-[#6941f9]" size={12}/>
+          <p className="flex items-center justify-center gap-x-1 text-center leading-none">
+            <Check className="text-[var(--violet)]" size={12}/>
             {guaranteeContent} {guarantee} год
           </p>
         </div>

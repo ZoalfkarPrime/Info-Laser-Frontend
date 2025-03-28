@@ -2,8 +2,8 @@ import {cn} from "@/lib/utils";
 import React from "react";
 import {ClassName} from "@/types/types";
 import {Container} from "@/components/shared/Container";
-import {ArticlesGroupListMain} from "@/components/shared/articles/Articles-group-list-main";
-import {ArticleCategoriesMain} from "@/components/shared/articles/Articles-categories-main";
+import {ArticlesGroupListMain} from "@/components/shared/articles/ArticlesGroupListMain";
+import {ArticleCategoriesMain} from "@/components/shared/articles/ArticlesCategoriesMain";
 
 export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
 

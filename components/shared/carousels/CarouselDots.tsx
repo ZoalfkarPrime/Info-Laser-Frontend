@@ -36,15 +36,15 @@ export const CarouselDots = React.forwardRef<
         className={cn("flex justify-center", className)}
         {...props}
       >
-        <div className={" inline-flex items-center rounded-full p-1 bg-[#3E1EB5]/8"}>
+        <div className={" inline-flex items-center rounded-full p-1 bg-[var(--violet-dark)]"}>
           {Array.from({length: numberOfSlides}, (_, i) => (
             <Button
               key={i}
               className={cn(
                 "mx-1 h-2 w-2 rounded-full p-0",
                 i === currentSlide
-                  ? "w-6 transform bg-[#6941f9]"
-                  : "bg-white hover:bg-[#6941f9]"
+                  ? "w-6 transform bg-[var(--violet)]"
+                  : "bg-white hover:bg-[var(--violet)]"
               )}
               aria-label={`Перейти к слайду ${i + 1}`}
               onClick={() => api?.scrollTo(i)}

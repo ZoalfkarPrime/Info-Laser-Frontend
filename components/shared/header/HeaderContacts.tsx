@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import {Phone} from "lucide-react";
-import {CallbackBtn} from "@/components/shared/btns/Callback-btn";
+import {CallbackBtn} from "@/components/shared/btns/CallbackBtn";
 
 export const HeaderContacts = () => {
 
@@ -11,14 +11,14 @@ export const HeaderContacts = () => {
 
         <Link
           href="tel:88002222741"
-          className="flex items-center gap-x-2 hover:text-[#b82c2c] transition-colors"
+          className="flex items-center gap-x-2 hover:text-[var(--red)] transition-colors"
         >
           <Phone size={18}/>
           8 (800) 222-27-41
         </Link>
 
         <CallbackBtn
-          className={"bg-inherit text-[#4F26E9] p-0 hover:bg-inherit  hover:text-[#b82c2c] focus:text-[#b82c2c]"}
+          className={"bg-inherit text-[var(--violet)] p-0 hover:bg-inherit  hover:text-[var(--red)] focus:text-[var(--red)]"}
           title={'Обратный звонок'}
         />
 

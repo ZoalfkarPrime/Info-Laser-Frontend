@@ -21,10 +21,10 @@ export const FiltersGroup: React.FC<FilterGroup> = (
   };
 
   return (
-    <fieldset className="mb-3">
+    <fieldset className="border-b border-b-gray-200">
 
       <legend
-        className="font-semibold flex items-center justify-between w-full mb-3 cursor-pointer"
+        className="font-semibold flex items-center justify-between w-full cursor-pointer py-2"
         onClick={handleToggle}
         aria-expanded={isOpen}
       >
@@ -33,19 +33,22 @@ export const FiltersGroup: React.FC<FilterGroup> = (
       </legend>
 
       <ul className={cn(
-        'flex flex-col gap-3 overflow-hidden transition-all duration-300 ease-in-out',
-        isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0',
+        "flex flex-col gap-2 overflow-hidden transition-all duration-300 ease-in-out",
+        isOpen ? "max-h-[5000px] opacity-100 py-3" : "max-h-0 opacity-0",
       )}>
         {items.map((item) => (
           <li key={item.value} className="flex items-center space-x-2">
             <Checkbox
               value={String(item.value)}
-              className="rounded-[8px] w-6 h-6 cursor-pointer"
+              className="rounded-full w-6 h-6 cursor-pointer bg-white ml-1 shadow-none"
               id={`item-${item.value}`}
               checked={selectedIds?.has(item.value)}
               onClick={() => onClickCheckbox?.(item.value)}
             />
-            <label htmlFor={`item-${item.value}`} className="leading-none cursor-pointer flex-1">
+            <label
+              htmlFor={`item-${item.value}`}
+              className="leading-none cursor-pointer flex-1 hover:text-[var(--violet)] transition-colors"
+            >
               {item.name}
             </label>
           </li>

@@ -2,13 +2,13 @@
 
 import React, {useEffect, useRef, useState} from "react";
 import Link from "next/link";
-import {HeaderProductItem} from "@/components/shared/header/nav-items/Header-product-item";
+import {HeaderProductItem} from "@/components/shared/header/nav-items/HeaderProductItem";
 import {cn} from "@/lib/utils";
 import {Menu, X} from "lucide-react";
 import {Overlay} from "@/components/shared/Overlay";
 import {useClickAway} from "react-use";
-import {HeaderAboutCompanyItem} from "@/components/shared/header/nav-items/Header-about-company-item";
-import {HeaderServiceItem} from "@/components/shared/header/nav-items/Header-service-item";
+import {HeaderAboutCompanyItem} from "@/components/shared/header/nav-items/HeaderAboutCompanyItem";
+import {HeaderServiceItem} from "@/components/shared/header/nav-items/HeaderServiceItem";
 
 export const HeaderNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,7 +63,7 @@ export const HeaderNav: React.FC = () => {
             <Link
               className={cn(
                 'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-                "block px-2 hover:text-[#6941f9] transition-colors",
+                "block px-2 hover:text-[var(--violet)] transition-colors",
                 "xl:py-1 xl:px-2",
               )}
               href={"/delivery"}>
@@ -77,7 +77,7 @@ export const HeaderNav: React.FC = () => {
             <Link
               className={cn(
                 'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-                "block px-2 hover:text-[#6941f9] transition-colors",
+                "block px-2 hover:text-[var(--violet)] transition-colors",
                 "xl:py-1 xl:px-2",
               )}
               href={"/contacts"}>

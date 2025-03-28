@@ -9,7 +9,7 @@ interface ThumbProps {
   image: { url: string; alt: string; type?: string; thumbnail?: string };
 }
 
-export const ThumbButton: React.FC<ThumbProps> = ({selected, onClick, image}) => {
+export const ThumbBtn: React.FC<ThumbProps> = ({selected, onClick, image}) => {
   return (
     <div
       className={cn("w-20 h-20 border rounded-lg overflow-hidden transition", selected ? "border-gray-800 shadow-md" : "border-gray-300 hover:border-gray-500")}>

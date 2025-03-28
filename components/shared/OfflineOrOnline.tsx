@@ -4,7 +4,7 @@ import {ClassName} from "@/types/types";
 import Image from "next/image";
 import {Container} from "@/components/shared/Container";
 import Link from "next/link";
-import {DemoBtn} from "@/components/shared/btns/Demo-btn";
+import {DemoBtn} from "@/components/shared/btns/DemoBtn";
 
 export const OfflineOrOnline: React.FC<ClassName> = ({className}) => {
 

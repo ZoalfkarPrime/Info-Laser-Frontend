@@ -103,7 +103,7 @@ export const AboutMainMarquee: React.FC<ClassName> = ({className}) => {
       <Container className={"max-w-[700px] mb-5"}>
         <h3 className={"text-center text-3xl"}>
           Машины + Передовое программное обеспечение =
-          <span className={"text-[#4F26E9] ml-1"}>Творения, воплощенные в жизнь</span>
+          <span className={"text-[var(--violet)] ml-1"}>Творения, воплощенные в жизнь</span>
         </h3>
       </Container>
 

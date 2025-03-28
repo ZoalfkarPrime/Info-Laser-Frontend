@@ -5,7 +5,7 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 
 export const AllCharacteristicsBtn = () => {
-  
+
   const handleScrollToSpecs = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const section = document.getElementById("specifications");
@@ -20,7 +20,7 @@ export const AllCharacteristicsBtn = () => {
       onClick={handleScrollToSpecs}
       className={cn(
         "inline-block underline",
-        "hover:text-[#b82c2c] transition-colors"
+        "hover:text-[var(--red)] transition-colors"
       )}
     >
       Все характеристики

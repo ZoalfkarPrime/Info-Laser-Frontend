@@ -2,8 +2,8 @@ import React from "react";
 import {Container} from "@/components/shared/Container";
 import {getOneProductBySlug} from "@/api/api";
 import {cn} from "@/lib/utils";
-import {ProductGallerySlider} from "@/components/shared/carousels/Product/Product-gallery-slider";
-import {AllCharacteristicsBtn} from "@/components/shared/btns/All-characteristics-btn-product";
+import {ProductGallerySlider} from "@/components/shared/carousels/Product/ProductGallerySlider";
+import {AllCharacteristicsBtn} from "@/components/shared/btns/AllCharacteristicsBtnProduct";
 
 interface PageProps {
   params: Promise<{ product: string; category: string }>;

@@ -70,7 +70,7 @@ export const HeaderSearchBtn = () => {
       <span className="w-[1px] h-6 bg-gray-300"></span>
       <SheetTrigger asChild>
         <button
-          className="relative hover:text-[#6941f9] hover:cursor-pointer hover:bg-gray-200 p-1 mx-2 rounded-md transition-colors duration-300 z-30"
+          className="relative hover:text-[var(--violet)] hover:cursor-pointer hover:bg-gray-200 p-1 mx-2 rounded-md transition-colors duration-300 z-30"
           type="button"
         >
           <Search size={18}/>
@@ -93,7 +93,7 @@ export const HeaderSearchBtn = () => {
                 className="p-1 rounded-md hover:bg-gray-200 hover:cursor-pointer transition-colors duration-300"
                 onClick={closeAndClear}
               >
-                <X className="text-red-500" size={20}/>
+                <X className="text-[var(--red)]" size={20}/>
               </button>
             </SheetClose>
           </div>
@@ -105,7 +105,7 @@ export const HeaderSearchBtn = () => {
               type="text"
               value={query}
               placeholder="Например, лазерный станок..."
-              className="w-full bg-gray-100 border border-gray-300 px-3 pr-16 py-2 rounded-xl outline-none focus:border-[#6941f9]"
+              className="w-full bg-gray-100 border border-gray-300 px-3 pr-16 py-2 rounded-3xl outline-none focus:border-[var(--violet)]"
               onChange={(e) => setQuery(e.target.value)}
             />
 

@@ -128,7 +128,7 @@
 }
 
 /* Кастомный скролл */
-@layer base {
+@layer scroll {
     * {
         @apply border-border outline-ring/50;
     }
@@ -163,7 +163,7 @@
 }
 
 /* Анимация скролла на главной странице */
-@layer base {
+@layer animation {
     @keyframes scroll-right {
         from {
             transform: translateX(0);
@@ -194,3 +194,16 @@
         animation: scroll-left 50s linear infinite;
     }
 }
+
+/* Базовые цвета */
+@theme {
+    --violet: #4F26E9;
+    --violet-dark: #4F26E91A;
+    --red: #b82c2c;
+    --pink: #CF26E9;
+    --green: #00A94C;
+    --gray: #F8F9FD;
+    --gold: #E99826;
+}
+
+

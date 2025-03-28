@@ -33,8 +33,8 @@ export const ArticlesCard: React.FC<Article> = (
       <p className={"text-xs text-[#9298AF] mb-2"}>{date}</p>
       <Link
         className={cn(
-          "block font-semibold text-[22px] text-[#4F26E9] mb-2",
-          "hover:text-[#b82c2c] focus:text-[#b82c2c] leading-5 transition-colors duration-300",
+          "block font-semibold text-[22px] text-[var(--violet)] mb-2",
+          "hover:text-[var(--red)] focus:text-[var(--red)] leading-5 transition-colors duration-300",
         )}
         href={`/blog/${articleCategory[0].slug}/${slug}`}
       >

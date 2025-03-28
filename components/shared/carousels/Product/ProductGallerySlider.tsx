@@ -3,7 +3,7 @@
 import React, {useState, useEffect, useCallback} from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import {ThumbButton} from "@/components/shared/carousels/Product/Thumb-button";
+import {ThumbBtn} from "@/components/shared/carousels/Product/ThumbBtn";
 import {Attachments} from "@/types/types";
 
 interface ProductGallerySliderProps {
@@ -69,7 +69,7 @@ export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({image
         <div ref={emblaThumbsRef}>
           <div className="flex flex-col gap-2">
             {processedImages.map((image, idx) => (
-              <ThumbButton
+              <ThumbBtn
                 key={idx}
                 index={idx}
                 onClick={() => onThumbClick(idx)}

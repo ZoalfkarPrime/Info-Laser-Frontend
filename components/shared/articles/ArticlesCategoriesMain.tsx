@@ -18,15 +18,15 @@ export const ArticleCategoriesMain: React.FC<ArticlesGroupListUpd> = ({className
         {categories.map((section) => (
           <li key={section.id} className={"not-last:mb-3"}>
             <Link
-              className={"group flex gap-3 hover:text-[#4F26E9] focus:text-[#4F26E9] leading-5 transition-colors duration-300"}
+              className={"group flex gap-3 hover:text-[var(--violet)] focus:text-[var(--violet)] leading-5 transition-colors duration-300"}
               href={`/blog/${section.slug}`}
             >
               <div
-                className={"flex flex-shrink-0 items-center justify-center h-7 w-7 rounded-full bg-[#4F26E91A] rotate-180 p-0"}
+                className={"flex flex-shrink-0 items-center justify-center h-7 w-7 rounded-full bg-[var(--violet-dark)] rotate-180 p-0"}
               >
                 <ChevronLeft
                   size={"16"}
-                  className={"relative text-[#4F26E9] transition-colors duration-300 group-hover:text-red-400 group-focus:text-red-400"}
+                  className={"relative text-[var(--violet)] transition-colors duration-300 group-hover:text-[var(--red)] group-focus:text-[var(--red)]"}
                 />
               </div>
               {section.title}
@@ -34,7 +34,8 @@ export const ArticleCategoriesMain: React.FC<ArticlesGroupListUpd> = ({className
           </li>
         ))}
       </ul>
-      <Button asChild variant="outline" className={"rounded-3xl  border-2 border-[#4F26E91A]"}>
+      <Button asChild variant="outline"
+              className={"text-[var(--violet)] rounded-3xl  border-2 !border-[var(--violet-dark)]"}>
         <Link href="/blog">Все статьи</Link>
       </Button>
     </aside>

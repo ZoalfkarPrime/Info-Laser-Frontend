@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {DemoBtn} from "@/components/shared/btns/Demo-btn";
+import {DemoBtn} from "@/components/shared/btns/DemoBtn";
 import {cn} from "@/lib/utils";
 import React from "react";
 import Link from "next/link";
@@ -20,8 +20,8 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
             className={"self-end"}
           />
           <div className="text-center py-5">
-            <p className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Online или Offline?</p>
-            <p className="text-gray-700 text-lg leading-6 mb-6">
+            <p className="text-3xl md:text-4xl font-bold mb-4">Online или Offline?</p>
+            <p className="text-lg leading-6 mb-6">
               Продемонстрируем работу оборудования любым удобным способом: в более
               50 городах России или по видеосвязи.
             </p>

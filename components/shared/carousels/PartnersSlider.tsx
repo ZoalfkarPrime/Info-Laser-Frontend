@@ -6,7 +6,7 @@ import React from "react";
 import {cn} from "@/lib/utils";
 import {ClassName} from "@/types/types";
 import Image from "next/image";
-import {CarouselDots} from "@/components/shared/carousels/Carousel-dots";
+import {CarouselDots} from "@/components/shared/carousels/CarouselDots";
 
 export const PartnersSlider: React.FC<ClassName> = ({className}) => {
 

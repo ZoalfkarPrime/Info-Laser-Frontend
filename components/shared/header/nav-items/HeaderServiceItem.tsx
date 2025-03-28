@@ -7,7 +7,7 @@ import {Overlay} from "@/components/shared/Overlay";
 import {ChevronDown} from "lucide-react";
 import {useMedia} from "react-use";
 
-export const HeaderAboutCompanyItem: React.FC = () => {
+export const HeaderServiceItem: React.FC = () => {
 
   const isMobile = useMedia("(max-width: 1280px)");
 
@@ -37,7 +37,7 @@ export const HeaderAboutCompanyItem: React.FC = () => {
         <button
           type="button"
           className={cn(
-            'flex items-center gap-x-1 bg-white hover:text-[#6941f9] transition-colors duration-300',
+            'flex items-center gap-x-1 bg-white hover:text-[var(--violet)] transition-colors duration-300',
             isSpoilerOpen ? 'before:content-[] before:absolute before:left-0 before:bottom-[-40px] before:h-[40px] before:w-full' : '',
             "max-xl:w-full max-xl:justify-between max-xl:font-bold max-xl:px-2",
             "xl:py-1 xl:px-2",
@@ -45,7 +45,7 @@ export const HeaderAboutCompanyItem: React.FC = () => {
           onMouseEnter={() => !isMobile && setIsSpoilerOpen(true)}
           onClick={() => isMobile ? setIsSpoilerOpen(!isSpoilerOpen) : setIsSpoilerOpen(false)}
         >
-          О компании
+          Сервис
           <ChevronDown
             size={14}
             className={cn(
@@ -71,27 +71,66 @@ export const HeaderAboutCompanyItem: React.FC = () => {
             <li>
               <Link
                 className={cn(
-                  "block px-2 hover:text-[#6941f9] transition-colors",
+                  "block px-2 hover:text-[var(--violet)] transition-colors",
                   'max-xl:w-full max-xl:justify-between max-xl:font-bold',
                   "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
                 )}
                 href={"/clients"}
                 onClick={() => setIsSpoilerOpen(false)}
               >
-                Клиенты
+                Диагностика электрики и механики станков
               </Link>
             </li>
             <li>
               <Link
                 className={cn(
-                  "block px-2 hover:text-[#6941f9] transition-colors",
+                  "block px-2 hover:text-[var(--violet)] transition-colors",
                   'max-xl:w-full max-xl:justify-between max-xl:font-bold',
                   "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
                 )}
-                href={"/blog"}
+                href={"#"}
                 onClick={() => setIsSpoilerOpen(false)}
               >
-                Блог
+                Пусконаладка оборудования
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={cn(
+                  "block px-2 hover:text-[var(--violet)] transition-colors",
+                  'max-xl:w-full max-xl:justify-between max-xl:font-bold',
+                  "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
+                )}
+                href={"#"}
+                onClick={() => setIsSpoilerOpen(false)}
+              >
+                Настройка ПО
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={cn(
+                  "block px-2 hover:text-[var(--violet)] transition-colors",
+                  'max-xl:w-full max-xl:justify-between max-xl:font-bold',
+                  "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
+                )}
+                href={"#"}
+                onClick={() => setIsSpoilerOpen(false)}
+              >
+                Ремонт оборудования и комплектующих
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={cn(
+                  "block px-2 hover:text-[var(--violet)] transition-colors",
+                  'max-xl:w-full max-xl:justify-between max-xl:font-bold',
+                  "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
+                )}
+                href={"#"}
+                onClick={() => setIsSpoilerOpen(false)}
+              >
+                Замена расходных материалов
               </Link>
             </li>
           </ul>

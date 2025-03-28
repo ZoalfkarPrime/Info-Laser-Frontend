@@ -2,7 +2,7 @@ import React from "react";
 import {Container} from "@/components/shared/Container";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/Carousel";
 import {cn} from "@/lib/utils";
-import {ProductCard} from "@/components/shared/products/Product-card";
+import {ProductCard} from "@/components/shared/products/ProductCard";
 import {ClassName} from "@/types/types";
 import {getProducts} from "@/api/api";
 

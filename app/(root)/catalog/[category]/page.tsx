@@ -1,11 +1,12 @@
 import React from "react";
 import {Container} from "@/components/shared/Container";
 import {Filters} from "@/components/shared/filters/Filters";
-import {ProductsGroupList} from "@/components/shared/products/Products-group-list";
+import {ProductsGroupList} from "@/components/shared/products/ProductsGroupList";
 import {getCategories} from "@/api/api";
-import {CategoriesGoods} from "@/components/shared/categories/Categories-goods";
+import {CategoriesGoods} from "@/components/shared/categories/CategoriesGoods";
 import {Sorting} from "@/components/shared/Sorting";
 import {SortingProvider} from "@/context/SortingContext";
+import Image from "next/image";
 
 interface CategoryProps {
   params: Promise<{ product: string; category: string }>;
@@ -18,29 +19,46 @@ const CategoryPage: React.FC<CategoryProps> = async ({params}) => {
 
   return (
     <SortingProvider>
-      <Container>
-        <section className="py-3 mb-3">
-          <h1 className="text-3xl mb-1">{currentCategory?.name}</h1>
-          <p>{currentCategory?.description}</p>
-        </section>
-
-        <section className="flex gap-x-5">
-          <h2 className="hidden">{currentCategory?.name}</h2>
-          <aside>
-            <Filters/>
-          </aside>
-
-          <div className="flex-1">
-            <CategoriesGoods
-              className="mb-3"
-              categories={categories}
-              activeCategory={currentCategory?.slug}
-            />
-            <Sorting/>
-            <ProductsGroupList className="mb-3" products={currentCategory?.products || []}/>
+      <section className="py-3 mb-3">
+        <Container className={"flex justify-between"}>
+          <div>
+            <h1 className="text-3xl mb-1">{currentCategory?.name}</h1>
+            <p className={"text-sm"}>{currentCategory?.description}</p>
           </div>
-        </section>
-      </Container>
+
+          {currentCategory?.banner_image_url && (
+            <Image
+              src={currentCategory.banner_image_url}
+              alt={currentCategory.name ?? "Изображение категории"}
+              width={400}
+              height={250}
+            />
+          )}
+        </Container>
+      </section>
+
+      <section>
+        <Container>
+          <CategoriesGoods
+            className="py-5"
+            categories={categories}
+            activeCategory={currentCategory?.slug}
+          />
+
+          <Sorting className={"justify-end border-b border-b-gray-200 py-3"}/>
+
+          <div className="flex gap-x-5">
+            <aside>
+              <Filters/>
+            </aside>
+
+            <div className="flex-1">
+              <ProductsGroupList className="mb-3" products={currentCategory?.products || []}/>
+            </div>
+          </div>
+
+        </Container>
+      </section>
     </SortingProvider>
   );
 };

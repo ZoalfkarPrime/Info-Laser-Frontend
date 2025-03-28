@@ -5,7 +5,7 @@ import {Container} from "@/components/shared/Container";
 import {Clock, Mail, Phone} from "lucide-react";
 import Link from "next/link";
 import {Logo} from "@/components/shared/Logo";
-import {CallbackBtn} from "@/components/shared/btns/Callback-btn";
+import {CallbackBtn} from "@/components/shared/btns/CallbackBtn";
 import Image from "next/image";
 
 export const Footer: React.FC<ClassName> = ({className}) => {
@@ -76,21 +76,21 @@ export const Footer: React.FC<ClassName> = ({className}) => {
             <ul className="space-y-1 ">
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   О компании
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   База знаний
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
                   href="#"
                 >
                   Клиенты
@@ -98,14 +98,14 @@ export const Footer: React.FC<ClassName> = ({className}) => {
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Оплата и доставка
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
                   href="#"
                 >
                   Сервис
@@ -113,7 +113,7 @@ export const Footer: React.FC<ClassName> = ({className}) => {
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
                   href="#"
                 >
                   Контакты
@@ -128,42 +128,42 @@ export const Footer: React.FC<ClassName> = ({className}) => {
             <ul className="space-y-1 ">
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерные станки CO2
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерные маркеры
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерные труборезы
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерные станки по металлу
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерные сварочные аппараты
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерные очистки
                 </Link>
@@ -176,35 +176,35 @@ export const Footer: React.FC<ClassName> = ({className}) => {
             <ul className="space-y-1 ">
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерных станков
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Лазерных маркеров
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Станков по металлу
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300" href="#"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300" href="#"
                 >
                   Фрезерных станков
                 </Link>
               </li>
               <li>
                 <Link
-                  className="hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
+                  className="hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
                   href="#"
                 >
                   Плоттеров
@@ -221,7 +221,7 @@ export const Footer: React.FC<ClassName> = ({className}) => {
                 <dt className="uppercase text-[#9298AF]">Почта</dt>
                 <dd>
                   <Link
-                    className="font-semibold hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
+                    className="font-semibold hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
                     href="mailto:info@infolaser.ru"
                   >
                     info@infolaser.ru
@@ -236,7 +236,7 @@ export const Footer: React.FC<ClassName> = ({className}) => {
                 <dt className="uppercase text-[#9298AF]">Телефон</dt>
                 <dd>
                   <Link
-                    className="font-semibold hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300"
+                    className="font-semibold hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
                     href="tel:88002222741"
                   >
                     8 (800) 222-27-41

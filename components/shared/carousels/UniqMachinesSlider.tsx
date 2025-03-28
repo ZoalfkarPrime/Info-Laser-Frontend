@@ -51,7 +51,7 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                         className={cn(
                           "rounded-3xl  px-3 py-2 mb-0 hover:cursor-pointer",
                           activeCategory === String(category.id)
-                            ? "data-[state=active]:bg-[#4F26E9]/80 data-[state=active]:text-white"
+                            ? "data-[state=active]:bg-[var(--violet)]/80 data-[state=active]:text-white"
                             : "text-black"
                         )}
                       >
@@ -75,12 +75,13 @@ export const UniqMachinesSlider: React.FC<ClassName> = ({className}) => {
                           <Link
                             href={"/catalog/" + category.slug + "/" + product.slug}
                             className={cn(
-                              "relative flex flex-col h-full bg-[#F8F9FD] border border-[#ABB4D7]/10 p-5 rounded-3xl overflow-hidden",
+                              "relative flex flex-col h-full bg-[var(--gray)] border border-[#ABB4D7]/10 p-5 rounded-3xl overflow-hidden",
                               "group"
                             )}
                           >
                             <div className={"z-20"}>
-                              <p className={"text-[#4F26E9] uppercase text-sm mb-3 group-hover:text-white"}>Wattsan</p>
+                              <p
+                                className={"text-[var(--violet)] uppercase text-sm mb-3 group-hover:text-white"}>Wattsan</p>
                               <p className={"text-2xl leading-6 mb-5 group-hover:text-white"}>{product.name}</p>
                               <ul className={cn("flex flex-wrap text-sm gap-2 mb-3 group-hover:text-white")}>
                                 <li

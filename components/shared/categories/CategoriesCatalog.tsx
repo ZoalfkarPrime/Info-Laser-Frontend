@@ -22,7 +22,7 @@ export const CategoriesCatalog: React.FC<CategoriesProps> = async ({categories, 
               >
                 <Link
                   href={`/catalog/${category.slug}`}
-                  className={cn('flex flex-col font-medium rounded-3xl text-xl bg-gray-200 overflow-hidden hover:text-[#b82c2c] transition-colors p-5')}
+                  className={cn('flex flex-col font-medium rounded-3xl text-xl bg-gray-200 overflow-hidden hover:text-[var(--red)] transition-colors p-5')}
                 >
                   <Image
                     src={category.banner_image_url}

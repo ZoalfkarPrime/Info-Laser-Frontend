@@ -3,10 +3,10 @@ import React from "react";
 import Image from "next/image";
 
 interface ArticlePageProps {
-  params: { article: string };
+  params: Promise<{ article: string }>;
 }
 
-const ArticlePage: React.FC<ArticlePageProps> = ({params}) => {
+const ArticlePage: React.FC<ArticlePageProps> = async ({params}) => {
 
   const data = {
     articles: [
@@ -43,7 +43,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({params}) => {
     ]
   };
 
-  const {article} = params;
+  const {article} = await params;
 
   const oneArticle = data.articles.find((item) => item.slug === article);
 

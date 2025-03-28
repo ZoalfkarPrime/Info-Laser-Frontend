@@ -19,7 +19,7 @@ export const CallbackBtn: React.FC<CallbackBtnProps> = ({title, className}) => {
     <Dialog>
 
       <DialogTrigger asChild>
-        <Button className={cn('', className)}>
+        <Button className={cn("", className)}>
           {title}
         </Button>
       </DialogTrigger>

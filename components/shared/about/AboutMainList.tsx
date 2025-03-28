@@ -38,7 +38,7 @@ export const AboutMainList: React.FC<ClassName> = ({className}) => {
           {aboutList.map((item) => (
             <div key={item.name}>
               <dt className={"flex items-center gap-x-2 font-semibold mb-2"}>
-                <CircleCheck fill={"#4F26E9"} className={"text-white"} size={20}/>
+                <CircleCheck className="text-white fill-[var(--violet)]" size={20}/>
                 {item.name}
               </dt>
               <dd className={"pl-7"}>{item.desc}</dd>

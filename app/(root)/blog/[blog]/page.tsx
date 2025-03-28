@@ -1,13 +1,13 @@
 import {Container} from "@/components/shared/Container";
-import {ArticleCategories} from "@/components/shared/articles/Articles-categories";
-import {ArticlesGroupListMain} from "@/components/shared/articles/Articles-group-list-main";
+import {ArticleCategories} from "@/components/shared/articles/ArticlesCategories";
+import {ArticlesGroupListMain} from "@/components/shared/articles/ArticlesGroupListMain";
 import React from "react";
 
 interface CategoryProps {
-  params: { blog: string };
+  params: Promise<{ blog: string }>;
 }
 
-const BlogPage: React.FC<CategoryProps> = ({params}) => {
+const BlogPage: React.FC<CategoryProps> = async ({params}) => {
   const data = {
     allArticles: [
       {
@@ -57,7 +57,7 @@ const BlogPage: React.FC<CategoryProps> = ({params}) => {
     ],
   };
 
-  const {blog: category} = params;
+  const {blog: category} = await params;
   const currentCategory = data.allArticles.find((cat) => cat.slug === category);
 
   return (

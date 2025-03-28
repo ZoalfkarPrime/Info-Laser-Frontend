@@ -2,7 +2,7 @@
 
 import React, {useMemo} from "react";
 import {cn} from "@/lib/utils";
-import {ProductCard} from "@/components/shared/products/Product-card";
+import {ProductCard} from "@/components/shared/products/ProductCard";
 import {Product} from "@/types/types";
 import {ClassName} from "@/types/types";
 import {useSearchParams} from "next/navigation";

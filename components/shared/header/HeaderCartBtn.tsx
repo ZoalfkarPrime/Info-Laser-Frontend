@@ -11,7 +11,7 @@ export const HeaderCartBtn: React.FC = () => {
   const totalCartItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <Link className="flex items-center gap-1 mx-2 hover:text-red-500 transition duration-300" href={"/cart"}>
+    <Link className="flex items-center gap-1 mx-2 hover:text-[var(--red)] transition duration-300" href={"/cart"}>
       <ShoppingCart size={18} className="relative" strokeWidth={2}/>
       <b>{totalCartItems}</b>
     </Link>

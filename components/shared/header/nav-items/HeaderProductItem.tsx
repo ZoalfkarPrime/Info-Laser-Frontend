@@ -12,8 +12,8 @@ import {getCatalogData} from "@/api/api";
 import Image from "next/image";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import {Button} from "@/components/ui/Button";
-import {DemoBtn} from "@/components/shared/btns/Demo-btn";
-import {ProductCardHeader} from "@/components/shared/products/Product-card-header";
+import {DemoBtn} from "@/components/shared/btns/DemoBtn";
+import {ProductCardHeader} from "@/components/shared/products/ProductCardHeader";
 
 export const HeaderProductItem: React.FC = () => {
 
@@ -64,10 +64,10 @@ export const HeaderProductItem: React.FC = () => {
         <button
           type="button"
           className={cn(
-            "relative flex items-center gap-x-1 rounded-2xl xl:bg-[#4F26E9] xl:text-white  transition-colors duration-300 px-3 lg:py-1",
+            "relative flex items-center gap-x-1 rounded-2xl xl:bg-[var(--violet)] xl:text-white  transition-colors duration-300 px-3 lg:py-1",
             "max-xl:w-full max-xl:justify-between max-xl:font-bold max-xl:px-2",
             isSpoilerOpen ? "lg:before:content-[] lg:before:absolute lg:before:left-0 lg:before:bottom-[-40px] lg:before:h-[40px] lg:before:w-full" : "",
-            isSpoilerOpen ? "text-[#6941f9] xl:bg-gray-400/50 " : "",
+            isSpoilerOpen ? "text-[var(--violet)] xl:bg-gray-400/50 " : "",
           )}
           onMouseEnter={() => !isMobile && setIsSpoilerOpen(true)}
           onClick={() => isMobile ? setIsSpoilerOpen(!isSpoilerOpen) : setIsSpoilerOpen(false)}
@@ -237,7 +237,7 @@ export const HeaderProductItem: React.FC = () => {
                               <li key={accessory.id}>
                                 <Link
                                   onClick={() => setIsSpoilerOpen(false)}
-                                  className={"flex items-center gap-2 h-full bg-white rounded-xl leading-4 overflow-hidden p-2 hover:text-[#b82c2c] focus:text-[#b82c2c] transition-colors duration-300 ease-in-out"}
+                                  className={"flex items-center gap-2 h-full bg-white rounded-xl leading-4 overflow-hidden p-2 hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300 ease-in-out"}
                                   href={`/catalog/${accessory.slug}`}
                                 >
                                   {accessory.product_attachments && accessory.product_attachments.map((item) =>
