@@ -18,9 +18,9 @@ export const CategoriesGoods: React.FC<CategoriesProps> = async ({categories, cl
               {isActive ? (
                 <div
                   className={cn(
-                    "flex items-center text-sm bg-[#F8F9FD] rounded-2xl max-w-[200px] leading-4 overflow-hidden py-1 px-3",
+                    "flex items-center text-sm bg-[var(--gray)] rounded-2xl max-w-[200px] leading-4 overflow-hidden py-1 px-3",
                     "text-[var(--violet)]",
-                    "border-2 !border-[var(--violet-dark)]"
+                    "border-1 !border-[var(--violet)]"
                   )}
                 >
                   <Image
@@ -35,7 +35,7 @@ export const CategoriesGoods: React.FC<CategoriesProps> = async ({categories, cl
                 <Link
                   href={`/catalog/${category.slug}`}
                   className={cn(
-                    "flex items-center text-sm bg-[#F8F9FD] rounded-2xl max-w-[200px] leading-4 border-2 !border-gray-100 transition-colors",
+                    "flex items-center text-sm bg-[var(--gray)] rounded-2xl max-w-[200px] leading-4 border-1 !border-gray-100 transition-colors",
                     "overflow-hidden transition-colors py-1 px-3",
                     "hover:text-[var(--violet)]",
                   )}

@@ -33,7 +33,7 @@ export const Sorting: React.FC<ClassName> = ({className}) => {
       <p
         className={cn(
           "hover:text-[var(--violet)] cursor-pointer p-3 bg-[var(--gray)] rounded-3xl border transition-colors",
-          sortBy === "price" && "text-[var(--violet)] !border-[var(--violet-dark)]",
+          sortBy === "price" && "text-[var(--violet)] !border-[var(--violet)]",
         )}
         onClick={() => updateSorting("price")}
       >
@@ -42,7 +42,7 @@ export const Sorting: React.FC<ClassName> = ({className}) => {
       <p
         className={cn(
           "hover:text-[var(--violet)] cursor-pointer p-3 bg-[var(--gray)] rounded-3xl border transition-colors",
-          sortBy === "popularity" && "text-[var(--violet)] !border-[var(--violet-dark)]"
+          sortBy === "popularity" && "text-[var(--violet)] !border-[var(--violet)]"
         )}
         onClick={() => updateSorting("popularity")}
       >
@@ -51,7 +51,7 @@ export const Sorting: React.FC<ClassName> = ({className}) => {
       <p
         className={cn(
           "hover:text-[var(--violet)] cursor-pointer p-3 bg-[var(--gray)] rounded-3xl border transition-colors",
-          sortBy === "sale" && "text-[var(--violet)] !border-[var(--violet-dark)]"
+          sortBy === "sale" && "text-[var(--violet)] !border-[var(--violet)]"
         )}
         onClick={() => updateSorting("sale")}
       >

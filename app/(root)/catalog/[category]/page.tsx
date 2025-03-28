@@ -7,6 +7,8 @@ import {CategoriesGoods} from "@/components/shared/categories/CategoriesGoods";
 import {Sorting} from "@/components/shared/Sorting";
 import {SortingProvider} from "@/context/SortingContext";
 import Image from "next/image";
+import {cn} from "@/lib/utils";
+import {BannerCategory} from "@/components/shared/carousels/banners/BannerCategory";
 
 interface CategoryProps {
   params: Promise<{ product: string; category: string }>;
@@ -19,10 +21,12 @@ const CategoryPage: React.FC<CategoryProps> = async ({params}) => {
 
   return (
     <SortingProvider>
-      <section className="py-3 mb-3">
-        <Container className={"flex justify-between"}>
+      <section className={cn(
+        "bg-[url('/img/category/bg.jpg')] bg-no-repeat bg-cover py-3 mb-3",
+      )}>
+        <Container className={"flex justify-between items-center"}>
           <div>
-            <h1 className="text-3xl mb-1">{currentCategory?.name}</h1>
+            <h1 className="text-5xl mb-1">{currentCategory?.name}</h1>
             <p className={"text-sm"}>{currentCategory?.description}</p>
           </div>
 
@@ -48,8 +52,9 @@ const CategoryPage: React.FC<CategoryProps> = async ({params}) => {
           <Sorting className={"justify-end border-b border-b-gray-200 py-3"}/>
 
           <div className="flex gap-x-5">
-            <aside>
-              <Filters/>
+            <aside className={"flex-0 min-w-[280px]"}>
+              <Filters className={"mb-3"}/>
+              <BannerCategory/>
             </aside>
 
             <div className="flex-1">

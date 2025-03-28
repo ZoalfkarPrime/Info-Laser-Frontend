@@ -10,7 +10,11 @@ import {PriceProps} from "@/types/filter";
 import qs from 'qs';
 import {useRouter, useSearchParams} from "next/navigation";
 
-export const Filters: React.FC = () => {
+interface FiltersProps {
+  className?: string
+}
+
+export const Filters: React.FC<FiltersProps> = ({className}) => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -68,8 +72,8 @@ export const Filters: React.FC = () => {
   }, [prices, selectedMaterials, selectedManufacturers, router]);
 
   return (
-    <div>
-      <form className={cn('text-sm min-w-[250px] bg-[var(--gray)] p-5 rounded-3xl border border-gray-200')}>
+    <div className={className}>
+      <form className={cn('text-sm bg-[var(--gray)] p-5 rounded-3xl border border-gray-200')}>
 
         <fieldset className="mb-3">
           <legend className="font-semibold mb-3">Цена от и до:</legend>

@@ -19,7 +19,7 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
             height={300}
             className={"self-end"}
           />
-          <div className="text-center py-5">
+          <div className="text-center">
             <p className="text-3xl md:text-4xl font-bold mb-4">Online или Offline?</p>
             <p className="text-lg leading-6 mb-6">
               Продемонстрируем работу оборудования любым удобным способом: в более
