@@ -4,6 +4,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/Select";
 import React, {useEffect} from "react";
 import qs from "qs";
+import {cn} from "@/lib/utils";
 
 interface SortingProps {
   className?: string;
@@ -15,16 +16,16 @@ export const Sorting: React.FC<SortingProps> = ({className, currentSort}) => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const savedSort = localStorage.getItem("sortingParams");
+    const savedSort = localStorage.getItem("sortingAndFiltersParams");
     if (savedSort) {
       const parsedSort = JSON.parse(savedSort);
       const currentQuery = Object.fromEntries(searchParams.entries());
 
-      // Сравниваем параметры сортировки в URL с сохранёнными в localStorage
-      if (
-        parsedSort.order_column !== currentQuery.order_column ||
-        parsedSort.order_dir !== currentQuery.order_dir
-      ) {
+      // Проверяем, есть ли вообще сортировка в URL
+      const hasSortingInURL = currentQuery.order_column || currentQuery.order_dir;
+
+      // Если в URL нет сортировки, но есть в localStorage — подставляем её
+      if (!hasSortingInURL) {
         router.replace(`?${qs.stringify(parsedSort)}`, {scroll: false});
       }
     }
@@ -54,14 +55,14 @@ export const Sorting: React.FC<SortingProps> = ({className, currentSort}) => {
     };
 
     // Сохраняем новые параметры в localStorage
-    localStorage.setItem("sortingParams", JSON.stringify(newParams));
+    localStorage.setItem("sortingAndFiltersParams", JSON.stringify(newParams));
 
     // Обновляем URL с новыми параметрами
     router.push(`?${qs.stringify(newParams)}`, {scroll: false});
   };
 
   return (
-    <div className={`flex items-center gap-5 ${className}`}>
+    <div className={cn("flex items-center gap-5", className)}>
       <div className="flex items-center gap-3">
         <label className="block text-sm font-semibold" htmlFor="sorting">Сортировка:</label>
         <Select
