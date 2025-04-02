@@ -21,11 +21,8 @@ export const Sorting: React.FC<SortingProps> = ({className, currentSort}) => {
       const parsedSort = JSON.parse(savedSort);
       const currentQuery = Object.fromEntries(searchParams.entries());
 
-      // Проверяем, есть ли вообще сортировка в URL
-      const hasSortingInURL = currentQuery.order_column || currentQuery.order_dir;
-
       // Если в URL нет сортировки, но есть в localStorage — подставляем её
-      if (!hasSortingInURL) {
+      if (!currentQuery.order_column || !currentQuery.order_dir) {
         router.replace(`?${qs.stringify(parsedSort)}`, {scroll: false});
       }
     }
@@ -35,7 +32,6 @@ export const Sorting: React.FC<SortingProps> = ({className, currentSort}) => {
     let orderColumn: string | null = null;
     let orderDir: "asc" | "desc" | null = null;
 
-    // Определяем параметры сортировки на основе выбранного значения
     if (value === "rating") {
       orderColumn = "rating";
       orderDir = "desc";
@@ -47,17 +43,13 @@ export const Sorting: React.FC<SortingProps> = ({className, currentSort}) => {
       orderDir = "asc";
     }
 
-    // Создаём новые параметры сортировки, включая параметры из текущего URL
     const newParams = {
       ...Object.fromEntries(searchParams.entries()),
       ...(orderColumn ? {order_column: orderColumn} : {}),
       ...(orderDir ? {order_dir: orderDir} : {}),
     };
 
-    // Сохраняем новые параметры в localStorage
     localStorage.setItem("sortingAndFiltersParams", JSON.stringify(newParams));
-
-    // Обновляем URL с новыми параметрами
     router.push(`?${qs.stringify(newParams)}`, {scroll: false});
   };
 

@@ -12,7 +12,11 @@ import React from "react";
 
 interface CategoryProps {
   params: Promise<{ category: string }>;
-  searchParams: Promise<{ order_column?: string; order_dir?: "asc" | "desc" }>;
+  searchParams: Promise<{
+    order_column?: string;
+    order_dir?: "asc" | "desc";
+    "filter[label_id]"?: string
+  }>;
 }
 
 const CategoryPage: React.FC<CategoryProps> = async ({params, searchParams}) => {
@@ -35,9 +39,10 @@ const CategoryPage: React.FC<CategoryProps> = async ({params, searchParams}) => 
     )
     : [];
 
-  const {order_column, order_dir} = await searchParams;
+  const {order_column, order_dir, "filter[label_id]": filterLabelId} = await searchParams;
 
-  filteredProducts = sortProducts(filteredProducts, order_column, order_dir);
+  // Применяем фильтрацию (если filter[label_id]==="2" – отбираем акционные товары)
+  filteredProducts = sortProducts(filteredProducts, order_column, order_dir, filterLabelId);
 
   return (
     <>
