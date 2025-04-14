@@ -64,10 +64,11 @@ export const HeaderProductItem: React.FC = () => {
         <button
           type="button"
           className={cn(
-            "relative flex items-center gap-x-1 rounded-2xl xl:bg-[var(--violet)] xl:text-white  transition-colors duration-300 px-3 lg:py-1",
+            "relative flex items-center gap-x-1 rounded-3xl xl:bg-[var(--violet)] xl:text-white  transition-colors duration-300 px-3 lg:py-1",
             "max-xl:w-full max-xl:justify-between max-xl:font-bold max-xl:px-2",
             isSpoilerOpen ? "lg:before:content-[] lg:before:absolute lg:before:left-0 lg:before:bottom-[-40px] lg:before:h-[40px] lg:before:w-full" : "",
-            isSpoilerOpen ? "text-[var(--violet)] xl:bg-gray-400/50 " : "",
+            isSpoilerOpen ? "xl:bg-gray-400/50 " : "",
+            "xl:text-sm xl:py-2 xl:px-3"
           )}
           onMouseEnter={() => !isMobile && setIsSpoilerOpen(true)}
           onClick={() => isMobile ? setIsSpoilerOpen(!isSpoilerOpen) : setIsSpoilerOpen(false)}
@@ -84,7 +85,7 @@ export const HeaderProductItem: React.FC = () => {
 
         <div
           className={cn(
-            "absolute top-[80px] h-[85dvh] left-0 right-0 bg-gray-200 xl:border-t xl:border-t-gray-300  transition-all duration-300 ease-in-out overflow-hidden z-30",
+            "absolute top-[88px] h-[85dvh] left-0 right-0 bg-white rounded-b-4xl xl:border-t xl:border-t-gray-300  transition-all duration-300 ease-in-out overflow-hidden z-30",
             "max-xl:static max-xl:overflow-hidden",
             isSpoilerOpen ? "max-xl:max-h-full" : "max-xl:max-h-0",
             isSpoilerOpen ? "visible opacity-100" : "invisible opacity-0"
@@ -107,7 +108,9 @@ export const HeaderProductItem: React.FC = () => {
                       asChild
                     >
                       <div>
-                        <p className={"text-black uppercase font-semibold mb-2"}>Лазерные станки</p>
+                        <p className={"text-[var(--gray-text)] uppercase font-semibold mb-2 text-sm"}>
+                          Лазерные станки
+                        </p>
                         <ul className="flex flex-col w-full mb-3">
                           {categories.product.map((category) => (
                             <li key={category.id}>
@@ -116,11 +119,10 @@ export const HeaderProductItem: React.FC = () => {
                                 value={String(category.id)}
                                 onMouseEnter={() => setActiveCategory(String(category.id))}
                               >
-
                                 <Link
                                   className={cn(
-                                    "flex items-center justify-start w-full gap-x-3 font-semibold bg-white rounded-lg px-3 py-2 mb-0",
-                                    activeCategory && 'bg-inherit',
+                                    "flex items-center justify-start w-full gap-x-3 font-semibold bg-white !rounded-3xl px-3 mb-0",
+                                    String(category.id) === activeCategory ? "!bg-[var(--gray)] !text-[var(--violet)] !shadow-none" : "text-black"
                                   )}
                                   href={`/catalog/${category.slug}`}
                                   onClick={() => setIsSpoilerOpen(false)}
@@ -147,7 +149,7 @@ export const HeaderProductItem: React.FC = () => {
                       asChild
                     >
                       <div>
-                        <p className={"text-black uppercase font-semibold mb-2"}>Комплектующие</p>
+                        <p className={"text-[var(--gray-text)] uppercase font-semibold mb-2 text-sm"}>Комплектующие</p>
                         <ul className="flex flex-col w-full mb-3">
                           {categories.accessory.map((accessory) => (
                             <li key={accessory.id}>
@@ -158,20 +160,12 @@ export const HeaderProductItem: React.FC = () => {
                               >
                                 <Link
                                   className={cn(
-                                    "flex items-center justify-start w-full gap-x-3 font-semibold bg-white rounded-lg px-3 py-2 mb-0",
-                                    activeCategory && 'bg-inherit',
+                                    "flex items-center justify-start w-full gap-x-3 font-semibold bg-white !rounded-3xl px-3 py-2 mb-0",
+                                    String(accessory.id) === activeCategory ? "!bg-[var(--gray)] !text-[var(--violet)] !shadow-none" : "text-black"
                                   )}
                                   href={`/catalog/${accessory.slug}`}
                                   onClick={() => setIsSpoilerOpen(false)}
                                 >
-                                  {accessory.banner_image_url && (
-                                    <Image
-                                      src={accessory.banner_image_url}
-                                      alt={accessory.name}
-                                      width={45}
-                                      height={45}
-                                    />
-                                  )}
                                   {accessory.name}
                                 </Link>
                               </TabsTrigger>
@@ -181,7 +175,13 @@ export const HeaderProductItem: React.FC = () => {
                       </div>
                     </TabsList>
 
-                    <DemoBtn title={'Демонстрация онлайн'} className={"rounded-2xl"}/>
+                    <div
+                      className={"flex flex-col items-center p-3 w-full bg-[var(--gray)] rounded-3xl"}>
+                      <p className={"text-center font-semibold px-10 mb-3 text-sm"}>
+                        Продемонстрируем работу оборудования
+                      </p>
+                      <DemoBtn title={'Демонстрация онлайн'} className={"rounded-3xl w-full"}/>
+                    </div>
                   </div>
 
                   <div className={"flex-1"}>
@@ -190,21 +190,29 @@ export const HeaderProductItem: React.FC = () => {
                         asChild key={category.id}
                         value={String(category.id)}
                       >
-                        <div className={'flex-1 max-h-[85dvh] overflow-y-auto pr-3 pb-10'}>
-                          <p className={"text-2xl"}>{category.name}</p>
+                        <div className={'flex-1 max-h-[85dvh] overflow-y-auto pr-3 pb-10 pl-1'}>
+                          <p className={"text-3xl font-semibold mb-5"}>{category.name}</p>
                           <div className={"flex justify-between mb-3"}>
-                            <p>{category.description}</p>
+                            <p className={"text-sm"}>{category.description}</p>
                             <Link onClick={() => setIsSpoilerOpen(false)} href={`/catalog/${category.slug}`}>
-                              <Button className={"block rounded-2xl"}>Смотреть все</Button>
+                              <Button
+                                className={cn(
+                                  "block rounded-3xl bg-[var(--violet-dark)] text-[var(--violet)]",
+                                  "hover:text-white"
+                                )}
+                              >
+                                Смотреть все
+                              </Button>
                             </Link>
                           </div>
 
                           <ul className="grid grid-cols-3 gap-2">
-                            {category.products.map((product) => (
+                            {category.products.slice(0, 18).map((product) => (
                               <li key={product.id}>
                                 <ProductCardHeader
                                   onClick={() => setIsSpoilerOpen(false)}
                                   {...product}
+                                  currentCategorySlug={category.slug}
                                   inStock={Boolean(product.inStock)}
                                 />
                               </li>
@@ -228,32 +236,26 @@ export const HeaderProductItem: React.FC = () => {
                               onClick={() => setIsSpoilerOpen(false)}
                               href={`/catalog/${accessory.slug}`}
                             >
-                              <Button className={"block rounded-2xl"}>Смотреть все</Button>
+                              <Button
+                                className={cn(
+                                  "block rounded-3xl bg-[var(--violet-dark)] text-[var(--violet)]",
+                                  "hover:text-white"
+                                )}
+                              >
+                                Смотреть все
+                              </Button>
                             </Link>
                           </div>
 
                           <ul className="grid grid-cols-4 gap-2">
-                            {accessory.products.map((accessory) => (
-                              <li key={accessory.id}>
-                                <Link
+                            {accessory.products.slice(0, 18).map((item) => (
+                              <li key={item.id}>
+                                <ProductCardHeader
                                   onClick={() => setIsSpoilerOpen(false)}
-                                  className={"flex items-center gap-2 h-full bg-white rounded-xl leading-4 overflow-hidden p-2 hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300 ease-in-out"}
-                                  href={`/catalog/${accessory.slug}`}
-                                >
-                                  {accessory.product_attachments && accessory.product_attachments.map((item) =>
-                                      Boolean(item && item.is_main) && (
-                                        <Image
-                                          key={item.id}
-                                          className="hover:scale-110 transition-transform z-10"
-                                          src={item.external_url}
-                                          alt={item.name}
-                                          width={50}
-                                          height={50}
-                                        />
-                                      )
-                                  )}
-                                  <p>{accessory.name}</p>
-                                </Link>
+                                  {...item}
+                                  currentCategorySlug={accessory.slug}
+                                  inStock={Boolean(item.inStock)}
+                                />
                               </li>
                             ))}
                           </ul>

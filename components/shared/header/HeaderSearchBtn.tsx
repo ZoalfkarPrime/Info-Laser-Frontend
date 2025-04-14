@@ -79,7 +79,7 @@ export const HeaderSearchBtn = () => {
       <span className="w-[1px] h-6 bg-gray-300"></span>
 
       <SheetDescription className="hidden"/>
-      <SheetContent className="[&>button]:hidden" side="top">
+      <SheetContent className="[&>button]:hidden rounded-b-3xl" side="top">
         <SheetTitle className="hidden"/>
         <Container className="py-10 max-w-[1200px] max-h-[90dvh] overflow-hidden">
 

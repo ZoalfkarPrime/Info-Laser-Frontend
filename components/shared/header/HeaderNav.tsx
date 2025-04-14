@@ -9,6 +9,8 @@ import {Overlay} from "@/components/shared/Overlay";
 import {useClickAway} from "react-use";
 import {HeaderAboutCompanyItem} from "@/components/shared/header/nav-items/HeaderAboutCompanyItem";
 import {HeaderServiceItem} from "@/components/shared/header/nav-items/HeaderServiceItem";
+import {HeaderPaymentItem} from "@/components/shared/header/nav-items/HeaderPaymentItem";
+import {HeaderContactsItem} from "@/components/shared/header/nav-items/HeaderContactsItem";
 
 export const HeaderNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,31 +61,11 @@ export const HeaderNav: React.FC = () => {
 
           <HeaderAboutCompanyItem/>
 
-          <li>
-            <Link
-              className={cn(
-                'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-                "block px-2 hover:text-[var(--violet)] transition-colors",
-                "xl:py-1 xl:px-2",
-              )}
-              href={"/delivery"}>
-              Оплата и доставка
-            </Link>
-          </li>
-
           <HeaderServiceItem/>
 
-          <li>
-            <Link
-              className={cn(
-                'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-                "block px-2 hover:text-[var(--violet)] transition-colors",
-                "xl:py-1 xl:px-2",
-              )}
-              href={"/contacts"}>
-              Контакты
-            </Link>
-          </li>
+          <HeaderPaymentItem/>
+          
+          <HeaderContactsItem/>
 
         </ul>
       </nav>

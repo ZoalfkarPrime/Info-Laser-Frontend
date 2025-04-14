@@ -10,7 +10,7 @@ import {HeaderCartBtn} from "@/components/shared/header/HeaderCartBtn";
 export const Header: React.FC = () => {
 
   return (
-    <header className="relative bg-white shadow shadow-gray-200/80 py-2 z-50">
+    <header className="relative bg-white shadow shadow-gray-200/80 py-5 z-50">
       <Container className="flex items-center justify-between">
 
         <Logo name={"logo"} className="mr-7"/>

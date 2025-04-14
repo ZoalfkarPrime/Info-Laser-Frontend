@@ -2,59 +2,55 @@ import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import {cn} from "@/lib/utils";
-import {Button} from "@/components/ui/Button";
 import {Product} from "@/types/types";
 
-export const ProductCardHeader: React.FC<Product> = (
+interface ProductCardHeaderProps extends Product {
+  currentCategorySlug: string;
+}
+
+export const ProductCardHeader: React.FC<ProductCardHeaderProps> = (
   {
     name,
     slug,
     categories,
     className,
     product_attachments,
+    currentCategorySlug,
     onClick
   }) => {
 
+  const mainImage = product_attachments?.find((item) => item.is_main);
+  const activeCategory = categories?.find(cat => cat.slug === currentCategorySlug);
+  const categorySlug = activeCategory?.slug || categories?.[0]?.slug || '';
+
   return (
-    <div
-      className={cn('relative flex flex-col h-full overflow-hidden bg-[var(--gray)] border border-gray-200 rounded-3xl p-2', className)}>
-
-      <Link
-        className="flex justify-center mb-2 overflow-hidden max-h-[250px]"
-        href={`/catalog/${categories && categories[0].slug}/${slug}`}
-        onClick={onClick}
-      >
-        {product_attachments && product_attachments.map((item) =>
-            Boolean(item && item.is_main) && (
-              <Image
-                key={item.id}
-                className="hover:scale-110 transition-transform z-10"
-                src={item.external_url}
-                alt={item.name}
-                width={item.width}
-                height={item.height}
-              />
-            )
+    <Link
+      className={cn(
+        "relative flex items-center gap-3 overflow-hidden bg-[var(--gray)] rounded-3xl p-3 text-sm leading-5 transition-colors duration-300",
+        "hover:text-[var(--violet)] focus:text-[var(--violet)]",
+        "hover:[&>div>img]:scale-110 focus:[&>div>img]:scale-110",
+        className
+      )}
+      href={`/catalog/${categorySlug}/${slug}`}
+      onClick={onClick}
+    >
+      <div className="flex justify-center items-center shrink-0 overflow-hidden h-[80px] w-[80px] rounded-md bg-white">
+        {mainImage ? (
+          <Image
+            className="transition-transform"
+            src={mainImage.external_url}
+            alt={mainImage.name}
+            width={mainImage.width}
+            height={mainImage.height}
+          />
+        ) : (
+          <div className="w-[80px] h-[80px] bg-gray-200 text-gray-400 text-xs flex items-center justify-center">
+            нет фото
+          </div>
         )}
-      </Link>
-
-      <div className="flex flex-col p-3">
-
-        <Link
-          className="flex-auto hover:text-[var(--violet)] focus:text-[var(--violet)] text-lg font-semibold transition-colors leading-5 mb-3 block"
-          href={`/catalog/${categories && categories[0].slug}/${slug}`}
-          onClick={onClick}
-        >
-          <h3>{name}</h3>
-        </Link>
-
-        <div className={"flex items-center justify-between gap-3 mb-3"}>
-          <Button asChild className='flex-1 rounded-3xl py-5'>
-            <Link href={`/catalog/${categories && categories[0].slug}/${slug}`}>Узнать больше</Link>
-          </Button>
-        </div>
-
       </div>
-    </div>
+
+      {name}
+    </Link>
   );
 };

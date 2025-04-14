@@ -11,14 +11,14 @@ export const HeaderContacts = () => {
 
         <Link
           href="tel:88002222741"
-          className="flex items-center gap-x-2 hover:text-[var(--red)] transition-colors"
+          className="flex items-center gap-x-2 hover:text-[var(--violet)] transition-colors"
         >
           <Phone size={18}/>
           8 (800) 222-27-41
         </Link>
 
         <CallbackBtn
-          className={"bg-inherit text-[var(--violet)] p-0 hover:bg-inherit  hover:text-[var(--red)] focus:text-[var(--red)]"}
+          className={"bg-inherit text-[var(--violet)] h-auto p-0 hover:bg-inherit  hover:text-[var(--red)] focus:text-[var(--red)]"}
           title={'Обратный звонок'}
         />
 

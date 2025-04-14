@@ -40,7 +40,7 @@ export const HeaderAboutCompanyItem: React.FC = () => {
             'flex items-center gap-x-1 bg-white hover:text-[var(--violet)] transition-colors duration-300',
             isSpoilerOpen ? 'before:content-[] before:absolute before:left-0 before:bottom-[-40px] before:h-[40px] before:w-full' : '',
             "max-xl:w-full max-xl:justify-between max-xl:font-bold max-xl:px-2",
-            "xl:py-1 xl:px-2",
+            "xl:p-2 xl:px-3 xl:text-sm",
           )}
           onMouseEnter={() => !isMobile && setIsSpoilerOpen(true)}
           onClick={() => isMobile ? setIsSpoilerOpen(!isSpoilerOpen) : setIsSpoilerOpen(false)}
@@ -56,9 +56,9 @@ export const HeaderAboutCompanyItem: React.FC = () => {
         </button>
 
         <div className={cn(
-          'absolute top-[56px] left-0 bg-white border-t border-t-gray-300 rounded-md overflow-hidden transition-all duration-300 ease-in-out z-30',
+          'absolute top-15 left-0 bg-white border-t border-t-gray-300 rounded-3xl overflow-hidden transition-all duration-300 ease-in-out z-30',
           isSpoilerOpen ? 'visible opacity-100' : 'invisible opacity-0',
-          "xl:w-max xl:max-w-[250px]",
+          "xl:w-max xl:max-w-[250px] xl:shadow-sm xl:shadow-[#4F26E9]",
           "max-xl:static max-xl:border-0 max-xl:overflow-hidden",
           isSpoilerOpen ? "max-xl:max-h-full" : "max-xl:max-h-0",
           isSpoilerOpen ? "visible opacity-100" : "invisible opacity-0"
@@ -66,14 +66,15 @@ export const HeaderAboutCompanyItem: React.FC = () => {
 
           <ul className={cn(
             'relative transition-position duration-300 ease-in-out',
+            "xl:p-1 xl:text-sm",
             isSpoilerOpen ? 'top-0 ' : '-top-3',
           )}>
             <li>
               <Link
                 className={cn(
-                  "block px-2 hover:text-[var(--violet)] transition-colors",
+                  "block px-2 transition-colors",
                   'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-                  "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
+                  "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
                 )}
                 href={"/clients"}
                 onClick={() => setIsSpoilerOpen(false)}
@@ -84,14 +85,14 @@ export const HeaderAboutCompanyItem: React.FC = () => {
             <li>
               <Link
                 className={cn(
-                  "block px-2 hover:text-[var(--violet)] transition-colors",
+                  "block px-2 transition-colors",
                   'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-                  "xl:px-3 xl:py-2 xl:hover:bg-gray-200 xl:transition-colors xl:duration-300 xl:ease-in-out",
+                  "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
                 )}
                 href={"/blog"}
                 onClick={() => setIsSpoilerOpen(false)}
               >
-                Блог
+                База знаний
               </Link>
             </li>
           </ul>

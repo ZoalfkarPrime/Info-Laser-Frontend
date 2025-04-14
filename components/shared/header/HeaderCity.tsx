@@ -69,16 +69,22 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
 
         <div
           className={cn(
-            'absolute top-[50px] right-0 bg-white border-t border-t-gray-300 rounded-md shadow-md transition-all duration-300 z-30',
-            "xl:w-max xl:max-w-[250px]",
+            'absolute top-13 right-0 bg-white border-t border-t-gray-300 rounded-md shadow-md transition-all duration-300 z-30',
+            "xl:w-max xl:max-w-[250px] xl:rounded-3xl xl:shadow-sm xl:shadow-[#4F26E9]",
             isSpoilerOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95'
           )}
         >
-          <ul>
+          <ul className={cn(
+            "xl:p-1"
+          )}>
             {Object.keys(citySubdomains).map((city) => (
               <li key={city}>
                 <button
-                  className="block w-full text-left hover:text-[var(--violet)] py-2 px-4"
+                  className={cn(
+                    "block w-full text-left hover:text-[var(--violet)] py-2 px-4 text-sm",
+                    "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
+                    "xl:hover:cursor-pointer"
+                  )}
                   onClick={() => handleCitySelect(city)}
                 >
                   {city}

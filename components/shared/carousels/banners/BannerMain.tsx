@@ -51,7 +51,7 @@ export const BannerMain = () => {
                   width={item.width}
                   height={item.height}
                   alt={item.name}
-                  className="max-h-[600px]"
+                  className="max-h-[600px] w-full object-cover"
                 />
               </CarouselItem>
             )
