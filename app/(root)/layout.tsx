@@ -3,13 +3,14 @@ import {Header} from "@/components/shared/header/Header";
 import React from "react";
 import {Footer} from "@/components/shared/footer/Footer";
 import {BreadcrumbWrapper} from "@/components/shared/BreadcrumbWrapper";
+import {getProducts} from "@/api/api";
 
 export const metadata: Metadata = {
   title: "InfoLaser",
   description: "Тут заполняется СЕО",
 };
 
-export default function RootLayout(
+export default async function RootLayout(
   {
     children,
   }:
@@ -17,9 +18,11 @@ export default function RootLayout(
     children: React.ReactNode;
   }>) {
 
+  const productsData = await getProducts();
+
   return (
     <>
-      <Header/>
+      <Header products={productsData.products}/>
       <main>
         <BreadcrumbWrapper/>
         {children}

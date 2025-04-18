@@ -6,8 +6,13 @@ import {Logo} from "@/components/shared/Logo";
 import {HeaderNav} from "@/components/shared/header/HeaderNav";
 import {HeaderCity} from "@/components/shared/header/HeaderCity";
 import {HeaderCartBtn} from "@/components/shared/header/HeaderCartBtn";
+import {Product} from "@/types/types";
 
-export const Header: React.FC = () => {
+type HeaderProps = {
+  products: Product[];
+};
+
+export const Header = ({products}: HeaderProps) => {
 
   return (
     <header className="relative bg-white shadow shadow-gray-200/80 py-5 z-50">
@@ -19,7 +24,7 @@ export const Header: React.FC = () => {
 
         <HeaderNav/>
 
-        <HeaderSearchBtn/>
+        <HeaderSearchBtn products={products}/>
 
         <HeaderCartBtn/>
 

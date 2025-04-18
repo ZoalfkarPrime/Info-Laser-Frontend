@@ -11,7 +11,7 @@ export const HeaderContacts = () => {
 
         <Link
           href="tel:88002222741"
-          className="flex items-center gap-x-2 hover:text-[var(--violet)] transition-colors"
+          className="flex items-center gap-x-2 hover:text-[var(--violet)] font-semibold transition-colors"
         >
           <Phone size={18}/>
           8 (800) 222-27-41

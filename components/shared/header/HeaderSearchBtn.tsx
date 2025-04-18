@@ -1,4 +1,5 @@
 'use client'
+
 import {Search, X} from "lucide-react";
 import React, {useEffect, useRef, useState} from "react";
 import {useDebounce} from "react-use";
@@ -7,11 +8,13 @@ import Link from "next/link";
 import Image from "next/image";
 import {Container} from "@/components/shared/Container";
 import {Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger} from "@/components/ui/Sheet";
-import {getProducts} from "@/api/api";
 import {Product} from "@/types/types";
 
-export const HeaderSearchBtn = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+type SearchProps = {
+  products: Product[];
+};
+
+export const HeaderSearchBtn = ({products}: SearchProps) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -27,15 +30,6 @@ export const HeaderSearchBtn = () => {
   const onItemClick = () => {
     closeAndClear();
   };
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const allProducts = await getProducts();
-      setProducts(allProducts.products);
-    };
-
-    fetchProducts();
-  }, []);
 
   // Debounce для запроса
   useDebounce(() => {

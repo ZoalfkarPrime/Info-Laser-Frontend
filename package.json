@@ -29,6 +29,7 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-phone-input-2": "^2.15.1",
+    "react-photo-view": "^1.2.7",
     "react-use": "^17.6.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",

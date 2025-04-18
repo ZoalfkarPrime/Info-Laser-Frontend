@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import {cn} from "@/lib/utils";
+import {cn, formatPrice} from "@/lib/utils";
 import {Check, Clock3, Star} from "lucide-react";
-import {AddToCartButton} from "@/components/shared/btns/AddToCartBtnProduct";
 import {Button} from "@/components/ui/Button";
 import {Product} from "@/types/types";
+import {AddToCartBtn} from "@/components/shared/btns/AddToCartBtn";
 
 export const ProductCard: React.FC<Product> = (
   {
@@ -26,8 +26,6 @@ export const ProductCard: React.FC<Product> = (
     className,
     onClick
   }) => {
-
-  const formatPrice = (price: number) => price.toLocaleString("ru-RU").replace(/\s/g, ".");
 
   return (
     <div
@@ -144,7 +142,7 @@ export const ProductCard: React.FC<Product> = (
             <Link href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}>Узнать больше</Link>
           </Button>
 
-          <AddToCartButton
+          <AddToCartBtn
             product={{
               id,
               name,

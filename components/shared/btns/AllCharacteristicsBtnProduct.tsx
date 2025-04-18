@@ -3,8 +3,9 @@
 import React from "react";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
+import {ClassName} from "@/types/types";
 
-export const AllCharacteristicsBtn = () => {
+export const AllCharacteristicsBtn: React.FC<ClassName> = ({className}) => {
 
   const handleScrollToSpecs = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -19,8 +20,9 @@ export const AllCharacteristicsBtn = () => {
       href="#"
       onClick={handleScrollToSpecs}
       className={cn(
-        "inline-block underline",
-        "hover:text-[var(--red)] transition-colors"
+        "text-[var(--violet)] inline-block transition-colors",
+        "hover:text-[var(--red)]",
+        className
       )}
     >
       Все характеристики

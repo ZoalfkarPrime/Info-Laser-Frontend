@@ -1,7 +1,6 @@
 "use client";
 
 import React, {useEffect, useRef, useState} from "react";
-import Link from "next/link";
 import {HeaderProductItem} from "@/components/shared/header/nav-items/HeaderProductItem";
 import {cn} from "@/lib/utils";
 import {Menu, X} from "lucide-react";
@@ -64,7 +63,7 @@ export const HeaderNav: React.FC = () => {
           <HeaderServiceItem/>
 
           <HeaderPaymentItem/>
-          
+
           <HeaderContactsItem/>
 
         </ul>

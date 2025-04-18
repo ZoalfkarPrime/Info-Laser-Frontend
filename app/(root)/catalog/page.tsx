@@ -1,7 +1,7 @@
 import {CategoriesCatalog} from "@/components/shared/categories/CategoriesCatalog";
 import {getCategories} from "@/api/api";
-import {OfflineOrOnline} from "@/components/shared/OfflineOrOnline";
 import {PartnersSlider} from "@/components/shared/carousels/PartnersSlider";
+import {OfflineOrOnlineMain} from "@/components/shared/OfflineOrOnlineMain";
 
 const CatalogPage = async () => {
   const categories = await getCategories();
@@ -11,7 +11,7 @@ const CatalogPage = async () => {
 
       <CategoriesCatalog title={"Каталог"} categories={categories}/>
 
-      <OfflineOrOnline/>
+      <OfflineOrOnlineMain/>
 
       <PartnersSlider/>
 

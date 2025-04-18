@@ -6,7 +6,7 @@ import Image from "next/image";
 import {useCart} from "@/context/CartContext";
 import {Container} from "@/components/shared/Container";
 import {Check, Clock3, Minus, Plus, Trash2} from "lucide-react";
-import {cn} from "@/lib/utils";
+import {cn, formatPrice} from "@/lib/utils";
 import {Product} from "@/types/types";
 import {Button} from "@/components/ui/Button";
 import {CartForm} from "@/components/shared/forms/CartForm";
@@ -16,7 +16,6 @@ const CartPage = () => {
 
   const totalPrice = cart.reduce((sum, item) => sum + (item.quantity ?? 1) * item.orderPrice, 0);
   const totalCartItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const formatPrice = (price: number) => price.toLocaleString("ru-RU").replace(/\s/g, ".");
 
   return (
     <section>

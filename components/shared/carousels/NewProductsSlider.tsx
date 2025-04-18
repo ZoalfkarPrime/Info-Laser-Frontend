@@ -3,20 +3,21 @@ import {Container} from "@/components/shared/Container";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/Carousel";
 import {cn} from "@/lib/utils";
 import {ProductCard} from "@/components/shared/products/ProductCard";
-import {ClassName} from "@/types/types";
-import {getProducts} from "@/api/api";
+import {ClassName, Product} from "@/types/types";
 
-export const NewProductsSlider: React.FC<ClassName> = async ({className}) => {
-  const products = await getProducts() ?? [];
+type Props = ClassName & {
+  products: Product[];
+};
 
-  const newProducts = products.products.filter(product =>
+export const NewProductsSlider: React.FC<Props> = ({className, products}) => {
+  const newProducts = products.filter(product =>
     product.labels?.some(label => label.slug === "new")
   );
 
   return (
     <section className={cn("py-7", className)}>
       <Container>
-        <h2 className={cn("text-4xl font-bold text-center mb-5")}>Новинки оборудования InfoLaser</h2>
+        <h2 className="text-4xl font-bold text-center mb-5">Новинки оборудования InfoLaser</h2>
 
         <Carousel opts={{align: "start"}}>
           <CarouselContent className="py-5 -ml-5 max-sm:-ml-2">
@@ -39,7 +40,6 @@ export const NewProductsSlider: React.FC<ClassName> = async ({className}) => {
               <CarouselNext className={cn('-right-[40px] max-2xl:-right-[20px]', className)}/>
             </>
           )}
-
         </Carousel>
       </Container>
     </section>
