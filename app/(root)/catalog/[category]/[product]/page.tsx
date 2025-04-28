@@ -6,7 +6,7 @@ import {ProductGallerySlider} from "@/components/shared/carousels/product/Produc
 import {AllCharacteristicsBtn} from "@/components/shared/btns/AllCharacteristicsBtnProduct";
 import {Star} from "lucide-react";
 import {ProductBenefitSpoilers} from "@/components/shared/product/ProductBenefitSpoilers";
-import {OfflineOrOnlineMain} from "@/components/shared/OfflineOrOnlineMain";
+import {OfflineOrOnlineMain} from "@/components/shared/banners/OfflineOrOnlineMain";
 import {BannerProduct} from "@/components/shared/carousels/banners/BannerProduct";
 import {ChooseLaserMachineSlider} from "@/components/shared/carousels/product/ChooseLaserMachineSlider";
 import {PurchaseOrder} from "@/components/shared/PurchaseOrder";

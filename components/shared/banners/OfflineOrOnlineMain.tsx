@@ -11,7 +11,7 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
     <div className={cn("py-7", className)}>
       <Container>
         <div
-          className="flex items-center justify-center bg-[url('/img/demo-bg/online-or-offline.jpg')] bg-no-repeat bg-cover rounded-4xl overflow-hidden py-13 px-5">
+          className="flex items-center justify-center bg-[url('/img/banners/bg/online-or-offline.jpg')] bg-no-repeat bg-cover rounded-4xl overflow-hidden py-13 px-5">
           <div className="text-center max-w-[600px]">
             <p className="text-3xl md:text-4xl font-bold mb-4">Online или Offline?</p>
             <p className="text-lg leading-6 mb-6">

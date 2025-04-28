@@ -89,7 +89,7 @@ export const HeaderServiceItem: React.FC = () => {
                   'max-xl:w-full max-xl:justify-between max-xl:font-bold',
                   "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
                 )}
-                href={"#"}
+                href={"/adjustment"}
                 onClick={() => setIsSpoilerOpen(false)}
               >
                 Пусконаладка оборудования
