@@ -6,7 +6,6 @@ import {Clock, Mail, Phone} from "lucide-react";
 import Link from "next/link";
 import {Logo} from "@/components/shared/Logo";
 import {CallbackBtn} from "@/components/shared/btns/CallbackBtn";
-import Image from "next/image";
 import {SocialList} from "@/components/shared/social/SocialList";
 
 export const Footer: React.FC<ClassName> = ({className}) => {
