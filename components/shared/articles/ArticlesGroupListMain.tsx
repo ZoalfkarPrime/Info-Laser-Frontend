@@ -10,9 +10,15 @@ interface ArticlesGroupListProps extends ClassName {
 export const ArticlesGroupListMain: React.FC<ArticlesGroupListProps> = ({className, articles}) => {
 
   return (
-    <ul className={cn("flex gap-5", className)}>
+    <ul className={cn("grid grid-cols-12 gap-5", className)}>
       {articles.map((article) => (
-        <li key={article.id} className={"bg-[var(--gray)] rounded-xl p-3 max-w-[445px]"}>
+        <li
+          key={article.id}
+          className={cn(
+            "col-span-6",
+            "bg-[var(--gray)] rounded-xl p-3"
+          )}
+        >
           <ArticlesCard {...article}/>
         </li>
       ))}

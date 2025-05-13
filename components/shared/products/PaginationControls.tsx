@@ -8,15 +8,17 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/Pagination";
+import {ClassName} from "@/types/types";
+import {cn} from "@/lib/utils";
 
-interface Props {
+interface Props extends ClassName {
   currentPage: number;
   totalPages: number;
   basePath: string; // например: /catalog/laser
   query: string; // Строка запроса для параметров сортировки и фильтров
 }
 
-export const PaginationControls: React.FC<Props> = ({currentPage, totalPages, basePath, query}) => {
+export const PaginationControls: React.FC<Props> = ({currentPage, totalPages, basePath, query, className}) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export const PaginationControls: React.FC<Props> = ({currentPage, totalPages, ba
   const pagesToShow = Array.from({length: totalPages}, (_, i) => i + 1);
 
   return (
-    <Pagination className="mt-6">
+    <Pagination className={cn("mt-15", className)}>
       <PaginationContent>
         {currentPage > 1 && (
           <PaginationItem>

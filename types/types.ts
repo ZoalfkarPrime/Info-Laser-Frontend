@@ -140,6 +140,7 @@ export interface Article {
   name: string;
   slug: string;
   description: string;
+  isMain: boolean;
   date: string;
   image: string;
   articleCategory: articleCategory[];

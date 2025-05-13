@@ -4,7 +4,6 @@ import {Article} from "@/types/types";
 import Link from "next/link";
 import Image from "next/image";
 
-
 export const ArticlesCard: React.FC<Article> = (
   {
     name,
@@ -19,7 +18,7 @@ export const ArticlesCard: React.FC<Article> = (
   return (
     <article>
       <Link
-        className={cn("group block rounded-xl overflow-hidden max-w-[430px] mb-3")}
+        className={cn("group block rounded-xl overflow-hidden mb-3")}
         href={`/blog/${articleCategory[0].slug}/${slug}`}
       >
         <Image
