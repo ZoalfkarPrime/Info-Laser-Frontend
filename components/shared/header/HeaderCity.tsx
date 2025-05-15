@@ -34,15 +34,57 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
     };
   }, [isSpoilerOpen]);
 
+  useEffect(() => {
+    const updateCityFromURL = () => {
+      const hostname = window.location.hostname;
+      const subdomain = hostname.split(".")[0];
+
+      let city = "Санкт-Петербург"; // По умолчанию
+
+      for (const [key, value] of Object.entries(citySubdomains)) {
+        if (value === subdomain) {
+          city = key;
+          break;
+        }
+      }
+
+      setSelectedCity(city);
+    };
+
+    updateCityFromURL(); // при загрузке страницы
+    window.addEventListener("popstate", updateCityFromURL); // при переходах назад/вперёд
+
+    return () => {
+      window.removeEventListener("popstate", updateCityFromURL);
+    };
+  }, []);
+
+
   const handleCitySelect = (city: string) => {
+    if (city === selectedCity) return; // Уже выбранный — ничего не делаем
+
     setSelectedCity(city);
     localStorage.setItem("selectedCity", city);
     setIsSpoilerOpen(false);
 
-    // Формируем новый URL с поддоменом
     const subdomain = citySubdomains[city];
-    const currentDomain = window.location.hostname.replace(/^[^.]+/, ''); // Убираем текущий поддомен
-    window.location.href = `https://${subdomain}${currentDomain}${window.location.pathname}`; // Редирект на новый поддомен
+    const {hostname, pathname, protocol} = window.location;
+    const domainParts = hostname.split(".");
+
+    let domain = hostname;
+
+    // Удаляем поддомен, если он есть
+    if (domainParts.length > 2) {
+      domain = domainParts.slice(1).join(".");
+    }
+
+    // Если выбран Санкт-Петербург — редиректим на основной домен
+    if (city === "Санкт-Петербург") {
+      window.location.href = `${protocol}//${domain}${pathname}`;
+    } else {
+      // Иначе — редирект с поддоменом
+      window.location.href = `${protocol}//${subdomain}.${domain}${pathname}`;
+    }
   };
 
   return (
@@ -77,20 +119,28 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
           <ul className={cn(
             "xl:p-1"
           )}>
-            {Object.keys(citySubdomains).map((city) => (
-              <li key={city}>
-                <button
-                  className={cn(
-                    "block w-full text-left hover:text-[var(--violet)] py-2 px-4 text-sm",
-                    "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
-                    "xl:hover:cursor-pointer"
-                  )}
-                  onClick={() => handleCitySelect(city)}
-                >
-                  {city}
-                </button>
-              </li>
-            ))}
+            {Object.keys(citySubdomains).map((city) => {
+              const isSelected = city === selectedCity;
+
+              return (
+                <li key={city}>
+                  <button
+                    disabled={isSelected}
+                    className={cn(
+                      "block w-full text-left py-2 px-4 text-sm",
+                      "xl:px-3 xl:py-2 xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
+                      isSelected
+                        ? "text-gray-400 cursor-default"
+                        : "hover:text-[var(--violet)] xl:hover:bg-[var(--violet-dark)] xl:hover:cursor-pointer"
+                    )}
+                    onClick={() => handleCitySelect(city)}
+                  >
+                    {city}
+                  </button>
+                </li>
+              );
+            })}
+
           </ul>
         </div>
       </div>
