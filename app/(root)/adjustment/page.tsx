@@ -55,20 +55,18 @@ const AdjustmentPage: React.FC<ClassName> = () => {
   ];
 
   return (
-    <>
-      <section>
-        <AdjustmentHeader/>
+    <section>
+      <AdjustmentHeader/>
 
-        <AdjustmentForClients className={"mb-15"} data={data_clients}/>
+      <AdjustmentForClients className={"mb-15"} data={data_clients}/>
 
-        <AdjustmentStages className={"mb-25"} data={data_stages}/>
+      <AdjustmentStages className={"mb-25"} data={data_stages}/>
 
-        <ArticlesOnMain className={"mb-15"}/>
+      <ArticlesOnMain className={"mb-15"}/>
 
-        <SocialBanner/>
+      <SocialBanner/>
 
-      </section>
-    </>
+    </section>
   );
 };
 

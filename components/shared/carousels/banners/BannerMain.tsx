@@ -45,7 +45,10 @@ export const BannerMain = () => {
           {data.map((item) => {
             return (
               <CarouselItem key={item.id}>
-                <DemoBtn title={""} className={"absolute w-full h-full bg-inherit/0 hover:bg-inherit/0"}/>
+                <DemoBtn
+                  title={""}
+                  className={"absolute w-full h-full bg-inherit/0 hover:bg-inherit/0 focus:bg-inherit/0"}
+                />
                 <Image
                   src={item.img_url}
                   width={item.width}

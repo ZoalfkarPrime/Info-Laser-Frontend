@@ -1,14 +1,19 @@
-import {Container} from "@/components/shared/Container";
+import {AboutHeader} from "@/components/shared/about/AboutHeader";
+import {AboutMain} from "@/components/shared/about/AboutMain";
+import {SimplerTabsMain} from "@/components/shared/SimplerTabsMain";
+import {AboutMap} from "@/components/shared/about/AboutMap";
+import {SocialBanner} from "@/components/shared/banners/SocialBanner";
 
 const AboutPage = () => {
 
   return (
     <section>
-      <Container className="py-5">
-        Страница о компании
-      </Container>
+      <AboutHeader/>
+      <AboutMain/>
+      <SimplerTabsMain/>
+      <AboutMap/>
+      <SocialBanner/>
     </section>
-
   );
 };
 

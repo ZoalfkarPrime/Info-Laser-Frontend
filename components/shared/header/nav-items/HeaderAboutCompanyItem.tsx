@@ -76,6 +76,19 @@ export const HeaderAboutCompanyItem: React.FC = () => {
                   'max-xl:w-full max-xl:justify-between max-xl:font-bold',
                   "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
                 )}
+                href={"/about"}
+                onClick={() => setIsSpoilerOpen(false)}
+              >
+                Преимущества компании
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={cn(
+                  "block px-2 transition-colors",
+                  'max-xl:w-full max-xl:justify-between max-xl:font-bold',
+                  "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
+                )}
                 href={"/clients"}
                 onClick={() => setIsSpoilerOpen(false)}
               >
