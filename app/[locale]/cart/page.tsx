@@ -76,7 +76,7 @@ const CartPage = () => {
 
                       {/* Название (ссылка) */}
                       <Link
-                        href={`/catalog/${item.categories?.[0]?.slug ?? "default-category"}/${item.slug}`}
+                        href={`/app/%5Blocale%5D/catalog/${item.categories?.[0]?.slug ?? "default-category"}/${item.slug}`}
                         className="leading-4 hover:text-[var(--violet)] focus:text-[var(--violet)] transition-colors font-semibold"
                       >
                         {item.name}
