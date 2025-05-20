@@ -7,6 +7,17 @@ import Link from "next/link";
 import Image from "next/image";
 import {IndividualRequestForm} from "@/components/shared/forms/IndividualRequestForm";
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
+import {getTranslations} from "next-intl/server";
+
+export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
+  const {locale} = await paramsPromise;
+  const t = await getTranslations({locale});
+
+  return {
+    title: `${t('blogMetaTitle')}`,
+    description: `${t('blogMetaDescription')}`,
+  };
+}
 
 export default async function ArticlesPage() {
 

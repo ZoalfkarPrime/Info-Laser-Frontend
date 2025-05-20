@@ -7,7 +7,17 @@ import {SimplerTabsMain} from "@/components/shared/SimplerTabsMain";
 import {AboutMain} from "@/components/shared/about/AboutMain";
 import {ArticlesOnMain} from "@/components/shared/articles/ArticlesOnMain";
 import {getProducts} from "@/api/api";
+import {getTranslations} from "next-intl/server";
 
+export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
+  const {locale} = await paramsPromise;
+  const t = await getTranslations({locale});
+
+  return {
+    title: `${t('mainMetaTitle')}`,
+    description: `${t('mainMetaDescription')}`,
+  };
+}
 
 export default async function MainPage() {
   const {products} = await getProducts();

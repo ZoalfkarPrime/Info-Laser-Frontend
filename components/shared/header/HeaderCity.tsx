@@ -10,8 +10,7 @@ import {Link, usePathname} from '@/i18n/navigation';
 const cityNames: Record<string, string> = {
   spb: 'Санкт-Петербург',
   msk: 'Москва',
-  kzn: 'Казань',
-  vrn: 'Воронеж',
+  kzn: 'Казань'
 };
 
 export const HeaderCity: React.FC<{ className?: string }> = ({className}) => {

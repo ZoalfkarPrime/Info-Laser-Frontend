@@ -20,9 +20,29 @@ import {ProductPrices} from "@/components/shared/product/ProductPrices";
 import {FullCharacteristics} from "@/components/shared/product/characteristics/FullCharacteristics";
 import {ImportantCharacteristics} from "@/components/shared/product/characteristics/ImportantCharacteristics";
 import {NecessaryProductsList} from "@/components/shared/product/NecessaryProductsList";
+import {getTranslations} from "next-intl/server";
 
 interface PageProps {
   params: Promise<{ product: string; category: string }>;
+}
+
+export async function generateMetadata(
+  {
+    params: paramsPromise
+  }: {
+    params: Promise<{ locale: string; product: string }>;
+  }) {
+  const {locale, product} = await paramsPromise;
+  const t = await getTranslations({locale});
+
+  const oneProduct = await getOneProductBySlug(product);
+
+  return {
+    title: oneProduct?.name
+      ? `${oneProduct.name}`
+      : t("productMetaTitle"),
+    description: oneProduct?.description || "",
+  };
 }
 
 const ProductPage: React.FC<PageProps> = async ({params}) => {

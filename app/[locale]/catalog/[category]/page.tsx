@@ -11,6 +11,7 @@ import {sortProducts} from "@/lib/sorting";
 import React from "react";
 import {PaginationControls} from "@/components/shared/products/PaginationControls";
 import qs from "qs";
+import {getTranslations} from "next-intl/server";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -22,11 +23,36 @@ interface CategoryPageProps {
   }>;
 }
 
+export async function generateMetadata({params: paramsPromise}: {
+  params: Promise<{ locale: string; category: string }>;
+}) {
+  const {locale, category} = await paramsPromise;
+  const t = await getTranslations({locale});
+  const allProducts = await getProducts();
+
+  const uniqueCategories = Array.from(
+    new Map(
+      allProducts.products.flatMap((product) =>
+        product.categories.map((cat) => [cat.id, cat])
+      )
+    ).values()
+  );
+
+  const currentCategory = uniqueCategories.find(cat => cat.slug === category);
+
+  return {
+    title: currentCategory?.name
+      ? `${currentCategory.name} ${t('addName')}`
+      : t("catalogMetaTitle"),
+    description: currentCategory?.description || "",
+  };
+}
+
 const CategoryPage = async ({params, searchParams}: CategoryPageProps) => {
   const allProducts = await getProducts();
   const {category} = await params;
 
-  // Ожидаем searchParams и сохраняем его в переменную
+  const t = await getTranslations();
   const sp = await searchParams;
   const order_column = sp.order_column || "";
   const order_dir = sp.order_dir === "asc" || sp.order_dir === "desc" ? sp.order_dir : undefined;
@@ -36,11 +62,10 @@ const CategoryPage = async ({params, searchParams}: CategoryPageProps) => {
 
   const currentParams = {
     ...sp,
-    page: undefined, // убираем страницу, чтобы подставить новую
+    page: undefined,
   };
   const queryString = qs.stringify(currentParams, {encode: false});
 
-  // Список всех уникальных категорий
   const uniqueCategories = Array.from(
     new Map(
       allProducts.products.flatMap((product) =>
@@ -49,20 +74,16 @@ const CategoryPage = async ({params, searchParams}: CategoryPageProps) => {
     ).values()
   );
 
-  // Текущая категория
   const currentCategory = uniqueCategories.find((cat) => cat.slug === category);
 
-  // Фильтрация продуктов по текущей категории
   let filteredProducts = currentCategory?.id
     ? allProducts.products.filter((product) =>
       product.category_ids.includes(currentCategory.id!)
     )
     : [];
 
-  // Сортировка и фильтрация по ярлыку
   filteredProducts = sortProducts(filteredProducts, order_column, order_dir, filterLabelId);
 
-  // Пагинация
   const totalProducts = filteredProducts.length;
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
   const paginatedProducts = filteredProducts.slice(
@@ -79,8 +100,8 @@ const CategoryPage = async ({params, searchParams}: CategoryPageProps) => {
       >
         <Container className={"flex justify-between items-center"}>
           <div>
-            <h1 className="text-5xl mb-1">{currentCategory?.name}</h1>
-            <p className={"text-sm"}>{currentCategory?.description}</p>
+            <h1 className="text-5xl mb-1">{currentCategory?.name} {t('addName')}</h1>
+            <p className={"text-sm"}>{currentCategory?.description} {t('addName')}</p>
           </div>
 
           {currentCategory?.banner_image_url && (

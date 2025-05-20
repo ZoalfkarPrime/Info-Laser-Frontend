@@ -8,24 +8,46 @@ import {Header} from "@/components/shared/header/Header";
 import {Footer} from "@/components/shared/footer/Footer";
 import {BreadcrumbWrapper} from "@/components/shared/BreadcrumbWrapper";
 import {getProducts} from "@/api/api";
-import {NextIntlClientProvider, hasLocale} from 'next-intl';
-import {notFound} from 'next/navigation';
-import {routing} from '@/i18n/routing';
+import {NextIntlClientProvider, hasLocale} from "next-intl";
+import {notFound} from "next/navigation";
+import {routing} from "@/i18n/routing";
 
 type Props = {
   children: ReactNode;
   params: { locale: string };
 };
 
-export async function generateMetadata() {
+export async function generateMetadata(
+  {
+    params: paramsPromise,
+  }: {
+    params: Promise<{ locale: string; id?: string }>;
+  }) {
+  const params = await paramsPromise;
+  const {id} = params;
+
   return {
-    title: "InfoLaser",
-    description: "Тут заполняется СЕО",
+    robots: "noindex, nofollow",
+    icons: {
+      icon: "/favicon.ico",
+    },
+    openGraph: {
+      images: [
+        {
+          url: `https://example.com/images/page-${id ?? "default"}.jpg`,
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+    alternates: {
+      canonical: `https://example.com/page-${id ?? "default"}`,
+    },
   };
 }
 
-export default async function LocaleLayout({children, params}: Props) {
-  const {locale} = await params;
+export default async function LocaleLayout({children, params: paramsPromise}: Props) {
+  const {locale} = await paramsPromise;
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -35,15 +57,10 @@ export default async function LocaleLayout({children, params}: Props) {
 
   return (
     <html lang={locale}>
-    <head>
-      <link rel="icon" href="/favicon.ico"/>
-      <title>InfoLaser</title>
-      <meta name="robots" content="noindex, nofollow"/>
-    </head>
     <body className={cn("min-h-screen", manrope.className)}>
     <Toaster position="top-right"/>
     <CartProvider>
-      <NextIntlClientProvider>
+      <NextIntlClientProvider locale={locale}>
         <Header products={productsData.products}/>
         <main>
           <BreadcrumbWrapper/>
@@ -56,3 +73,4 @@ export default async function LocaleLayout({children, params}: Props) {
     </html>
   );
 }
+

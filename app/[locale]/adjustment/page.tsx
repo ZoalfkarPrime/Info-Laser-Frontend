@@ -4,6 +4,17 @@ import {AdjustmentForClients} from "@/components/shared/adjustment/AdjustmentFor
 import {AdjustmentStages} from "@/components/shared/adjustment/AdjustmentStages";
 import {ArticlesOnMain} from "@/components/shared/articles/ArticlesOnMain";
 import {SocialBanner} from "@/components/shared/banners/SocialBanner";
+import {getTranslations} from "next-intl/server";
+
+export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
+  const {locale} = await paramsPromise;
+  const t = await getTranslations({locale});
+
+  return {
+    title: `${t('adjustmentMetaTitle')}`,
+    description: `${t('adjustmentMetaDescription')}`,
+  };
+}
 
 const AdjustmentPage: React.FC = () => {
 
