@@ -2,7 +2,7 @@ import {getTranslations} from "next-intl/server";
 import {DeliveryHeader} from "@/components/shared/delivery/DeliveryHeader";
 import {PurchaseList} from "@/components/shared/delivery/PurchaseList";
 import {DeliveryPickup} from "@/components/shared/delivery/DeliveryPickup";
-// import Script from "next/script";
+import Script from "next/script";
 import {ProductReturn} from "@/components/shared/delivery/ProductReturn";
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
 import React from "react";
@@ -56,10 +56,10 @@ const DeliveryPage = () => {
 
   return (
     <>
-      {/*<Script*/}
-      {/*  src={`https://api-maps.yandex.ru/v3/?apikey=${process.env.NEXT_PUBLIC_YANDEX_MAP_KEY}&lang=ru_RU`}*/}
-      {/*  strategy="beforeInteractive"*/}
-      {/*/>*/}
+      <Script
+        src={`https://api-maps.yandex.ru/v3/?apikey=${process.env.NEXT_PUBLIC_YANDEX_MAP_KEY}&lang=ru_RU`}
+        strategy="beforeInteractive"
+      />
       <section>
         <DeliveryHeader/>
         <PurchaseList/>
