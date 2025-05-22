@@ -2,7 +2,7 @@ import {getTranslations} from "next-intl/server";
 import {DeliveryHeader} from "@/components/shared/delivery/DeliveryHeader";
 import {PurchaseList} from "@/components/shared/delivery/PurchaseList";
 import {DeliveryPickup} from "@/components/shared/delivery/DeliveryPickup";
-import Script from "next/script";
+// import Script from "next/script";
 import {ProductReturn} from "@/components/shared/delivery/ProductReturn";
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
 import React from "react";
