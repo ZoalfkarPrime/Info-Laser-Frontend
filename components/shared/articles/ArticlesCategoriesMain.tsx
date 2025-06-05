@@ -29,7 +29,7 @@ export const ArticleCategoriesMain: React.FC<ArticlesGroupListUpd> = ({className
                   className={"relative text-[var(--violet)] transition-colors duration-300 group-hover:text-[var(--red)] group-focus:text-[var(--red)]"}
                 />
               </div>
-              {section.title}
+              {section.name}
             </Link>
           </li>
         ))}

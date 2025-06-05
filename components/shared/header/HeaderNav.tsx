@@ -52,7 +52,7 @@ export const HeaderNav: React.FC = () => {
         )}
       >
         <ul className={cn(
-          "flex flex-row items-center",
+          "flex items-center gap-x-1",
           "max-xl:flex-col max-xl:items-start"
         )}>
 

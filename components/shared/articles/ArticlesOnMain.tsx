@@ -20,7 +20,7 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
         articleCategory: [
           {
             id: 1,
-            title: "Инструкции по настройке и эксплуатации лазерного оборудования",
+            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
             slug: "instrukcii",
           }
         ]
@@ -36,7 +36,7 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
         articleCategory: [
           {
             id: 2,
-            title: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
+            name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
             slug: "how-chose-laser-equipment",
           }
         ]
@@ -45,7 +45,7 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
     allArticles: [
       {
         id: 1,
-        title: "Инструкции по настройке и эксплуатации лазерного оборудования",
+        name: "Инструкции по настройке и эксплуатации лазерного оборудования",
         slug: "instrukcii",
         articles: [
           {
@@ -59,7 +59,7 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
             articleCategory: [
               {
                 id: 1,
-                title: "Инструкции по настройке и эксплуатации лазерного оборудования",
+                name: "Инструкции по настройке и эксплуатации лазерного оборудования",
                 slug: "instrukcii",
               }
             ]
@@ -68,7 +68,7 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
       },
       {
         id: 2,
-        title: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
+        name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
         slug: "how-chose-laser-equipment",
         articles: [
           {
@@ -82,7 +82,7 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
             articleCategory: [
               {
                 id: 2,
-                title: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
+                name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
                 slug: "how-chose-laser-equipment",
               }
             ]
