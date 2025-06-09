@@ -2,12 +2,18 @@ import React from "react";
 import Link from "next/link";
 import {Phone} from "lucide-react";
 import {CallbackBtn} from "@/components/shared/btns/CallbackBtn";
+import {cn} from "@/lib/utils";
+import {ClassName} from "@/types/types";
 
-export const HeaderContacts = () => {
+export const HeaderContacts: React.FC<ClassName> = ({className}) => {
 
   return (
     <>
-      <div className="flex items-center flex-col gap-y-1 ml-5">
+      <div className={cn(
+        "flex items-center flex-col gap-y-1 md:ml-5",
+        "",
+        className
+      )}>
 
         <Link
           href="tel:88002222741"

@@ -6,7 +6,7 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {Overlay} from "@/components/shared/Overlay";
 import {ChevronDown} from "lucide-react";
-import {Category} from "@/types/types";
+import {Category, ClassName} from "@/types/types";
 import {useMedia} from "react-use";
 import {getCatalogData} from "@/api/api";
 import Image from "next/image";
@@ -15,7 +15,11 @@ import {Button} from "@/components/ui/Button";
 import {DemoBtn} from "@/components/shared/btns/DemoBtn";
 import {ProductCardHeader} from "@/components/shared/products/ProductCardHeader";
 
-export const HeaderProductItem: React.FC = () => {
+interface Props extends ClassName {
+  onClick?: () => void;
+}
+
+export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
 
   const isMobile = useMedia("(max-width: 1280px)");
 
@@ -23,6 +27,11 @@ export const HeaderProductItem: React.FC = () => {
     product: [],
     accessory: [],
   });
+
+  const handleLinkClick = () => {
+    setIsSpoilerOpen(false);
+    onClick?.();
+  };
 
   const [isSpoilerOpen, setIsSpoilerOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -59,7 +68,7 @@ export const HeaderProductItem: React.FC = () => {
 
       <li
         onMouseLeave={() => setIsSpoilerOpen(false)}
-        className={cn('max-xl:w-full')}
+        className={cn("", className)}
       >
         <button
           type="button"
@@ -86,15 +95,15 @@ export const HeaderProductItem: React.FC = () => {
         <div
           className={cn(
             "absolute top-[88px] h-[85dvh] left-0 right-0 bg-white rounded-b-4xl xl:border-t xl:border-t-gray-300  transition-all duration-300 ease-in-out overflow-hidden z-30",
-            "max-xl:static max-xl:overflow-hidden",
+            "max-xl:static max-xl:overflow-hidden max-xl:h-auto",
             isSpoilerOpen ? "max-xl:max-h-full" : "max-xl:max-h-0",
-            isSpoilerOpen ? "visible opacity-100" : "invisible opacity-0"
+            isSpoilerOpen ? "visible opacity-100" : "invisible opacity-0",
           )}
         >
           <Container
             className={cn(
               "relative xl:py-5 h-full transition-all duration-300 ease-in-out",
-              "max-lg: px-4",
+              "max-lg: px-1",
               isSpoilerOpen ? "top-0 " : "-top-3"
             )}
           >
@@ -102,16 +111,22 @@ export const HeaderProductItem: React.FC = () => {
             {
               activeCategory ? (
                 <Tabs value={activeCategory} onValueChange={setActiveCategory} className="flex gap-10">
-                  <div className={"basis-sm"}>
+                  <div className={cn(
+                    "basis-sm",
+                    "max-xl:basis-full max-xl:pt-1",
+                  )}>
                     <TabsList
-                      className={"flex flex-col items-start justify-start bg-inherit h-auto mb-1"}
+                      className={"flex flex-col items-start justify-start bg-inherit h-auto mb-1 max-xl:mb-0"}
                       asChild
                     >
                       <div>
                         <p className={"text-[var(--gray-text)] uppercase font-semibold mb-2 text-sm"}>
                           Лазерные станки
                         </p>
-                        <ul className="flex flex-col w-full mb-3">
+                        <ul className={cn(
+                          "flex flex-col w-full mb-3",
+                          "max-xl:mb-0"
+                        )}>
                           {categories.product.map((category) => (
                             <li key={category.id}>
                               <TabsTrigger
@@ -121,11 +136,13 @@ export const HeaderProductItem: React.FC = () => {
                               >
                                 <Link
                                   className={cn(
-                                    "flex items-center justify-start w-full gap-x-3 font-semibold bg-white !rounded-3xl px-3 mb-0",
-                                    String(category.id) === activeCategory ? "!bg-[var(--gray)] !text-[var(--violet)] !shadow-none" : "text-black"
+                                    "flex items-center justify-start w-full gap-x-3 bg-white px-3 mb-0",
+                                    "xl:font-semibold xl:!rounded-3xl",
+                                    "max-xl:px-0 max-xl:gap-x-2",
+                                    String(category.id) === activeCategory ? "xl:!bg-[var(--gray)] xl:!text-[var(--violet)] !shadow-none" : "text-black",
                                   )}
                                   href={`/catalog/${category.slug}`}
-                                  onClick={() => setIsSpoilerOpen(false)}
+                                  onClick={handleLinkClick}
                                 >
                                   {category.banner_image_url && (
                                     <Image
@@ -150,7 +167,10 @@ export const HeaderProductItem: React.FC = () => {
                     >
                       <div>
                         <p className={"text-[var(--gray-text)] uppercase font-semibold mb-2 text-sm"}>Комплектующие</p>
-                        <ul className="flex flex-col w-full mb-3">
+                        <ul className={cn(
+                          "flex flex-col w-full mb-3",
+                          "max-xl:mb-0"
+                        )}>
                           {categories.accessory.map((accessory) => (
                             <li key={accessory.id}>
                               <TabsTrigger
@@ -160,11 +180,13 @@ export const HeaderProductItem: React.FC = () => {
                               >
                                 <Link
                                   className={cn(
-                                    "flex items-center justify-start w-full gap-x-3 font-semibold bg-white !rounded-3xl px-3 py-2 mb-0",
-                                    String(accessory.id) === activeCategory ? "!bg-[var(--gray)] !text-[var(--violet)] !shadow-none" : "text-black"
+                                    "flex items-center justify-start w-full gap-x-3 bg-white px-3 py-2 mb-0",
+                                    "xl:font-semibold xl:!rounded-3xl",
+                                    "max-xl:px-0 max-xl:gap-x-2",
+                                    String(accessory.id) === activeCategory ? "xl:!bg-[var(--gray)] xl:!text-[var(--violet)] !shadow-none" : "text-black"
                                   )}
                                   href={`/catalog/${accessory.slug}`}
-                                  onClick={() => setIsSpoilerOpen(false)}
+                                  onClick={handleLinkClick}
                                 >
                                   {accessory.name}
                                 </Link>
@@ -176,7 +198,10 @@ export const HeaderProductItem: React.FC = () => {
                     </TabsList>
 
                     <div
-                      className={"flex flex-col items-center p-3 w-full bg-[var(--gray)] rounded-3xl"}>
+                      className={cn(
+                        "flex flex-col items-center p-3 w-full bg-[var(--gray)] rounded-3xl",
+                        "max-xl:hidden"
+                      )}>
                       <p className={"text-center font-semibold px-10 mb-3 text-sm"}>
                         Продемонстрируем работу оборудования
                       </p>
@@ -184,7 +209,10 @@ export const HeaderProductItem: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className={"flex-1"}>
+                  <div className={cn(
+                    "flex-1",
+                    "max-xl:hidden"
+                  )}>
                     {categories.product.map((category) => (
                       <TabsContent
                         asChild key={category.id}

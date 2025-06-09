@@ -1,21 +1,22 @@
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import React from "react";
+import {ClassName} from "@/types/types";
 
-export const HeaderPaymentItem: React.FC = () => {
+interface Props extends ClassName {
+  onClick?: () => void;
+}
+
+export const HeaderPaymentItem: React.FC<Props> = ({className, onClick}) => {
   return (
-    <li>
+    <li className={cn("", className)}>
       <Link
-        className={cn(
-          'max-xl:w-full max-xl:justify-between max-xl:font-bold',
-          "block px-2 transition-colors",
-          "xl:py-2 xl:px-2 xl:text-sm xl:rounded-3xl",
-          "xl:hover:bg-[var(--violet-dark)]"
-        )}
-        href={"/delivery"}>
+        className={cn("", className)}
+        href="/delivery"
+        onClick={onClick}
+      >
         Оплата и доставка
       </Link>
     </li>
   );
 };
-

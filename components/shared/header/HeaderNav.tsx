@@ -3,13 +3,15 @@
 import React, {useEffect, useRef, useState} from "react";
 import {HeaderProductItem} from "@/components/shared/header/nav-items/HeaderProductItem";
 import {cn} from "@/lib/utils";
-import {Menu, X} from "lucide-react";
+import {Globe, Menu, X} from "lucide-react";
 import {Overlay} from "@/components/shared/Overlay";
 import {useClickAway} from "react-use";
 import {HeaderAboutCompanyItem} from "@/components/shared/header/nav-items/HeaderAboutCompanyItem";
 import {HeaderServiceItem} from "@/components/shared/header/nav-items/HeaderServiceItem";
 import {HeaderPaymentItem} from "@/components/shared/header/nav-items/HeaderPaymentItem";
 import {HeaderContactsItem} from "@/components/shared/header/nav-items/HeaderContactsItem";
+import {HeaderContacts} from "@/components/shared/header/HeaderContacts";
+import {HeaderCity} from "@/components/shared/header/HeaderCity";
 
 export const HeaderNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,26 +49,53 @@ export const HeaderNav: React.FC = () => {
         ref={navRef}
         className={cn(
           "bg-white ml-auto mr-4",
-          "max-xl:fixed max-xl:top-20 max-xl:left-[-110%] max-xl:h-full max-xl:w-2/3 max-xl:transition-all max-xl:ease-in-out max-xl:duration-300 max-xl:shadow-lg max-xl:border-t max-xl:border-t-gray-300 max-xl:overflow-y-scroll max-xl:max-h-[90dvh]",
+          "max-xl:fixed max-xl:w-full max-xl:shadow-lg max-xl:border-t max-xl:border-t-gray-300 max-xl:overflow-y-scroll",
+          "max-xl:top-[88px] max-xl:left-[-110%] max-xl:max-h-[90dvh]",
+          "max-xl:px-5 max-xl:py-2",
+          "max-xl:transition-all max-xl:duration-200",
+          "max-xl:rounded-bl-3xl max-xl:rounded-br-3xl",
+          "max-md:top-[66px]",
           isMenuOpen && "max-xl:left-0"
         )}
       >
+        <HeaderContacts
+          className={cn(
+            "md:hidden",
+            "max-xl:flex-row max-xl:justify-between max-xl:px-2",
+            "max-md:pb-2 max-md:border-b max-md:border-b-gray-500"
+          )}
+        />
+
         <ul className={cn(
           "flex items-center gap-x-1",
-          "max-xl:flex-col max-xl:items-start"
+          "max-xl:flex-col max-xl:items-start max-xl:mb-3",
+          "[&>li]:relative [&>li]:first:static",
+          "[&>li]:max-xl:w-full [&>li]:max-xl:py-2 [&>li]:max-xl:border-b [&>li]:max-xl:border-b-gray-500",
+          "[&>li>a]:block [&>li>a]:px-2 [&>li>a]:transition-colors",
+          "[&>li>a]:xl:py-2 [&>li>a]:xl:text-sm [&>li>a]:xl:rounded-3xl [&>li>a]:xl:hover:bg-[var(--violet-dark)]",
+          "[&>li>a]:max-xl:w-full [&>li>a]:max-xl:justify-between [&>li>a]:max-xl:font-bold",
         )}>
 
-          <HeaderProductItem/>
+          <HeaderProductItem onClick={() => setIsMenuOpen(false)}/>
 
-          <HeaderAboutCompanyItem/>
+          <HeaderAboutCompanyItem onClick={() => setIsMenuOpen(false)}/>
 
-          <HeaderServiceItem/>
+          <HeaderServiceItem onClick={() => setIsMenuOpen(false)}/>
 
-          <HeaderPaymentItem/>
+          <HeaderPaymentItem onClick={() => setIsMenuOpen(false)}/>
 
-          <HeaderContactsItem/>
+          <HeaderContactsItem onClick={() => setIsMenuOpen(false)}/>
 
         </ul>
+
+        <div className={cn(
+          "max-xl:flex max-xl:gap-x-2 max-xl:px-1 max-xl:py-2",
+          "md:hidden"
+        )}>
+          <Globe/>
+          <HeaderCity/>
+        </div>
+
       </nav>
 
       {/* Бургер кнопка */}
@@ -74,7 +103,8 @@ export const HeaderNav: React.FC = () => {
         ref={menuRef}
         className={cn(
           "xl:hidden",
-          "max-xl:block max-xl:bg-gray-200 max-xl::hover:bg-gray-300 max-xl::transition max-xl:p-1 max-xl:rounded-md"
+          "max-xl:block max-xl:bg-gray-200 max-xl::hover:bg-gray-300 max-xl::transition max-xl:p-1 max-xl:rounded-md",
+          "max-xl:absolute max-xl:right-4"
         )}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >

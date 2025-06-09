@@ -16,20 +16,20 @@ export const Header = ({products}: HeaderProps) => {
 
   return (
     <header className="relative bg-white shadow shadow-gray-200/80 py-5 z-50">
-      <Container className="flex items-center justify-between">
+      <Container>
+        <div className="flex items-center justify-between">
+          <Logo name={"logo"} className="mr-7 shrink-0 max-md:mr-2 max-md:max-w-[115px]"/>
 
-        <Logo name={"logo"} className="mr-7"/>
+          <HeaderCity className={"max-md:hidden"}/>
 
-        <HeaderCity/>
+          <HeaderNav/>
 
-        <HeaderNav/>
+          <HeaderSearchBtn products={products}/>
 
-        <HeaderSearchBtn products={products}/>
+          <HeaderCartBtn/>
 
-        <HeaderCartBtn/>
-
-        <HeaderContacts/>
-
+          <HeaderContacts className={"max-xl:mr-7 max-md:hidden"}/>
+        </div>
       </Container>
     </header>
   );

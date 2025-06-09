@@ -61,7 +61,10 @@ export const HeaderSearchBtn = ({products}: SearchProps) => {
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <span className="w-[1px] h-6 bg-gray-300"></span>
+      <span className={cn(
+        "w-[1px] h-6 bg-gray-300",
+        "max-xl:ml-auto"
+      )}></span>
       <SheetTrigger asChild>
         <button
           className="relative hover:text-[var(--violet)] hover:cursor-pointer hover:bg-gray-200 p-1 mx-2 rounded-md transition-colors duration-300 z-30"
@@ -75,7 +78,10 @@ export const HeaderSearchBtn = ({products}: SearchProps) => {
       <SheetDescription className="hidden"/>
       <SheetContent className="[&>button]:hidden rounded-b-3xl" side="top">
         <SheetTitle className="hidden"/>
-        <Container className="py-10 max-w-[1200px] max-h-[90dvh] overflow-hidden">
+        <Container className={cn(
+          "py-10 max-w-[1200px] max-h-[90dvh] overflow-hidden",
+          "max-xl:py-3"
+        )}>
 
           {/* Заголовок + Кнопка закрытия */}
           <div className="flex justify-between items-center mb-5">
