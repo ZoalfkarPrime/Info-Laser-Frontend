@@ -18,7 +18,7 @@ export const ArticlesCardMain: React.FC<Article> = (
   return (
     <article className={"block group relative rounded-3xl overflow-hidden"}>
       <Link
-        href={`/blog/${articleCategory[0].slug}/${slug}`}
+        href={`/articles/${articleCategory[0].slug}/${slug}`}
 
       >
 

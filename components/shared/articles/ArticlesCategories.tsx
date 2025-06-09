@@ -39,7 +39,7 @@ export const ArticleCategories: React.FC<ArticlesGroupListUpd> = ({className, ca
                     "group flex gap-3 hover:text-[var(--violet)] focus:text-[var(--violet)] leading-5 transition-colors duration-300",
                     isActive && "text-[var(--violet)] hover:text-[var(--violet)] focus:text-[var(--violet)]"
                   )}
-                  href={`/blog/${section.slug}`}
+                  href={`/articles/${section.slug}`}
                 >
                   <div
                     className={"flex flex-shrink-0 items-center justify-center h-7 w-7 rounded-full bg-[var(--violet-dark)] rotate-180 p-0"}

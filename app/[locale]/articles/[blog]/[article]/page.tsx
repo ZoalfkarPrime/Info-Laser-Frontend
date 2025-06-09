@@ -7,12 +7,11 @@ import {getOneArticleBySlug} from "@/api/api";
 import {SocialList} from "@/components/shared/social/SocialList";
 import {ChevronLeft, CircleCheck} from "lucide-react";
 import Link from "next/link";
-import {ClassName} from "@/types/types";
 import {ArticlesSimilar} from "@/components/shared/articles/ArticlesSimilar";
 import {Button} from "@/components/ui/Button";
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
 
-interface ArticlePageProps extends ClassName {
+interface ArticlePageProps {
   params: Promise<{ article: string; blog: string }>;
 }
 
@@ -33,7 +32,7 @@ export async function generateMetadata(
   };
 }
 
-const ArticlePage: React.FC<ArticlePageProps> = async ({params, className}) => {
+export default async function ArticlePage({params}: ArticlePageProps) {
   const {article} = await params;
   const oneArticle = await getOneArticleBySlug(article);
 
@@ -496,7 +495,6 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({params, className}) => {
                     className={cn(
                       "flex gap-2 text-sm transition-colors",
                       "hover:text-[var(--violet)] focus:text-[var(--violet)]",
-                      className
                     )}
                     href={"#how-laser-machine-works"}
                   >
@@ -512,7 +510,6 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({params, className}) => {
                     className={cn(
                       "flex gap-2 text-sm transition-colors",
                       "hover:text-[var(--violet)] focus:text-[var(--violet)]",
-                      className
                     )}
                     href={"#laser-different"}
                   >
@@ -528,7 +525,6 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({params, className}) => {
                     className={cn(
                       "flex gap-2 text-sm transition-colors",
                       "hover:text-[var(--violet)] focus:text-[var(--violet)]",
-                      className
                     )}
                     href={"#which-metals-can-be-sliced"}
                   >
@@ -548,7 +544,7 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({params, className}) => {
             <h2 className={"text-[40px] font-semibold"}>Похожие статьи</h2>
             <Button asChild variant="outline"
                     className={"text-[var(--violet)] rounded-3xl  border-2 !border-[var(--violet-dark)]"}>
-              <Link href="/blog">Все статьи</Link>
+              <Link href="/articles">Все статьи</Link>
             </Button>
           </div>
           <ArticlesSimilar articles={data_articles.allArticles}/>
@@ -558,5 +554,3 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({params, className}) => {
     </article>
   );
 };
-
-export default ArticlePage;

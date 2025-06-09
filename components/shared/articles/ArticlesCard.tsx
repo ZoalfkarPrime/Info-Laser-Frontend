@@ -19,7 +19,7 @@ export const ArticlesCard: React.FC<Article> = (
     <article>
       <Link
         className={cn("group block rounded-xl overflow-hidden mb-3")}
-        href={`/blog/${articleCategory[0].slug}/${slug}`}
+        href={`/articles/${articleCategory[0].slug}/${slug}`}
       >
         <Image
           src={image}
@@ -35,7 +35,7 @@ export const ArticlesCard: React.FC<Article> = (
           "block font-semibold text-[22px] text-[var(--violet)] mb-2",
           "hover:text-[var(--red)] focus:text-[var(--red)] leading-5 transition-colors duration-300",
         )}
-        href={`/blog/${articleCategory[0].slug}/${slug}`}
+        href={`/articles/${articleCategory[0].slug}/${slug}`}
       >
         <h2>{name}</h2>
       </Link>

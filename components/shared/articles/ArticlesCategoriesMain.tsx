@@ -19,7 +19,7 @@ export const ArticleCategoriesMain: React.FC<ArticlesGroupListUpd> = ({className
           <li key={section.id} className={"not-last:mb-3"}>
             <Link
               className={"group flex gap-3 hover:text-[var(--violet)] focus:text-[var(--violet)] leading-5 transition-colors duration-300"}
-              href={`/blog/${section.slug}`}
+              href={`/articles/${section.slug}`}
             >
               <div
                 className={"flex flex-shrink-0 items-center justify-center h-7 w-7 rounded-full bg-[var(--violet-dark)] rotate-180 p-0"}
@@ -36,7 +36,7 @@ export const ArticleCategoriesMain: React.FC<ArticlesGroupListUpd> = ({className
       </ul>
       <Button asChild variant="outline"
               className={"text-[var(--violet)] rounded-3xl  border-2 !border-[var(--violet-dark)]"}>
-        <Link href="/blog">Все статьи</Link>
+        <Link href="/articles">Все статьи</Link>
       </Button>
     </aside>
   );

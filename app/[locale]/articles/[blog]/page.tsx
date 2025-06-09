@@ -94,7 +94,7 @@ const BlogPage: React.FC<CategoryProps> = async ({params, searchParams}) => {
           <PaginationControls
             currentPage={page}
             totalPages={totalPages}
-            basePath={`/blog/${blog}`}
+            basePath={`/articles/${blog}`}
             query={queryString}
             className="mb-15"
           />

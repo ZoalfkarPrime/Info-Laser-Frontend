@@ -114,7 +114,7 @@ export const HeaderAboutCompanyItem: React.FC<Props> = ({className, onClick}) =>
                   "xl:px-3 xl:py-2 xl:hover:bg-[var(--violet-dark)] xl:transition-colors xl:duration-300 xl:ease-in-out xl:rounded-3xl",
                   "max-xl:font-normal max-xl:py-1"
                 )}
-                href={"/blog"}
+                href={"/articles"}
                 onClick={handleLinkClick}
               >
                 База знаний
