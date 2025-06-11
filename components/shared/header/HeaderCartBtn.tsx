@@ -15,7 +15,7 @@ export const HeaderCartBtn: React.FC = () => {
     <Link
       className={cn(
         "flex items-center gap-1 mx-2 hover:text-[var(--violet)] transition duration-300",
-        "max-md:mr-10"
+        "max-md:mr-13"
       )}
       href={"/cart"}
     >

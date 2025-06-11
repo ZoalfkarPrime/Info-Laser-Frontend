@@ -26,7 +26,15 @@ const CartPage = () => {
   return (
     <section>
       <Container>
-        <h1 className="text-5xl font-semibold mb-6">Корзина</h1>
+        <h1
+          className={cn(
+            "text-5xl font-semibold mb-6",
+            "max-xl:text-4xl max-xl:mb-5",
+            "max-md:text-3xl"
+          )}
+        >
+          Корзина
+        </h1>
 
         {
           isLoading ? (
@@ -35,7 +43,15 @@ const CartPage = () => {
             cart.length === 0 ? (
               <div className={"flex items-center justify-center flex-col gap-10 pb-30"}>
                 <Image src={'/img/cart/empty-cart.jpg'} alt={"Пустая корзина"} width={270} height={483}/>
-                <p className={"text-4xl font-semibold text-[var(--gray-text)]"}>Ваша корзина пуста</p>
+                <p
+                  className={cn(
+                    "text-4xl font-semibold text-[var(--gray-text)]",
+                    "max-xl:text-3xl",
+                    "max-md:text-2xl",
+                  )}
+                >
+                  Ваша корзина пуста
+                </p>
               </div>
             ) : (
               <div className={cn("grid grid-cols-12 gap-5")}>

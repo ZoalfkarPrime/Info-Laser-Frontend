@@ -11,13 +11,19 @@ export const SocialListVkYoutube: React.FC<ClassName> = ({className}) => {
   const CHANNEL_ID = "@InfoLaser"
 
   return (
-    <ul className={cn("flex gap-5", className)}>
+    <ul className={cn(
+      "flex gap-5",
+      "max-[370px]:gap-1",
+      className
+    )}>
       <li>
         <Button
           asChild
           className={cn(
             "inline-flex items-center gap-2 text-[var(--violet)] bg-white rounded-3xl transition-colors px-3 py-5",
-            "hover:text-white focus:text-white focus:bg-primary/90"
+            "hover:text-white focus:text-white focus:bg-primary/90",
+            "max-md:text-xs",
+            "max-[370px]:px-2"
           )}>
           <Link
             className={"hover:[&>svg]:fill-white focus:[&>svg]:fill-white"}
@@ -33,7 +39,9 @@ export const SocialListVkYoutube: React.FC<ClassName> = ({className}) => {
           asChild
           className={cn(
             "inline-flex items-center gap-2 text-[var(--violet)] bg-white rounded-3xl transition-colors px-3 py-5",
-            "hover:text-white focus:text-white focus:bg-primary/90"
+            "hover:text-white focus:text-white focus:bg-primary/90",
+            "max-md:text-xs",
+            "max-[370px]:px-2"
           )}>
           <Link
             className={"hover:[&>svg]:fill-white focus:[&>svg]:fill-white"}

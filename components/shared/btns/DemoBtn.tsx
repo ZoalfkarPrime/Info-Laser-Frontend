@@ -34,7 +34,7 @@ export const DemoBtn: React.FC<CallbackBtnProps> = ({title, className}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className={cn('', className)}>
+        <Button className={cn('max-md:text-xs', className)}>
           {title}
         </Button>
       </DialogTrigger>

@@ -28,7 +28,7 @@ export const Header = ({products}: HeaderProps) => {
 
           <HeaderCartBtn/>
 
-          <HeaderContacts className={"max-xl:mr-7 max-md:hidden"}/>
+          <HeaderContacts className={"max-xl:mr-13 max-md:hidden"}/>
         </div>
       </Container>
     </header>
