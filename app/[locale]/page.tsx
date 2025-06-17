@@ -3,7 +3,7 @@ import {NewProductsSlider} from "@/components/shared/carousels/NewProductsSlider
 import {PartnersSlider} from "@/components/shared/carousels/PartnersSlider";
 import {UniqMachinesSlider} from "@/components/shared/carousels/UniqMachinesSlider";
 import {OfflineOrOnlineMain} from "@/components/shared/banners/OfflineOrOnlineMain";
-import {SimplerTabsMain} from "@/components/shared/SimplerTabsMain";
+import {SimplerTabsMain} from "@/components/shared/tabs/SimplerTabsMain";
 import {AboutMain} from "@/components/shared/about/AboutMain";
 import {ArticlesOnMain} from "@/components/shared/articles/ArticlesOnMain";
 import {getProducts} from "@/api/api";

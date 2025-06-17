@@ -1,9 +1,11 @@
 import {AboutHeader} from "@/components/shared/about/AboutHeader";
 import {AboutMain} from "@/components/shared/about/AboutMain";
-import {SimplerTabsMain} from "@/components/shared/SimplerTabsMain";
+import {SimplerTabsMain} from "@/components/shared/tabs/SimplerTabsMain";
 import {AboutMap} from "@/components/shared/about/AboutMap";
 import {SocialBanner} from "@/components/shared/banners/SocialBanner";
 import {getTranslations} from "next-intl/server";
+import {SocialBannerMini} from "@/components/shared/banners/SocialBannerMini";
+import {Container} from "@/components/shared/Container";
 
 export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
   const {locale} = await paramsPromise;
@@ -23,7 +25,14 @@ const AboutPage = () => {
       <AboutMain/>
       <SimplerTabsMain/>
       <AboutMap/>
-      <SocialBanner/>
+      <div className={"max-md:hidden"}>
+        <SocialBanner/>
+      </div>
+      <div className={"md:hidden max-md:block"}>
+        <Container>
+          <SocialBannerMini/>
+        </Container>
+      </div>
     </section>
   );
 };

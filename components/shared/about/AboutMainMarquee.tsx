@@ -99,9 +99,13 @@ export const AboutMainMarquee: React.FC<ClassName> = ({className}) => {
   }
 
   return (
-    <section className={cn("relative pt-15 pb-30", className)}>
+    <section className={cn("relative pt-15 pb-30 max-md:pb-10", className)}>
       <Container className={"max-w-[760px] mb-10"}>
-        <h3 className={"text-center text-3xl"}>
+        <h3 className={cn(
+          "text-center text-3xl",
+          "max-xl:text-2xl max-xl:mb-3",
+          "max-md:text-xl max-md:mb-2",
+        )}>
           Машины + Передовое программное обеспечение =
           <span className={"text-[var(--violet)] ml-1"}>Творения, воплощенные в жизнь</span>
         </h3>
@@ -111,7 +115,10 @@ export const AboutMainMarquee: React.FC<ClassName> = ({className}) => {
       <div className={"overflow-x-hidden"}>
         <div className="flex space-x-10 mb-5 animate-scroll-right">
           {[...images.topImages, ...images.topImages].map((item, index) => (
-            <div key={index} className="rounded-3xl max-h-[160px] max-w-[160px] min-w-[160px] overflow-hidden">
+            <div key={index} className={cn(
+              "rounded-3xl max-h-[160px] max-w-[160px] min-w-[160px] overflow-hidden",
+              "max-md:max-h-[80px] max-md:max-w-[80px] max-md:min-w-[80px] max-md:rounded-xs"
+            )}>
               <Image
                 src={item.url}
                 alt={item.name}
@@ -124,7 +131,10 @@ export const AboutMainMarquee: React.FC<ClassName> = ({className}) => {
 
         <div className="flex space-x-10 animate-scroll-left">
           {[...images.botImages, ...images.botImages].map((item, index) => (
-            <div key={index} className="rounded-3xl max-h-[160px] max-w-[160px] min-w-[160px] overflow-hidden">
+            <div key={index} className={cn(
+              "rounded-3xl max-h-[160px] max-w-[160px] min-w-[160px] overflow-hidden",
+              "max-md:max-h-[80px] max-md:max-w-[80px] max-md:min-w-[80px] max-md:rounded-xs"
+            )}>
               <Image
                 src={item.url}
                 alt={item.name}
@@ -137,13 +147,20 @@ export const AboutMainMarquee: React.FC<ClassName> = ({className}) => {
       </div>
 
       {/* Блок с ноутбуком и видео */}
-      <div className="absolute top-[215px] left-1/2 transform -translate-x-1/2 w-[700px] h-[400px]">
+      <div className={cn(
+        "absolute top-[215px] left-1/2 transform -translate-x-1/2 w-[700px] h-[400px]",
+        "max-md:w-[320px] max-md:h-[200px] max-md:top-[150px]",
+        "max-[470px]:!top-[200px]",
+      )}>
         <Image
           src="/img/about-marquee/about-laptop.png"
           alt="Ноутбук"
           width={700}
           height={400}
-          className="absolute z-30"
+          className={cn(
+            "absolute z-30",
+            "max-md:w-[320px] max-md:h-[200px]"
+          )}
         />
         <video
           src={images.video[0].url}
@@ -151,7 +168,10 @@ export const AboutMainMarquee: React.FC<ClassName> = ({className}) => {
           loop
           muted
           playsInline
-          className="absolute top-[23px] left-[83px] w-[78%] h-[84%] object-cover z-20"
+          className={cn(
+            "absolute top-[23px] left-[83px] w-[78%] h-[84%] object-cover z-20",
+            "max-md:left-[35px] max-md:top-[12px]"
+          )}
         />
       </div>
     </section>
