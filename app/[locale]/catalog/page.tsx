@@ -1,5 +1,5 @@
 import {CategoriesCatalog} from "@/components/shared/categories/CategoriesCatalog";
-import {getCategories} from "@/api/api";
+import {getCatalogData} from "@/api/api";
 import {PartnersSlider} from "@/components/shared/carousels/PartnersSlider";
 import {OfflineOrOnlineMain} from "@/components/shared/banners/OfflineOrOnlineMain";
 import {getTranslations} from "next-intl/server";
@@ -15,19 +15,18 @@ export async function generateMetadata({params: paramsPromise}: { params: Promis
 }
 
 const CatalogPage = async () => {
-  const categories = await getCategories();
+  const {product, accessory} = await getCatalogData();
 
   return (
     <>
-
-      <CategoriesCatalog title={"Каталог"} categories={categories}/>
-
+      <CategoriesCatalog
+        title={"Каталог оборудования и комплектующих"}
+        productCategories={product}
+        accessoryCategories={accessory}
+      />
       <OfflineOrOnlineMain/>
-
       <PartnersSlider/>
-
     </>
-
   );
 };
 

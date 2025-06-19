@@ -10,14 +10,26 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
     <div className={cn("py-7", className)}>
       <Container>
         <div
-          className="flex items-center justify-center bg-[url('/img/banners/bg/online-or-offline.jpg')] bg-no-repeat bg-cover rounded-4xl overflow-hidden py-13 px-5">
+          className={cn(
+            "flex items-center justify-center bg-[url('/img/banners/bg/online-or-offline.jpg')] bg-no-repeat bg-cover rounded-4xl overflow-hidden py-13 px-5",
+            "max-xl:bg-center",
+            "max-md:bg-[url('/img/banners/bg/online-or-offline-mobile.jpg')] max-md:py-8"
+          )}>
           <div className="text-center max-w-[600px]">
-            <p className="text-3xl md:text-4xl font-bold mb-4">Online или Offline?</p>
-            <p className="text-lg leading-6 mb-6">
+            <p className={cn(
+              "text-3xl md:text-4xl font-bold mb-4",
+              "max-md:text-2xl max-md:mb-3"
+            )}>
+              Online или Offline?
+            </p>
+            <p className={cn(
+              "text-lg leading-6 mb-6",
+              "max-md:text-xs max-md:leading-4 max-md:mb-3"
+            )}>
               Продемонстрируем работу оборудования любым удобным способом: в более
               50 городах России или по видеосвязи.
             </p>
-            <SocialList className={"justify-center mb-6"}/>
+            <SocialList className={"justify-center mb-6 max-md:mb-3"}/>
             <DemoBtn className={cn("rounded-3xl")} title={"Записаться на демонстрацию"}/>
           </div>
         </div>

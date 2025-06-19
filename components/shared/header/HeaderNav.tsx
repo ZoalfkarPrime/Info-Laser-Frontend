@@ -26,8 +26,6 @@ export const HeaderNav: React.FC = () => {
       if (menuRef.current && target && menuRef.current.contains(target)) {
         return;
       }
-
-      event.preventDefault();
       setIsMenuOpen(false);
     },
     ['mousedown']

@@ -71,12 +71,16 @@ export const PartnersSlider: React.FC<ClassName> = ({className}) => {
     <section className={cn('py-7 mb-5', className)}>
       <Container>
         <h2
-          className={cn("text-2xl font-bold text-center mb-5")}
+          className={cn(
+            "text-2xl font-bold text-center mb-5",
+            "max-md:text-xl"
+          )}
         >
           Партнерские отношения с крупными брендами сферы ЧПУ
         </h2>
 
         <Carousel
+          className={""}
           opts={{
             align: "start",
           }}
@@ -86,8 +90,9 @@ export const PartnersSlider: React.FC<ClassName> = ({className}) => {
               <CarouselItem
                 key={partner.id}
                 className={cn(
-                  'basis-1/6 pl-5 max-2xl:basis-1/4 max-lg:basis-1/2 max-md:basis-1/1 max-sm:pl-2',
-                  'max-md:flex max-md:justify-center'
+                  'basis-1/6 pl-5 max-2xl:basis-1/4',
+                  ' max-lg:basis-1/2',
+                  ' max-md:basis-[55%]',
                 )}
               >
                 <Image
@@ -95,14 +100,18 @@ export const PartnersSlider: React.FC<ClassName> = ({className}) => {
                   alt={partner.name}
                   width={200}
                   height={75}
-                  className={"max-w-[200px] max-h-[75px]"}
+                  className={cn(
+                    "max-w-[200px] max-h-[75px]",
+                    "max-md:max-w-[150px] max-md:max-h-[60px]",
+                  )}
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className={cn('-left-[40px] max-2xl:-left-[20px]', className)}/>
-          <CarouselNext className={cn('-right-[40px] max-2xl:-right-[20px]', className)}/>
+          <CarouselPrevious className={cn('-left-[20px] max-xl:left-[10px]', className)}/>
+          <CarouselNext className={cn('-right-[20px] max-xl:right-[10px]', className)}/>
+
           <CarouselDots className="absolute -bottom-5 left-0 right-0"/>
         </Carousel>
       </Container>
