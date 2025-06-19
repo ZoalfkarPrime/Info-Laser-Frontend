@@ -2,6 +2,18 @@ export interface ClassName {
   className?: string;
 }
 
+export interface AccessoriesCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  banner_image_url: string;
+  type: string;
+  created_at?: string;
+  updated_at?: string;
+  pivot: Pivot;
+}
+
 export interface Category {
   id: number;
   name: string;
@@ -13,6 +25,7 @@ export interface Category {
   created_at?: string;
   updated_at?: string;
   products: Product[];
+  categories: AccessoriesCategory[];
 }
 
 export interface Product {

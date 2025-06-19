@@ -33,7 +33,7 @@ export const AdjustmentStages: React.FC<AdjustmentStagesProps> = ({data, classNa
             ))}
           </ol>
 
-          <h3 className="font-semibold mb-3">Кому и как оказываются услуги запуска станков с ЧПУ?</h3>
+          <p className="font-semibold mb-3">Кому и как оказываются услуги запуска станков с ЧПУ?</p>
 
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
