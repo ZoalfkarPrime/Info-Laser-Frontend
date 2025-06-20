@@ -16,12 +16,27 @@ export const AdjustmentStages: React.FC<AdjustmentStagesProps> = ({data, classNa
   return (
 
     <section className={cn("", className)}>
-      <Container className={"grid grid-cols-12 gap-10"}>
-        <div className={"col-start-1 col-end-9"}>
-          <h2 className="text-4xl font-semibold mb-7">В сколько этапов проходит пусконаладка станков с ЧПУ?</h2>
-          <p className="font-semibold mb-3">У станков разных типов процедуры могут отличаться, но есть общие этапы:</p>
+      <Container className={cn(
+        "grid grid-cols-12 gap-10",
+        "max-md:gap-0 max-md:gap-y-5"
+      )}>
+        <div className={cn(
+          "col-start-1 col-end-9",
+          "max-xl:col-end-7",
+          "max-md:col-span-full"
+        )}>
+          <h2 className={cn(
+            "text-4xl font-semibold mb-7",
+            "max-xl:text-3xl max-xl:mb-5",
+            "max-md:text-2xl max-md:mb-3"
+          )}>
+            В сколько этапов проходит пусконаладка станков с ЧПУ?
+          </h2>
+          <p className="font-semibold mb-3 max-md:text-sm">
+            У станков разных типов процедуры могут отличаться, но есть общие этапы:
+          </p>
 
-          <ol className="space-y-3 mb-12">
+          <ol className="space-y-3 mb-12 max-md:mb-5">
             {data.map((item, index) => (
               <li key={item.id} className="flex items-start gap-3">
                 <div
@@ -33,7 +48,7 @@ export const AdjustmentStages: React.FC<AdjustmentStagesProps> = ({data, classNa
             ))}
           </ol>
 
-          <p className="font-semibold mb-3">Кому и как оказываются услуги запуска станков с ЧПУ?</p>
+          <p className="font-semibold mb-3 max-md:text-sm">Кому и как оказываются услуги запуска станков с ЧПУ?</p>
 
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
@@ -54,11 +69,13 @@ export const AdjustmentStages: React.FC<AdjustmentStagesProps> = ({data, classNa
           </ul>
         </div>
 
-        <AdjustmentVideo className={"col-start-9 col-end-13"}/>
+        <AdjustmentVideo className={cn(
+          "col-start-9 col-end-13",
+          "max-xl:col-start-7",
+          "max-md:col-span-full",
+        )}/>
 
       </Container>
-
     </section>
-
   );
 }

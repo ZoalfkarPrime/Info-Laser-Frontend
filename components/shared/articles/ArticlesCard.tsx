@@ -34,12 +34,13 @@ export const ArticlesCard: React.FC<Article> = (
         className={cn(
           "block font-semibold text-[22px] text-[var(--violet)] mb-2",
           "hover:text-[var(--red)] focus:text-[var(--red)] leading-5 transition-colors duration-300",
+          "max-md:text-lg"
         )}
         href={`/articles/${articleCategory[0].slug}/${slug}`}
       >
         <h2>{name}</h2>
       </Link>
-      <p className={"leading-5"}>{description}</p>
+      <p className={"leading-5 max-md:text-sm"}>{description}</p>
     </article>
   );
 }

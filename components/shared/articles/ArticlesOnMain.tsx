@@ -93,16 +93,32 @@ export const ArticlesOnMain: React.FC<ClassName> = ({className}) => {
   };
 
   return (
-    <section className={cn("py-7", className)}>
+    <section className={cn("py-7 max-md:py-3", className)}>
       <Container>
-        <h1 className={"text-4xl font-bold mb-5"}>База знаний</h1>
+        <h1 className={cn(
+          "text-4xl font-bold mb-5",
+          "max-xl:text-3xl",
+          "max-md:text-2xl max-md:mb-3"
+        )}>
+          База знаний
+        </h1>
 
-        <div className="grid grid-cols-3 gap-5">
-          <section className={"col-span-2"}>
+        <div className={cn(
+          "grid grid-cols-3 gap-5"
+        )}>
+          <section className={cn(
+            "col-span-2",
+            "max-md:col-span-full"
+          )}>
             <ArticlesGroupListMain articles={data.twoArticles}/>
           </section>
 
-          <ArticleCategoriesMain categories={data.allArticles}/>
+          <ArticleCategoriesMain
+            className={cn(
+              "max-md:col-span-full",
+            )}
+            categories={data.allArticles}
+          />
 
         </div>
       </Container>

@@ -15,8 +15,8 @@ export const ArticlesGroupListMain: React.FC<ArticlesGroupListProps> = ({classNa
         <li
           key={article.id}
           className={cn(
-            "col-span-6",
-            "bg-[var(--gray)] rounded-xl p-3"
+            "col-span-6 bg-[var(--gray)] rounded-xl p-3",
+            "max-sm:col-span-full"
           )}
         >
           <ArticlesCard {...article}/>

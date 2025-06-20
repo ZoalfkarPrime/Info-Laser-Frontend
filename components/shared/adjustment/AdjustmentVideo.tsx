@@ -34,7 +34,12 @@ export const AdjustmentVideo: React.FC<ClassName> = ({className}) => {
     <div className={cn("", className)}>
 
       <div className={"rounded-3xl bg-[var(--gray)] p-4"}>
-        <p className={"text-2xl font-semibold mb-5"}>Видео с канала</p>
+        <p className={cn(
+          "text-2xl font-semibold mb-5",
+          "max-md:text-lg max-md:mb-3"
+        )}>
+          Видео с канала
+        </p>
 
         <div
           className={cn(
@@ -52,7 +57,7 @@ export const AdjustmentVideo: React.FC<ClassName> = ({className}) => {
         <Button
           asChild
           className={cn(
-            "inline-flex items-center gap-2 text-white bg-[var(--violet)] rounded-3xl transition-colors px-3 py-5"
+            "inline-flex items-center gap-2 text-white bg-[var(--violet)] rounded-3xl transition-colors px-3 py-5 max-md:text-xs",
           )}>
           <Link href={`https://www.youtube.com/${CHANNEL_ID}`}>
             <YoutubeIcon className={"fill-white"}/>

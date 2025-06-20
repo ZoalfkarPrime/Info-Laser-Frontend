@@ -5,6 +5,8 @@ import {AdjustmentStages} from "@/components/shared/adjustment/AdjustmentStages"
 import {ArticlesOnMain} from "@/components/shared/articles/ArticlesOnMain";
 import {SocialBanner} from "@/components/shared/banners/SocialBanner";
 import {getTranslations} from "next-intl/server";
+import {Container} from "@/components/shared/Container";
+import {SocialBannerMini} from "@/components/shared/banners/SocialBannerMini";
 
 export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
   const {locale} = await paramsPromise;
@@ -68,13 +70,20 @@ const AdjustmentPage: React.FC = () => {
     <section>
       <AdjustmentHeader/>
 
-      <AdjustmentForClients className={"mb-15"} data={data_clients}/>
+      <AdjustmentForClients className={"mb-15 max-md:mb-5"} data={data_clients}/>
 
-      <AdjustmentStages className={"mb-25"} data={data_stages}/>
+      <AdjustmentStages className={"mb-25 max-md:mb-5"} data={data_stages}/>
 
-      <ArticlesOnMain className={"mb-15"}/>
+      <ArticlesOnMain className={"mb-15 max-md:mb-5"}/>
 
-      <SocialBanner/>
+      <div className={"max-md:hidden"}>
+        <SocialBanner/>
+      </div>
+      <div className={"md:hidden max-md:block"}>
+        <Container>
+          <SocialBannerMini/>
+        </Container>
+      </div>
 
     </section>
   );
