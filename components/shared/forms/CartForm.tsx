@@ -8,9 +8,11 @@ import {Input} from "@/components/ui/Input";
 import {Textarea} from "@/components/ui/Textarea";
 import Link from "next/link";
 import PhoneInput from 'react-phone-input-2';
+import {Button} from "@/components/ui/Button";
+import {PERSONAL_AGREEMENT} from "@/lib/variables";
 
 export const CartForm: React.FC<ClassName> = ({className}) => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -20,13 +22,23 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
   };
 
   return (
-    <div className={cn("bg-[var(--gray)] p-7 rounded-3xl", className)}>
-      <p className={"text-2xl font-semibold mb-5"}>Личные данные</p>
+    <div className={cn(
+      "bg-[var(--gray)] p-7 rounded-3xl",
+      "max-md:p-4",
+      className
+    )}>
+      <p className={cn(
+        "text-2xl font-semibold mb-5",
+        "max-md:text-xl max-md:mb-3"
+      )}>Личные данные</p>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
 
-        <ul className={"grid grid-col-12 gap-5 auto-rows-auto"}>
-          <li className="col-start-1 col-end-6">
+        <ul className={cn(
+          "grid grid-col-12 gap-5 auto-rows-auto",
+          "max-md:gap-3"
+        )}>
+          <li className="">
             <label
               className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2"
               htmlFor={"name"}
@@ -40,7 +52,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
             />
           </li>
 
-          <li className="col-start-6 col-end-13">
+          <li className="">
             <label
               className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2"
               htmlFor={"mail"}
@@ -54,7 +66,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
             />
           </li>
 
-          <li className="col-start-1 col-end-6">
+          <li className="">
             <label
               className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2"
               htmlFor="tel"
@@ -77,7 +89,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
             />
           </li>
 
-          <li className="col-start-6 col-end-13">
+          <li className="">
             <label
               className="block text-sm font-semibold dark:text-gray-300 mb-2"
               htmlFor={"comment"}
@@ -94,18 +106,25 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
               required id="agree" checked={isChecked}
               onCheckedChange={(checked) => setIsChecked(checked === true)}
             />
-            <label htmlFor="agree" className="text-sm dark:text-gray-300">
+            <label htmlFor="agree" className="text-sm dark:text-gray-300 max-md:text-xs">
               Нажимая на &#34;Оформить предзаказ&#34; я даю{" "}
-              <Link href={"#"} className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors">
+              <Link
+                href={PERSONAL_AGREEMENT}
+                className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors"
+              >
                 Согласие на обработку персональных данных
               </Link>{" "}
               и{" "}
-              <Link href={"#"} className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors">
+              <Link
+                href={PERSONAL_AGREEMENT}
+                className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors"
+              >
                 Политику в отношении обработки персональных данных
               </Link>
             </label>
           </div>
         </div>
+        <Button className={cn("rounded-3xl mb-3 w-full py-6 max-md:text-xs")}>Оформить предзаказ</Button>
       </form>
     </div>
   );

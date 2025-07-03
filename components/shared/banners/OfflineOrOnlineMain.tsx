@@ -13,7 +13,7 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
           className={cn(
             "flex items-center justify-center bg-[url('/img/banners/bg/online-or-offline.jpg')] bg-no-repeat bg-cover rounded-4xl overflow-hidden py-13 px-5",
             "max-xl:bg-center",
-            "max-md:bg-[url('/img/banners/bg/online-or-offline-mobile.jpg')] max-md:py-8"
+            "max-md:bg-[url('/img/banners/bg/online-or-offline-mini-mobile.jpg')] max-md:py-8"
           )}>
           <div className="text-center max-w-[600px]">
             <p className={cn(

@@ -6,6 +6,7 @@ import Map from "@/components/shared/yandex/Map";
 import {useTranslations} from "next-intl";
 import type {YMapLocationRequest} from "@yandex/ymaps3-types";
 import {cn} from "@/lib/utils";
+import {REQUISITES} from "@/lib/variables";
 
 type TFunction = Awaited<ReturnType<typeof useTranslations>>;
 
@@ -163,7 +164,7 @@ export const ContactsInfo: React.FC<ContactsInfoProps> = ({t}) => {
                 "max-xl:place-self-start max-xl:mt-1",
               )}
             >
-              <Link href={"#"}>Скачать/Посмотреть реквизиты</Link>
+              <Link href={REQUISITES}>Скачать/Посмотреть реквизиты</Link>
             </Button>
           </section>
         </div>

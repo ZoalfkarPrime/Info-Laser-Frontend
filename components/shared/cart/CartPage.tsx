@@ -10,10 +10,10 @@ import {cn, formatPrice} from "@/lib/utils";
 import {Product} from "@/types/types";
 import {Button} from "@/components/ui/Button";
 import {CartForm} from "@/components/shared/forms/CartForm";
+import {OfflineOrOnlineMain} from "@/components/shared/banners/OfflineOrOnlineMain";
 
 const CartPage = () => {
   const {cart, updateQuantity, removeFromCart, clearCart} = useCart();
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +22,13 @@ const CartPage = () => {
 
   const totalPrice = cart.reduce((sum, item) => sum + (item.quantity ?? 1) * item.orderPrice, 0);
   const totalCartItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value >= 1 && value <= 100) {
+      updateQuantity(id, value);
+    }
+  };
 
   return (
     <section>
@@ -54,145 +61,199 @@ const CartPage = () => {
                 </p>
               </div>
             ) : (
-              <div className={cn("grid grid-cols-12 gap-5")}>
-                <ul className={cn("col-start-1 col-end-10 flex flex-col space-y-3")}>
+              <div className={cn(
+                "grid grid-cols-12 gap-5",
+                "max-md:gap-0 max-md:gap-y-5"
+              )}>
+                <div className={cn(
+                  "col-start-1 col-end-10",
+                  "max-xl:col-span-full"
+                )}>
+                  <ul className={cn("flex flex-col space-y-3")}>
 
-                  {cart.map((item: Product) => (
-                    <li
-                      key={item.id}
-                      className={cn(
-                        "grid grid-cols-12 auto-rows-auto items-center bg-[var(--gray)] p-3 rounded-3xl",
-                      )}
-                    >
+                    {cart.map((item: Product) => (
+                      <li
+                        key={item.id}
+                        className={cn(
+                          "grid grid-cols-12 auto-rows-auto items-center bg-[var(--gray)] p-3 rounded-3xl",
+                          "max-md:gap-y-3"
+                        )}
+                      >
 
-                      <div className={"col-start-1 col-end-7 flex gap-x-5"}>
-                        {/* Изображение */}
-                        <div
-                          className="flex-shrink-0 overflow-hidden w-[100px] h-[90px] flex items-center justify-center">
-                          {item.product_attachments && item.product_attachments.map((item) =>
-                              Boolean(item && item.is_main) && (
-                                <Image
-                                  key={item.id}
-                                  className="hover:scale-110 transition-transform z-10 w-full h-full"
-                                  src={item.external_url}
-                                  alt={item.name}
-                                  width={100}
-                                  height={90}
-                                />
-                              )
-                          )}
-                        </div>
+                        <div className={cn(
+                          "col-start-1 col-end-6 flex gap-x-5",
+                          "max-md:col-span-full"
+                        )}>
+                          {/* Изображение */}
+                          <div
+                            className={cn(
+                              "flex-shrink-0 overflow-hidden w-[100px] h-[90px] flex items-center justify-center",
+                              "max-md:w-[60px] max-md:h-[60px]"
+                            )}>
+                            {item.product_attachments && item.product_attachments.map((item) =>
+                                Boolean(item && item.is_main) && (
+                                  <Image
+                                    key={item.id}
+                                    className="hover:scale-110 transition-transform z-10 w-full h-full"
+                                    src={item.external_url}
+                                    alt={item.name}
+                                    width={100}
+                                    height={90}
+                                  />
+                                )
+                            )}
+                          </div>
 
-                        {/* В наличии/под заказ + название */}
-                        <div className={cn("flex flex-col")}>
-                          {Boolean(item.inStock) ?
-                            (
-                              <span
-                                className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--violet)] bg-[var(--violet-dark)] rounded-2xl p-2 mb-3 leading-none"
-                              >
+                          {/* В наличии/под заказ + название */}
+                          <div className={cn("flex flex-col")}>
+                            {Boolean(item.inStock) ?
+                              (
+                                <span
+                                  className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--violet)] bg-[var(--violet-dark)] rounded-2xl p-2 mb-3 leading-none max-md:text-[10px]"
+                                >
                           <Check className="text-[var(--violet)]" size={12}/>
                           В наличии
                         </span>
-                            ) :
-                            (
-                              <span
-                                className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--green)] bg-[var(--green)] rounded-2xl p-2 mb-3 leading-none"
-                              >
+                              ) :
+                              (
+                                <span
+                                  className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--green)] bg-[var(--green)] rounded-2xl p-2 mb-3 leading-none max-md:text-[10px]"
+                                >
                           <Clock3 className='text-[var(--green)]' size={12}/>
                           Под заказ
                         </span>
-                            )
-                          }
+                              )
+                            }
 
-                          {/* Название (ссылка) */}
-                          <Link
-                            href={`/app/%5Blocale%5D/catalog/${item.categories?.[0]?.slug ?? "default-category"}/${item.slug}`}
-                            className="leading-4 hover:text-[var(--violet)] focus:text-[var(--violet)] transition-colors font-semibold"
+                            {/* Название (ссылка) */}
+                            <Link
+                              href={`/catalog/${item.categories?.[0]?.slug ?? "default-category"}/${item.slug}`}
+                              className="leading-4 hover:text-[var(--violet)] focus:text-[var(--violet)] transition-colors font-semibold max-md:text-sm"
+                            >
+                              {item.name}
+                            </Link>
+                          </div>
+                        </div>
+
+                        {/* Цена */}
+                        <div className={cn(
+                          "col-start-6 col-end-8",
+                          "max-md:col-span-full"
+                        )}>
+                          <p className={"text-xs"}>Под заказ без НДС</p>
+                          <div className={cn("flex items-center gap-x-2")}>
+                            <b className="text-[18px]">{formatPrice(item.orderPrice)} ₽</b>
+
+                            {item.labels?.some((label) => label.slug === "in_sale") && (
+                              <div className="inline-block bg-black/7 px-2 py-1 rounded-3xl">
+                                <b className="text-sm font-normal line-through">{formatPrice(item.newPrice)} ₽</b>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Количество */}
+                        <div className={cn(
+                          "col-start-9 col-end-11 flex justify-center items-center gap-3",
+                          "max-md:col-start-1 max-md:col-end-6 max-md:justify-start"
+                        )}>
+                          <button
+                            onClick={() => updateQuantity(item.id, (item.quantity ?? 1) - 1)}
+                            disabled={item.quantity === 1}
+                            className={cn(
+                              "flex items-center shrink-0 justify-center w-[25px] h-[25px] bg-[var(--violet-dark)] text-[var(--violet)] rounded-full transition",
+                              "hover:bg-[var(--violet)] hover:text-white hover:cursor-pointer",
+                              "disabled:opacity-50 disabled:cursor-not-allowed"
+                            )}
                           >
-                            {item.name}
-                          </Link>
+                            <Minus size={17}/>
+                          </button>
+                          <input
+                            type="number"
+                            min={1}
+                            max={100}
+                            value={item.quantity ?? 1}
+                            onChange={(e) => handleQuantityChange(e, item.id)}
+                            className={cn(
+                              "text-center border border-gray-300 rounded-2xl px-1 py-0.5 max-w-[60px]",
+                              "focus:outline-none focus:border-[var(--violet)]"
+                            )}
+                          />
+                          <button
+                            onClick={() => {
+                              if ((item.quantity ?? 1) < 100) {
+                                updateQuantity(item.id, (item.quantity ?? 1) + 1);
+                              }
+                            }}
+                            disabled={(item.quantity ?? 1) >= 100}
+                            className={cn(
+                              "flex items-center shrink-0 justify-center w-[25px] h-[25px] bg-[var(--violet-dark)] text-[var(--violet)] rounded-full transition",
+                              "hover:bg-[var(--violet)] hover:text-white hover:cursor-pointer",
+                              "disabled:opacity-50 disabled:cursor-not-allowed"
+                            )}
+                          >
+                            <Plus size={17}/>
+                          </button>
                         </div>
-                      </div>
 
-                      {/* Цена */}
-                      <div className={"col-start-7 col-end-10"}>
-                        <p className={"text-xs"}>Под заказ без НДС</p>
-                        <div className={cn("flex items-center gap-x-2")}>
-                          <b className="text-[18px]">{formatPrice(item.orderPrice)} ₽</b>
-
-                          {item.labels?.some((label) => label.slug === "in_sale") && (
-                            <div className="inline-block bg-black/7 px-2 py-1 rounded-3xl">
-                              <b className="text-sm font-normal line-through">{formatPrice(item.newPrice)} ₽</b>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Количество */}
-                      <div className="col-start-10 col-end-12 flex justify-center gap-3">
+                        {/* Удаление */}
                         <button
-                          onClick={() => updateQuantity(item.id, (item.quantity ?? 1) - 1)}
-                          disabled={item.quantity === 1}
+                          onClick={() => removeFromCart(item.id)}
                           className={cn(
-                            "flex items-center justify-center w-[25px] h-[25px] bg-[var(--violet-dark)] text-[var(--violet)] rounded-full transition",
-                            "hover:bg-[var(--violet)] hover:text-white hover:cursor-pointer",
-                            "disabled:opacity-50 disabled:cursor-not-allowed"
+                            "col-start-12 col-end-13 flex justify-center items-center w-10 h-10 bg-[#FF00001A] rounded-full transition-colors",
+                            "hover:text-red-500 hover:cursor-pointer",
+                            "max-md:col-start-10 max-md:col-end-13"
                           )}
                         >
-                          <Minus size={17}/>
+                          <Trash2 size={17}/>
                         </button>
-                        <span className="text-center">{item.quantity ?? 1}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, (item.quantity ?? 1) + 1)}
-                          className={cn(
-                            "flex items-center justify-center w-[25px] h-[25px] bg-[var(--violet-dark)] text-[var(--violet)] rounded-full transition ",
-                            "hover:bg-[var(--violet)] hover:text-white hover:cursor-pointer"
-                          )}
-                        >
-                          <Plus size={17}/>
-                        </button>
-                      </div>
+                      </li>
+                    ))}
+                  </ul>
 
-                      {/* Удаление */}
-                      <button
-                        onClick={() => removeFromCart(item.id)}
-                        className={cn(
-                          "col-start-12 col-end-13 flex justify-center items-center w-10 h-10 bg-[#FF00001A] rounded-full transition-colors",
-                          "hover:text-red-500 hover:cursor-pointer"
-                        )}
-                      >
-                        <Trash2 size={17}/>
-                      </button>
-                    </li>
-                  ))}
-
-                  <Button
-                    className={"place-self-end rounded-3xl bg-red-500"}
-                    onClick={clearCart}
+                  <div
+                    className={cn(
+                      "flex justify-between items-center border-b border-b-[#9298AF26] py-5",
+                      "max-md:flex-col max-md:items-start max-md:gap-y-3"
+                    )}
                   >
-                    Очистить корзину
-                  </Button>
-                </ul>
+                    <p
+                      className={"flex gap-x-3 text-[var(--gray-text)] text-sm"}>
+                      Товары ({totalCartItems})
+                      <b className={"font-normal text-black"}>{formatPrice(totalPrice)} ₽</b>
+                    </p>
 
-                <CartForm className={"col-start-1 col-end-10"}/>
+                    <div className={cn(
+                      "flex gap-x-5 items-center",
+                      "max-md:flex-col max-md:gap-y-3 max-md:items-start"
+                    )}>
+                      <p className={"flex gap-x-3 justify-between text-[var(--gray-text)] font-semibold"}>
+                        Итого
+                        <b className={"text-black"}>{formatPrice(totalPrice)} ₽</b>
+                      </p>
 
-                <div className={cn("col-start-10 col-end-13 row-start-1 bg-[var(--gray)] p-5 rounded-3xl h-max")}>
-                  <Button className={cn("rounded-3xl mb-3 w-full py-6")}>Оформить предзаказ</Button>
-                  <Button variant="outline" asChild className={cn("rounded-3xl bg-[var(--violet-dark)] w-full py-6")}>
-                    <Link href={"#"}>Рассрочка</Link>
-                  </Button>
-                  <p
-                    className={"flex justify-between border-b border-b-[#9298AF26] py-5 text-[var(--gray-text)] text-sm mb-5"}>
-                    Товары ({totalCartItems})
-                    <b className={"font-normal"}>{formatPrice(totalPrice)} ₽</b>
-                  </p>
-                  <p className={"flex justify-between text-[var(--gray-text)] font-semibold"}>
-                    Итого
-                    <b className={"text-black"}>{formatPrice(totalPrice)} ₽</b>
-                  </p>
+                      <Button
+                        className={"rounded-3xl bg-red-500 hover:bg-red-700 focus:bg-red-700"}
+                        onClick={clearCart}
+                      >
+                        Очистить корзину
+                      </Button>
+                    </div>
+                  </div>
+
+                  <OfflineOrOnlineMain
+                    className={cn(
+                      "[&>div]:px-0 [&>div>div]:justify-end [&>div>div]:pr-[18px] [&>div>div>div]:max-w-[350px]",
+                      "max-xl:hidden"
+                    )}
+                  />
                 </div>
-              </div>
 
+                <CartForm className={cn(
+                  "col-start-10 col-end-13 max-h-fit",
+                  "max-xl:col-span-full"
+                )}/>
+              </div>
             )}
       </Container>
     </section>

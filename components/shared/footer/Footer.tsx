@@ -7,7 +7,7 @@ import Link from "next/link";
 import {Logo} from "@/components/shared/Logo";
 import {CallbackBtn} from "@/components/shared/btns/CallbackBtn";
 import {SocialList} from "@/components/shared/social/SocialList";
-import {EMAIL, PHONE} from "@/lib/variables";
+import {EMAIL, PERSONAL_AGREEMENT, PHONE} from "@/lib/variables";
 
 export const Footer: React.FC<ClassName> = ({className}) => {
 
@@ -217,16 +217,15 @@ export const Footer: React.FC<ClassName> = ({className}) => {
           "max-md:flex-col max-md:items-start max-md:gap-3"
         )}>
           <span className={"text-[var(--gray-text)]"}>© 2009–{new Date().getFullYear()}, «Инфо-Сервис».</span>
-          {/* TODO : Добавить нужные ссылки */}
           <Link
             className={"hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"}
-            href="#"
+            href={PERSONAL_AGREEMENT}
           >
             Согласие на обработку персональных данных
           </Link>
           <Link
             className={"hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"}
-            href={"#"}
+            href={PERSONAL_AGREEMENT}
           >
             Политика в отношении обработки персональных данных
           </Link>
