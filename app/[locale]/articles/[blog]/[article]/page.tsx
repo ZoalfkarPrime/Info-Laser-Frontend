@@ -25,7 +25,7 @@ export async function generateMetadata(
   const t = await getTranslations({locale});
 
   const oneArticle = await getOneArticleBySlug(article);
-
+  
   return {
     title: oneArticle?.name || t("blogMetaTitle"),
     description: t("blogMetaDescription"),
@@ -131,20 +131,33 @@ export default async function ArticlePage({params}: ArticlePageProps) {
     <article>
       <Container>
         <div className="grid grid-cols-12">
-          <header className="col-span-full mb-10">
-            <h1 className="text-5xl font-semibold mb-5">{oneArticle.name}</h1>
-            <div className="grid grid-cols-12 gap-5 mb-5">
-              <p className="col-start-1 col-end-2 text-sm text-[var(--gray-text)]">
+          <header className="col-span-full mb-10 max-md:mb-3">
+            <h1 className={cn(
+              "text-5xl font-semibold mb-5",
+              "max-lg:text-3xl",
+              "max-md:text-2xl",
+            )}>{oneArticle.name}</h1>
+            <div className="grid grid-cols-12 gap-5 mb-5 max-md:gap-3">
+              <p className={cn(
+                "col-start-1 col-end-2 text-sm text-[var(--gray-text)]",
+                "max-lg:col-start-1 max-lg:col-end-5 max-lg:text-xs",
+              )}>
                 Дата:
                 <time className="ml-2 text-black" dateTime={oneArticle.date}>
                   {oneArticle.date}
                 </time>
               </p>
-              <p className="col-start-2 col-end-5 text-sm text-[var(--gray-text)] text-center">
+              <p className={cn(
+                "col-start-2 col-end-5 text-sm text-[var(--gray-text)] text-center",
+                "max-lg:col-start-5 max-lg:col-end-13 max-lg:text-xs"
+              )}>
                 Автор:
                 <span className="ml-2 text-black">Алексей Тихонов</span>
               </p>
-              <p className="col-start-8 col-end-13 text-sm text-[var(--gray-text)] text-right">
+              <p className={cn(
+                "col-start-8 col-end-13 text-sm text-[var(--gray-text)] text-right",
+                "max-lg:col-start-1 max-lg:col-end-13 max-lg:text-start max-lg:text-xs"
+              )}>
                 Раздел:
                 <span className="ml-2 text-black">{oneArticle.articleCategory[0].name}</span>
               </p>
@@ -159,18 +172,27 @@ export default async function ArticlePage({params}: ArticlePageProps) {
             />
           </header>
           <div className={cn("relative grid grid-cols-12 col-span-full")}>
-            <aside className="col-start-1 col-end-2 sticky top-5 h-max">
-              <p className="font-semibold mb-3 text-center">Соцсети</p>
-              <SocialList className="flex-col items-center"/>
+            <aside className={cn(
+              "col-start-1 col-end-2 sticky top-5 h-max",
+              "max-lg:relative max-lg:order-3 max-lg:col-span-full max-lg:flex max-lg:gap-x-5 max-lg:items-center max-lg:py-3"
+            )}>
+              <p className="font-semibold mb-3 text-center max-lg:text-start max-lg:mb-0 max-md:text-sm">Соцсети</p>
+              <SocialList className={cn(
+                "flex-col items-center",
+                "max-lg:flex-row"
+              )}/>
             </aside>
             <div
-              className={cn("relative -top-50 col-start-2 col-end-10 bg-white rounded-3xl p-10 border border-[var(--gray-text)]")}>
-              <p className={"font-semibold mb-3"}>
+              className={cn(
+                "relative -top-50 col-start-2 col-end-10 bg-white rounded-3xl p-10 border border-[var(--gray-text)]",
+                "max-lg:top-0 max-lg:order-2 max-lg:col-span-full max-lg:border-0 max-lg:p-0"
+              )}>
+              <p className={"font-semibold mb-3 max-md:text-sm"}>
                 Одним из самых популярных и стремительно развивающихся
                 способов резки металлов является лазерная резка.
                 Из года в год он активно развивается и преодолевает все стандартные показатели лазерных станков:
               </p>
-              <ul className="space-y-2 mb-5">
+              <ul className="space-y-2 mb-5 max-md:text-sm max-md:mb-3">
                 <li className="flex items-center gap-3">
                   <CircleCheck size={20} className={"text-white fill-[var(--violet)]/70 shrink-0"}/>
                   <p>
@@ -190,47 +212,54 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                   </p>
                 </li>
               </ul>
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 Такой станок с лёгкостью режет металл толщиной до 80 мм! И как показывает практика, это далеко не
                 предел.
               </p>
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 В этой статье речь пойдёт об основных принципах работы лазерных станков для резки металлов, а также их
                 преимуществах перед другими способами резки. Также мы расскажем, какие металлы лучше подходят для резки
                 и что из них можно изготовить.
               </p>
               <div className={"grid grid-cols-12 gap-x-5 mb-8"}>
-                <h2 id="how-laser-machine-works" className={"col-span-full text-[40px] leading-11 font-semibold mb-5"}>
+                <h2
+                  id="how-laser-machine-works"
+                  className={cn(
+                    "col-span-full text-[40px] leading-11 font-semibold mb-5",
+                    "max-xl:text-3xl max-xl:leading-9",
+                    "max-md:text-2xl max-md:leading-7 max-md:mb-3"
+                  )}
+                >
                   Как работает станок для лазерной резки металла?
                 </h2>
-                <div className={"col-start-1 col-end-7"}>
-                  <p className={"mb-5"}>
+                <div className={"col-start-1 col-end-7 max-md:col-span-full"}>
+                  <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                     Для начала разберёмся в специфике работы лазерного станка.
                   </p>
-                  <p className={"mb-5"}>
+                  <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                     В современных лазерных станках по металлу используются волоконные излучатели в качестве генератора
                     лазерного излучения. Процесс генерации происходит в диодах накачки с помощью резонатора. Далее
                     лазерный луч по оптоволокну подаётся в лазерную голову станка по металлу, где находятся
                     коллиматорная
                     и фокусирующая линза.
                   </p>
-                  <p>
+                  <p className={"max-md:text-sm max-md:mb-3"}>
                     Сгенерированный лазерный луч обладает высокой плотностью мощности благодаря двум важным свойствам:
                     монохроматичности и когерентности.
                   </p>
                 </div>
                 <Image
-                  className={"col-start-7 col-end-13"}
+                  className={"col-start-7 col-end-13 max-md:col-span-full"}
                   src={'/img/articles/article/article-machine.jpg'}
                   width={420}
                   height={360}
                   alt="Как работает станок для лазерной резки металла?"
                 />
               </div>
-              <h3 className={"text-4xl font-semibold mb-5"}>
+              <h3 className={"text-4xl font-semibold mb-5 max-md:text-2xl max-md:mb-3"}>
                 Разберёмся подробнее, что это значит.
               </h3>
-              <ul className="space-y-2 mb-8">
+              <ul className="space-y-2 mb-8 max-lg:mb-5 max-md:mb-3 max-md:text-sm">
                 <li className="flex items-start gap-3">
                   <CircleCheck size={20} className={"text-white fill-[var(--violet)]/70 shrink-0"}/>
                   <p>
@@ -247,10 +276,10 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                   </p>
                 </li>
               </ul>
-              <h3 className={"text-4xl font-semibold mb-5"}>
+              <h3 className={"text-4xl font-semibold mb-5 max-md:text-2xl max-md:mb-3"}>
                 Разберёмся подробнее, что это значит.
               </h3>
-              <ol className="space-y-2 mb-8">
+              <ol className="space-y-2 mb-8 max-lg:mb-5 max-md:mb-3 max-md:text-sm">
                 <li className="flex items-start gap-3">
                   <div
                     className="min-w-[22px] min-h-[22px] flex items-center justify-center bg-[var(--violet)]/40 text-white font-bold rounded-full text-xs shrink-0">
@@ -276,33 +305,36 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                   </p>
                 </li>
               </ol>
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 Это происходит потому, что фотоны в лазерном луче синфазны и имеют постоянную фазовую зависимость друг
                 от друга, что позволяет им усиливать друг друга и создавать высококонцентрированный пучок света
                 (лазера).
               </p>
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 Но как эти свойства влияют на работу лазерного станка по металлу?
               </p>
               <Image
-                className={"rounded-3xl mb-5"}
+                className={"rounded-3xl mb-5 max-md:mb-3"}
                 src={'/img/articles/article/article-example.jpg'}
                 width={860}
                 height={574}
                 alt="Как работает станок для лазерной резки металла?"
               />
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 С помощью данных свойств лазерный станок фокусируется в точку диаметром 0,01 мм с плотностью мощности 10
                 Вт и более. Излучение за доли секунды плавит металл в точке, диаметр которой в 8 раз меньше
                 человеческого волоса!
               </p>
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 По методу воздействия лазерная резка металла разделяется на два основных способа: резку плавлением и
                 сублимационную резку.
               </p>
-              <table className="w-full text-sm bg-[var(--gray)] rounded-3xl overflow-hidden mb-10">
+              <table className={cn(
+                "w-full text-sm bg-[var(--gray)] rounded-3xl overflow-hidden mb-10",
+                "max-lg:mb-5 max-md:text-xs"
+              )}>
                 <thead className="font-semibold border-b border-gray-500">
-                <tr className="grid grid-cols-12 gap-3 p-5">
+                <tr className="grid grid-cols-12 gap-3 p-5 maxmd:p-2 max-md:gap-2">
                   <th className="col-start-1 col-end-6 text-left">Equipment</th>
                   <th className="col-start-6 col-end-8 text-left">Model</th>
                   <th className="col-start-8 col-end-12 text-left">Model v2</th>
@@ -323,14 +355,21 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                 ))}
                 </tbody>
               </table>
-              <h2 id="laser-different" className={"text-[40px] font-semibold leading-11 mb-5"}>
+              <h2
+                id="laser-different"
+                className={cn(
+                  "text-[40px] font-semibold leading-11 mb-5",
+                  "max-lg:text-3xl max-lg:leading-9 max-lg:mb-3",
+                  "max-md:text-2xl max-md:leading-7"
+                )}
+              >
                 Главные отличия лазерной резки от других методов резки металла
               </h2>
-              <p className={"mb-5"}>
+              <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                 Мы выяснили, что лазерная резка металла является очень эффективным способом резки металла. Но что же
                 отличает именно этот способ от других возможных?
               </p>
-              <ol className="space-y-2 mb-10">
+              <ol className="space-y-2 mb-10 max-lg:mb-5 max-md:mb-3 max-md:text-sm">
                 <li className="flex items-start gap-3">
                   <div
                     className="min-w-[22px] min-h-[22px] flex items-center justify-center bg-[var(--violet)]/40 text-white font-bold rounded-full text-xs shrink-0">
@@ -416,13 +455,20 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                   </p>
                 </li>
               </ol>
-              <h2 id="which-metals-can-be-sliced" className={"text-[40px] font-semibold leading-11 mb-5"}>
+              <h2
+                id="which-metals-can-be-sliced"
+                className={cn(
+                  "text-[40px] font-semibold leading-11 mb-5",
+                  "max-lg:text-3xl max-lg:leading-9 max-lg:mb-3",
+                  "max-md:text-2xl max-md:leading-7"
+                )}
+              >
                 Какие металлы можно резать?
               </h2>
-              <p className={" font-semibold mb-5"}>
+              <p className={"font-semibold mb-5 max-md:text-sm max-md:mb-3"}>
                 Лучше всего для данного способа резки подойдут следующие металлы:
               </p>
-              <ul className="space-y-2 mb-5">
+              <ul className="space-y-2 mb-5 max-md:mb-3 max-md:text-sm">
                 <li className="flex items-start gap-3">
                   <CircleCheck size={20} className={"text-white fill-[var(--violet)]/70 shrink-0"}/>
                   <p>
@@ -472,29 +518,36 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                   </p>
                 </li>
               </ul>
-              <p className={"mb-10"}>
+              <p className={"mb-10 max-lg:mb-5 max-md:text-sm max-md:mb-3"}>
                 При наличии специального модуля станки также смогут резать трубы круглого и прямоугольного сечения.
               </p>
               <div className={"bg-[var(--gray-text)]/15 rounded-3xl p-5"}>
-                <h2 className={"text-[26px] font-semibold mb-7"}>Выводы</h2>
-                <p className={"mb-5"}>
+                <h2 className={"text-2xl font-semibold mb-7 max-lg:mb-5 max-md:text-xl max-md:mb-3"}>Выводы</h2>
+                <p className={"mb-5 max-md:text-sm max-md:mb-3"}>
                   Это происходит потому, что фотоны в лазерном луче синфазны и имеют постоянную фазовую зависимость друг
                   от друга, что позволяет им усиливать друг друга и создавать высококонцентрированный пучок света
                   (лазера).
                 </p>
-                <p>
+                <p className={"max-md:text-sm"}>
                   Но как эти свойства влияют на работу лазерного станка по металлу?
                 </p>
               </div>
             </div>
-            <aside className="col-start-10 col-end-13 pl-5 sticky top-5 h-max">
-              <p className="text-2xl font-semibold mb-5">Оглавление</p>
+            <aside className={cn(
+              "col-start-10 col-end-13 pl-5 sticky top-5 h-max",
+              "max-lg:relative max-lg:order-1 max-lg:col-span-full max-lg:top-0 max-lg:mb-3 max-lg:pl-0"
+            )}>
+              <p className={cn(
+                "text-2xl font-semibold mb-5",
+                "max-md:text-lg max-md:mb-3"
+              )}>Оглавление</p>
               <ul className={"space-y-2"}>
                 <li>
                   <Link
                     className={cn(
                       "flex gap-2 text-sm transition-colors",
                       "hover:text-[var(--violet)] focus:text-[var(--violet)]",
+                      "max-md:text-xs"
                     )}
                     href={"#how-laser-machine-works"}
                   >
@@ -510,6 +563,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                     className={cn(
                       "flex gap-2 text-sm transition-colors",
                       "hover:text-[var(--violet)] focus:text-[var(--violet)]",
+                      "max-md:text-xs"
                     )}
                     href={"#laser-different"}
                   >
@@ -525,6 +579,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                     className={cn(
                       "flex gap-2 text-sm transition-colors",
                       "hover:text-[var(--violet)] focus:text-[var(--violet)]",
+                      "max-md:text-xs"
                     )}
                     href={"#which-metals-can-be-sliced"}
                   >
@@ -539,11 +594,18 @@ export default async function ArticlePage({params}: ArticlePageProps) {
             </aside>
           </div>
         </div>
-        <section className={"pt-5 pb-20"}>
+        <section className={"pt-5 pb-20 max-lg:pb-10"}>
           <div className={"flex justify-between items-center mb-5"}>
-            <h2 className={"text-[40px] font-semibold"}>Похожие статьи</h2>
-            <Button asChild variant="outline"
-                    className={"text-[var(--violet)] rounded-3xl  border-2 !border-[var(--violet-dark)]"}>
+            <h2 className={cn(
+              "text-[40px] font-semibold",
+              "max-lg:text-3xl",
+              "max-md:text-2xl"
+            )}>Похожие статьи</h2>
+            <Button
+              asChild
+              variant="outline"
+              className={"text-[var(--violet)] rounded-3xl border-2 !border-[var(--violet-dark)] max-md:text-xs"}
+            >
               <Link href="/articles">Все статьи</Link>
             </Button>
           </div>

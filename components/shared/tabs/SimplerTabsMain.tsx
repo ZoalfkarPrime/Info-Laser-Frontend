@@ -38,7 +38,7 @@ export const SimplerTabsMain = () => {
       <Container className={"sm:relative"}>
 
         <div className={cn("sm:hidden max-sm:block")}>
-          <div className="relative top-0 bottom-0 flex flex-col place-self-center z-10 py-5 text-black max-w-[564px]">
+          <div className="relative top-0 bottom-0 flex flex-col  z-10 py-5 text-black max-w-[564px]">
             <h2 className="text-5xl font-bold mb-4 max-sm:text-2xl">
             <span className="block text-lg font-normal max-sm:text-sm">
               Первые в мире инновации:
@@ -109,7 +109,8 @@ export const SimplerTabsMain = () => {
           <div className="absolute inset-0 bg-black/40"></div>
 
           <div className={cn("max-sm:hidden")}>
-            <div className="absolute top-0 bottom-0 flex flex-col place-self-center z-10 p-8 text-white max-w-[564px]">
+            <div
+              className="absolute top-0 bottom-0 place-content-center-safe flex flex-col z-10 p-8 text-white max-w-[564px]">
               <h2 className="text-5xl font-bold mb-4">
             <span className="block text-lg font-normal">
               Первые в мире инновации:

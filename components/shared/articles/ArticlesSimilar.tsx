@@ -15,8 +15,9 @@ export const ArticlesSimilar: React.FC<ArticlesGroupListProps> = ({className, ar
         <li
           key={article.id}
           className={cn(
-            "col-span-4",
-            "bg-[var(--gray)] rounded-xl p-3"
+            "col-span-4 bg-[var(--gray)] rounded-xl p-3",
+            "max-lg:col-span-6",
+            "max-sm:col-span-full"
           )}
         >
           <ArticlesCard {...article}/>

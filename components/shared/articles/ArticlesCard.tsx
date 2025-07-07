@@ -26,13 +26,13 @@ export const ArticlesCard: React.FC<Article> = (
           alt={name}
           width={430}
           height={200}
-          className={cn("group-hover:scale-105 group-focus:scale-105 transition-transform duration-300")}
+          className={cn("group-hover:scale-105 group-focus:scale-105 transition-transform duration-300 max-sm:w-full")}
         />
       </Link>
-      <p className={"text-xs text-[#9298AF] mb-2"}>{date}</p>
+      <p className={"text-xs text-[#9298AF] mb-2 max-md:text-xs"}>{date}</p>
       <Link
         className={cn(
-          "block font-semibold text-[22px] text-[var(--violet)] mb-2",
+          "block font-semibold text-xl text-[var(--violet)] mb-2 max-md:text-lg",
           "hover:text-[var(--red)] focus:text-[var(--red)] leading-5 transition-colors duration-300",
           "max-md:text-lg"
         )}
@@ -40,7 +40,7 @@ export const ArticlesCard: React.FC<Article> = (
       >
         <h2>{name}</h2>
       </Link>
-      <p className={"leading-5 max-md:text-sm"}>{description}</p>
+      <p className={"leading-5 max-md:text-xs"}>{description}</p>
     </article>
   );
 }

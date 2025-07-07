@@ -13,13 +13,13 @@ export const ArticleCategories: React.FC<ArticlesGroupListUpd> = ({className, ca
 
   return (
     <aside className={cn("", className)}>
-      <h2 className={"text-[22px] font-semibold mb-3"}>Разделы статей</h2>
+      <h2 className={"text-[22px] font-semibold mb-3 max-md:text-lg"}>Разделы статей</h2>
       <ul className={"mb-4"}>
         {categories.map((section) => {
           const isActive = activeCategory === section.slug;
 
           return (
-            <li key={section.id} className={"not-last:mb-3"}>
+            <li key={section.id} className={"not-last:mb-3 max-md:text-sm"}>
               {isActive ? (
                 <div
                   className={cn(

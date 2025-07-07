@@ -2,10 +2,17 @@ import type {YMapLocationRequest} from "@yandex/ymaps3-types";
 
 export const PHONE = "8 (800) 222-27-41";
 export const EMAIL = "info@infolaser.ru";
+
 export const STORAGE_MSK = "140101, г. Раменское, ул. Михалевича, 4";
 export const STORAGE_SPB = "195213, г. Санкт-Петербург, Дальневосточный проспект, д. 100";
+
 export const PERSONAL_AGREEMENT = "/files/docs/personal-agreement.txt";
 export const REQUISITES = "/files/docs/requisites.txt";
+
+export const SOCIAL_YOUTUBE_LINK = "#";
+export const SOCIAL_TG_LINK = "#";
+export const SOCIAL_WHATSAPP_LINK = "#";
+export const SOCIAL_VK_LINK = "#";
 
 export const deliveryLocation: YMapLocationRequest = {
   center: [35, 57.4],
