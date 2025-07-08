@@ -39,7 +39,7 @@ export const PaginationControls: React.FC<Props> = ({currentPage, totalPages, ba
   const pagesToShow = Array.from({length: totalPages}, (_, i) => i + 1);
 
   return (
-    <Pagination className={cn("mt-15", className)}>
+    <Pagination className={cn("py-15 max-lg:py-10 max-md:py-5", className)}>
       <PaginationContent>
         {currentPage > 1 && (
           <PaginationItem>

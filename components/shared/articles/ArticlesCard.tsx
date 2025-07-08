@@ -11,12 +11,13 @@ export const ArticlesCard: React.FC<Article> = (
     description,
     date,
     image,
-    articleCategory
+    articleCategory,
+    className
   }
 ) => {
 
   return (
-    <article>
+    <article className={cn("", className)}>
       <Link
         className={cn("group block rounded-xl overflow-hidden mb-3")}
         href={`/articles/${articleCategory[0].slug}/${slug}`}
@@ -26,7 +27,7 @@ export const ArticlesCard: React.FC<Article> = (
           alt={name}
           width={430}
           height={200}
-          className={cn("group-hover:scale-105 group-focus:scale-105 transition-transform duration-300 max-sm:w-full")}
+          className={cn("group-hover:scale-105 group-focus:scale-105 transition-transform duration-300 max-md:w-full")}
         />
       </Link>
       <p className={"text-xs text-[#9298AF] mb-2 max-md:text-xs"}>{date}</p>

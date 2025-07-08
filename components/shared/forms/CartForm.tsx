@@ -3,16 +3,13 @@
 import React, {useState} from "react";
 import {cn} from "@/lib/utils";
 import {ClassName} from "@/types/types";
-import {Checkbox} from "@/components/ui/Checkbox";
 import {Input} from "@/components/ui/Input";
 import {Textarea} from "@/components/ui/Textarea";
-import Link from "next/link";
 import PhoneInput from 'react-phone-input-2';
 import {Button} from "@/components/ui/Button";
-import {PERSONAL_AGREEMENT} from "@/lib/variables";
+import {PersonalAgreement} from "@/components/shared/PersonalAgreement";
 
 export const CartForm: React.FC<ClassName> = ({className}) => {
-  const [isChecked, setIsChecked] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -99,31 +96,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
             <Textarea className={"rounded-3xl bg-white"} id={"comment"} placeholder="Введите комментарий"/>
           </li>
         </ul>
-
-        <div className={"flex gap-5"}>
-          <div className="flex items-start gap-2">
-            <Checkbox
-              required id="agree" checked={isChecked}
-              onCheckedChange={(checked) => setIsChecked(checked === true)}
-            />
-            <label htmlFor="agree" className="text-sm dark:text-gray-300 max-md:text-xs">
-              Нажимая на &#34;Оформить предзаказ&#34; я даю{" "}
-              <Link
-                href={PERSONAL_AGREEMENT}
-                className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors"
-              >
-                Согласие на обработку персональных данных
-              </Link>{" "}
-              и{" "}
-              <Link
-                href={PERSONAL_AGREEMENT}
-                className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors"
-              >
-                Политику в отношении обработки персональных данных
-              </Link>
-            </label>
-          </div>
-        </div>
+        <PersonalAgreement/>
         <Button className={cn("rounded-3xl mb-3 w-full py-6 max-md:text-xs")}>Оформить предзаказ</Button>
       </form>
     </div>

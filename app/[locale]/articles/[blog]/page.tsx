@@ -8,6 +8,7 @@ import {IndividualRequestForm} from "@/components/shared/forms/IndividualRequest
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
 import {getTranslations} from "next-intl/server";
 import {getArticles} from "@/api/api";
+import {cn} from "@/lib/utils";
 
 interface CategoryProps {
   params: Promise<{ blog: string }>;
@@ -62,8 +63,7 @@ const BlogPage: React.FC<CategoryProps> = async ({params, searchParams}) => {
       article.articleCategory.some(cat => cat.id === currentCategory.id)
     )
     : [];
-
-
+  
   const totalArticles = categoryArticles.length;
   const totalPages = Math.ceil(totalArticles / itemsPerPage);
 
@@ -77,10 +77,25 @@ const BlogPage: React.FC<CategoryProps> = async ({params, searchParams}) => {
   return (
     <>
       <section>
-        <Container className="pt-5">
-          <div className="grid grid-cols-12 gap-5 mb-10">
+        <Container>
+          <div className="grid grid-cols-12 gap-5 mb-10 max-lg:mb-5 max-md:gap-3 max-md:mb-3">
+            <div className={cn(
+              "col-start-1 col-end-9",
+              "max-xl:col-span-full"
+            )}>
+              <h1 className={cn(
+                "text-5xl font-semibold",
+                "max-lg:text-3xl",
+                "max-md:text-2xl",
+              )}>
+                {currentCategory?.name}
+              </h1>
+            </div>
             <ArticleCategories
-              className="col-start-9 col-end-13"
+              className={cn(
+                "col-start-9 col-end-13",
+                "max-xl:col-span-full"
+              )}
               categories={uniqueCategories}
               activeCategory={currentCategory?.slug}
             />
@@ -88,7 +103,6 @@ const BlogPage: React.FC<CategoryProps> = async ({params, searchParams}) => {
 
           <ArticlesGroupListCategory
             articles={paginatedArticles}
-            className="mb-10"
           />
 
           <PaginationControls
@@ -96,12 +110,11 @@ const BlogPage: React.FC<CategoryProps> = async ({params, searchParams}) => {
             totalPages={totalPages}
             basePath={`/articles/${blog}`}
             query={queryString}
-            className="mb-15"
           />
         </Container>
       </section>
 
-      <IndividualRequestForm className="mb-10"/>
+      <IndividualRequestForm className="mb-10 max-md:mb-5"/>
       <SocialAndOnlineMini/>
     </>
   );

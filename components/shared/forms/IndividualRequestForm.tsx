@@ -6,55 +6,51 @@ import {ClassName} from "@/types/types";
 import {Container} from "@/components/shared/Container";
 import {Input} from "@/components/ui/Input";
 import {Textarea} from "@/components/ui/Textarea";
-import {Checkbox} from "@/components/ui/Checkbox";
 import PhoneInput from "react-phone-input-2";
-import Link from "next/link";
 import {Button} from "@/components/ui/Button";
+import {PersonalAgreement} from "@/components/shared/PersonalAgreement";
 
 export const IndividualRequestForm: React.FC<ClassName> = ({className}) => {
-  const [isChecked, setIsChecked] = useState(true);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
-  
+
   return (
     <section className={cn(
-      "bg-[var(--gray)] py-15",
+      "bg-[var(--gray)] py-15 max-lg:py-7",
       className
     )}>
       <Container>
         <div className={cn(
           "grid grid-cols-12"
         )}>
-          <div className={"col-start-1 col-end-4"}>
-            <h2 className={cn("text-4xl font-semibold mb-5")}>Индивидуальный запрос</h2>
-            <p className={cn("text-[var(--gray-text)]")}>Вы не нашли ответа на свой вопрос напишите нам.</p>
+          <div className={"col-start-1 col-end-4 max-lg:col-span-full max-lg:mb-5 max-md:mb-3"}>
+            <h2 className={cn("text-4xl font-semibold mb-5 max-lg:text-2xl max-md:mb-2")}>Индивидуальный запрос</h2>
+            <p className={cn("text-[var(--gray-text)] max-md:text-sm")}>Вы не нашли ответа на свой вопрос напишите
+              нам.</p>
           </div>
 
-          <form className="col-start-6 col-end-13 space-y-4" onSubmit={handleSubmit}>
-
-            <ul className={"grid grid-col-12 gap-5"}>
-
-              <li className="col-start-1 col-end-6">
+          <form className="col-start-6 col-end-13 space-y-4 max-lg:col-span-full" onSubmit={handleSubmit}>
+            <ul className={"grid grid-col-12 gap-5 max-md:gap-0 max-md:gap-y-3"}>
+              <li className="col-start-1 col-end-6 max-md:col-start-1 max-md:col-end-13">
                 <label
-                  className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2"
+                  className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2 max-md:text-xs"
                   htmlFor={"name"}
                 >
                   Ваше Имя:
                 </label>
                 <Input
-                  className={"rounded-3xl bg-white"}
+                  className={"rounded-3xl bg-white max-md:text-sm"}
                   id={"name"} required type="text" placeholder="Имя" value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </li>
-
-              <li className="col-start-6 col-end-13">
+              <li className="col-start-6 col-end-13 max-md:col-start-1 max-md:col-end-13">
                 <label
-                  className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2"
+                  className="block text-sm font-semibold after:content-['*'] after:text-red-500 after:ml-1 mb-2 max-md:text-xs"
                   htmlFor="tel"
                 >
                   Телефон:
@@ -74,43 +70,26 @@ export const IndividualRequestForm: React.FC<ClassName> = ({className}) => {
                   placeholder="+7 (___) ___-__-__"
                 />
               </li>
-
               <li className="col-start-1 col-end-13">
                 <label
-                  className="block text-sm font-semibold dark:text-gray-300 mb-2"
+                  className="block text-sm font-semibold dark:text-gray-300 mb-2 max-md:text-xs"
                   htmlFor={"comment"}
                 >
                   Комментарий:
                 </label>
-                <Textarea className={"rounded-2xl bg-white"} id={"comment"} placeholder="Введите комментарий"/>
+                <Textarea
+                  className={"rounded-2xl bg-white max-md:text-sm"}
+                  id={"comment"}
+                  placeholder="Введите комментарий"
+                />
               </li>
             </ul>
-
-            <div className={"flex gap-5"}>
-              <div className="flex items-start gap-2">
-                <Checkbox
-                  required id="agree" checked={isChecked}
-                  onCheckedChange={(checked) => setIsChecked(checked === true)}
-                />
-                <label htmlFor="agree" className="text-sm dark:text-gray-300">
-                  Нажимая на &#34;Оформить предзаказ&#34; я даю{" "}
-                  <Link href={"#"} className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors">
-                    Согласие на обработку персональных данных
-                  </Link>{" "}
-                  и{" "}
-                  <Link href={"#"} className="text-[var(--violet)] underline hover:text-[var(--red)] transition-colors">
-                    Политику в отношении обработки персональных данных
-                  </Link>
-                </label>
-              </div>
-            </div>
-
-            <Button type="submit" className="basis-[280px] p-5 rounded-3xl">
+            <PersonalAgreement/>
+            <Button type="submit" className="p-5 rounded-3xl max-md:text-xs">
               Отправить запрос
             </Button>
           </form>
         </div>
-
       </Container>
     </section>
   );

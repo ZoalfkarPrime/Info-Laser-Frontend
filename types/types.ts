@@ -147,7 +147,7 @@ export interface ArticleCategoriesProps {
   slug: string;
 }
 
-export interface Article {
+export interface Article extends ClassName {
   id: number;
   name: string;
   slug: string;
