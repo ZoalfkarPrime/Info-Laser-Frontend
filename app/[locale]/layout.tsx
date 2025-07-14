@@ -11,6 +11,7 @@ import {getProducts} from "@/api/api";
 import {NextIntlClientProvider, hasLocale} from "next-intl";
 import {notFound} from "next/navigation";
 import {routing} from "@/i18n/routing";
+import {CookieBanner} from "@/components/shared/banners/CookieBanner";
 
 type Props = {
   children: ReactNode;
@@ -67,6 +68,7 @@ export default async function LocaleLayout({children, params: paramsPromise}: Pr
           {children}
         </main>
         <Footer/>
+        <CookieBanner/>
       </NextIntlClientProvider>
     </CartProvider>
     </body>
