@@ -59,7 +59,8 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
             'xl:w-max xl:max-w-[250px] xl:rounded-3xl xl:shadow-sm xl:shadow-[#4F26E9]',
             isSpoilerOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95',
             isSpoilerOpen ? "max-md:max-h-full" : "max-md:max-h-0",
-            "max-md:static max-md:overflow-hidden",
+            "max-md:relative max-md:top-0 max-md:-left-[30px] max-md:overflow-hidden",
+            "max-md:shadow-none max-md:border-0 max-md:rounded-none"
           )}
         >
           <ul className="xl:p-1">
@@ -69,7 +70,8 @@ export const HeaderCity: React.FC<ClassName> = ({className}) => {
                   className={cn(
                     'block w-full text-left py-2 px-4 text-sm',
                     'xl:px-3 xl:py-2 xl:rounded-3xl xl:transition-colors xl:duration-300 xl:ease-in-out',
-                    'hover:text-[var(--violet)] xl:hover:bg-[var(--violet-dark)]'
+                    'hover:text-[var(--violet)] xl:hover:bg-[var(--violet-dark)]',
+                    "max-md:px-0"
                   )}
                   onClick={() => setIsSpoilerOpen(false)}
                   href={pathname}

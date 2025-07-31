@@ -54,7 +54,7 @@ export const HeaderNav: React.FC = () => {
           "bg-white ml-auto mr-4",
           "max-xl:fixed max-xl:w-full max-xl:shadow-lg max-xl:border-t max-xl:border-t-gray-300 max-xl:overflow-y-scroll",
           "max-xl:top-[88px] max-xl:left-[-110%] max-xl:max-h-[90dvh]",
-          "max-xl:px-5 max-xl:py-2",
+          "max-xl:px-2 max-xl:py-2",
           "max-xl:transition-all max-xl:duration-200",
           "max-xl:rounded-bl-3xl max-xl:rounded-br-3xl",
           "max-md:top-[66px]",
@@ -75,6 +75,7 @@ export const HeaderNav: React.FC = () => {
           "[&>li]:relative [&>li]:first:static",
           "[&>li]:max-xl:w-full [&>li]:max-xl:py-2 [&>li]:max-xl:border-b [&>li]:max-xl:border-b-gray-500",
           "[&>li>a]:block [&>li>a]:px-2 [&>li>a]:transition-colors",
+          "[&>li>a]:max-md:text-sm [&>li>button]:max-md:text-sm",
           "[&>li>a]:xl:py-2 [&>li>a]:xl:text-sm [&>li>a]:xl:rounded-3xl [&>li>a]:xl:hover:bg-[var(--violet-dark)]",
           "[&>li>a]:max-xl:w-full [&>li>a]:max-xl:justify-between [&>li>a]:max-xl:font-bold",
         )}>

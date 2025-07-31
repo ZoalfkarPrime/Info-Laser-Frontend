@@ -103,7 +103,7 @@ export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
           <Container
             className={cn(
               "relative xl:py-5 h-full transition-all duration-300 ease-in-out",
-              "max-lg: px-1",
+              "max-xl:!px-1",
               isSpoilerOpen ? "top-0 " : "-top-3"
             )}
           >

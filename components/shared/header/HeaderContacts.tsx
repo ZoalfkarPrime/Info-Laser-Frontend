@@ -18,7 +18,10 @@ export const HeaderContacts: React.FC<ClassName> = ({className}) => {
 
         <Link
           href={`tel:${PHONE}`}
-          className="flex items-center gap-x-2 hover:text-[var(--violet)] font-semibold transition-colors"
+          className={cn(
+            "flex items-center gap-x-2 hover:text-[var(--violet)] font-semibold transition-colors",
+            "max-md:text-sm"
+          )}
         >
           <Phone size={18}/>
           {PHONE}

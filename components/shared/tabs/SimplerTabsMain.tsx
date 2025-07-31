@@ -38,7 +38,7 @@ export const SimplerTabsMain = () => {
       <Container className={"sm:relative"}>
 
         <div className={cn("sm:hidden max-sm:block")}>
-          <div className="relative top-0 bottom-0 flex flex-col  z-10 py-5 text-black max-w-[564px]">
+          <div className="relative top-0 bottom-0 flex flex-col z-10 py-5 text-black">
             <h2 className="text-5xl font-bold mb-4 max-sm:text-2xl">
             <span className="block text-lg font-normal max-sm:text-sm">
               Первые в мире инновации:
@@ -59,8 +59,9 @@ export const SimplerTabsMain = () => {
                     "flex gap-2",
                     "whitespace-nowrap",
                     "max-sm:overflow-x-auto max-sm:overflow-y-hidden",
-                    "max-sm:max-w-[320px] max-sm:justify-start",
+                    "max-sm:max-w-full max-sm:justify-start",
                     "max-sm:-mx-2 max-sm:px-2 max-sm:gap-1",
+                    "max-sm:py-5"
                   )}
                 >
                   {tabsData.map((tab) => (
@@ -93,7 +94,12 @@ export const SimplerTabsMain = () => {
           </div>
         </div>
 
-        <div className="relative rounded-3xl sm:min-h-[600px] max-sm:min-h-[300px] overflow-hidden">
+        <div className={cn(
+          "relative rounded-3xl overflow-hidden",
+          "max-md:rounded-[20px]",
+          "sm:min-h-[600px]",
+          "max-sm:min-h-[300px]"
+        )}>
           <video
             key={currentTab.tabVideoName}
             autoPlay

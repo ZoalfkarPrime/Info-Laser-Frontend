@@ -32,7 +32,7 @@ export const ProductReturn: React.FC<ProductReturnProps> = ({className, data}) =
             "max-md:bg-[url('/img/delivery/delivery-product-return-mobile.jpg')] max-md:mb-3"
           )}>
           </header>
-          <div className={"px-5 mb-10"}>
+          <div className={"mb-10"}>
             <h2 className={cn(
               "text-4xl font-semibold mb-10",
               "max-xl:text-3xl max-xl:mb-5",

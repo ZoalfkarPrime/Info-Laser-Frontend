@@ -11,7 +11,7 @@ export const SocialBannerMini: React.FC<ClassName> = ({className}) => {
         className={cn(
           "grid grid-cols-12 bg-[url('/img/banners/bg/social-banner-mini.jpg')] bg-no-repeat bg-cover rounded-4xl overflow-hidden min-h-[336px]",
           "md:px-10",
-          "max-md:pt-6 max-md:px-5 max-md:bg-[url('/img/banners/bg/social-banner-mini-mobile.jpg')]"
+          "max-md:pt-6 max-md:px-5 max-md:bg-[url('/img/banners/bg/social-banner-mini-mobile.jpg')] max-md:rounded-[20px]"
         )}
       >
         <div className={cn(

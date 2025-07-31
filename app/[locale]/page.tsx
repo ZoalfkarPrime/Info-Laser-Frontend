@@ -9,6 +9,7 @@ import {ArticlesOnMain} from "@/components/shared/articles/ArticlesOnMain";
 import {getProducts} from "@/api/api";
 import {getTranslations} from "next-intl/server";
 import {HitsProductsSlider} from "@/components/shared/carousels/HitsProductsSlider";
+import {VideoReviews} from "@/components/shared/reviews/VideoReviews";
 
 export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
   const {locale} = await paramsPromise;
@@ -26,21 +27,14 @@ export default async function MainPage() {
   return (
     <>
       <BannerMain/>
-
       <NewProductsSlider products={products}/>
-
       <PartnersSlider/>
-
       <UniqMachinesSlider products={products}/>
-
       <OfflineOrOnlineMain/>
-
       <SimplerTabsMain/>
-
       <HitsProductsSlider products={products}/>
-
       <AboutMain/>
-
+      <VideoReviews/>
       <ArticlesOnMain/>
     </>
   );
