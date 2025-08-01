@@ -13,16 +13,22 @@ export const BannerMain = () => {
     {
       id: 1,
       name: 'banner-1',
-      img_url: '/img/banners/main-banner/1.jpg',
+      img_url_desc: '/img/banners/main-banner/main-banner.jpg',
       width: 1920,
-      height: 600
+      height: 600,
+      img_url_mobile: '/img/banners/main-banner/main-banner-mobile.jpg',
+      width_mobile: 642,
+      height_mobile: 900
     },
     {
       id: 2,
       name: 'banner-2',
-      img_url: '/img/banners/main-banner/1.jpg',
+      img_url_desc: '/img/banners/main-banner/main-banner.jpg',
       width: 1920,
-      height: 600
+      height: 600,
+      img_url_mobile: '/img/banners/main-banner/main-banner-mobile.jpg',
+      width_mobile: 642,
+      height_mobile: 900
     }
   ]
 
@@ -40,7 +46,6 @@ export const BannerMain = () => {
         //   }),
         // ]}
       >
-
         <CarouselContent>
           {data.map((item) => {
             return (
@@ -50,23 +55,26 @@ export const BannerMain = () => {
                   className={"absolute w-full h-full bg-inherit/0 hover:bg-inherit/0 focus:bg-inherit/0"}
                 />
                 <Image
-                  src={item.img_url}
+                  src={item.img_url_desc}
                   width={item.width}
                   height={item.height}
                   alt={item.name}
-                  className="max-h-[600px] w-full object-cover"
+                  className="max-h-[600px] w-full object-cover max-[650px]:hidden"
+                />
+                <Image
+                  src={item.img_url_mobile}
+                  width={item.width}
+                  height={item.height}
+                  alt={item.name}
+                  className="max-h-[600px] w-full object-fill min-[650px]:hidden"
                 />
               </CarouselItem>
             )
           })}
         </CarouselContent>
-
         <CarouselPrevious className="left-3"/>
-
         <CarouselNext className="right-3"/>
-
         <CarouselDots className="absolute bottom-4 left-0 right-0"/>
-
       </Carousel>
     </section>
   );

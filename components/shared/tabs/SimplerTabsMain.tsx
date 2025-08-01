@@ -101,6 +101,7 @@ export const SimplerTabsMain = () => {
           "max-sm:min-h-[300px]"
         )}>
           <video
+            playsInline
             key={currentTab.tabVideoName}
             autoPlay
             loop

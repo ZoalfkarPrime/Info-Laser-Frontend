@@ -60,7 +60,6 @@ export const ProductCard: React.FC<Product> = (
         className={cn(
           "flex justify-center mb-2 overflow-hidden min-h-[220px]",
           "max-md:min-h-[200px]",
-          "max-[420px]:!min-h-[150px]",
         )}
         href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}
         onClick={onClick}
