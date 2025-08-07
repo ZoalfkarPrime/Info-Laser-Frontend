@@ -154,9 +154,12 @@ export const ProductCard: React.FC<Product> = (
         </dl>
 
         <div className={"flex items-center justify-between gap-3 mb-3 max-md:gap-1"}>
-          <Button asChild className='flex-1 rounded-3xl py-5 max-lg:text-xs max-md:py-3 max-md:px-1'>
-            <Link href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}>Узнать больше</Link>
-          </Button>
+
+          <Link className={"flex-1"} href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}>
+            <Button className='rounded-3xl py-5 max-lg:text-xs max-md:py-3 max-md:px-3 w-full'>
+              Узнать больше
+            </Button>
+          </Link>
 
           <AddToCartBtn
             product={{

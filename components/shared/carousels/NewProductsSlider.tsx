@@ -15,14 +15,14 @@ export const NewProductsSlider: React.FC<Props> = ({className, products}) => {
   );
 
   return (
-    <section className={cn("py-7 max-xl:overflow-hidden", className)}>
+    <section className={cn("py-7 max-xl:overflow-hidden max-md:py-5", className)}>
       <Container>
         <h2 className="text-4xl font-bold text-center mb-5 max-xl:text-3xl max-md:text-2xl max-md:mb-3">
           Новинки оборудования InfoLaser
         </h2>
 
         <Carousel className={cn("max-xl:[&>div]:overflow-visible")} opts={{align: "start"}}>
-          <CarouselContent className="py-5 -ml-5">
+          <CarouselContent className="-ml-5">
             {newProducts.map((product) => (
               <CarouselItem
                 key={product.id}

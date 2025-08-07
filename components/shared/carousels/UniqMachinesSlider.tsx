@@ -38,16 +38,25 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
   if (!activeCategory) return null;
 
   return (
-    <section className={cn("py-10", className)}>
+    <section className={cn(
+      "py-10",
+      "max-md:overflow-hidden max-md:py-3",
+      className
+    )}>
       <Container>
-        <h2 className="text-4xl font-bold text-center mb-5">
+        <h2 className={cn(
+          "text-4xl font-bold text-center mb-5",
+          "max-xl:text-3xl",
+          "max-md:text-2xl"
+        )}>
           Представляем самые передовые и универсальные машины
         </h2>
 
         <Tabs value={activeCategory} onValueChange={setActiveCategory} className="flex flex-col">
           <TabsList className={cn("rounded-3xl")} asChild>
             <ul className={cn(
-              "flex place-self-center gap-x-1 mb-3 h-auto rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2"
+              "flex place-self-center gap-x-1 mb-3 h-auto rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2",
+              "max-xl:place-self-start max-xl:justify-start max-xl:overflow-x-auto max-xl:overflow-y-hidden max-xl:max-w-full"
             )}>
               {uniqueCategories.map(category => (
                 <li key={category.id}>
@@ -57,7 +66,8 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
                       "rounded-3xl px-3 py-2 mb-0 hover:cursor-pointer",
                       activeCategory === String(category.id)
                         ? "data-[state=active]:bg-[var(--violet)]/80 data-[state=active]:text-white"
-                        : "text-black"
+                        : "text-black",
+                      "max-xl:px-2"
                     )}
                   >
                     {category.name}
@@ -74,25 +84,46 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
 
             return (
               <TabsContent asChild key={category.id} value={String(category.id)}>
-                <Carousel opts={{align: "start"}}>
-                  <CarouselContent>
+                <Carousel className={"max-md:[&>div]:overflow-visible"} opts={{align: "start"}}>
+                  <CarouselContent className={cn(
+                    "-ml-5",
+                    "max-md:-ml-2"
+                  )}>
                     {categoryProducts.map(product => (
-                      <CarouselItem key={product.id} className="basis-1/3">
+                      <CarouselItem
+                        key={product.id}
+                        className={cn(
+                          "basis-1/3 pl-5",
+                          "max-xl:basis-1/2",
+                          "max-md:basis-[85%] max-md:pl-2",
+                        )}
+                      >
                         <Link
                           href={`/catalog/${category.slug}/${product.slug}`}
                           className={cn(
-                            "relative flex flex-col h-full bg-[var(--gray)] border border-[#ABB4D7]/10 p-5 rounded-3xl overflow-hidden group"
+                            "relative flex flex-col h-full bg-[var(--gray)] border border-[#ABB4D7]/10 p-5 rounded-3xl overflow-hidden group",
+                            "max-md:rounded-[20px]"
                           )}
                         >
-                          <div className="z-20">
-                            <p className="text-[var(--violet)] uppercase text-sm mb-3 group-hover:text-white">
+                          <div className="flex flex-col h-full z-20">
+                            <p
+                              className={cn(
+                                "text-[var(--violet)] uppercase text-xs mb-3 group-hover:text-white",
+                                "max-md:text-[10px] max-md:mb-2"
+                              )}>
                               {product.laser_suppliers?.name || "Wattsan"}
                             </p>
-                            <p className="text-2xl leading-6 mb-5 group-hover:text-white">
+                            <p className={cn(
+                              "text-2xl leading-6 mb-5 group-hover:text-white",
+                              "max-md:text-lg"
+                            )}>
                               {product.name}
                             </p>
 
-                            <ul className={cn("flex flex-wrap text-sm gap-2 mb-3 group-hover:text-white")}>
+                            <ul className={cn(
+                              "flex flex-wrap text-xs gap-2 mb-3 group-hover:text-white",
+                              "max-md:text-[10px]"
+                            )}>
                               {product.characteristics
                                 ?.filter(c => Boolean(c.is_featured))
                                 .map((c, idx) => (
@@ -118,7 +149,12 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
                                 />
                               ))}
 
-                            <Button className="rounded-3xl place-self-start">Узнать больше</Button>
+                            <Button className={cn(
+                              "text-xs rounded-3xl place-self-start mt-auto",
+                              "max-md:text-[10px] max-md:h-7"
+                            )}>
+                              Узнать больше
+                            </Button>
                           </div>
 
                           <video
@@ -139,8 +175,19 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
 
                   {categoryProducts.length >= 3 && (
                     <>
-                      <CarouselPrevious className={cn("-left-[40px] max-2xl:-left-[20px]", className)}/>
-                      <CarouselNext className={cn("-right-[40px] max-2xl:-right-[20px]", className)}/>
+                      <CarouselPrevious
+                        className={cn(
+                          "-left-[40px]",
+                          "max-xl:left-[20px]",
+                          "max-md:left-[10px]",
+                          className
+                        )}/>
+                      <CarouselNext className={cn(
+                        "-right-[40px]",
+                        "max-xl:right-[20px]",
+                        "max-md:right-[10px]",
+                        className
+                      )}/>
                     </>
                   )}
                 </Carousel>

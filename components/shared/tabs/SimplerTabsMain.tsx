@@ -34,11 +34,11 @@ export const SimplerTabsMain = () => {
   const currentTab = tabsData.find((tab) => tab.tabName === selectedTab) ?? tabsData[0];
 
   return (
-    <section className="py-7">
+    <section className="py-7 max-md:py-3">
       <Container className={"sm:relative"}>
 
         <div className={cn("sm:hidden max-sm:block")}>
-          <div className="relative top-0 bottom-0 flex flex-col z-10 py-5 text-black">
+          <div className="relative top-0 bottom-0 flex flex-col z-10 py-5 text-black max-md:py-2">
             <h2 className="text-5xl font-bold mb-4 max-sm:text-2xl">
             <span className="block text-lg font-normal max-sm:text-sm">
               Первые в мире инновации:
