@@ -11,6 +11,7 @@ import {useClickAway, useSet} from "react-use";
 import {FiltersGroup} from "@/components/shared/filters/FiltersGroup";
 import {ListFilterPlus, X} from "lucide-react";
 import {Overlay} from "@/components/shared/Overlay";
+import {Button} from "@/components/ui/Button";
 
 interface FiltersProps {
   className?: string;
@@ -222,13 +223,14 @@ export const Filters: React.FC<FiltersProps> = () => {
           onClickCheckbox={toggleManufacturer}
         />
 
-        <button
+        <Button
           type="button"
-          className="mt-4 w-full bg-red-500 text-white py-2 rounded-3xl hover:bg-red-600 transition-colors duration-300 hover:cursor-pointer"
+          variant={"red"}
+          className={"w-full mt-4"}
           onClick={resetAllFiltersAndSorting}
         >
           Сбросить фильтр
-        </button>
+        </Button>
       </form>
 
       <button

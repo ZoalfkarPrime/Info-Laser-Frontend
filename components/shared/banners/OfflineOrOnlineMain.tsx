@@ -30,7 +30,7 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
               50 городах России или по видеосвязи.
             </p>
             <SocialList className={"justify-center mb-6 max-md:mb-3"}/>
-            <DemoBtn className={cn("rounded-3xl")} title={"Записаться на демонстрацию"}/>
+            <DemoBtn className={"place-self-center"} title={"Записаться на демонстрацию"}/>
           </div>
         </div>
       </Container>

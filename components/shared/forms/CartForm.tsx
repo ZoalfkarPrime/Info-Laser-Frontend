@@ -97,7 +97,14 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
           </li>
         </ul>
         <PersonalAgreement btnName={"Оформить предзаказ"}/>
-        <Button className={cn("rounded-3xl mb-3 w-full py-6 max-md:text-xs")}>Оформить предзаказ</Button>
+        <Button
+          variant={"violet"}
+          className={cn(
+            "w-full"
+          )}
+        >
+          Оформить предзаказ
+        </Button>
       </form>
     </div>
   );

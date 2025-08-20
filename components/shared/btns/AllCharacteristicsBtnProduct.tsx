@@ -20,8 +20,9 @@ export const AllCharacteristicsBtn: React.FC<ClassName> = ({className}) => {
       href="#"
       onClick={handleScrollToSpecs}
       className={cn(
-        "text-[var(--violet)] inline-block transition-colors",
+        "text-sm text-[var(--violet)] inline-block transition-colors",
         "hover:text-[var(--red)]",
+        "max-md:text-xs",
         className
       )}
     >

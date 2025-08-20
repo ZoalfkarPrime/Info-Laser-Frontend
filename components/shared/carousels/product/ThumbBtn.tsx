@@ -13,7 +13,7 @@ export const ThumbBtn: React.FC<ThumbProps> = ({selected, onClick, image}) => {
   return (
     <div
       className={cn(
-        "w-20 h-20 border rounded-2xl overflow-hidden transition",
+        "w-24 h-23 border rounded-2xl overflow-hidden transition",
         selected ? "!border-[var(--violet)]" : ""
       )}>
 

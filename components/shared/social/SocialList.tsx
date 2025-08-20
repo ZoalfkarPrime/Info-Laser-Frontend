@@ -12,7 +12,11 @@ export const SocialList: React.FC<ClassName> = ({className}) => {
       className
     )}>
       <li>
-        <Link className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"} href={SOCIAL_YOUTUBE_LINK}>
+        <Link
+          target={"_blank"}
+          className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"}
+          href={`https://www.youtube.com/${SOCIAL_YOUTUBE_LINK}`}
+        >
           <Image
             className={"transition-transform duration-300"}
             alt={"icon"}
@@ -22,7 +26,7 @@ export const SocialList: React.FC<ClassName> = ({className}) => {
         </Link>
       </li>
       <li>
-        <Link className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"} href={SOCIAL_TG_LINK}>
+        <Link target={"_blank"} className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"} href={SOCIAL_TG_LINK}>
           <Image
             className={"transition-transform duration-300"}
             alt={"icon"}
@@ -32,7 +36,8 @@ export const SocialList: React.FC<ClassName> = ({className}) => {
         </Link>
       </li>
       <li>
-        <Link className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"} href={SOCIAL_WHATSAPP_LINK}>
+        <Link target={"_blank"} className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"}
+              href={SOCIAL_WHATSAPP_LINK}>
           <Image
             className={"transition-transform duration-300"}
             alt={"icon"}
@@ -42,7 +47,7 @@ export const SocialList: React.FC<ClassName> = ({className}) => {
         </Link>
       </li>
       <li>
-        <Link className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"} href={SOCIAL_VK_LINK}>
+        <Link target={"_blank"} className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"} href={SOCIAL_VK_LINK}>
           <Image
             className={"transition-transform duration-300"}
             alt={"icon"}

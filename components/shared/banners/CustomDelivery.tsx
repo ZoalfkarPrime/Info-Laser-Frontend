@@ -27,10 +27,7 @@ export const CustomDelivery: React.FC<ClassName> = ({className}) => {
             )}>
               Предварительная оплата 50%, остальная оплата после поступления заказа
             </p>
-            <CallbackBtn
-              className={cn("rounded-3xl hover:bg-[var(--violet)]/80 focus:bg-[var(--violet)]/80")}
-              title={"Узнать больше"}
-            />
+            <CallbackBtn variant={"violet"} title={"Узнать больше"}/>
           </div>
         </div>
       </Container>

@@ -76,7 +76,7 @@ export const DialogContentCallbackModal = () => {
             <Textarea className={"rounded-2xl max-md:text-xs"} id={"comment"} placeholder="Введите комментарий"/>
           </div>
           <PersonalAgreement btnName={"Отправить запрос"}/>
-          <Button type="submit" className="rounded-3xl py-5 mt-5 max-md:text-xs">
+          <Button type="submit" className="mt-5">
             Отправить запрос
           </Button>
         </form>

@@ -106,10 +106,10 @@ export const ProductReturn: React.FC<ProductReturnProps> = ({className, data}) =
                 к вашему персональному менеджеру.
               </p>
               <div className={"flex items-center gap-8 max-md:flex-col max-md:gap-3"}>
-                <DemoBtn title={"Написать в тех. поддержку"} className={"rounded-3xl py-5"}/>
+                <DemoBtn title={"Написать в тех. поддержку"} className={""}/>
                 <Link
                   href={`tel:${PHONE}}`}
-                  className="flex items-center gap-x-2 hover:text-[var(--violet)] font-semibold transition-colors"
+                  className="flex items-center gap-x-2 hover:text-[var(--violet)] focus:text-[var(--violet)] font-semibold transition-colors"
                 >
                   <Phone size={18}/>
                   {PHONE}

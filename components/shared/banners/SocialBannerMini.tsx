@@ -15,7 +15,7 @@ export const SocialBannerMini: React.FC<ClassName> = ({className}) => {
         )}
       >
         <div className={cn(
-          "col-start-1 col-end-7 self-center",
+          "col-start-1 col-end-8 self-center",
           "max-md:col-span-full max-md:text-center max-md:justify-self-center max-md:self-start"
         )}>
           <div className={"text-white"}>

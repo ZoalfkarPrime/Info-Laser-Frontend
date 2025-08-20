@@ -1,9 +1,9 @@
 import Link from "next/link";
 import {ChevronLeft} from "lucide-react";
-import {Button} from "@/components/ui/Button";
 import React from "react";
 import {ArticleCategoriesProps, ClassName} from "@/types/types";
 import {cn} from "@/lib/utils";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 interface ArticlesGroupListUpd extends ClassName {
   categories: ArticleCategoriesProps[];
@@ -37,10 +37,9 @@ export const ArticleCategoriesMain: React.FC<ArticlesGroupListUpd> = ({className
           </li>
         ))}
       </ul>
-      <Button asChild variant="outline"
-              className={"text-[var(--violet)] rounded-3xl  border-2 !border-[var(--violet-dark)] max-md:text-xs"}>
-        <Link href="/articles">Все статьи</Link>
-      </Button>
+      <UniqButtonLink href="/articles" variant="violetOutline">
+        Все статьи
+      </UniqButtonLink>
     </aside>
   );
 }

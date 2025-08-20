@@ -67,7 +67,7 @@ export const AdjustmentForClients: React.FC<AdjustmentForClientsProps> = ({data,
                 лазерного оборудования.
               </p>
             </div>
-            <DemoBtn className={"rounded-3xl"} title={"Заявка на сервис"}/>
+            <DemoBtn title={"Заявка на сервис"}/>
           </div>
         </div>
       </Container>

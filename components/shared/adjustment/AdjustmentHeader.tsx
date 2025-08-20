@@ -26,7 +26,7 @@ export const AdjustmentHeader: React.FC<ClassName> = () => {
             <p className={"mb-5 max-md:text-sm"}>Сервис нашей компании помогает клиентам уже почти 10 лет. За это время
               мы накопили много знаний и практического опыта работы с самыми различными моделями лазерного оборудования.
             </p>
-            <DemoBtn className={"rounded-3xl max-md:text-xs"} title={"Заявка на сервис"}/>
+            <DemoBtn title={"Заявка на сервис"}/>
           </div>
         </div>
       </Container>

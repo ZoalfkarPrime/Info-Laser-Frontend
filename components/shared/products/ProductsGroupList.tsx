@@ -25,7 +25,7 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({products, c
           </li>
           {index === 5 && (
             <li className="col-span-full">
-              <OfflineOrOnlineMain className={"[&>div]:px-0 [&>div>div]:py-5"}/>
+              <OfflineOrOnlineMain className={"[&>div]:px-0 [&>div>div]:py-5 [&>div>div>div]:max-w-[500px]"}/>
             </li>
           )}
           {index === 11 && (

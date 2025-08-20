@@ -64,7 +64,7 @@ export const VideoReviews: React.FC<ClassName> = ({className}) => {
         <Carousel className={cn("max-xl:[&>div]:overflow-visible")} opts={{align: "start"}}>
           <CarouselContent className={cn(
             "-ml-5",
-            "max-md:'-ml-2'"
+            "max-md:-ml-2"
           )}>
             {data.map((item) => (
               <CarouselItem

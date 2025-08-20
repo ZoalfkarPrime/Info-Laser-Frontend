@@ -1,11 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import {cn, formatPrice} from "@/lib/utils";
 import {Check, Clock3, Star} from "lucide-react";
-import {Button} from "@/components/ui/Button";
 import {Product} from "@/types/types";
 import {AddToCartBtn} from "@/components/shared/btns/AddToCartBtn";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 export const ProductCard: React.FC<Product> = (
   {
@@ -155,11 +155,13 @@ export const ProductCard: React.FC<Product> = (
 
         <div className={"flex items-center justify-between gap-3 mb-3 max-md:gap-1"}>
 
-          <Link className={"flex-1"} href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}>
-            <Button className='rounded-3xl py-5 max-lg:text-xs max-md:py-3 max-md:px-3 w-full'>
-              Узнать больше
-            </Button>
-          </Link>
+          <UniqButtonLink
+            variant={"violet"}
+            className={"flex-1 justify-center"}
+            href={`/catalog/${categories?.[0]?.slug ?? "default-category"}/${slug}`}
+          >
+            Узнать больше
+          </UniqButtonLink>
 
           <AddToCartBtn
             product={{

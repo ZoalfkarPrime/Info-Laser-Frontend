@@ -197,7 +197,7 @@ export const Footer: React.FC<ClassName> = ({className}) => {
             </div>
 
             <CallbackBtn
-              className="text-white rounded-3xl border border-gray-600 mb-4 bg-[#ABB4D71A]"
+              className="py-3 px-4 text-white border-gray-600 mb-4 bg-[#ABB4D71A] hover:text-[var(--red)] focus:text-[var(--red)] transition-colors duration-300"
               title={"Обратный звонок"}
             />
 

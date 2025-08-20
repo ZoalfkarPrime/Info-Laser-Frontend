@@ -26,7 +26,7 @@ export const OfflineOrOnlineMini: React.FC<ClassName> = ({className}) => {
             )}>
               Продемонстрируем работу оборудования любым удобным способом: в более 50 городах России или по видеосвязи.
             </p>
-            <DemoBtn className={"rounded-3xl py-5 mb-3"} title={"Записаться на демонстрацию"}/>
+            <DemoBtn className={"mb-3"} title={"Записаться на демонстрацию"}/>
             <SocialList className={"max-md:justify-center"}/>
           </div>
         </div>

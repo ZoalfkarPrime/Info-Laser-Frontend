@@ -3,7 +3,7 @@ import {Category, ClassName} from "@/types/types";
 import {cn} from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import {Button} from "@/components/ui/Button";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 interface AccessoriesProps extends ClassName {
   accessoryCategories: Category[];
@@ -54,16 +54,13 @@ export const AccessoriesSimpleList: React.FC<AccessoriesProps> = async ({accesso
 
                 <p className={"text-sm mb-5 max-md:mb-2 max-md:text-xs"}>{category.description}</p>
 
-                <Link href={`/catalog/accessories/${category.slug}`}>
-                  <Button
-                    className={cn(
-                      "inline-block rounded-3xl bg-[var(--violet)] text-white",
-                      "max-md:text-xs"
-                    )}
-                  >
-                    Смотреть все
-                  </Button>
-                </Link>
+                <UniqButtonLink
+                  variant={"violet"}
+                  href={`/catalog/accessories/${category.slug}`}
+                  className={"py-2"}
+                >
+                  Смотреть все
+                </UniqButtonLink>
               </li>
             ))}
           </ul>

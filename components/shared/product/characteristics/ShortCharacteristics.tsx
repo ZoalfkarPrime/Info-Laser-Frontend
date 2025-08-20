@@ -27,7 +27,11 @@ export const ShortCharacteristics: React.FC<ShortCharacteristicsProps> = ({class
         const secondColumn = limited.slice(midpoint);
 
         return (
-          <dl className={cn("flex gap-x-10 text-sm mb-3", className)}>
+          <dl className={cn(
+            "flex gap-x-10 text-sm mb-3",
+            "max-md:text-xs",
+            className
+          )}>
             {[firstColumn, secondColumn].map((column, i) => (
               <div key={i} className="flex-1 space-y-1">
                 {column.map((spec, index) => (

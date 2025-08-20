@@ -1,5 +1,4 @@
 import * as React from "react";
-import {Button} from "@/components/ui/Button";
 import {useCarousel} from "@/components/ui/Carousel";
 import {cn} from "@/lib/utils";
 
@@ -38,10 +37,10 @@ export const CarouselDots = React.forwardRef<
       >
         <div className={" inline-flex items-center rounded-full p-1 bg-[var(--violet-dark)]"}>
           {Array.from({length: numberOfSlides}, (_, i) => (
-            <Button
+            <button
               key={i}
               className={cn(
-                "mx-1 h-2 w-2 rounded-full p-0",
+                "mx-1 h-2 w-2 rounded-full !p-0 transition-all duration-300",
                 i === currentSlide
                   ? "w-6 transform bg-[var(--violet)]"
                   : "bg-white hover:bg-[var(--violet)]"

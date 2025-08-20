@@ -8,8 +8,8 @@ import {SocialList} from "@/components/shared/social/SocialList";
 import {ChevronLeft, CircleCheck} from "lucide-react";
 import Link from "next/link";
 import {ArticlesSimilar} from "@/components/shared/articles/ArticlesSimilar";
-import {Button} from "@/components/ui/Button";
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 interface ArticlePageProps {
   params: Promise<{ article: string; blog: string }>;
@@ -25,7 +25,7 @@ export async function generateMetadata(
   const t = await getTranslations({locale});
 
   const oneArticle = await getOneArticleBySlug(article);
-  
+
   return {
     title: oneArticle?.name || t("blogMetaTitle"),
     description: t("blogMetaDescription"),
@@ -601,13 +601,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
               "max-lg:text-3xl",
               "max-md:text-2xl"
             )}>Похожие статьи</h2>
-            <Button
-              asChild
-              variant="outline"
-              className={"text-[var(--violet)] rounded-3xl border-2 !border-[var(--violet-dark)] max-md:text-xs"}
-            >
-              <Link href="/articles">Все статьи</Link>
-            </Button>
+            <UniqButtonLink variant="violetOutline" href="/articles">Все статьи</UniqButtonLink>
           </div>
           <ArticlesSimilar articles={data_articles.allArticles}/>
         </section>

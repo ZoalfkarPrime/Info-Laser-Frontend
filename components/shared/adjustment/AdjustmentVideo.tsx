@@ -4,9 +4,8 @@ import React, {useEffect, useState} from "react";
 import {cn} from "@/lib/utils";
 import {ClassName} from "@/types/types";
 import {Play, X} from "lucide-react";
-import Link from "next/link";
-import {Button} from "@/components/ui/Button";
 import {YoutubeIcon} from "@/components/shared/icons/social/YoutubeIcon";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 export const AdjustmentVideo: React.FC<ClassName> = ({className}) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -53,17 +52,14 @@ export const AdjustmentVideo: React.FC<ClassName> = ({className}) => {
           </div>
         </div>
 
-
-        <Button
-          asChild
-          className={cn(
-            "inline-flex items-center gap-2 text-white bg-[var(--violet)] rounded-3xl transition-colors px-3 py-5 max-md:text-xs",
-          )}>
-          <Link href={`https://www.youtube.com/${CHANNEL_ID}`}>
-            <YoutubeIcon className={"fill-white"}/>
-            Наш канал
-          </Link>
-        </Button>
+        <UniqButtonLink
+          className={"gap-x-2 px-3 py-2"}
+          variant={"violet"}
+          href={`https://www.youtube.com/${CHANNEL_ID}`}
+        >
+          <YoutubeIcon className={"fill-white"}/>
+          Наш канал
+        </UniqButtonLink>
       </div>
 
 

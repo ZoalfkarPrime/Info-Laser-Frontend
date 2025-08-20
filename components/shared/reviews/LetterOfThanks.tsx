@@ -143,13 +143,7 @@ export const LetterOfThanks: React.FC<ClassName> = ({className}) => {
                     </div>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant="outline" className={cn(
-                          "relative flex items-center justify-center border-2 text-sm rounded-3xl py-2 px-4",
-                          "hover:cursor-pointer hover:bg-[var(--violet)]/30 hover:text-[var(--violet)] hover:[&>svg]:text-[var(--violet)]",
-                          "focus:bg-[var(--violet)]/30 focus:text-[var(--violet)] focus:[&>svg]:text-[var(--violet)]",
-                          "max-xl:text-xs",
-                          className
-                        )}>
+                        <Button variant={"violetOutline"}>
                           Посмотреть скан
                         </Button>
                       </DialogTrigger>

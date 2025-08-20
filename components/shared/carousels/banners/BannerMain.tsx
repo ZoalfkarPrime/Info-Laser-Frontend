@@ -5,6 +5,7 @@ import Image from "next/image";
 import {CarouselDots} from "@/components/shared/carousels/CarouselDots";
 import React from "react";
 import {DemoBtn} from "@/components/shared/btns/DemoBtn";
+import {cn} from "@/lib/utils";
 // import Autoplay from "embla-carousel-autoplay";
 
 export const BannerMain = () => {
@@ -52,7 +53,10 @@ export const BannerMain = () => {
               <CarouselItem key={item.id}>
                 <DemoBtn
                   title={""}
-                  className={"absolute w-full h-full bg-inherit/0 hover:bg-inherit/0 focus:bg-inherit/0"}
+                  className={cn(
+                    "absolute w-full h-full bg-inherit/0 hover:bg-inherit/0 focus:bg-inherit/0 hover:shadow-none focus:shadow-none",
+                    "hover:bg-inherit/0 focus:bg-inherit/0 hover:shadow-none focus:shadow-none hover:border-0 focus:border-0 focus:outline-none"
+                  )}
                 />
                 <Image
                   src={item.img_url_desc}

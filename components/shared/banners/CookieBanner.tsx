@@ -59,20 +59,16 @@ export const CookieBanner: React.FC = () => {
         </p>
       </div>
 
-      <div className={cn(
-        "flex gap-3 shrink-0",
-        ""
-      )}>
+      <div className={cn("flex gap-3 shrink-0")}>
         <Button
-          variant={"outline"}
+          variant={"violetOutline"}
           onClick={handleAccept}
-          className={"text-[var(--violet)] rounded-3xl  border-2 !border-[var(--violet-dark)] py-5 max-md:text-xs"}
         >
           Принять всё
         </Button>
         <Button
+          variant={"violet"}
           onClick={handleDecline}
-          className={"rounded-3xl py-5 max-md:text-xs"}
         >
           Отклонить
         </Button>

@@ -8,6 +8,7 @@ import Image from "next/image";
 import {IndividualRequestForm} from "@/components/shared/forms/IndividualRequestForm";
 import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
 import {getTranslations} from "next-intl/server";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
   const {locale} = await paramsPromise;
@@ -88,16 +89,13 @@ export default async function ArticlesPage() {
                     ))}
                   </ul>
 
-                  <Link
-                    className={cn(
-                      "self-start inline-flex items-center justify-center text-sm text-[var(--violet)] bg-[var(--violet-dark)] py-2 px-5 rounded-3xl",
-                      "hover:bg-[var(--violet)] hover:text-white focus:bg-[var(--violet)] focus:text-white transition-colors",
-                      "max-md:text-xs"
-                    )}
+                  <UniqButtonLink
+                    variant={"violetDark"}
                     href={"#"}
+                    className={"place-self-start"}
                   >
                     Смотреть все
-                  </Link>
+                  </UniqButtonLink>
                 </li>
               ))}
             </ul>

@@ -20,9 +20,7 @@ export const SocialBanner: React.FC<ClassName> = ({className}) => {
               <p className="text-sm mb-5">
                 Продаем, настраиваем и обслуживаем лазерные станки, граверы и резаки с 2009 года.
               </p>
-
               <SocialListVkYoutube/>
-
             </div>
           </div>
         </div>

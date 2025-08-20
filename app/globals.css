@@ -204,7 +204,9 @@
 /* Базовые цвета */
 @theme {
     --violet: #4F26E9;
+    --violet-hover: #370FCC;
     --violet-dark: #4F26E91A;
+    --violet-dark-hover: #4F26E933;
     --violet-footer-background: #1B0C54;
     --red: #b82c2c;
     --pink: #CF26E9;

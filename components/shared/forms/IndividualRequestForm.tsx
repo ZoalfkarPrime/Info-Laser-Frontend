@@ -85,7 +85,7 @@ export const IndividualRequestForm: React.FC<ClassName> = ({className}) => {
               </li>
             </ul>
             <PersonalAgreement btnName={"Отправить запрос"}/>
-            <Button type="submit" className="p-5 rounded-3xl max-md:text-xs">
+            <Button variant={"violet"} type="submit">
               Отправить запрос
             </Button>
           </form>

@@ -9,10 +9,10 @@ export const STORAGE_SPB = "195213, г. Санкт-Петербург, Даль�
 export const PERSONAL_AGREEMENT = "/files/docs/personal-agreement.txt";
 export const REQUISITES = "/files/docs/requisites.txt";
 
-export const SOCIAL_YOUTUBE_LINK = "#";
+export const SOCIAL_YOUTUBE_LINK = "@InfoLaser";
 export const SOCIAL_TG_LINK = "#";
 export const SOCIAL_WHATSAPP_LINK = "#";
-export const SOCIAL_VK_LINK = "#";
+export const SOCIAL_VK_LINK = "https://vk.com/lasercut_ru";
 
 export const deliveryLocation: YMapLocationRequest = {
   center: [35, 57.4],

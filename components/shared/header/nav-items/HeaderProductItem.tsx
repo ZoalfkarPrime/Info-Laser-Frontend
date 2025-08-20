@@ -14,6 +14,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import {Button} from "@/components/ui/Button";
 import {DemoBtn} from "@/components/shared/btns/DemoBtn";
 import {ProductCardHeader} from "@/components/shared/products/ProductCardHeader";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 interface Props extends ClassName {
   onClick?: () => void;
@@ -222,16 +223,14 @@ export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
                           <p className={"text-3xl font-semibold mb-5"}>{category.name}</p>
                           <div className={"flex justify-between mb-3"}>
                             <p className={"text-sm"}>{category.description}</p>
-                            <Link onClick={() => setIsSpoilerOpen(false)} href={`/catalog/${category.slug}`}>
-                              <Button
-                                className={cn(
-                                  "block rounded-3xl bg-[var(--violet-dark)] text-[var(--violet)]",
-                                  "hover:text-white"
-                                )}
+                            <div onClick={() => setIsSpoilerOpen(false)}>
+                              <UniqButtonLink
+                                variant={"violetDark"}
+                                href={`/catalog/${category.slug}`}
                               >
                                 Смотреть все
-                              </Button>
-                            </Link>
+                              </UniqButtonLink>
+                            </div>
                           </div>
 
                           <ul className="grid grid-cols-3 gap-2">
@@ -260,19 +259,14 @@ export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
                           <p className={"text-2xl"}>{accessory.name}</p>
                           <div className={"flex justify-between mb-3"}>
                             <p>{accessory.description}</p>
-                            <Link
-                              onClick={() => setIsSpoilerOpen(false)}
-                              href={`/catalog/${accessory.slug}`}
-                            >
-                              <Button
-                                className={cn(
-                                  "block rounded-3xl bg-[var(--violet-dark)] text-[var(--violet)]",
-                                  "hover:text-white"
-                                )}
+                            <div onClick={() => setIsSpoilerOpen(false)}>
+                              <UniqButtonLink
+                                variant={"violetDark"}
+                                href={`/catalog/${accessory.slug}`}
                               >
                                 Смотреть все
-                              </Button>
-                            </Link>
+                              </UniqButtonLink>
+                            </div>
                           </div>
 
                           <ul className="grid grid-cols-4 gap-2">

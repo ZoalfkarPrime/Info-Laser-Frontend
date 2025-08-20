@@ -28,7 +28,7 @@ export const HeaderContacts: React.FC<ClassName> = ({className}) => {
         </Link>
 
         <CallbackBtn
-          className={"bg-inherit text-[var(--violet)] h-auto p-0  hover:text-[var(--red)] focus:text-[var(--red)]"}
+          className={"bg-inherit border-0 h-auto p-0  hover:text-[var(--red)] focus:text-[var(--red)] hover:bg-inherit focus:bg-inherit hover:shadow-none focus:shadow-none hover:border-none focus:border-none"}
           title={'Обратный звонок'}
         />
 

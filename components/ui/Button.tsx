@@ -5,49 +5,53 @@ import {cva, type VariantProps} from "class-variance-authority"
 import {cn} from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none hover:cursor-pointer disabled:max-md:pointer-events-auto",
+  "relative inline-flex items-center justify-center text-sm rounded-3xl transition-all duration-300 py-3 px-4 max-md:text-xs max-md:py-2 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 hover:cursor-pointer disabled:pointer-events-none disabled:opacity-50",
+
   {
     variants: {
       variant: {
-        default: 'bg-[#4F26E9] text-primary-foreground hover:bg-primary/90 focus:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border border-primary text-primary bg-transparent hover:bg-secondary',
-        secondary: 'bg-secondary text-primary hover:bg-secondary/50',
-        ghost: 'hover:bg-secondary hover:text-secondary-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        violet:
+          "text-white bg-[var(--violet)] hover:cursor-pointer hover:bg-[var(--violet-hover)] hover:shadow-[0_4px_4px_var(--violet-dark-hover)] focus:bg-[var(--violet-hover)] focus:shadow-[0_4px_4px_var(--violet-dark-hover)]",
+        violetOutline:
+          "text-[var(--violet)] bg-white border-2 !border-[var(--violet-dark)] py-1 px-3 hover:!border-[var(--violet-dark-hover)] hover:shadow-[0_1px_1px_var(--violet-dark-hover)] focus:!border-[var(--violet-dark-hover)] focus:shadow-[0_1px_1px_var(--violet-dark-hover)]",
+        violetDark:
+          "text-[var(--violet)] bg-[var(--violet-dark)] hover:cursor-pointer hover:bg-[var(--violet-dark-hover)] hover:shadow-[0_4px_4px_var(--violet-dark)] focus:bg-[var(--violet-dark-hover)] focus:shadow-[0_4px_4px_var(--violet-dark)]",
+        red:
+          "text-white bg-red-500 hover:bg-red-700 focus:bg-red-700 py-2",
+        white:
+          "text-[var(--violet)] bg-white hover:text-white focus:text-white hover:bg-[var(--violet)] focus:bg-[var(--violet)] hover:[&>svg]:fill-white focus:[&>svg]:fill-white",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        violet: "",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "violet",
+      size: "violet",
     },
   }
 )
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-}
+function Button(
+  {
+    className,
+    variant,
+    size,
+    asChild = false,
+    ...props
+  }: React.ComponentProps<"button"> &
+    VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot : "button"
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({className, variant, size, asChild = false, ...props}, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({variant, size, className}))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = "Button"
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({variant, size, className}))}
+      {...props}
+    />
+  )
+}
 
 export {Button, buttonVariants}

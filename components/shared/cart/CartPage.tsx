@@ -231,9 +231,8 @@ const CartPage = () => {
                         Итого
                         <b className={"text-black"}>{formatPrice(totalPrice)} ₽</b>
                       </p>
-
                       <Button
-                        className={"rounded-3xl bg-red-500 hover:bg-red-700 focus:bg-red-700"}
+                        variant={"red"}
                         onClick={clearCart}
                       >
                         Очистить корзину
@@ -243,7 +242,7 @@ const CartPage = () => {
 
                   <OfflineOrOnlineMain
                     className={cn(
-                      "[&>div]:px-0 [&>div>div]:justify-end [&>div>div]:pr-[18px] [&>div>div>div]:max-w-[350px]",
+                      "[&>div>div]:py-5 [&>div]:px-0 [&>div>div>div]:max-w-[400px]",
                       "max-xl:hidden"
                     )}
                   />

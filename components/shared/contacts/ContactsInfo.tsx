@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import {Clock, Mail, MapPin, Phone} from "lucide-react";
-import {Button} from "@/components/ui/Button";
 import Map from "@/components/shared/yandex/Map";
 import {useTranslations} from "next-intl";
 import type {YMapLocationRequest} from "@yandex/ymaps3-types";
 import {cn} from "@/lib/utils";
 import {REQUISITES} from "@/lib/variables";
+import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 type TFunction = Awaited<ReturnType<typeof useTranslations>>;
 
@@ -156,16 +156,13 @@ export const ContactsInfo: React.FC<ContactsInfoProps> = ({t}) => {
               </dl>
             </div>
 
-            <Button
-              asChild
-              variant={"outline"}
-              className={cn(
-                "mt-5 !border-[var(--violet)]/30 border-2 rounded-3xl place-self-end",
-                "max-xl:place-self-start max-xl:mt-1",
-              )}
+            <UniqButtonLink
+              href={REQUISITES}
+              variant={"violetOutline"}
+              className={"place-self-end max-xl:place-self-start max-xl:mt-1"}
             >
-              <Link href={REQUISITES}>Скачать/Посмотреть реквизиты</Link>
-            </Button>
+              Скачать/Посмотреть реквизиты
+            </UniqButtonLink>
           </section>
         </div>
 

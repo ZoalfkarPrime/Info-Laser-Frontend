@@ -149,10 +149,10 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
                                 />
                               ))}
 
-                            <Button className={cn(
-                              "text-xs rounded-3xl place-self-start mt-auto",
-                              "max-md:text-[10px] max-md:h-7"
-                            )}>
+                            <Button
+                              className="place-self-start mt-auto"
+                              variant={"violet"}
+                            >
                               Узнать больше
                             </Button>
                           </div>
