@@ -101,13 +101,14 @@ export const SimplerTabsMain = () => {
           "max-sm:min-h-[300px]"
         )}>
           <video
-            playsInline
-            key={currentTab.tabVideoName}
             autoPlay
-            loop
+            playsInline
             muted
+            loop
+            preload="auto"
+            key={currentTab.tabVideoName}
             className={cn(
-              "absolute inset-0 w-full h-full object-cover",
+              "absolute inset-0 w-full h-full object-cover pointer-events-none",
             )}
           >
             <source src={`/video/${currentTab.tabVideoName}`} type="video/mp4"/>

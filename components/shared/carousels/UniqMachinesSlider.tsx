@@ -158,14 +158,15 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({className
                           </div>
 
                           <video
+                            autoPlay
+                            playsInline
+                            muted
+                            loop
                             src="/video/ringcut-4.mp4"
                             width={230}
                             height={170}
-                            muted
-                            loop
-                            autoPlay
                             className={cn(
-                              "absolute top-0 left-0 w-full h-full object-cover z-[10] hidden group-hover:block"
+                              "absolute top-0 left-0 w-full h-full object-cover z-[10] hidden group-hover:block pointer-events-none"
                             )}
                           />
                         </Link>
