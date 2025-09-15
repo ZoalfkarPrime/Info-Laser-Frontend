@@ -143,7 +143,7 @@ export const LetterOfThanks: React.FC<ClassName> = ({className}) => {
                     </div>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant={"violetOutline"}>
+                        <Button className={"max-xl:self-start"} variant={"violetOutline"}>
                           Посмотреть скан
                         </Button>
                       </DialogTrigger>
