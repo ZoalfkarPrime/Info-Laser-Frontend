@@ -3,7 +3,6 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 import toast from "react-hot-toast";
 import {Product} from "@/types/types";
-import {getProducts} from "@/api/api";
 
 // Тип корзины (массив товаров с количеством)
 interface CartItem extends Product {
@@ -52,7 +51,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
   // Функция для синхронизации корзины с сервером
   const syncCartWithServer = async (localCart: CartItem[]) => {
     try {
-      const {products: freshProducts} = await getProducts();
+      const response = await fetch("/api/products");
+
+      if (!response.ok) {
+        throw new Error("Ошибка загрузки продуктов");
+      }
+
+      const {products: freshProducts}: { products: Product[] } = await response.json();
 
       // Составляем словарь для быстрого поиска по id
       const byId = new Map(freshProducts.map(p => [p.id, p]));
