@@ -151,20 +151,30 @@ export const ProductMarquee: React.FC<ProductMarqueeProps> = ({className, images
         "max-md:w-[250px] max-md:h-[220px] max-md:top-[180px]",
         "max-[470px]:!top-[190px]",
       )}>
-        {images.map((image) => {
+        {(() => {
+          const mainImage = images.find(
+            (image) => Boolean(image && image.is_main && image.filemanager && image.filemanager.url)
+          );
+
+          if (!mainImage || !mainImage.filemanager?.url) {
+            return (
+              <div className="absolute inset-0 flex items-center justify-center rounded-3xl bg-gray-200 text-gray-400 text-sm">
+                нет фото
+              </div>
+            );
+          }
+
           return (
-            Boolean(image && image.is_main) && (
-              <Image
-                key={image.id}
-                className="absolute z-30 w-full h-full object-cover"
-                src={image.filemanager.url}
-                alt={image.name}
-                width={700}
-                height={400}
-              />
-            )
-          )
-        })}
+            <Image
+              key={mainImage.id}
+              className="absolute z-30 w-full h-full object-cover"
+              src={mainImage.filemanager.url}
+              alt={mainImage.name}
+              width={700}
+              height={400}
+            />
+          );
+        })()}
       </div>
     </section>
   );

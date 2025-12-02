@@ -17,10 +17,10 @@ interface ProductGallerySliderProps extends ClassName {
 
 export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({images, className, labels}) => {
   const processedImages = images
-    .filter((img) => img.type !== "video")
+    .filter((img) => img.type !== "video" && img.filemanager && img.filemanager.url)
     .map((img) => ({
-      url: img.filemanager.url,
-      thumbnail: img.filemanager.url,
+      url: img.filemanager!.url,
+      thumbnail: img.filemanager!.url,
       alt: img.name || "Изображение товара",
       type: img.type,
       isMain: img.is_main ?? false,

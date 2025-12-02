@@ -21,7 +21,7 @@ interface Props extends ClassName {
 
 export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
 
-  const isMobile = useMedia("(max-width: 1280px)");
+  const isMobile = useMedia("(max-width: 1280px)", false);
 
   const [categories, setCategories] = useState<{ product: Category[]; accessory: Category[] }>({
     product: [],

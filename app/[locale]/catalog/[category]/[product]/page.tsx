@@ -1,6 +1,6 @@
 import React from "react";
 import {Container} from "@/components/shared/Container";
-import {getOneProductBySlug} from "@/api/api";
+import {getOneProductBySlug, getProducts} from "@/api/api";
 import {cn} from "@/lib/utils";
 import {ProductGallerySlider} from "@/components/shared/carousels/product/ProductGallerySlider";
 import {AllCharacteristicsBtn} from "@/components/shared/btns/AllCharacteristicsBtnProduct";
@@ -21,6 +21,7 @@ import {FullCharacteristics} from "@/components/shared/product/characteristics/F
 import {ImportantCharacteristics} from "@/components/shared/product/characteristics/ImportantCharacteristics";
 import {NecessaryProductsList} from "@/components/shared/product/NecessaryProductsList";
 import {getTranslations} from "next-intl/server";
+import {SimilarProductsSlider} from "@/components/shared/carousels/SimilarProductsSlider";
 
 interface PageProps {
   params: Promise<{ product: string; category: string }>;
@@ -46,8 +47,9 @@ export async function generateMetadata(
 }
 
 const ProductPage: React.FC<PageProps> = async ({params}) => {
-  const {product: productSlug} = await params;
+  const {product: productSlug, category} = await params;
   const product = await getOneProductBySlug(productSlug);
+  const {products} = await getProducts();
 
   if (!product) {
     return (
@@ -56,6 +58,10 @@ const ProductPage: React.FC<PageProps> = async ({params}) => {
       </Container>
     );
   }
+
+  const similarProducts = products
+    .filter((item) => item.id !== product.id)
+    .filter((item) => item.categories?.some((itemCategory) => itemCategory.slug === category));
 
   return (
     <>
@@ -140,7 +146,12 @@ const ProductPage: React.FC<PageProps> = async ({params}) => {
 
             <ProductPrices product={product}/>
 
-            <NecessaryProductsList className={"mb-7 max-md:mb-5"}/>
+            <NecessaryProductsList
+              className={"mb-7 max-md:mb-5"}
+              categorySlug={category}
+              currentProductSlug={product.slug}
+              products={products}
+            />
 
             <ProductSystemBanner className={"mb-7 max-md:mb-5"}/>
 
@@ -186,6 +197,12 @@ const ProductPage: React.FC<PageProps> = async ({params}) => {
       </div>
       <ImportantCharacteristics className={"mb-15 max-md:mb-5"} characteristics={product.characteristics ?? []}/>
       <ProductMaterialsTabs className={"mb-15 max-md:mb-5"} materials={product.materials ?? []}/>
+      {similarProducts.length > 0 && (
+        <SimilarProductsSlider
+          className={"mb-15 max-md:mb-5"}
+          products={similarProducts}
+        />
+      )}
       <ChooseLaserMachineSlider className={"mb-15 max-md:mb-5"}/>
       <ProductGeneralAccessoriesBanner className={"mb-15 max-md:mb-5"}/>
       <ProductMarquee className={"mb-25 max-md:mb-10"} images={product.product_attachments ?? []}/>

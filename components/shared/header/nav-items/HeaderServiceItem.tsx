@@ -14,7 +14,7 @@ interface Props extends ClassName {
 
 export const HeaderServiceItem: React.FC<Props> = ({className, onClick}) => {
 
-  const isMobile = useMedia("(max-width: 1280px)");
+  const isMobile = useMedia("(max-width: 1280px)", false);
 
   const [isSpoilerOpen, setIsSpoilerOpen] = useState(false);
 
