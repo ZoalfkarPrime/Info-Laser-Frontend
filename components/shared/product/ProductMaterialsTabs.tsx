@@ -14,10 +14,6 @@ interface ProductMaterialsTabsProps extends ClassName {
 export const ProductMaterialsTabs: React.FC<ProductMaterialsTabsProps> = ({materials, className}) => {
   const [activeTab, setActiveTab] = useState<string>(materials.length > 0 ? String(materials[0].id) : "");
 
-  if (materials.length === 0) {
-    return null;
-  }
-
   const materialsWithAssets = useMemo(() => {
     return materials.map((material) => {
       const iconAttachment = material.attachments?.find((attachment) => attachment.place_in_page === "Icon");
@@ -32,6 +28,10 @@ export const ProductMaterialsTabs: React.FC<ProductMaterialsTabsProps> = ({mater
       };
     });
   }, [materials]);
+
+  if (materials.length === 0) {
+    return null;
+  }
 
   return (
     <section className={cn("", className)}>
