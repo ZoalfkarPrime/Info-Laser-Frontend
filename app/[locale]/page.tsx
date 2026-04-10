@@ -13,6 +13,7 @@ import { VideoReviews } from "@/components/shared/reviews/VideoReviews";
 import { readGroupedPageContentAsJsonByFilter } from "@/services/content.service";
 import { HOME_PAGE_CONTENT } from "@/lib/variables";
 import HeroSlider from "@/types/content/home/hero-slider";
+import Partner from "@/types/content/home/partner";
 
 export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
   const { locale } = await paramsPromise;
@@ -28,11 +29,14 @@ export default async function MainPage() {
   const { products } = await getProducts();
   const homeContent = await readGroupedPageContentAsJsonByFilter({ page_id: String(HOME_PAGE_CONTENT.id) });
 
+  console.log(homeContent);
+
+
   return (
     <>
       <BannerMain sliders={homeContent[HOME_PAGE_CONTENT.heroSlider].map(HeroSlider.fromContentJson)} />
       <NewProductsSlider products={products} />
-      <PartnersSlider />
+      <PartnersSlider partners={homeContent[HOME_PAGE_CONTENT.partners].map(Partner.fromContentJson)} />
       <UniqMachinesSlider products={products} />
       <OfflineOrOnlineMain />
       <SimplerTabsMain />

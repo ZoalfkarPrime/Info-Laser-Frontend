@@ -1,71 +1,15 @@
 'use client'
 
-import {Container} from "@/components/shared/Container";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/Carousel";
+import { Container } from "@/components/shared/Container";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/Carousel";
 import React from "react";
-import {cn} from "@/lib/utils";
-import {ClassName} from "@/types/types";
+import { cn } from "@/lib/utils";
+import { ClassName } from "@/types/types";
 import Image from "next/image";
-import {CarouselDots} from "@/components/shared/carousels/CarouselDots";
+import { CarouselDots } from "@/components/shared/carousels/CarouselDots";
+import Partner from "@/types/content/home/partner";
 
-export const PartnersSlider: React.FC<ClassName> = ({className}) => {
-
-  const partners = [
-    {
-      id: "1",
-      name: "wattsan",
-      imageUrl: "https://wattsan.com/wp-content/uploads/wattsan_logo-1.svg"
-    },
-    {
-      id: "6",
-      name: "reci",
-      imageUrl: "https://infolaser.ru/img/logos/reci.svg"
-    },
-    {
-      id: "4",
-      name: "lasea",
-      imageUrl: "https://infolaser.ru/img/logos/lasea.svg"
-    },
-
-    {
-      id: "3",
-      name: "s_and_a",
-      imageUrl: "https://infolaser.ru/img/logos/s_and_a.svg"
-    },
-    {
-      id: "2",
-      name: "king_rabbit",
-      imageUrl: "https://infolaser.ru/img/logos/king_rabbit.svg"
-    },
-
-    {
-      id: "5",
-      name: "yongli",
-      imageUrl: "https://infolaser.ru/img/logos/yongli.svg"
-    },
-
-
-    {
-      id: "7",
-      name: "hiwin",
-      imageUrl: "https://infolaser.ru/img/logos/hiwin.svg"
-    },
-    {
-      id: "8",
-      name: "leadshine",
-      imageUrl: "https://infolaser.ru/img/logos/leadshine.svg"
-    },
-    {
-      id: "9",
-      name: "rj",
-      imageUrl: "https://infolaser.ru/img/logos/rj.svg"
-    },
-    {
-      id: "10",
-      name: "Ruida",
-      imageUrl: "https://infolaser.ru/img/logos/Ruida.svg"
-    }
-  ];
+export const PartnersSlider: React.FC<ClassName & { partners: Partner[] }> = ({ className, partners }) => {
 
   return (
     <section className={cn('py-7 mb-5', className)}>
@@ -86,7 +30,7 @@ export const PartnersSlider: React.FC<ClassName> = ({className}) => {
           }}
         >
           <CarouselContent className="items-center p-5 -ml-5 max-sm:-ml-2 ">
-            {partners.map((partner) => (
+            {partners.filter((partner) => partner.mainImg).map((partner) => (
               <CarouselItem
                 key={partner.id}
                 className={cn(
@@ -96,8 +40,8 @@ export const PartnersSlider: React.FC<ClassName> = ({className}) => {
                 )}
               >
                 <Image
-                  src={partner.imageUrl}
-                  alt={partner.name}
+                  src={partner.mainImg ?? ''}
+                  alt={partner.mainImg ?? ''}
                   width={200}
                   height={75}
                   className={cn(
@@ -109,10 +53,10 @@ export const PartnersSlider: React.FC<ClassName> = ({className}) => {
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className={cn('-left-[20px] max-xl:left-[10px]', className)}/>
-          <CarouselNext className={cn('-right-[20px] max-xl:right-[10px]', className)}/>
+          <CarouselPrevious className={cn('-left-[20px] max-xl:left-[10px]', className)} />
+          <CarouselNext className={cn('-right-[20px] max-xl:right-[10px]', className)} />
 
-          <CarouselDots className="absolute -bottom-5 left-0 right-0"/>
+          <CarouselDots className="absolute -bottom-5 left-0 right-0" />
         </Carousel>
       </Container>
     </section>

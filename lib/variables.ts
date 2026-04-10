@@ -39,5 +39,6 @@ export const deliveryPlaces = [
 
 export const HOME_PAGE_CONTENT = {
   id: 1,
-  heroSlider: "slider-1"
+  heroSlider: "slider-1",
+  partners: "partners"
 }
