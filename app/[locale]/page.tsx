@@ -14,6 +14,8 @@ import { readGroupedPageContentAsJsonByFilter } from "@/services/content.service
 import { HOME_PAGE_CONTENT } from "@/lib/variables";
 import HeroSlider from "@/types/content/home/hero-slider";
 import Partner from "@/types/content/home/partner";
+import SocialMedia from "@/types/content/home/social-media";
+import OfflineOrOnline from "@/types/content/home/online-offline";
 
 export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
   const { locale } = await paramsPromise;
@@ -35,7 +37,10 @@ export default async function MainPage() {
       <NewProductsSlider products={products} />
       <PartnersSlider partners={homeContent[HOME_PAGE_CONTENT.partners].map(Partner.fromContentJson)} />
       <UniqMachinesSlider products={products} />
-      <OfflineOrOnlineMain />
+      <OfflineOrOnlineMain
+        content={OfflineOrOnline.fromContentJson(homeContent[HOME_PAGE_CONTENT.offlineOrOnline][0])}
+        socialMedia={SocialMedia.fromContentJson(homeContent[HOME_PAGE_CONTENT.socialMedia][0])}
+      />
       <SimplerTabsMain />
       <HitsProductsSlider products={products} />
       <AboutMain />

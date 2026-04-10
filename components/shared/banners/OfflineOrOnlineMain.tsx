@@ -1,11 +1,13 @@
-import {DemoBtn} from "@/components/shared/btns/DemoBtn";
-import {cn} from "@/lib/utils";
+import { DemoBtn } from "@/components/shared/btns/DemoBtn";
+import { cn, normalizeHtml } from "@/lib/utils";
 import React from "react";
-import {Container} from "@/components/shared/Container";
-import {ClassName} from "@/types/types";
-import {SocialList} from "@/components/shared/social/SocialList";
+import { Container } from "@/components/shared/Container";
+import { ClassName } from "@/types/types";
+import { SocialList } from "@/components/shared/social/SocialList";
+import SocialMedia from "@/types/content/home/social-media";
+import OfflineOrOnline from "@/types/content/home/online-offline";
 
-export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
+export const OfflineOrOnlineMain: React.FC<ClassName & { content: OfflineOrOnline, socialMedia: SocialMedia }> = ({ className, content, socialMedia }) => {
   return (
     <div className={cn("py-7", className)}>
       <Container>
@@ -20,17 +22,19 @@ export const OfflineOrOnlineMain: React.FC<ClassName> = ({className}) => {
               "text-3xl md:text-4xl font-bold mb-4",
               "max-md:text-2xl max-md:mb-3"
             )}>
-              Online или Offline?
+              {normalizeHtml(content.title || "")}
             </p>
             <p className={cn(
               "text-lg leading-6 mb-6",
               "max-md:text-xs max-md:leading-4 max-md:mb-3"
             )}>
-              Продемонстрируем работу оборудования любым удобным способом: в более
-              50 городах России или по видеосвязи.
+              {normalizeHtml(content.subtitle || "")}
             </p>
-            <SocialList className={"justify-center mb-6 max-md:mb-3"}/>
-            <DemoBtn className={"place-self-center"} title={"Записаться на демонстрацию"}/>
+            <SocialList socialMedia={socialMedia} className={"justify-center mb-6 max-md:mb-3"} />
+            <DemoBtn
+              className={"place-self-center"}
+              title={normalizeHtml(content.btnText || "")}
+            />
           </div>
         </div>
       </Container>

@@ -6,6 +6,7 @@ import { CarouselDots } from "@/components/shared/carousels/CarouselDots";
 import React from "react";
 import { DemoBtn } from "@/components/shared/btns/DemoBtn";
 import HeroSlider from "@/types/content/home/hero-slider";
+import { normalizeHtml } from "@/lib/utils";
 // import Autoplay from "embla-carousel-autoplay";
 
 export const BannerMain = ({ sliders }: { sliders: HeroSlider[] }) => {
@@ -54,23 +55,23 @@ export const BannerMain = ({ sliders }: { sliders: HeroSlider[] }) => {
                     <div className="flex-1 text-center lg:text-left max-w-[650px] py-10 lg:py-0 flex flex-col items-center lg:items-start">
                       {item.subTitleAbove && (
                         <p className="text-violet font-semibold text-base lg:text-lg mb-4 uppercase tracking-wide">
-                          {item.subTitleAbove.replaceAll("<p>", "").replaceAll("</p>", "")}
+                          {normalizeHtml(item.subTitleAbove)}
                         </p>
                       )}
 
                       <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-black px-4 lg:px-0">
-                        {item.mainTitle ? highlightWords(item.mainTitle.replaceAll("<p>", "").replaceAll("</p>", "")) : ''}
+                        {item.mainTitle ? highlightWords(normalizeHtml(item.mainTitle)) : ''}
                       </h1>
 
                       {item.subTitleBelow && (
                         <p className="text-base lg:text-xl text-black/80 mb-8 max-w-[500px] px-4 lg:px-0">
-                          {item.subTitleBelow.replaceAll("<p>", "").replaceAll("</p>", "")}
+                          {normalizeHtml(item.subTitleBelow)}
                         </p>
                       )}
 
                       {item.btnText && (
                         <DemoBtn
-                          title={item.btnText.replaceAll("<p>", "").replaceAll("</p>", "")}
+                          title={normalizeHtml(item.btnText)}
                           className="px-8 py-4 lg:py-6 text-base lg:text-lg rounded-full w-fit"
                         />
                       )}
@@ -81,7 +82,7 @@ export const BannerMain = ({ sliders }: { sliders: HeroSlider[] }) => {
                       {item.mainImg && (
                         <Image
                           src={item.mainImg}
-                          alt={item.mainTitle?.replaceAll("<p>", "").replaceAll("</p>", "") ?? ''}
+                          alt={normalizeHtml(item.mainTitle ?? '')}
                           fill
                           priority
                           className="object-contain lg:object-right"
