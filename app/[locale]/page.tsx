@@ -16,6 +16,7 @@ import HeroSlider from "@/types/content/home/hero-slider";
 import Partner from "@/types/content/home/partner";
 import SocialMedia from "@/types/content/home/social-media";
 import OfflineOrOnline from "@/types/content/home/online-offline";
+import Promo from "@/types/content/home/promo";
 
 export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
   const { locale } = await paramsPromise;
@@ -41,7 +42,7 @@ export default async function MainPage() {
         content={OfflineOrOnline.fromContentJson(homeContent[HOME_PAGE_CONTENT.offlineOrOnline][0])}
         socialMedia={SocialMedia.fromContentJson(homeContent[HOME_PAGE_CONTENT.socialMedia][0])}
       />
-      <SimplerTabsMain />
+      <SimplerTabsMain tabsData={homeContent[HOME_PAGE_CONTENT.promo].map(Promo.fromContentJson)} />
       <HitsProductsSlider products={products} />
       <AboutMain />
       <VideoReviews />

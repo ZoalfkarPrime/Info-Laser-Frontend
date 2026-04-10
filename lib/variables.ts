@@ -43,4 +43,5 @@ export const HOME_PAGE_CONTENT = {
   partners: "partners",
   socialMedia: "social-media",
   offlineOrOnline: "image",
+  promo: "promo-tabs"
 }
