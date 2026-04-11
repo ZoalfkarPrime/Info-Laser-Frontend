@@ -22,18 +22,18 @@ export const OfflineOrOnlineMain: React.FC<ClassName & { content: OfflineOrOnlin
               "text-3xl md:text-4xl font-bold mb-4",
               "max-md:text-2xl max-md:mb-3"
             )}>
-              {normalizeHtml(content.title || "")}
+              {normalizeHtml(content?.title || "")}
             </p>
             <p className={cn(
               "text-lg leading-6 mb-6",
               "max-md:text-xs max-md:leading-4 max-md:mb-3"
             )}>
-              {normalizeHtml(content.subtitle || "")}
+              {normalizeHtml(content?.subtitle || "")}
             </p>
             <SocialList socialMedia={socialMedia} className={"justify-center mb-6 max-md:mb-3"} />
             <DemoBtn
               className={"place-self-center"}
-              title={normalizeHtml(content.btnText || "")}
+              title={normalizeHtml(content?.btnText || "")}
             />
           </div>
         </div>

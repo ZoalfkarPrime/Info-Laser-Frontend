@@ -8,4 +8,4 @@ export function cn(...inputs: ClassValue[]) {
 
 export const formatPrice = (price: number) => price.toLocaleString("ru-RU").replace(/\s/g, ".");
 
-export const normalizeHtml = (html: string) => html.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("&nbsp;", "")
+export const normalizeHtml = (html: string | undefined) => html?.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("&nbsp;", "") ?? ""

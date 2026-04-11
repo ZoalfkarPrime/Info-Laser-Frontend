@@ -37,7 +37,7 @@ export const BannerMain = ({ sliders }: { sliders: HeroSlider[] }) => {
       >
         <CarouselContent>
           {sliders.map((item) => (
-            <CarouselItem key={item.id}>
+            <CarouselItem key={item?.id}>
               <div
                 className="relative overflow-hidden min-h-[500px] lg:min-h-[600px] flex items-center"
                 style={{
@@ -55,23 +55,23 @@ export const BannerMain = ({ sliders }: { sliders: HeroSlider[] }) => {
                     <div className="flex-1 text-center lg:text-left max-w-[650px] py-10 lg:py-0 flex flex-col items-center lg:items-start">
                       {item.subTitleAbove && (
                         <p className="text-violet font-semibold text-base lg:text-lg mb-4 uppercase tracking-wide">
-                          {normalizeHtml(item.subTitleAbove)}
+                          {normalizeHtml(item?.subTitleAbove)}
                         </p>
                       )}
 
                       <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-black px-4 lg:px-0">
-                        {item.mainTitle ? highlightWords(normalizeHtml(item.mainTitle)) : ''}
+                        {item.mainTitle ? highlightWords(normalizeHtml(item?.mainTitle)) : ''}
                       </h1>
 
                       {item.subTitleBelow && (
                         <p className="text-base lg:text-xl text-black/80 mb-8 max-w-[500px] px-4 lg:px-0">
-                          {normalizeHtml(item.subTitleBelow)}
+                          {normalizeHtml(item?.subTitleBelow)}
                         </p>
                       )}
 
                       {item.btnText && (
                         <DemoBtn
-                          title={normalizeHtml(item.btnText)}
+                          title={normalizeHtml(item?.btnText)}
                           className="px-8 py-4 lg:py-6 text-base lg:text-lg rounded-full w-fit"
                         />
                       )}
@@ -81,8 +81,8 @@ export const BannerMain = ({ sliders }: { sliders: HeroSlider[] }) => {
                     <div className="relative w-full lg:flex-1 h-[350px] sm:h-[450px] lg:h-[600px] mt-10 lg:mt-0">
                       {item.mainImg && (
                         <Image
-                          src={item.mainImg}
-                          alt={normalizeHtml(item.mainTitle ?? '')}
+                          src={item?.mainImg}
+                          alt={normalizeHtml(item?.mainTitle ?? '')}
                           fill
                           priority
                           className="object-contain lg:object-right"

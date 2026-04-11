@@ -1,6 +1,7 @@
 import { JSX } from "react";
 
-export const StringToHtml = (html: string): JSX.Element => {
+export const StringToHtml = (html: string | undefined): JSX.Element => {
+  if (!html) return <></>
   return (
     <div dangerouslySetInnerHTML={{ __html: html }} />
   )
