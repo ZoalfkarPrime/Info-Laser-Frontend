@@ -1,5 +1,5 @@
 import { Container } from "@/components/shared/Container";
-import { Filters } from "@/components/shared/filters/Filters";
+import { Filters, CharacteristicFilter } from "@/components/shared/filters/Filters";
 import { ProductsGroupList } from "@/components/shared/products/ProductsGroupList";
 import { getProducts } from "@/api/api";
 import { CategoriesGoods } from "@/components/shared/categories/CategoriesGoods";
@@ -25,6 +25,7 @@ interface CategoryPageProps {
     priceTo?: string;
     materials?: string;
     manufacturer?: string;
+    [key: string]: string | undefined;
   }>;
 }
 
@@ -131,22 +132,53 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
 
     const materialsMap = new Map();
     const manufacturersMap = new Map();
-    console.log(filteredProducts);
+    const charsMap = new Map<string, { unit: string | null; values: Map<string, string> }>();
 
     filteredProducts.forEach((p) => {
       p.materials?.forEach((m) => materialsMap.set(m.slug, { name: m.name, value: m.slug }));
       if (p.laser_suppliers?.slug) {
         manufacturersMap.set(p.laser_suppliers.slug, { name: p.laser_suppliers.name, value: p.laser_suppliers.slug });
       }
+      p.productCharacteristics?.forEach((c) => {
+        if (!charsMap.has(c.name)) {
+          charsMap.set(c.name, { unit: c.unit, values: new Map() });
+        }
+        const charEntry = charsMap.get(c.name)!;
+        const label = c.unit ? `${c.value} ${c.unit}` : c.value;
+        if (c.value) {
+          charEntry.values.set(c.value, label ?? '');
+        }
+      });
     });
     materialsMap.forEach((v) => materialsList.push(v));
     manufacturersMap.forEach((v) => manufacturersList.push(v));
+
+    const characteristicsList: CharacteristicFilter[] = Array.from(charsMap.entries()).map(([name, data]) => ({
+      name,
+      unit: data.unit,
+      items: Array.from(data.values.entries()).map(([value, label]) => ({
+        name: label || value,
+        value: value,
+      })),
+    }));
+
+    (currentCategory as any).characteristicsList = characteristicsList;
   }
+
+  const characteristicsList: CharacteristicFilter[] = (currentCategory as any)?.characteristicsList || [];
 
   const priceFromParam = parseInt(sp.priceFrom || "0", 10);
   const priceToParam = parseInt(sp.priceTo || "999999999", 10);
   const materialsFilter = sp.materials ? sp.materials.split(',') : [];
   const mfgFilter = sp.manufacturer ? sp.manufacturer.split(',') : [];
+
+  const charFilters: Record<string, string[]> = {};
+  Object.keys(sp).forEach((key) => {
+    if (key.startsWith("char[")) {
+      const charName = key.replace("char[", "").replace("]", "");
+      charFilters[charName] = sp[key]?.split(",") || [];
+    }
+  });
 
   filteredProducts = filteredProducts.filter((product) => {
     let isValid = true;
@@ -158,15 +190,30 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
       }
     }
 
-    if (materialsFilter.length > 0) {
-      if (!product.materials?.some(m => materialsFilter.includes(m.slug))) {
+    if (isValid && materialsFilter.length > 0) {
+      if (!product.materials?.some((m) => materialsFilter.includes(m.slug))) {
         isValid = false;
       }
     }
 
-    if (mfgFilter.length > 0) {
+    if (isValid && mfgFilter.length > 0) {
       if (!product.laser_suppliers?.slug || !mfgFilter.includes(product.laser_suppliers.slug)) {
         isValid = false;
+      }
+    }
+
+    if (isValid) {
+      for (const [charName, selectedValues] of Object.entries(charFilters)) {
+        if (selectedValues.length > 0) {
+          if (
+            !product.productCharacteristics?.some(
+              (c) => c.name === charName && c.value && selectedValues.includes(c.value)
+            )
+          ) {
+            isValid = false;
+            break;
+          }
+        }
       }
     }
 
@@ -243,6 +290,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
                 className="mb-3 max-md:mb-0"
                 materials={materialsList}
                 manufacturers={manufacturersList}
+                characteristics={characteristicsList}
                 minPrice={Math.max(0, minPrice)}
                 maxPrice={maxPrice}
               />

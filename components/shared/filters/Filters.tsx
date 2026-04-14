@@ -13,10 +13,17 @@ import {ListFilterPlus, X} from "lucide-react";
 import {Overlay} from "@/components/shared/Overlay";
 import {Button} from "@/components/ui/Button";
 
+export interface CharacteristicFilter {
+  name: string;
+  unit: string | null;
+  items: { name: string; value: string }[];
+}
+
 interface FiltersProps {
   className?: string;
   materials: {name: string, value: string}[];
   manufacturers: {name: string, value: string}[];
+  characteristics: CharacteristicFilter[];
   minPrice: number;
   maxPrice: number;
 }
@@ -26,7 +33,7 @@ export interface PriceProps {
   priceTo?: number
 }
 
-export const Filters: React.FC<FiltersProps> = ({ className, materials, manufacturers, minPrice, maxPrice }) => {
+export const Filters: React.FC<FiltersProps> = ({ className, materials, manufacturers, characteristics, minPrice, maxPrice }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const formModalRef = useRef<HTMLButtonElement | null>(null);
@@ -106,6 +113,16 @@ export const Filters: React.FC<FiltersProps> = ({ className, materials, manufact
     updateSearchParams({ manufacturer: newSet.size > 0 ? Array.from(newSet).join(",") : undefined });
   };
 
+  const handleToggleCharacteristic = (charName: string, value: string) => {
+    const key = `char[${charName}]`;
+    const currentValues = searchParams.get(key)?.split(',').filter(Boolean) || [];
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter(v => v !== value)
+      : [...currentValues, value];
+    
+    updateSearchParams({ [key]: newValues.length > 0 ? newValues.join(",") : undefined });
+  };
+
   const [prices, setPrice] = React.useState<PriceProps>({
     priceFrom: searchParams.get('priceFrom') ? Number(searchParams.get('priceFrom')) : minPrice,
     priceTo: searchParams.get('priceTo') ? Number(searchParams.get('priceTo')) : maxPrice,
@@ -114,6 +131,21 @@ export const Filters: React.FC<FiltersProps> = ({ className, materials, manufact
   const resetAllFiltersAndSorting = () => {
     localStorage.removeItem("sortingAndFiltersParams");
     const basePath = window.location.pathname;
+    
+    // Clear all characteristic filters from searchParams
+    const currentParams = Object.fromEntries(searchParams.entries());
+    Object.keys(currentParams).forEach(key => {
+      if (key.startsWith('char[')) {
+        delete currentParams[key];
+      }
+    });
+    delete currentParams['materials'];
+    delete currentParams['manufacturer'];
+    delete currentParams['filter[label_id]'];
+    delete currentParams['priceFrom'];
+    delete currentParams['priceTo'];
+    delete currentParams['page'];
+
     router.replace(basePath, {scroll: false});
     setPromoChecked(false);
     clearMaterials();
@@ -242,6 +274,16 @@ export const Filters: React.FC<FiltersProps> = ({ className, materials, manufact
             onClickCheckbox={handleToggleManufacturer}
           />
         )}
+
+        {characteristics.map((char) => (
+          <FiltersGroup
+            key={char.name}
+            title={char.name}
+            items={char.items}
+            selectedIds={new Set(searchParams.get(`char[${char.name}]`)?.split(',').filter(Boolean) || [])}
+            onClickCheckbox={(value) => handleToggleCharacteristic(char.name, value)}
+          />
+        ))}
 
         <Button
           type="button"

@@ -30,7 +30,7 @@ export const PartnersSlider: React.FC<ClassName & { partners: Partner[] }> = ({ 
           }}
         >
           <CarouselContent className="items-center p-5 -ml-5 max-sm:-ml-2 ">
-            {partners.filter((partner) => partner.mainImg).map((partner) => (
+            {partners?.filter((partner) => partner.mainImg).map((partner) => (
               <CarouselItem
                 key={partner.id}
                 className={cn(
