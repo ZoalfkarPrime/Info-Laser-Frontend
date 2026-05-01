@@ -1,29 +1,25 @@
 import { ContentMeta, ContentMetaDto } from "./content-meta";
 
-export type ContentGroupedByPageDto = {
-  type: string;
-  count: number;
-  sections: ContentDto[];
-}
-
 export type ContentDto = {
   id: number | string;
-  page_id: number | string;
-  type: string;
+  referenceId: number | string;
+  referenceType: string;
+  section: string;
   /** Present on many CMS rows; optional in UI when copy comes only from `ContentMeta`. */
   title?: string | null;
-  sort_order: number | string;
-  is_active: boolean;
-  meta_content?: ContentMetaDto[];
-  created_at?: string;
-  updated_at?: string;
+  displayOrder: number | string;
+  isActive: boolean;
+  contentMetas?: ContentMetaDto[];
+  createdAt?: string;
+  updatedAt?: string;
 };
 
 export class Content {
   constructor(
     public readonly id: number,
-    public readonly page_id: number,
-    public readonly type: string,
+    public readonly referenceId: number,
+    public readonly referenceType: string,
+    public readonly section: string,
     public readonly title: string | null,
     public readonly displayOrder: number,
     public readonly isActive: boolean,
@@ -35,28 +31,30 @@ export class Content {
   static fromDto(dto: ContentDto): Content {
     return new Content(
       Number(dto.id),
-      Number(dto.page_id),
-      dto.type ?? "",
+      Number(dto.referenceId),
+      dto.referenceType ?? "",
+      dto.section ?? "",
       dto.title ?? null,
-      Number(dto.sort_order),
-      Boolean(dto.is_active),
-      dto.meta_content?.map((meta) => ContentMeta.fromDto(meta)),
-      dto.created_at,
-      dto.updated_at,
+      Number(dto.displayOrder),
+      Boolean(dto.isActive),
+      dto.contentMetas?.map((meta) => ContentMeta.fromDto(meta)),
+      dto.createdAt,
+      dto.updatedAt,
     );
   }
 
   toPlain(): ContentDto {
     return {
       id: this.id,
-      page_id: this.page_id,
-      type: this.type,
+      referenceId: this.referenceId,
+      referenceType: this.referenceType,
+      section: this.section,
       title: this.title,
-      sort_order: this.displayOrder,
-      is_active: this.isActive,
-      meta_content: this.contentMetas?.map((meta) => meta.toPlain()),
-      created_at: this.createdAt,
-      updated_at: this.updatedAt,
+      displayOrder: this.displayOrder,
+      isActive: this.isActive,
+      contentMetas: this.contentMetas?.map((meta) => meta.toPlain()),
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
     };
   }
 }
@@ -70,9 +68,14 @@ export type ContentMetaJson = {
 export class ContentJson extends Content {
   contentMetasJson?: ContentMetaJson
   constructor(content: Content) {
-    super(content.id, content.page_id, content.type, content.title, content.displayOrder, content.isActive, content.contentMetas, content.createdAt, content.updatedAt)
+    super(content.id, content.referenceId, content.referenceType, content.section, content.title, content.displayOrder, content.isActive, content.contentMetas, content.createdAt, content.updatedAt)
     this.contentMetasJson = content.contentMetas?.reduce((acc, meta) => {
-      acc[meta.keyName] = meta.value;
+      if (meta.type === "image" || meta.type === "file" || meta.type === "video") {
+        acc[meta.keyName] = meta.filemanager.url;
+      } else {
+        acc[meta.keyName] = meta.value;
+      }
+      acc[`${meta.keyName}--id`] = String(meta.id);
       return acc;
     }, {} as ContentMetaJson);
   }

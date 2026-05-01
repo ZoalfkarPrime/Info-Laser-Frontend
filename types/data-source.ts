@@ -16,15 +16,8 @@ export type DataSourceRequest = {
 
 /** Typical shape returned by resource Read endpoints (Kendo-style). */
 export type DataSourceResult<T> = {
-  data: {
-    list: T[],
-    pagination: {
-      currentPage: number;
-      limit: number;
-      total: number;
-      totalPages: number;
-    }
-  };
+  data: T[];
+  total: number;
   aggregateResults?: unknown;
   errors?: unknown;
 };

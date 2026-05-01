@@ -2,8 +2,14 @@ export type ContentMetaDto = {
   id: number | string;
   contentId: number | string;
   type: string;
-  key: string;
+  keyName: string;
   value: string | null;
+  value_AR: string | null;
+  filemanager: {
+    url: string;
+  };
+  displayOrder: number | string;
+  isActive: boolean;
   createdAt?: string;
   updatedAt?: string;
 };
@@ -15,6 +21,12 @@ export class ContentMeta {
     public readonly type: string,
     public readonly keyName: string,
     public readonly value: string | null,
+    public readonly valueAr: string | null,
+    public readonly filemanager: {
+      url: string;
+    },
+    public readonly displayOrder: number,
+    public readonly isActive: boolean,
     public readonly createdAt?: string,
     public readonly updatedAt?: string,
   ) { }
@@ -24,8 +36,12 @@ export class ContentMeta {
       Number(dto.id),
       Number(dto.contentId),
       dto.type ?? "",
-      dto.key ?? "",
+      dto.keyName ?? "",
       dto.value ?? null,
+      dto.value_AR ?? null, // Map from DTO value_AR
+      dto.filemanager,
+      Number(dto.displayOrder),
+      Boolean(dto.isActive),
       dto.createdAt,
       dto.updatedAt,
     );
@@ -36,8 +52,12 @@ export class ContentMeta {
       id: this.id,
       contentId: this.contentId,
       type: this.type,
-      key: this.keyName,
+      keyName: this.keyName,
       value: this.value,
+      value_AR: this.valueAr, // Map to DTO value_AR
+      filemanager: this.filemanager,
+      displayOrder: this.displayOrder,
+      isActive: this.isActive,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };

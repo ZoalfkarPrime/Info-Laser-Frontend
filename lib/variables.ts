@@ -38,8 +38,7 @@ export const deliveryPlaces = [
 
 
 export const HOME_PAGE_CONTENT = {
-  id: 1,
-  heroSlider: "slider-1",
+  heroSlider: "hero_slider",
   partners: "partners",
   socialMedia: "social-media",
   offlineOrOnline: "image",

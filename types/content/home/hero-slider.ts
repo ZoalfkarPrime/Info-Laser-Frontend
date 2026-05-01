@@ -12,12 +12,12 @@ export default class HeroSlider {
   static fromContentJson(contentJson: ContentJson): HeroSlider {
     return {
       id: `${contentJson.id}`,
-      mainImg: contentJson.contentMetasJson?.['main-img'] ?? "",
-      subTitleAbove: contentJson.contentMetasJson?.['subtitle-above'] ?? "",
-      mainTitle: contentJson.contentMetasJson?.['main-title'] ?? "",
-      subTitleBelow: contentJson.contentMetasJson?.['subtitle-below'] ?? "",
-      btnText: contentJson.contentMetasJson?.['btn-text'] ?? "",
-      btnLink: contentJson.contentMetasJson?.['btn-link'] ?? "",
+      mainImg: contentJson.contentMetasJson?.['src'] ?? "",
+      subTitleAbove: contentJson.contentMetasJson?.['upper_text'] ?? "",
+      mainTitle: contentJson.contentMetasJson?.['main_text'] ?? "",
+      subTitleBelow: contentJson.contentMetasJson?.['lower_text'] ?? "",
+      btnText: contentJson.contentMetasJson?.['btn_text'] ?? "",
+      btnLink: contentJson.contentMetasJson?.['btn_link'] ?? "",
     } as HeroSlider;
   }
 }

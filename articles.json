@@ -1,0 +1,343 @@
+[
+  {
+    "uuid": "d478d719-970f-4e8e-b045-792a4967662e",
+    "type": "image",
+    "order": 2,
+    "data": {
+      "file": {
+        "id": "dfe41718-1aa5-429a-ad00-e709455252d8",
+        "name": "knoledgebase1.png",
+        "url": "https://api.infolasers.ru/storage/filemanager/20260427150641_69ef7b81b744b.png",
+        "is_file": 1,
+        "thumbnail": "https://api.infolasers.ru/storage/filemanager/20260427150641_69ef7b81b744b.png",
+        "file_type": 1,
+        "parent_id": null,
+        "created_at": "2026-04-27T15:06:41.000000Z",
+        "updated_at": "2026-04-27T15:06:41.000000Z",
+        "mainName": "knoledgebase1.png",
+        "isDir": false,
+        "isFile": 1,
+        "thumbnailUrl": "https://api.infolasers.ru/storage/filemanager/20260427150641_69ef7b81b744b.png",
+        "parentId": "root",
+        "fileType": 1
+      }
+    }
+  },
+  {
+    "uuid": "23abaa70-7cc5-42a6-9197-38eeaeca77fe",
+    "type": "text-with-list",
+    "order": 3,
+    "data": {
+      "text": "&quot;&lt;p&gt;&lt;strong&gt;Одним из самых популярных и стремительно развивающихся способов резки металлов является лазерная резка. Из года в год он активно развивается и преодолевает все стандартные показатели лазерных станков: &lt;/strong&gt;&lt;/p&gt;\\n&quot;",
+      "list": [
+        {
+          "uuid": "69bf9ce9-0fef-4fc4-9b81-cc408f2cdece",
+          "text": "Скорость резки"
+        },
+        {
+          "uuid": "b93b827e-d926-491f-bbe7-95a00abffb4e",
+          "text": "Максимальную толщину разрезаемого материала"
+        },
+        {
+          "uuid": "358c88b1-32e0-49a7-b7b2-3b10156229ec",
+          "text": "Срок эксплуатации лазерных станков"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "685e1a61-ff56-4ea1-af93-f167b5759e55",
+    "type": "editor",
+    "order": 4,
+    "data": {
+      "text": "&quot;&lt;p&gt;Такой станок с лёгкостью режет металл толщиной до 80 мм! И как показывает практика, это далеко не предел. &lt;br&gt;&lt;br&gt;В этой статье речь пойдёт об основных принципах работы лазерных станков для резки металлов, а также их преимуществах перед другими способами резки. Также мы расскажем, какие металлы лучше подходят для резки и что из них можно изготовить.&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "border": {
+        "width": 0,
+        "color": "#000"
+      }
+    }
+  },
+  {
+    "uuid": "e72768f2-b04c-4a27-a061-5d5d055c7a36",
+    "type": "product",
+    "order": 5,
+    "data": {
+      "file": {
+        "id": "2495397b-85ab-4b1f-854c-d402153eb785",
+        "name": "Frame 20.png",
+        "url": "https://api.infolasers.ru/storage/filemanager/20260427200926_69efc27601a10.png",
+        "is_file": 1,
+        "thumbnail": "https://api.infolasers.ru/storage/filemanager/20260427200926_69efc27601a10.png",
+        "file_type": 1,
+        "parent_id": null,
+        "created_at": "2026-04-27T20:09:26.000000Z",
+        "updated_at": "2026-04-27T20:09:26.000000Z",
+        "mainName": "Frame 20.png",
+        "isDir": false,
+        "isFile": 1,
+        "thumbnailUrl": "https://api.infolasers.ru/storage/filemanager/20260427200926_69efc27601a10.png",
+        "parentId": "root",
+        "fileType": 1
+      },
+      "badge": "В наличии",
+      "title": "Лазерный станок ZERDER MINI 2030",
+      "slug": "www.google.com",
+      "price1Label": "Цена без НДС",
+      "price1": "2.381.000 ₽",
+      "price2Label": "Под заказ без НДС",
+      "price2": "2.581.000 ₽",
+      "buttonText": "Узнать больше",
+      "buttonLink": "infolasers.ru",
+      "rating": "4.9",
+      "guarantee": "Обязательная гарантия 1 год"
+    }
+  },
+  {
+    "uuid": "ccb2294f-924e-4bc4-964e-653d1a0bda9b",
+    "type": "title-image-body",
+    "order": 6,
+    "data": {
+      "title": "Как работает станок для лазерной резки металла?",
+      "body": "&quot;&lt;p&gt;Для начала разберёмся в специфике работы лазерного станка. &lt;br&gt;&lt;br&gt;В современных лазерных станках по металлу используются волоконные излучатели в качестве генератора лазерного излучения. Процесс генерации происходит в диодах накачки с помощью резонатора. Далее лазерный луч по оптоволокну подаётся в лазерную голову станка по металлу, где находятся коллиматорная и фокусирующая линза. &lt;br&gt;&lt;br&gt;Сгенерированный лазерный луч обладает высокой плотностью мощности благодаря двум важным свойствам: монохроматичности и когерентности.&amp;nbsp;&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "file": {
+        "id": "0010d0ee-5726-4512-b918-02f349f3466d",
+        "name": "image 401.png",
+        "url": "https://api.infolasers.ru/storage/filemanager/20260427195316_69efbeac79c13.png",
+        "is_file": 1,
+        "thumbnail": "https://api.infolasers.ru/storage/filemanager/20260427195316_69efbeac79c13.png",
+        "file_type": 1,
+        "parent_id": null,
+        "created_at": "2026-04-27T19:53:16.000000Z",
+        "updated_at": "2026-04-27T19:53:16.000000Z",
+        "mainName": "image 401.png",
+        "isDir": false,
+        "isFile": 1,
+        "thumbnailUrl": "https://api.infolasers.ru/storage/filemanager/20260427195316_69efbeac79c13.png",
+        "parentId": "root",
+        "fileType": 1
+      }
+    }
+  },
+  {
+    "uuid": "bf76780a-e82e-4384-9255-53bc1a354123",
+    "type": "title-with-list",
+    "order": 7,
+    "data": {
+      "title": "Разберёмся подробнее, что это значит.",
+      "body": "&quot;&lt;p&gt;&lt;/p&gt;\\n&quot;",
+      "listStyle": "checkmark",
+      "items": [
+        {
+          "uuid": "c191dbbc-e58c-457c-81d0-24964c1cb3e2",
+          "text": "&quot;&lt;p&gt;&lt;strong&gt;Монохроматичность&lt;/strong&gt; — это когда фотоны лазерного излучения имеют одну и ту же длину волны.&lt;br&gt;&lt;br&gt;&lt;/p&gt;\\n&quot;"
+        },
+        {
+          "uuid": "8a036e7a-18e1-4415-bf41-1fcfde75f617",
+          "text": "&quot;&lt;p&gt;&lt;span style=\\&quot;color: rgb(110,107,123);background-color: rgb(255,255,255);font-size: 14px;font-family: FFMarkWebPro, Helvetica, Arial, serif;\\&quot;&gt;&lt;strong&gt;Когерентность&lt;/strong&gt; — это то, насколько согласованны волновые колебания лазера. Обычно выделяют два вида когерентности: временная и пространственная. &lt;/span&gt;&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "55846ad1-7896-4a81-8b58-7fb6c21cce97",
+    "type": "title-with-list",
+    "order": 8,
+    "data": {
+      "title": "Разберёмся подробнее, что это значит.",
+      "body": "&quot;&lt;p&gt;&lt;/p&gt;\\n&quot;",
+      "listStyle": "numbered",
+      "items": [
+        {
+          "uuid": "38689bbc-2e1b-425a-ad0b-a05910af7060",
+          "text": "&quot;&lt;p&gt;&lt;strong&gt;Временная когерентность&lt;/strong&gt; обеспечивает согласованность колебаний в одной и той же точке пространства в разное время. Другими словами, это способность лазера излучать свет с последовательным и предсказуемым соотношением фаз с течением времени&lt;/p&gt;\\n&quot;"
+        },
+        {
+          "uuid": "571b737e-f5f8-4765-9dbd-c2389e82a318",
+          "text": "&quot;&lt;p&gt;&lt;strong&gt;Пространственная когерентность &lt;/strong&gt;обеспечивает однонаправленность излучения и достижение минимального значения пятна лазерного луча. То есть это относится к способности лазерного луча оставаться сфокусированным и сохранять четкую и четко очерченную форму при его перемещении в пространстве.&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "1ee0cfa1-4f3d-49fb-9799-1d4097d8f7f1",
+    "type": "editor",
+    "order": 9,
+    "data": {
+      "text": "&quot;&lt;p&gt;Это происходит потому, что фотоны в лазерном луче синфазны и имеют постоянную фазовую зависимость друг от друга, что позволяет им усиливать друг друга и создавать высококонцентрированный пучок света (лазера). &lt;br&gt;&lt;br&gt;Но как эти свойства влияют на работу лазерного станка по металлу?&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "border": {
+        "width": 0,
+        "color": "#000"
+      }
+    }
+  },
+  {
+    "uuid": "f19f8481-6af7-4b01-81cf-d076cf57bcae",
+    "type": "image",
+    "order": 10,
+    "data": {
+      "file": {
+        "id": "fce34db9-0e9b-4970-9080-3e5aec4feb9c",
+        "name": "image222.png",
+        "url": "https://api.infolasers.ru/storage/filemanager/20260427201643_69efc42b6b50b.png",
+        "is_file": 1,
+        "thumbnail": "https://api.infolasers.ru/storage/filemanager/20260427201643_69efc42b6b50b.png",
+        "file_type": 1,
+        "parent_id": null,
+        "created_at": "2026-04-27T20:16:43.000000Z",
+        "updated_at": "2026-04-27T20:16:43.000000Z",
+        "mainName": "image222.png",
+        "isDir": false,
+        "isFile": 1,
+        "thumbnailUrl": "https://api.infolasers.ru/storage/filemanager/20260427201643_69efc42b6b50b.png",
+        "parentId": "root",
+        "fileType": 1
+      }
+    }
+  },
+  {
+    "uuid": "7991974a-0df7-48c9-87b2-02756e695928",
+    "type": "editor",
+    "order": 11,
+    "data": {
+      "text": "&quot;&lt;p&gt;С помощью данных свойств лазерный станок фокусируется в точку диаметром 0,01 мм с плотностью мощности 10 Вт и более. Излучение за доли секунды плавит металл в точке, диаметр которой в 8 раз меньше человеческого волоса!&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "border": {
+        "width": 0,
+        "color": "#000"
+      }
+    }
+  },
+  {
+    "uuid": "f3130e70-6708-47f0-ad6b-628219031baa",
+    "type": "editor",
+    "order": 12,
+    "data": {
+      "text": "&quot;&lt;p&gt;По методу воздействия лазерная резка металла разделяется на два основных способа: резку плавлением и сублимационную резку.&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "border": {
+        "width": 0,
+        "color": "#000"
+      }
+    }
+  },
+  {
+    "uuid": "503674c9-5f0b-4ca5-ad15-6fc437ca93ed",
+    "type": "table",
+    "order": 13,
+    "data": {
+      "columns": [
+        {
+          "uuid": "2db2739a-d71d-4261-846b-c9db0246d8a3",
+          "header": "Equipment"
+        },
+        {
+          "uuid": "9cd06db3-c8d3-49fe-962f-35d745339c25",
+          "header": "mobel"
+        },
+        {
+          "uuid": "699cdbcb-d136-4a9a-ad85-9fcad16665de",
+          "header": "mobel"
+        },
+        {
+          "uuid": "16bff528-d444-4680-8af6-006eb2f71fa3",
+          "header": "year"
+        }
+      ],
+      "rows": [
+        {
+          "uuid": "a38e3a0c-c6af-44cd-bd82-436571e160a3",
+          "cells": {
+            "2db2739a-d71d-4261-846b-c9db0246d8a3": "Laser Testing to BS EN",
+            "9cd06db3-c8d3-49fe-962f-35d745339c25": "60825-1:",
+            "699cdbcb-d136-4a9a-ad85-9fcad16665de": "2014 +A1:",
+            "16bff528-d444-4680-8af6-006eb2f71fa3": "2021"
+          }
+        },
+        {
+          "uuid": "c91a43ad-8954-42d2-8003-d772d8cc92dc",
+          "cells": {
+            "2db2739a-d71d-4261-846b-c9db0246d8a3": "Laser Testing to IEC",
+            "9cd06db3-c8d3-49fe-962f-35d745339c25": "60825-1:",
+            "699cdbcb-d136-4a9a-ad85-9fcad16665de": null,
+            "16bff528-d444-4680-8af6-006eb2f71fa3": "2014"
+          }
+        },
+        {
+          "uuid": "552422a8-3270-4694-90e0-ba156b867042",
+          "cells": {
+            "2db2739a-d71d-4261-846b-c9db0246d8a3": "Laser Testing to EN",
+            "9cd06db3-c8d3-49fe-962f-35d745339c25": "50689:",
+            "699cdbcb-d136-4a9a-ad85-9fcad16665de": null,
+            "16bff528-d444-4680-8af6-006eb2f71fa3": "2021 Consumer Laser"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "925dbdbf-b515-4f6a-b4d7-c70b2e4539f9",
+    "type": "title-with-list",
+    "order": 14,
+    "data": {
+      "title": "Главные отличия лазерной резки от других методов резки металла",
+      "body": "&quot;&lt;p&gt;Мы выяснили, что лазерная резка металла является очень эффективным способом резки металла. Но что же отличает именно этот способ от других возможных?&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "listStyle": "numbered",
+      "items": [
+        {
+          "uuid": "04a052e5-195d-46e7-8f0a-bf931bb49ccd",
+          "text": "&quot;&lt;p&gt;&lt;strong&gt;Скорость работы:&lt;/strong&gt; она у лазерных станков по металлу Wattsan, особенно тонколистовых, доходит до 60 м/мин. А скорость холостых передвижений достигает 140 м/мин&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        },
+        {
+          "uuid": "76590bea-9d80-4f11-a587-19cabed7016d",
+          "text": "&quot;&lt;p&gt;&lt;strong&gt;Идеальный рез.&lt;/strong&gt; Металл после резки не требует постобработки и сразу может быть использован по назначению&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        },
+        {
+          "uuid": "26b98452-6bbf-4c25-be1b-d5f9d2d8b89c",
+          "text": "&quot;&lt;p&gt;&lt;strong&gt;Отсутствие расходных материалов.&lt;/strong&gt; В работе лазерного станка по металлу расходные материалы отсутствуют или имеют невысокую стоимость. Основным расходом является сам материал и сопутствующие газы&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "513fa149-ca3e-4b14-b00d-a9e2f3a0add2",
+    "type": "title-with-list",
+    "order": 15,
+    "data": {
+      "title": "Какие металлы можно резать?",
+      "body": "&quot;&lt;p&gt;Лучше всего для данного способа резки подойдут следующие металлы:&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "listStyle": "checkmark",
+      "items": [
+        {
+          "uuid": "342aeee9-6441-4890-acaa-cb4eb73b326e",
+          "text": "&quot;&lt;p&gt;углеродистая сталь&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        },
+        {
+          "uuid": "5a8b51f5-3383-4a64-a4d0-eb09ef7e741b",
+          "text": "&quot;&lt;p&gt;легированная&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        },
+        {
+          "uuid": "20b64be9-e2bf-4216-8e66-426666f2644f",
+          "text": "&quot;&lt;p&gt;латунь&amp;nbsp;&lt;/p&gt;\\n&quot;"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "31febc84-b2f8-4114-8ca5-a22300ea0872",
+    "type": "editor",
+    "order": 16,
+    "data": {
+      "text": "&quot;&lt;p&gt;При наличии специального модуля станки также смогут резать трубы круглого и прямоугольного сечения.&amp;nbsp;&lt;/p&gt;\\n&quot;",
+      "border": {
+        "width": 0,
+        "color": "#000"
+      }
+    }
+  },
+  {
+    "uuid": "09d26809-e0b0-447c-bb06-073359d22900",
+    "type": "editor-with-background",
+    "order": 15,
+    "data": {
+      "text": "\"<p><span style=\\\"color: rgb(110,107,123);background-color: rgb(255,255,255);font-size: 14px;font-family: FFMarkWebPro, Helvetica, Arial, serif;\\\"><strong>Выводы </strong></span><br><br><span style=\\\"color: rgb(110,107,123);background-color: rgb(255,255,255);font-size: 14px;font-family: FFMarkWebPro, Helvetica, Arial, serif;\\\">Это происходит потому, что фотоны в лазерном луче синфазны и имеют постоянную фазовую зависимость друг от друга, что позволяет им усиливать друг друга и создавать высококонцентрированный пучок света (лазера). </span><br><br><span style=\\\"color: rgb(110,107,123);background-color: rgb(255,255,255);font-size: 14px;font-family: FFMarkWebPro, Helvetica, Arial, serif;\\\">Но как эти свойства влияют на работу лазерного станка по металлу? </span>&nbsp;</p>\\n\""
+    }
+  }
+]

@@ -10,7 +10,7 @@ import { ArticlesOnMain } from "@/components/shared/articles/ArticlesOnMain";
 import { getTranslations } from "next-intl/server";
 import { HitsProductsSlider } from "@/components/shared/carousels/HitsProductsSlider";
 import { VideoReviews } from "@/components/shared/reviews/VideoReviews";
-import { readGroupedPageContentAsJsonByFilter } from "@/services/content.service";
+import { readContentAsJsonByFilter } from "@/services/content.service";
 import { HOME_PAGE_CONTENT } from "@/lib/variables";
 import HeroSlider from "@/types/content/home/hero-slider";
 import Partner from "@/types/content/home/partner";
@@ -30,19 +30,20 @@ export async function generateMetadata({ params: paramsPromise }: { params: Prom
 
 export default async function MainPage() {
   const { products } = await getProducts();
-  const homeContent = await readGroupedPageContentAsJsonByFilter({ page_id: String(HOME_PAGE_CONTENT.id) });
+  const homeContent = await readContentAsJsonByFilter({ referenceType: "home" });
+  console.log(homeContent);
 
   return (
     <>
-      <BannerMain sliders={homeContent[HOME_PAGE_CONTENT.heroSlider].map(HeroSlider.fromContentJson)} />
+      <BannerMain sliders={homeContent.filter(content => content.section === HOME_PAGE_CONTENT.heroSlider).map(HeroSlider.fromContentJson)} />
       <NewProductsSlider products={products} />
-      <PartnersSlider partners={homeContent[HOME_PAGE_CONTENT.partners].map(Partner.fromContentJson)} />
+      {/* <PartnersSlider partners={homeContent[HOME_PAGE_CONTENT.partners].map(Partner.fromContentJson)} /> */}
       <UniqMachinesSlider products={products} />
-      <OfflineOrOnlineMain
+      {/* <OfflineOrOnlineMain
         content={OfflineOrOnline.fromContentJson(homeContent[HOME_PAGE_CONTENT.offlineOrOnline][0])}
         socialMedia={SocialMedia.fromContentJson(homeContent[HOME_PAGE_CONTENT.socialMedia][0])}
-      />
-      <SimplerTabsMain tabsData={homeContent[HOME_PAGE_CONTENT.promo].map(Promo.fromContentJson)} />
+      /> */}
+      {/* <SimplerTabsMain tabsData={homeContent[HOME_PAGE_CONTENT.promo].map(Promo.fromContentJson)} /> */}
       <HitsProductsSlider products={products} />
       <AboutMain />
       <VideoReviews />

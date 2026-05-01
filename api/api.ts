@@ -1,4 +1,6 @@
-import {Article, Category, Pagination, Product} from "@/types/types";
+import {Article as ArticleList, Category, Pagination, Product} from "@/types/types";
+import { Article } from "@/types/article";
+import { API_BASE_URL } from "./client";
 
 const GET_CATALOG_DATA = `https://api.infolasers.ru/api/catalog`;
 const GET_CATEGORIES = `https://api.infolasers.ru/api/category/getall`;
@@ -54,223 +56,48 @@ export async function getOneProductBySlug(slug: string): Promise<Product | undef
 }
 
 // Api получения массива статей с вложенными категориями
-export async function getArticles(): Promise<{ articles: Article[] }> {
-  return {
-    articles: [
-      {
-        id: 6,
-        name: "MAIN MAIN MAIN",
-        slug: "main-main-main",
-        description: "Сегодня WERT WERT EWRTW ",
-        isMain: Boolean(1),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: "Как работает лазерный маркиратор 2",
-        slug: "kak-rabotaet-lazernyy-markirator-2",
-        description: "Сегодня лазерный маркер является самым производительным скоростным типом оборудования",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 14,
-        name: "Как работает лазерный маркиратор-3",
-        slug: "kak-rabotaet-lazernyy-markirator-3",
-        description: "Сегодня лазерный маркер является самым производительным скоростным типом оборудования",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 4,
-        name: "rtyrtb fgb fgb fgb ",
-        slug: "rtyrtb-fgb-fgb-fgb",
-        description: "Сегодня лазерный маркер явлfgdf dfg fdg ",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 20,
-        name: "222222 22222 2 22 2",
-        slug: "22",
-        description: "Сегодня лазерный маркер явлfgdf dfg fdg ",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 222,
-        name: "33 3 3 3333 333  3 3 ",
-        slug: "kak-rabotaet-lazernyy-markirator",
-        description: "Сегодня лазерный маркер явлfgdf dfg fdg ",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 333,
-        name: "33 3 33 3 333 3 3 3",
-        slug: "33",
-        description: "Сегодня лазерный маркер явлfgdf dfg fdg ",
-        isMain: Boolean(1),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 444,
-        name: "44 4 444 4 4 4444 4 4  ",
-        slug: "kak-rabotaet-lazernyy-markirator",
-        description: "Сегодня лазерный маркер явлfgdf dfg fdg ",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 5,
-        name: "55 5 5 5 55 5 ",
-        slug: "55",
-        description: "Сегодня лазерный маркер явлfgdf dfg fdg ",
-        isMain: Boolean(0),
-        date: "14.05.2025",
-        image: "/img/articles/articles-main/1.jpg",
-        articleCategory: [
-          {
-            id: 1,
-            name: "Инструкции по настройке и эксплуатации лазерного оборудования",
-            slug: "instrukcii",
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: "Как работает лазерная очистка",
-        slug: "kak-rabotaet-lazernaya-ochistka",
-        description: "Описание как работает лазерная очистка",
-        isMain: Boolean(0),
-        date: "08.05.2025",
-        image: "/img/articles/articles-main/2.jpg",
-        articleCategory: [
-          {
-            id: 2,
-            name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
-            slug: "how-chose-laser-equipment",
-          },
-        ],
-      },
-      {
-        id: 13,
-        name: "Как работает лазерная очистка-2",
-        slug: "kak-rabotaet-lazernaya-ochistka-2",
-        description: "Описание как работает лазерная очистка",
-        isMain: Boolean(0),
-        date: "08.05.2025",
-        image: "/img/articles/articles-main/2.jpg",
-        articleCategory: [
-          {
-            id: 2,
-            name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
-            slug: "how-chose-laser-equipment",
-          },
-        ],
-      },
-      {
-        id: 8,
-        name: "Как работает лазерная очистка-3",
-        slug: "kak-rabotaet-lazernaya-ochistka-3",
-        description: "Описание как работает лазерная очистка",
-        isMain: Boolean(0),
-        date: "08.05.2025",
-        image: "/img/articles/articles-main/2.jpg",
-        articleCategory: [
-          {
-            id: 2,
-            name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
-            slug: "how-chose-laser-equipment",
-          },
-        ],
-      },
-      {
-        id: 9,
-        name: "Как работает лазерная очистка-4",
-        slug: "kak-rabotaet-lazernaya-ochistka-4",
-        description: "Описание как работает лазерная очистка",
-        isMain: Boolean(1),
-        date: "08.05.2025",
-        image: "/img/articles/articles-main/2.jpg",
-        articleCategory: [
-          {
-            id: 2,
-            name: "Как выбрать лазерное оборудование? Преимущества, особенности, недостатки, комплектация",
-            slug: "how-chose-laser-equipment",
-          },
-        ],
-      }
-    ]
+export async function getArticles(): Promise<{ articles: ArticleList[] }> {
+  const res = await fetch(`${API_BASE_URL}/api/KnowledgeArticles`, { next: { revalidate: 60 } });
+
+  if (!res.ok) {
+    throw new Error("Ошибка загрузки списка статей");
   }
+
+  const json = await res.json();
+  const articles: ArticleList[] = (json.data.list || []).map((item: any) => ({
+    id: item.id,
+    name: item.title,
+    slug: item.slug,
+    description: "", // API list doesn't seem to have description
+    isMain: item.is_active === 1,
+    date: item.published_at,
+    image: item.image || "/img/articles/articles-main/1.jpg", // Fallback image
+    articleCategory: [
+      {
+        id: item.category_id,
+        name: "Инструкции", // Category name is not in the list API
+        slug: "instrukcii",
+      },
+    ],
+  }));
+
+  return { articles };
 }
 
 // Получение одной статьи по slug
-export async function getOneArticleBySlug(slug: string): Promise<Article | undefined> {
+export async function getOneArticleBySlug(slug: string): Promise<ArticleList | undefined> {
   const {articles} = await getArticles();
   return articles.find(article => article.slug === slug);
+}
+
+// Получение деталей статьи по slug
+export async function getArticleDetails(slug: string): Promise<Article> {
+  const res = await fetch(`${API_BASE_URL}/api/KnowledgeArticles/${slug}`, { next: { revalidate: 60 } });
+
+  if (!res.ok) {
+    throw new Error("Ошибка загрузки статьи");
+  }
+
+  const json = await res.json();
+  return Article.fromJson(json);
 }
