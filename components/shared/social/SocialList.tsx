@@ -3,9 +3,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn, normalizeHtml } from "@/lib/utils";
-import SocialMedia from "@/types/content/home/social-media";
 
-export const SocialList: React.FC<ClassName & { socialMedia: SocialMedia }> = ({ className, socialMedia }) => {
+export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string, telegram?: string, whatsapp?: string, vk?: string } }> = ({ className, socialMedia }) => {
   return (
     <ul className={cn(
       "flex gap-3",

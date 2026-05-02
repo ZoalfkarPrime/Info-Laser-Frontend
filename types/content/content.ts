@@ -79,10 +79,4 @@ export class ContentJson extends Content {
       return acc;
     }, {} as ContentMetaJson);
   }
-
-  // toHome(): Home {
-  //   if (!this.contentMetasJson) return {};
-  //   const home = Home.fromContentJson(this);
-  //   return home ? home : {};
-  // }
 }

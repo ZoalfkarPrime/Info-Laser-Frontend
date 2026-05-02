@@ -12,6 +12,7 @@ import { HitsProductsSlider } from "@/components/shared/carousels/HitsProductsSl
 import { VideoReviews } from "@/components/shared/reviews/VideoReviews";
 import { readContentAsJsonByFilter } from "@/services/content.service";
 import { HOME_PAGE_CONTENT } from "@/lib/variables";
+import CentralBanner from "@/types/content/home/central-banner";
 import HeroSlider from "@/types/content/home/hero-slider";
 import Partner from "@/types/content/home/partner";
 import SocialMedia from "@/types/content/home/social-media";
@@ -31,18 +32,21 @@ export async function generateMetadata({ params: paramsPromise }: { params: Prom
 export default async function MainPage() {
   const { products } = await getProducts();
   const homeContent = await readContentAsJsonByFilter({ referenceType: "home" });
-  console.log(homeContent);
+
+  const sliders = homeContent.filter(content => content.section === HOME_PAGE_CONTENT.heroSlider).map(HeroSlider.fromContentJson);
+
+  const centralBannerJson = homeContent.find(content => content.section === HOME_PAGE_CONTENT.centralBanner);
+  const centralBanner = centralBannerJson ? CentralBanner.fromContentJson(centralBannerJson) : undefined;
 
   return (
     <>
-      <BannerMain sliders={homeContent.filter(content => content.section === HOME_PAGE_CONTENT.heroSlider).map(HeroSlider.fromContentJson)} />
+      <BannerMain sliders={sliders} />
       <NewProductsSlider products={products} />
       {/* <PartnersSlider partners={homeContent[HOME_PAGE_CONTENT.partners].map(Partner.fromContentJson)} /> */}
       <UniqMachinesSlider products={products} />
-      {/* <OfflineOrOnlineMain
-        content={OfflineOrOnline.fromContentJson(homeContent[HOME_PAGE_CONTENT.offlineOrOnline][0])}
-        socialMedia={SocialMedia.fromContentJson(homeContent[HOME_PAGE_CONTENT.socialMedia][0])}
-      /> */}
+      <OfflineOrOnlineMain
+        content={centralBanner}
+      />
       {/* <SimplerTabsMain tabsData={homeContent[HOME_PAGE_CONTENT.promo].map(Promo.fromContentJson)} /> */}
       <HitsProductsSlider products={products} />
       <AboutMain />

@@ -39,6 +39,7 @@ export const deliveryPlaces = [
 
 export const HOME_PAGE_CONTENT = {
   heroSlider: "hero_slider",
+  centralBanner: "central_banner",
   partners: "partners",
   socialMedia: "social-media",
   offlineOrOnline: "image",
