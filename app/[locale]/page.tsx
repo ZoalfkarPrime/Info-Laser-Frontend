@@ -18,6 +18,7 @@ import Partner from "@/types/content/home/partner";
 import SocialMedia from "@/types/content/home/social-media";
 import OfflineOrOnline from "@/types/content/home/online-offline";
 import Promo from "@/types/content/home/promo";
+import WhyChooseInfolaser from "@/types/content/home/why-choose-infolaser";
 
 export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
   const { locale } = await paramsPromise;
@@ -33,10 +34,14 @@ export default async function MainPage() {
   const { products } = await getProducts();
   const homeContent = await readContentAsJsonByFilter({ referenceType: "home" });
 
-  const sliders = homeContent.filter(content => content.section === HOME_PAGE_CONTENT.heroSlider).map(HeroSlider.fromContentJson);
+  const slidersJson = homeContent.filter(content => content.section === HOME_PAGE_CONTENT.heroSlider);
+  const sliders = slidersJson.map(HeroSlider.fromContentJson);
 
   const centralBannerJson = homeContent.find(content => content.section === HOME_PAGE_CONTENT.centralBanner);
   const centralBanner = centralBannerJson ? CentralBanner.fromContentJson(centralBannerJson) : undefined;
+
+  const whyChooseInfolaserJson = homeContent.find(content => content.section === HOME_PAGE_CONTENT.whyChooseInfolaser);
+  const whyChooseInfolaser = whyChooseInfolaserJson ? WhyChooseInfolaser.fromContentJson(whyChooseInfolaserJson) : undefined;
 
   return (
     <>
@@ -49,7 +54,7 @@ export default async function MainPage() {
       />
       {/* <SimplerTabsMain tabsData={homeContent[HOME_PAGE_CONTENT.promo].map(Promo.fromContentJson)} /> */}
       <HitsProductsSlider products={products} />
-      <AboutMain />
+      <AboutMain whyChooseInfolaser={whyChooseInfolaser} />
       <VideoReviews />
       <ArticlesOnMain />
     </>

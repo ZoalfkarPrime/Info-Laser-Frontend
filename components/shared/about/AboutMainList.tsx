@@ -1,24 +1,29 @@
 import React from "react";
 import {ClassName} from "@/types/types";
-import {cn} from "@/lib/utils";
+import {cn, normalizeHtml} from "@/lib/utils";
 import {Container} from "@/components/shared/Container";
 import {Logo} from "@/components/shared/Logo";
 import {CircleCheck} from "lucide-react";
+import WhyChooseInfolaser from "@/types/content/home/why-choose-infolaser";
 
-export const AboutMainList: React.FC<ClassName> = ({className}) => {
+interface Props extends ClassName {
+  whyChooseInfolaser?: WhyChooseInfolaser;
+}
+
+export const AboutMainList: React.FC<Props> = ({className, whyChooseInfolaser}) => {
 
   const aboutList = [
     {
-      name: "Поддержка",
-      desc: "В Инфолазере вы получите отличную цену, мы поможем с организацией доставки и документационным сопровождением.",
+      name: whyChooseInfolaser?.firstReasonTitle || "Поддержка",
+      desc: whyChooseInfolaser?.firstReasonDesc || "В Инфолазере вы получите отличную цену, мы поможем с организацией доставки и документационным сопровождением.",
     },
     {
-      name: "Гарантия до 12 месяцев",
-      desc: "Мы даем гарантию 12 месяцев на оборудование на территории всей России и странах СНГ.",
+      name: whyChooseInfolaser?.secondReasonTitle || "Гарантия до 12 месяцев",
+      desc: whyChooseInfolaser?.secondReasonDesc || "Мы даем гарантию 12 месяцев на оборудование на территории всей России и странах СНГ.",
     },
     {
-      name: "Большая база знаний",
-      desc: "Более 100 статей на различные темы, которые отвечают на самые интересные и сложные вопросы общего характера.",
+      name: whyChooseInfolaser?.thirdReasonTitle || "Большая база знаний",
+      desc: whyChooseInfolaser?.thirdReasonDesc || "Более 100 статей на различные темы, которые отвечают на самые интересные и сложные вопросы общего характера.",
     }
   ];
 
@@ -32,9 +37,11 @@ export const AboutMainList: React.FC<ClassName> = ({className}) => {
             "max-xl:text-3xl max-xl:mb-3",
             "max-md:text-2xl max-md:mb-2",
           )}>
-            Компания Infolaser подберет и модернизирует станок с ЧПУ под ваши задачи.
+            {normalizeHtml(whyChooseInfolaser?.mainText || "Компания Infolaser подберет и модернизирует станок с ЧПУ под ваши задачи.")}
             <span
-              className={"text-[#9298AF] ml-1"}>Мы обучим ваш персонал и обеспечим тех. поддержку на каждом этапе.</span>
+              className={"text-[#9298AF] ml-1"}>
+              {normalizeHtml(whyChooseInfolaser?.grayText || "Мы обучим ваш персонал и обеспечим тех. поддержку на каждом этапе.")}
+            </span>
           </h3>
         </Container>
 
@@ -46,9 +53,9 @@ export const AboutMainList: React.FC<ClassName> = ({className}) => {
             <div key={item.name}>
               <dt className={"flex gap-x-2 font-semibold mb-2 max-md:mb-1"}>
                 <CircleCheck className="shrink-0 text-white fill-[var(--violet)]" size={20}/>
-                {item.name}
+                {normalizeHtml(item.name)}
               </dt>
-              <dd className={"pl-7 max-md:text-sm"}>{item.desc}</dd>
+              <dd className={"pl-7 max-md:text-sm"}>{normalizeHtml(item.desc)}</dd>
             </div>
           ))}
         </dl>
