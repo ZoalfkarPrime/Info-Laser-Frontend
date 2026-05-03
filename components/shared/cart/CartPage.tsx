@@ -1,19 +1,22 @@
 'use client'
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {useCart} from "@/context/CartContext";
-import {Container} from "@/components/shared/Container";
-import {Check, Clock3, Minus, Plus, Trash2} from "lucide-react";
-import {cn, formatPrice} from "@/lib/utils";
-import {Product} from "@/types/types";
-import {Button} from "@/components/ui/Button";
-import {CartForm} from "@/components/shared/forms/CartForm";
-import {OfflineOrOnlineMain} from "@/components/shared/banners/OfflineOrOnlineMain";
+import { useCart } from "@/context/CartContext";
+import { Container } from "@/components/shared/Container";
+import { Check, Clock3, Minus, Plus, Trash2 } from "lucide-react";
+import { cn, formatPrice } from "@/lib/utils";
+import { Product } from "@/types/types";
+import { Button } from "@/components/ui/Button";
+import { CartForm } from "@/components/shared/forms/CartForm";
 
-const CartPage = () => {
-  const {cart, updateQuantity, removeFromCart, clearCart} = useCart();
+interface CartPageProps {
+  banner?: React.ReactNode;
+}
+
+const CartPage = ({ banner }: CartPageProps) => {
+  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -45,11 +48,11 @@ const CartPage = () => {
 
         {
           isLoading ? (
-              <div className="text-center py-20 text-xl text-[var(--gray-text)]">Загрузка корзины...</div>
-            ) :
+            <div className="text-center py-20 text-xl text-[var(--gray-text)]">Загрузка корзины...</div>
+          ) :
             cart.length === 0 ? (
               <div className={"flex items-center justify-center flex-col gap-10 pb-30"}>
-                <Image src={'/img/cart/empty-cart.jpg'} alt={"Пустая корзина"} width={270} height={483}/>
+                <Image src={'/img/cart/empty-cart.jpg'} alt={"Пустая корзина"} width={270} height={483} />
                 <p
                   className={cn(
                     "text-4xl font-semibold text-[var(--gray-text)]",
@@ -129,17 +132,17 @@ const CartPage = () => {
                                 <span
                                   className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--violet)] bg-[var(--violet-dark)] rounded-2xl p-2 mb-3 leading-none max-md:text-[10px]"
                                 >
-                          <Check className="text-[var(--violet)]" size={12}/>
-                          В наличии
-                        </span>
+                                  <Check className="text-[var(--violet)]" size={12} />
+                                  В наличии
+                                </span>
                               ) :
                               (
                                 <span
                                   className="inline-flex items-center gap-x-1 place-self-start text-xs text-[var(--green)] bg-[var(--green)] rounded-2xl p-2 mb-3 leading-none max-md:text-[10px]"
                                 >
-                          <Clock3 className='text-[var(--green)]' size={12}/>
-                          Под заказ
-                        </span>
+                                  <Clock3 className='text-[var(--green)]' size={12} />
+                                  Под заказ
+                                </span>
                               )
                             }
 
@@ -184,7 +187,7 @@ const CartPage = () => {
                               "disabled:opacity-50 disabled:cursor-not-allowed"
                             )}
                           >
-                            <Minus size={17}/>
+                            <Minus size={17} />
                           </button>
                           <input
                             type="number"
@@ -210,7 +213,7 @@ const CartPage = () => {
                               "disabled:opacity-50 disabled:cursor-not-allowed"
                             )}
                           >
-                            <Plus size={17}/>
+                            <Plus size={17} />
                           </button>
                         </div>
 
@@ -223,7 +226,7 @@ const CartPage = () => {
                             "max-md:col-start-10 max-md:col-end-13"
                           )}
                         >
-                          <Trash2 size={17}/>
+                          <Trash2 size={17} />
                         </button>
                       </li>
                     ))}
@@ -258,18 +261,13 @@ const CartPage = () => {
                     </div>
                   </div>
 
-                  <OfflineOrOnlineMain
-                    className={cn(
-                      "[&>div>div]:py-5 [&>div]:px-0 [&>div>div>div]:max-w-[400px]",
-                      "max-xl:hidden"
-                    )}
-                  />
+                  {banner}
                 </div>
 
                 <CartForm className={cn(
                   "col-start-10 col-end-13 max-h-fit",
                   "max-xl:col-span-full"
-                )}/>
+                )} />
               </div>
             )}
       </Container>

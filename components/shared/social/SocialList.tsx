@@ -2,7 +2,7 @@ import { ClassName } from "@/types/types";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn, normalizeHtml } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string, telegram?: string, whatsapp?: string, vk?: string } }> = ({ className, socialMedia }) => {
   return (
@@ -16,7 +16,7 @@ export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string,
             <Link
               target={"_blank"}
               className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"}
-              href={normalizeHtml(socialMedia?.youtube)}
+              href={socialMedia?.youtube}
             >
               <Image
                 className={"transition-transform duration-300"}
@@ -34,7 +34,7 @@ export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string,
             <Link
               target={"_blank"}
               className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"}
-              href={normalizeHtml(socialMedia?.telegram)}
+              href={socialMedia?.telegram}
             >
               <Image
                 className={"transition-transform duration-300"}
@@ -52,7 +52,7 @@ export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string,
             <Link
               target={"_blank"}
               className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"}
-              href={normalizeHtml(socialMedia?.whatsapp)}
+              href={socialMedia?.whatsapp}
             >
               <Image
                 className={"transition-transform duration-300"}
@@ -69,7 +69,7 @@ export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string,
             <Link
               target={"_blank"}
               className={"hover:[&>img]:scale-[1.1] focus:[&>img]:scale-[1.1]"}
-              href={normalizeHtml(socialMedia?.vk)}
+              href={socialMedia?.vk}
             >
               <Image
                 className={"transition-transform duration-300"}

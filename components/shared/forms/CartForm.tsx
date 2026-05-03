@@ -8,14 +8,59 @@ import {Textarea} from "@/components/ui/Textarea";
 import PhoneInput from 'react-phone-input-2';
 import {Button} from "@/components/ui/Button";
 import {PersonalAgreement} from "@/components/shared/PersonalAgreement";
+import {useCart} from "@/context/CartContext";
+import {apiClient} from "@/api/client";
+import toast from "react-hot-toast";
 
 export const CartForm: React.FC<ClassName> = ({className}) => {
+  const {cart, clearCart} = useCart();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [notes, setNotes] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (cart.length === 0) {
+      toast.error("Ваша корзина пуста");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        client_name: name,
+        client_phone: phone.startsWith('+') ? phone : `+${phone}`,
+        client_email: email,
+        client_notes: notes,
+        status: "pending",
+        products: cart.map(item => ({
+          product_id: item.id,
+          quantity: item.quantity
+        }))
+      };
+
+      const response = await apiClient.post("/api/order", payload);
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Заказ успешно оформлен! Мы свяжемся с вами в ближайшее время.");
+        clearCart();
+        setName("");
+        setEmail("");
+        setPhone("");
+        setNotes("");
+      } else {
+        throw new Error("Failed to submit order");
+      }
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      toast.error("Произошла ошибка при оформлении заказа. Пожалуйста, попробуйте позже.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,6 +91,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
               className={"rounded-3xl bg-white"}
               id={"name"} required type="text" placeholder="Имя" value={name}
               onChange={(e) => setName(e.target.value)}
+              disabled={isSubmitting}
             />
           </li>
 
@@ -60,6 +106,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
               className={"rounded-3xl bg-white"}
               id={"mail"} required type="email" placeholder="mail@mail.ru" value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={isSubmitting}
             />
           </li>
 
@@ -74,6 +121,7 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
               country={'ru'}
               value={phone}
               onChange={(val) => setPhone(val)}
+              disabled={isSubmitting}
               inputProps={{
                 name: 'tel',
                 required: true,
@@ -93,7 +141,14 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
             >
               Комментарий:
             </label>
-            <Textarea className={"rounded-3xl bg-white"} id={"comment"} placeholder="Введите комментарий"/>
+            <Textarea 
+              className={"rounded-3xl bg-white"} 
+              id={"comment"} 
+              placeholder="Введите комментарий"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              disabled={isSubmitting}
+            />
           </li>
         </ul>
         <PersonalAgreement btnName={"Оформить предзаказ"}/>
@@ -102,8 +157,10 @@ export const CartForm: React.FC<ClassName> = ({className}) => {
           className={cn(
             "w-full"
           )}
+          type="submit"
+          disabled={isSubmitting}
         >
-          Оформить предзаказ
+          {isSubmitting ? "Оформление..." : "Оформить предзаказ"}
         </Button>
       </form>
     </div>

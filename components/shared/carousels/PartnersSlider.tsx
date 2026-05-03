@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { ClassName } from "@/types/types";
 import Image from "next/image";
 import { CarouselDots } from "@/components/shared/carousels/CarouselDots";
-import Partner from "@/types/content/home/partner";
+import Partner from "@/types/partner";
 
 export const PartnersSlider: React.FC<ClassName & { partners: Partner[] }> = ({ className, partners }) => {
 
@@ -30,7 +30,7 @@ export const PartnersSlider: React.FC<ClassName & { partners: Partner[] }> = ({ 
           }}
         >
           <CarouselContent className="items-center p-5 -ml-5 max-sm:-ml-2 ">
-            {partners?.filter((partner) => partner.mainImg).map((partner) => (
+            {partners?.filter((partner) => partner.filemanager?.url).map((partner) => (
               <CarouselItem
                 key={partner.id}
                 className={cn(
@@ -40,8 +40,8 @@ export const PartnersSlider: React.FC<ClassName & { partners: Partner[] }> = ({ 
                 )}
               >
                 <Image
-                  src={partner.mainImg ?? ''}
-                  alt={partner.mainImg ?? ''}
+                  src={partner.filemanager?.url ?? ''}
+                  alt={partner.name ?? ''}
                   width={200}
                   height={75}
                   className={cn(

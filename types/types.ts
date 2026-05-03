@@ -194,6 +194,21 @@ export interface Article extends ClassName {
   articleCategory: articleCategory[];
 }
 
+export interface ArticleListVM {
+  id: number;
+  title: string;
+  slug: string;
+  is_active: number;
+  published_at: string;
+  image: string;
+  category_id: number;
+  category: {
+    id: number;
+    name: string;
+    slug: string;
+  }
+}
+
 export interface articleCategory {
   id: number;
   name: string;

@@ -1,14 +1,14 @@
-import {getTranslations} from "next-intl/server";
-import {DeliveryHeader} from "@/components/shared/delivery/DeliveryHeader";
-import {PurchaseList} from "@/components/shared/delivery/PurchaseList";
-import {DeliveryPickup} from "@/components/shared/delivery/DeliveryPickup";
-import {ProductReturn} from "@/components/shared/delivery/ProductReturn";
-import {SocialAndOnlineMini} from "@/components/shared/banners/SocialAndOnlineMini";
+import { getTranslations } from "next-intl/server";
+import { DeliveryHeader } from "@/components/shared/delivery/DeliveryHeader";
+import { PurchaseList } from "@/components/shared/delivery/PurchaseList";
+import { DeliveryPickup } from "@/components/shared/delivery/DeliveryPickup";
+import { ProductReturn } from "@/components/shared/delivery/ProductReturn";
+import { SocialAndOnlineMini } from "@/components/shared/banners/SocialAndOnlineMini";
 import React from "react";
 
-export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
-  const {locale} = await paramsPromise;
-  const t = await getTranslations({locale});
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await paramsPromise;
+  const t = await getTranslations({ locale });
 
   return {
     title: `${t('deliveryMetaTitle')}`,
@@ -56,11 +56,11 @@ const DeliveryPage = () => {
   return (
     <>
       <section>
-        <DeliveryHeader/>
-        <PurchaseList/>
-        <DeliveryPickup/>
-        <ProductReturn data={data}/>
-        <SocialAndOnlineMini className={"mb-15 max-md:mb-5"}/>
+        <DeliveryHeader />
+        <PurchaseList />
+        <DeliveryPickup />
+        <ProductReturn data={data} />
+        <SocialAndOnlineMini className={"mb-15 max-md:mb-5"} />
       </section>
     </>
   );

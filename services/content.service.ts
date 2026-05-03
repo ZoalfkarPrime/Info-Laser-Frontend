@@ -1,6 +1,7 @@
 import { contentApi } from "@/api/content.api";
 import { Content, ContentJson } from "@/types/content/content";
 import { contentMetaApi } from "@/api/content-meta.api";
+import { cache } from "react";
 
 /**
  * Global and Standardized Method for fetching and resolving Content alongside its Metas.
@@ -12,7 +13,7 @@ import { contentMetaApi } from "@/api/content-meta.api";
  * 
  * This enables easily converting data into conventional component props (e.g. `toSlider()`).
  */
-export async function readContentAsJsonByFilter(filter: { [key: string]: string }): Promise<ContentJson[]> {
+export const readContentAsJsonByFilter = cache(async function(filter: { [key: string]: string }): Promise<ContentJson[]> {
   try {
     const contentResult = await contentApi.readByFilters(filter);
 
@@ -51,4 +52,4 @@ export async function readContentAsJsonByFilter(filter: { [key: string]: string 
     console.error("Error reading content:", error);
     return [];
   }
-}
+});

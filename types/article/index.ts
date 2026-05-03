@@ -147,7 +147,7 @@ export class ArticleProductData {
 }
 
 export class ArticleTitleImageBodyData {
-  tag: string;
+  tag: boolean;
   title: string;
   body: string;
   file: FileManager;
@@ -155,7 +155,7 @@ export class ArticleTitleImageBodyData {
   constructor(data: Record<string, unknown>) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const d = data as any;
-    this.tag = String(d.tag);
+    this.tag = Boolean(d.tag);
     this.title = d.title;
     this.body = d.body;
     this.file = d.file;
@@ -163,7 +163,7 @@ export class ArticleTitleImageBodyData {
 }
 
 export class ArticleTitleWithListData {
-  tag: string;
+  tag: boolean;
   title: string;
   body: string;
   listStyle: "checkmark" | "numbered";
@@ -172,7 +172,7 @@ export class ArticleTitleWithListData {
   constructor(data: Record<string, unknown>) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const d = data as any;
-    this.tag = String(d.tag);
+    this.tag = Boolean(d.tag);
     this.title = d.title;
     this.body = d.body;
     this.listStyle = d.listStyle;

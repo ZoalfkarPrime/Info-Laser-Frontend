@@ -1,12 +1,19 @@
 import { DemoBtn } from "@/components/shared/btns/DemoBtn";
-import { cn, normalizeHtml } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 import { Container } from "@/components/shared/Container";
 import { ClassName } from "@/types/types";
 import { SocialList } from "@/components/shared/social/SocialList";
-import CentralBanner from "@/types/content/home/central-banner";
+import SocialOnlineOfflineBanner from "@/types/content/global/social-online-offline-banner";
+import { readContentAsJsonByFilter } from "@/services/content.service";
+import { GLOBAL_CONTENT, HOME_PAGE_CONTENT, SOCIAL_MEDIA_BANNER } from "@/lib/variables";
 
-export const OfflineOrOnlineMain: React.FC<ClassName & { content?: CentralBanner }> = ({ className, content }) => {
+export async function OfflineOrOnlineMain({ className, title = HOME_PAGE_CONTENT.bannerTitle }: ClassName & { title: string }) {
+  const meta = await readContentAsJsonByFilter({ referenceType: GLOBAL_CONTENT, section: SOCIAL_MEDIA_BANNER, title });
+
+  const socialOnlineOfflineBannerJson = meta.find(content => content.title === title);
+  const content = socialOnlineOfflineBannerJson ? SocialOnlineOfflineBanner.fromContentJson(socialOnlineOfflineBannerJson) : undefined;
+
   return (
     <div className={cn("py-7", className)}>
       <Container>
@@ -23,18 +30,19 @@ export const OfflineOrOnlineMain: React.FC<ClassName & { content?: CentralBanner
               "text-3xl md:text-4xl font-bold mb-4",
               "max-md:text-2xl max-md:mb-3"
             )}>
-              {normalizeHtml(content?.upperText || "")}
+              {content?.upperText || ""}
             </p>
             <p className={cn(
               "text-lg leading-6 mb-6",
               "max-md:text-xs max-md:leading-4 max-md:mb-3"
             )}>
-              {normalizeHtml(content?.lowerText || "")}
+              {content?.lowerText || ""}
             </p>
             <SocialList socialMedia={{ youtube: content?.youtube, telegram: content?.telegram, whatsapp: content?.whatsapp, vk: content?.vk }} className={"justify-center mb-6 max-md:mb-3"} />
             <DemoBtn
               className={"place-self-center"}
-              title={normalizeHtml(content?.btnText || "")}
+              title={content?.btnText || ""}
+              link={content?.btnLink}
             />
           </div>
         </div>

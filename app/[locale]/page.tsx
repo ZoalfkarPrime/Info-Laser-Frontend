@@ -1,24 +1,19 @@
-import { getProducts } from "@/api/api";
+import { getProducts, getPartners } from "@/api/api";
 import { BannerMain } from "@/components/shared/carousels/banners/BannerMain";
 import { NewProductsSlider } from "@/components/shared/carousels/NewProductsSlider";
 import { PartnersSlider } from "@/components/shared/carousels/PartnersSlider";
 import { UniqMachinesSlider } from "@/components/shared/carousels/UniqMachinesSlider";
 import { OfflineOrOnlineMain } from "@/components/shared/banners/OfflineOrOnlineMain";
-import { SimplerTabsMain } from "@/components/shared/tabs/SimplerTabsMain";
 import { AboutMain } from "@/components/shared/about/AboutMain";
 import { ArticlesOnMain } from "@/components/shared/articles/ArticlesOnMain";
 import { getTranslations } from "next-intl/server";
 import { HitsProductsSlider } from "@/components/shared/carousels/HitsProductsSlider";
 import { VideoReviews } from "@/components/shared/reviews/VideoReviews";
 import { readContentAsJsonByFilter } from "@/services/content.service";
-import { HOME_PAGE_CONTENT } from "@/lib/variables";
-import CentralBanner from "@/types/content/home/central-banner";
+import { GLOBAL_CONTENT, HOME_PAGE_CONTENT, PROMO_BANNER } from "@/lib/variables";
 import HeroSlider from "@/types/content/home/hero-slider";
-import Partner from "@/types/content/home/partner";
-import SocialMedia from "@/types/content/home/social-media";
-import OfflineOrOnline from "@/types/content/home/online-offline";
-import Promo from "@/types/content/home/promo";
-import WhyChooseInfolaser from "@/types/content/home/why-choose-infolaser";
+import Promo from "@/types/content/global/promo";
+import { SimplerTabsMain } from "@/components/shared/tabs/SimplerTabsMain";
 
 export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
   const { locale } = await paramsPromise;
@@ -32,29 +27,54 @@ export async function generateMetadata({ params: paramsPromise }: { params: Prom
 
 export default async function MainPage() {
   const { products } = await getProducts();
-  const homeContent = await readContentAsJsonByFilter({ referenceType: "home" });
+  const partners = await getPartners();
+  const homeContent = await readContentAsJsonByFilter({ referenceType: "home", });
+  const promoContent = await readContentAsJsonByFilter({
+    referenceType: GLOBAL_CONTENT,
+    section: PROMO_BANNER,
+    title: HOME_PAGE_CONTENT.promoBannerTitle
+  });
+  const promoTabs = promoContent.filter(content => content.title === HOME_PAGE_CONTENT.promoBannerTitle).map(Promo.fromContentJson);
 
   const slidersJson = homeContent.filter(content => content.section === HOME_PAGE_CONTENT.heroSlider);
   const sliders = slidersJson.map(HeroSlider.fromContentJson);
 
-  const centralBannerJson = homeContent.find(content => content.section === HOME_PAGE_CONTENT.centralBanner);
-  const centralBanner = centralBannerJson ? CentralBanner.fromContentJson(centralBannerJson) : undefined;
-
-  const whyChooseInfolaserJson = homeContent.find(content => content.section === HOME_PAGE_CONTENT.whyChooseInfolaser);
-  const whyChooseInfolaser = whyChooseInfolaserJson ? WhyChooseInfolaser.fromContentJson(whyChooseInfolaserJson) : undefined;
-
   return (
     <>
-      <BannerMain sliders={sliders} />
-      <NewProductsSlider products={products} />
-      {/* <PartnersSlider partners={homeContent[HOME_PAGE_CONTENT.partners].map(Partner.fromContentJson)} /> */}
-      <UniqMachinesSlider products={products} />
+      {
+        sliders.length > 0 && (
+          <BannerMain sliders={sliders} />
+        )
+      }
+      {
+        products.length > 0 && (
+          <NewProductsSlider products={products} />
+        )
+      }
+      {
+        partners.length > 0 && (
+          <PartnersSlider partners={partners} />
+        )
+      }
+      {
+        products.length > 0 && (
+          <UniqMachinesSlider products={products} />
+        )
+      }
       <OfflineOrOnlineMain
-        content={centralBanner}
+        title={HOME_PAGE_CONTENT.bannerTitle}
       />
-      {/* <SimplerTabsMain tabsData={homeContent[HOME_PAGE_CONTENT.promo].map(Promo.fromContentJson)} /> */}
-      <HitsProductsSlider products={products} />
-      <AboutMain whyChooseInfolaser={whyChooseInfolaser} />
+      {
+        promoTabs.length > 0 && (
+          <SimplerTabsMain tabsData={promoTabs} />
+        )
+      }
+      {
+        products.length > 0 && (
+          <HitsProductsSlider products={products} />
+        )
+      }
+      <AboutMain />
       <VideoReviews />
       <ArticlesOnMain />
     </>

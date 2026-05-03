@@ -1,16 +1,16 @@
 import React from "react";
-import {ClassName} from "@/types/types";
-import {cn, normalizeHtml} from "@/lib/utils";
-import {Container} from "@/components/shared/Container";
-import {Logo} from "@/components/shared/Logo";
-import {CircleCheck} from "lucide-react";
+import { ClassName } from "@/types/types";
+import { cn } from "@/lib/utils";
+import { Container } from "@/components/shared/Container";
+import { Logo } from "@/components/shared/Logo";
+import { CircleCheck } from "lucide-react";
 import WhyChooseInfolaser from "@/types/content/home/why-choose-infolaser";
 
 interface Props extends ClassName {
   whyChooseInfolaser?: WhyChooseInfolaser;
 }
 
-export const AboutMainList: React.FC<Props> = ({className, whyChooseInfolaser}) => {
+export const AboutMainList: React.FC<Props> = ({ className, whyChooseInfolaser }) => {
 
   const aboutList = [
     {
@@ -31,16 +31,16 @@ export const AboutMainList: React.FC<Props> = ({className, whyChooseInfolaser}) 
     <section className={cn("py-7 max-md:py-0", className)}>
       <Container>
         <Container className={"max-w-[930px] text-center mb-10 max-md:mb-5"}>
-          <Logo className={"flex justify-center mb-3"} name={"logo"}/>
+          <Logo className={"flex justify-center mb-3"} name={"logo"} />
           <h3 className={cn(
             "text-4xl font-semibold",
             "max-xl:text-3xl max-xl:mb-3",
             "max-md:text-2xl max-md:mb-2",
           )}>
-            {normalizeHtml(whyChooseInfolaser?.mainText || "Компания Infolaser подберет и модернизирует станок с ЧПУ под ваши задачи.")}
+            {whyChooseInfolaser?.mainText || "Компания Infolaser подберет и модернизирует станок с ЧПУ под ваши задачи."}
             <span
               className={"text-[#9298AF] ml-1"}>
-              {normalizeHtml(whyChooseInfolaser?.grayText || "Мы обучим ваш персонал и обеспечим тех. поддержку на каждом этапе.")}
+              {whyChooseInfolaser?.grayText || "Мы обучим ваш персонал и обеспечим тех. поддержку на каждом этапе."}
             </span>
           </h3>
         </Container>
@@ -52,10 +52,10 @@ export const AboutMainList: React.FC<Props> = ({className, whyChooseInfolaser}) 
           {aboutList.map((item) => (
             <div key={item.name}>
               <dt className={"flex gap-x-2 font-semibold mb-2 max-md:mb-1"}>
-                <CircleCheck className="shrink-0 text-white fill-[var(--violet)]" size={20}/>
-                {normalizeHtml(item.name)}
+                <CircleCheck className="shrink-0 text-white fill-[var(--violet)]" size={20} />
+                {item.name}
               </dt>
-              <dd className={"pl-7 max-md:text-sm"}>{normalizeHtml(item.desc)}</dd>
+              <dd className={"pl-7 max-md:text-sm"}>{item.desc}</dd>
             </div>
           ))}
         </dl>

@@ -1,11 +1,17 @@
-import {Container} from "@/components/shared/Container";
-import {SocialBannerMini} from "@/components/shared/banners/SocialBannerMini";
-import {OfflineOrOnlineMini} from "@/components/shared/banners/OfflineOrOnlineMini";
+import { Container } from "@/components/shared/Container";
+import { SocialBannerMini } from "@/components/shared/banners/SocialBannerMini";
+import { OfflineOrOnlineMini } from "@/components/shared/banners/OfflineOrOnlineMini";
 import React from "react";
-import {cn} from "@/lib/utils";
-import {ClassName} from "@/types/types";
+import { cn } from "@/lib/utils";
+import { ClassName } from "@/types/types";
 
-export const SocialAndOnlineMini: React.FC<ClassName> = ({className}) => {
+interface ISocialAndOnlineMiniProps {
+  leftBannerTitle?: string;
+  rightBannerTitle?: string;
+  className: ClassName
+}
+
+export const SocialAndOnlineMini: React.FC<ISocialAndOnlineMiniProps> = ({ className, leftBannerTitle, rightBannerTitle }) => {
   return (
     <div className={cn("", className)}>
       <Container>
@@ -13,11 +19,15 @@ export const SocialAndOnlineMini: React.FC<ClassName> = ({className}) => {
           <SocialBannerMini className={cn(
             "col-start-1 col-end-7",
             "max-xl:col-span-full"
-          )}/>
+          )}
+            title={leftBannerTitle}
+          />
           <OfflineOrOnlineMini className={cn(
             "col-start-7 col-end-13",
             "max-xl:col-span-full"
-          )}/>
+          )}
+            title={rightBannerTitle}
+          />
         </div>
       </Container>
     </div>

@@ -36,9 +36,27 @@ export const deliveryPlaces = [
   },
 ];
 
+export const GLOBAL_CONTENT = 'global'
+export const SOCIAL_MEDIA_BANNER = 'banner'
+export const PROMO_BANNER = 'banner_information'
 
 export const HOME_PAGE_CONTENT = {
+  bannerTitle: 'home',
   heroSlider: "hero_slider",
-  centralBanner: "central_banner",
-  whyChooseInfolaser: "why_choose_infolaser"
+  whyChooseInfolaser: "why_choose_infolaser",
+  promoBannerTitle: "home"
+}
+
+export const ABOUT_PAGE_CONTENT = {
+  socialBannerTitle: 'about',
+  promoBannerTitle: "about"
+}
+
+export const BASKET_PAGE_CONTENT = {
+  bannerTitle: 'basket'
+}
+
+export const DELIVERY_PAGE_CONTENT = {
+  socialBannerLeft: 'delivery_left',
+  socialBannerRight: 'delivery_right'
 }

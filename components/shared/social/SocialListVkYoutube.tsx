@@ -6,7 +6,7 @@ import {YoutubeIcon} from "@/components/shared/icons/social/YoutubeIcon";
 import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 import {SOCIAL_VK_LINK, SOCIAL_YOUTUBE_LINK} from "@/lib/variables";
 
-export const SocialListVkYoutube: React.FC<ClassName> = ({className}) => {
+export const SocialListVkYoutube: React.FC<ClassName & { vk?: string, youtube?: string }> = ({className, vk, youtube}) => {
   return (
     <ul className={cn(
       "flex gap-5",
@@ -15,7 +15,7 @@ export const SocialListVkYoutube: React.FC<ClassName> = ({className}) => {
     )}>
       <li>
         <UniqButtonLink
-          href={SOCIAL_VK_LINK}
+          href={vk || SOCIAL_VK_LINK}
           variant={"white"}
           className={"gap-x-2 py-2"}
         >
@@ -25,7 +25,7 @@ export const SocialListVkYoutube: React.FC<ClassName> = ({className}) => {
       </li>
       <li>
         <UniqButtonLink
-          href={`https://www.youtube.com/${SOCIAL_YOUTUBE_LINK}`}
+          href={youtube || `https://www.youtube.com/${SOCIAL_YOUTUBE_LINK}`}
           variant={"white"}
           className={"gap-x-2 py-2"}
         >

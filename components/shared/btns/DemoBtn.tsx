@@ -1,7 +1,7 @@
 'use client';
 
-import React, {useState} from "react";
-import {Button} from "@/components/ui/Button";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -9,24 +9,39 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
-import {cn} from "@/lib/utils";
-import {ClassName} from "@/types/types";
-import {Input} from "@/components/ui/Input";
-import {Textarea} from "@/components/ui/Textarea";
+import { cn } from "@/lib/utils";
+import { ClassName } from "@/types/types";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
 import PhoneInput from "react-phone-input-2";
-import {PersonalAgreement} from "@/components/shared/PersonalAgreement";
+import { PersonalAgreement } from "@/components/shared/PersonalAgreement";
 
 type CallbackBtnProps = {
   title: string;
+  link?: string;
 } & ClassName;
 
-export const DemoBtn: React.FC<CallbackBtnProps> = ({title, className}) => {
+export const DemoBtn: React.FC<CallbackBtnProps> = ({ title, link, className }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
+
+  if (link) {
+    return (
+      <Button
+        variant={"violet"}
+        className={cn(className)}
+        asChild
+      >
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          {title}
+        </a>
+      </Button>
+    );
+  }
 
   return (
     <Dialog>
@@ -82,7 +97,7 @@ export const DemoBtn: React.FC<CallbackBtnProps> = ({title, className}) => {
               }}
               inputClass="!rounded-3xl !bg-white !p-3 !w-full !px-12 focus:!border-[var(--violet)] focus:!ring-0 focus:!outline-none"
               containerClass=""
-              masks={{ru: '(...) ...-..-..'}}
+              masks={{ ru: '(...) ...-..-..' }}
               placeholder="+7 (___) ___-__-__"
             />
           </div>
@@ -96,9 +111,9 @@ export const DemoBtn: React.FC<CallbackBtnProps> = ({title, className}) => {
             >
               Комментарий:
             </label>
-            <Textarea className={"rounded-2xl max-md:text-xs"} id={"comment"} placeholder="Введите комментарий"/>
+            <Textarea className={"rounded-2xl max-md:text-xs"} id={"comment"} placeholder="Введите комментарий" />
           </div>
-          <PersonalAgreement btnName={"Отправить запрос"}/>
+          <PersonalAgreement btnName={"Отправить запрос"} />
           <Button type="submit" className="mt-5">
             Отправить запрос
           </Button>

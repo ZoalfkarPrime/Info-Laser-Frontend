@@ -1,6 +1,6 @@
 import { ContentJson } from "../content";
 
-export default class CentralBanner {
+export default class SocialOnlineOfflineBanner {
   id?: string;
   image?: string;
   upperText?: string;
@@ -12,7 +12,7 @@ export default class CentralBanner {
   whatsapp?: string;
   youtube?: string;
 
-  static fromContentJson(contentJson: ContentJson): CentralBanner {
+  static fromContentJson(contentJson: ContentJson): SocialOnlineOfflineBanner {
     return {
       id: `${contentJson.id}`,
       image: contentJson.contentMetasJson?.['src'] ?? "",
@@ -24,6 +24,6 @@ export default class CentralBanner {
       vk: contentJson.contentMetasJson?.['vk'] ?? "",
       whatsapp: contentJson.contentMetasJson?.['whatsapp'] ?? "",
       youtube: contentJson.contentMetasJson?.['youtube'] ?? "",
-    } as CentralBanner;
+    } as SocialOnlineOfflineBanner;
   }
 }

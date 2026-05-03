@@ -9,8 +9,6 @@ import { getArticles } from "@/api/api";
 
 export const ArticlesOnMain = async ({ className }: ClassName) => {
   const { articles } = await getArticles();
-  console.log(articles);
-
 
   const twoArticles = articles.slice(0, 2);
 
