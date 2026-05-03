@@ -1,12 +1,12 @@
-import {CategoriesCatalog} from "@/components/shared/categories/CategoriesCatalog";
-import {getCatalogData} from "@/api/api";
-import {PartnersSlider} from "@/components/shared/carousels/PartnersSlider";
-import {OfflineOrOnlineMain} from "@/components/shared/banners/OfflineOrOnlineMain";
-import {getTranslations} from "next-intl/server";
+import { CategoriesCatalog } from "@/components/shared/categories/CategoriesCatalog";
+import { getCatalogData, getPartners } from "@/api/api";
+import { PartnersSlider } from "@/components/shared/carousels/PartnersSlider";
+import { OfflineOrOnlineMain } from "@/components/shared/banners/OfflineOrOnlineMain";
+import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata({params: paramsPromise}: { params: Promise<{ locale: string }> }) {
-  const {locale} = await paramsPromise;
-  const t = await getTranslations({locale});
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await paramsPromise;
+  const t = await getTranslations({ locale });
 
   return {
     title: `${t('catalogMetaTitle')}`,
@@ -15,7 +15,8 @@ export async function generateMetadata({params: paramsPromise}: { params: Promis
 }
 
 const CatalogPage = async () => {
-  const {product, accessory} = await getCatalogData();
+  const { product, accessory } = await getCatalogData();
+  const partners = await getPartners();
 
   return (
     <>
@@ -24,8 +25,8 @@ const CatalogPage = async () => {
         productCategories={product}
         accessoryCategories={accessory}
       />
-      <OfflineOrOnlineMain/>
-      <PartnersSlider/>
+      <OfflineOrOnlineMain />
+      <PartnersSlider partners={partners} />
     </>
   );
 };

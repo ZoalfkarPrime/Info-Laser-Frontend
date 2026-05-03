@@ -15,7 +15,7 @@ import {ProductCardHeader} from "@/components/shared/products/ProductCardHeader"
 import {UniqButtonLink} from "@/components/ui/UniqButtonLink";
 
 interface Props extends ClassName {
-  onClick?: () => void;
+  onClick?: (isMain?: boolean) => void;
 }
 
 export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
@@ -29,7 +29,7 @@ export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
 
   const handleLinkClick = () => {
     setIsSpoilerOpen(false);
-    onClick?.();
+    onClick?.(false);
   };
 
   const [isSpoilerOpen, setIsSpoilerOpen] = useState(false);
@@ -94,7 +94,14 @@ export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
             "xl:text-sm xl:py-2 xl:px-3"
           )}
           onMouseEnter={() => !isMobile && setIsSpoilerOpen(true)}
-          onClick={() => isMobile ? setIsSpoilerOpen(!isSpoilerOpen) : setIsSpoilerOpen(false)}
+          onClick={() => {
+            if (isMobile) {
+              setIsSpoilerOpen(!isSpoilerOpen);
+            } else {
+              setIsSpoilerOpen(false);
+              onClick?.(true);
+            }
+          }}
         >
           Каталог
           <ChevronDown

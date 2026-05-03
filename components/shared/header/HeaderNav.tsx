@@ -1,22 +1,24 @@
 "use client";
 
-import React, {useEffect, useRef, useState} from "react";
-import {HeaderProductItem} from "@/components/shared/header/nav-items/HeaderProductItem";
-import {cn} from "@/lib/utils";
-import {Globe, Menu, X} from "lucide-react";
-import {Overlay} from "@/components/shared/Overlay";
-import {useClickAway} from "react-use";
-import {HeaderAboutCompanyItem} from "@/components/shared/header/nav-items/HeaderAboutCompanyItem";
-import {HeaderServiceItem} from "@/components/shared/header/nav-items/HeaderServiceItem";
-import {HeaderPaymentItem} from "@/components/shared/header/nav-items/HeaderPaymentItem";
-import {HeaderContactsItem} from "@/components/shared/header/nav-items/HeaderContactsItem";
-import {HeaderContacts} from "@/components/shared/header/HeaderContacts";
-import {HeaderCity} from "@/components/shared/header/HeaderCity";
+import React, { useEffect, useRef, useState } from "react";
+import { HeaderProductItem } from "@/components/shared/header/nav-items/HeaderProductItem";
+import { useRouter } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
+import { Globe, Menu, X } from "lucide-react";
+import { Overlay } from "@/components/shared/Overlay";
+import { useClickAway } from "react-use";
+import { HeaderAboutCompanyItem } from "@/components/shared/header/nav-items/HeaderAboutCompanyItem";
+import { HeaderServiceItem } from "@/components/shared/header/nav-items/HeaderServiceItem";
+import { HeaderPaymentItem } from "@/components/shared/header/nav-items/HeaderPaymentItem";
+import { HeaderContactsItem } from "@/components/shared/header/nav-items/HeaderContactsItem";
+import { HeaderContacts } from "@/components/shared/header/HeaderContacts";
+import { HeaderCity } from "@/components/shared/header/HeaderCity";
 
 export const HeaderNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
   const menuRef = useRef<HTMLButtonElement | null>(null);
+  const router = useRouter();
 
   useClickAway(
     navRef,
@@ -46,7 +48,7 @@ export const HeaderNav: React.FC = () => {
   return (
     <>
 
-      <Overlay isOpen={isMenuOpen}/>
+      <Overlay isOpen={isMenuOpen} />
 
       <nav
         ref={navRef}
@@ -80,15 +82,20 @@ export const HeaderNav: React.FC = () => {
           "[&>li>a]:max-xl:w-full [&>li>a]:max-xl:justify-between [&>li>a]:max-xl:font-bold",
         )}>
 
-          <HeaderProductItem onClick={() => setIsMenuOpen(false)}/>
+          <HeaderProductItem onClick={(isMain?: boolean) => {
+            setIsMenuOpen(false);
+            if (isMain) {
+              router.push('/catalog');
+            }
+          }} />
 
-          <HeaderAboutCompanyItem onClick={() => setIsMenuOpen(false)}/>
+          <HeaderAboutCompanyItem onClick={() => setIsMenuOpen(false)} />
 
-          <HeaderServiceItem onClick={() => setIsMenuOpen(false)}/>
+          <HeaderServiceItem onClick={() => setIsMenuOpen(false)} />
 
-          <HeaderPaymentItem onClick={() => setIsMenuOpen(false)}/>
+          <HeaderPaymentItem onClick={() => setIsMenuOpen(false)} />
 
-          <HeaderContactsItem onClick={() => setIsMenuOpen(false)}/>
+          <HeaderContactsItem onClick={() => setIsMenuOpen(false)} />
 
         </ul>
 
@@ -96,8 +103,8 @@ export const HeaderNav: React.FC = () => {
           "max-xl:flex max-xl:gap-x-2 max-xl:px-1 max-xl:py-2",
           "md:hidden"
         )}>
-          <Globe/>
-          <HeaderCity/>
+          <Globe />
+          <HeaderCity />
         </div>
 
       </nav>
@@ -113,7 +120,7 @@ export const HeaderNav: React.FC = () => {
         )}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
-        {isMenuOpen ? <X size={24}/> : <Menu size={24}/>}
+        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
     </>
 

@@ -54,6 +54,21 @@ export const AccessoriesSimpleList: React.FC<AccessoriesProps> = async ({accesso
 
                 <p className={"text-sm mb-5 max-md:mb-2 max-md:text-xs"}>{category.description}</p>
 
+                {category.products && category.products.length > 0 && (
+                  <ul className="flex flex-col gap-y-2 mb-5">
+                    {category.products.slice(0, 4).map((product) => (
+                      <li key={product.id}>
+                        <Link
+                          href={`/catalog/accessories/${category.slug}/${product.slug}`}
+                          className="text-sm text-gray-500 hover:text-[var(--violet)] transition-colors duration-200"
+                        >
+                          {product.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
                 <UniqButtonLink
                   variant={"violet"}
                   href={`/catalog/accessories/${category.slug}`}

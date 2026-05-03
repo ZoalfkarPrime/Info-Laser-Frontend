@@ -1,11 +1,11 @@
-import {cn} from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import React from 'react';
 import Link from "next/link";
-import {Container} from "@/components/shared/Container";
+import { Container } from "@/components/shared/Container";
 import Image from "next/image";
-import {Category} from "@/types/types";
-import {Button} from "@/components/ui/Button";
-import {AccessoriesSimpleList} from "@/components/shared/accessories/AccessoriesSimpleList";
+import { Category } from "@/types/types";
+import { Button } from "@/components/ui/Button";
+import { AccessoriesSimpleList } from "@/components/shared/accessories/AccessoriesSimpleList";
 
 interface Props {
   title: string;
@@ -21,6 +21,7 @@ export const CategoriesCatalog: React.FC<Props> = async (
     accessoryCategories,
     className
   }) => {
+
   return (
     <section className="py-3">
       <Container>
@@ -72,6 +73,21 @@ export const CategoriesCatalog: React.FC<Props> = async (
 
               <p className={"text-sm mb-5 max-md:mb-2 max-md:text-xs"}>{category.description}</p>
 
+              {category.products && category.products.length > 0 && (
+                <ul className="flex flex-col gap-y-2 mb-5">
+                  {category.products.slice(0, 4).map((product) => (
+                    <li key={product.id}>
+                      <Link
+                        href={`/catalog/${category.slug}/${product.slug}`}
+                        className="text-sm text-gray-500 hover:text-[var(--violet)] transition-colors duration-200"
+                      >
+                        {product.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
               <Link href={`/catalog/${category.slug}`}>
                 <Button
                   className={cn(
@@ -94,7 +110,7 @@ export const CategoriesCatalog: React.FC<Props> = async (
           )}>
             Комплектующие
           </h3>
-          <AccessoriesSimpleList accessoryCategories={accessoryCategories}/>
+          <AccessoriesSimpleList accessoryCategories={accessoryCategories} />
         </section>
 
       </Container>

@@ -1,21 +1,21 @@
 "use client";
 
-import React, {useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import {ThumbBtn} from "@/components/shared/carousels/product/ThumbBtn";
-import {Attachments, ClassName, Label} from "@/types/types";
-import {cn} from "@/lib/utils";
-import {Button} from "@/components/ui/Button";
-import {ChevronLeft, ChevronRight, Play, X} from "lucide-react";
-import {PhotoProvider, PhotoView} from 'react-photo-view';
+import { ThumbBtn } from "@/components/shared/carousels/product/ThumbBtn";
+import { Attachments, ClassName, Label } from "@/types/types";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/Button";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 interface ProductGallerySliderProps extends ClassName {
   images: Attachments[];
   labels?: Label[];
 }
 
-export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({images, className, labels}) => {
+export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images, className, labels }) => {
   const processedImages = images
     .filter(
       (img) =>
@@ -38,22 +38,31 @@ export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({image
     (img) => img.type === "video" && img.place_in_page === "MainPage"
   );
 
-  // Преобразуем ссылку YouTube в embed
-  const getYoutubeEmbedUrl = (url: string) => {
-    const match = url.match(
+  // Преобразуем внешнюю ссылку в embed-вариант (YouTube, RuTube и т.д.)
+  const getEmbedUrl = (url: string) => {
+    if (!url) return null;
+
+    // YouTube
+    const ytMatch = url.match(
       /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/
     );
-    return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1` : null;
+    if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1`;
+
+    // RuTube
+    const rtMatch = url.match(/rutube\.ru\/video\/([\w-]+)/);
+    if (rtMatch) return `https://rutube.ru/play/embed/${rtMatch[1]}/`;
+
+    return url;
   };
 
-  const videoUrl = rawVideo?.external_url || rawVideo?.filemanager?.url || "";
+  const isExternal = !!rawVideo?.external_url;
+  const videoSrc = isExternal
+    ? getEmbedUrl(rawVideo?.external_url || "")
+    : rawVideo?.filemanager?.url || "";
 
-  // Делаем embed только если URL — реально YouTube
-  const embedUrl = videoUrl ? getYoutubeEmbedUrl(videoUrl) : null;
+  // Видео считаем доступным, если есть ссылка на внешний ресурс или файл
+  const video = videoSrc ? rawVideo : null;
 
-  // Видео считаем видео только если embedUrl существует
-  const video = embedUrl ? rawVideo : null;
-  
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({
     loop: true,
@@ -125,7 +134,7 @@ export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({image
                   index={idx}
                   onClick={() => onThumbClick(idx)}
                   selected={idx === selectedIndex}
-                  image={{...image, url: image.thumbnail}}
+                  image={{ ...image, url: image.thumbnail }}
                 />
               ))
             ) : (
@@ -221,7 +230,7 @@ export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({image
             )}
             aria-label="Предыдущий слайд"
           >
-            <ChevronLeft className="text-black size-5"/>
+            <ChevronLeft className="text-black size-5" />
           </button>
 
           {/* Кнопка "вправо" */}
@@ -233,7 +242,7 @@ export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({image
             )}
             aria-label="Следующий слайд"
           >
-            <ChevronRight className="text-black size-5"/>
+            <ChevronRight className="text-black size-5" />
           </button>
         </div>
 
@@ -247,39 +256,48 @@ export const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({image
               "max-md:place-self-center max-md:col-span-full",
             )}
           >
-            <Play size={16} fill="var(--violet)"/>
+            <Play size={16} fill="var(--violet)" />
             Видео
           </Button>
         )}
       </div>
 
       {/* Модальное окно */}
-      {isVideoOpen && embedUrl && (
+      {isVideoOpen && videoSrc && (
         <div
           className="fixed inset-0 bg-black/80 bg-opacity-70 flex items-center justify-center z-50"
           onClick={() => setIsVideoOpen(false)}
         >
           <div
-            className="relative w-full max-w-3xl aspect-video bg-black rounded-2xl"
+            className="relative w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <iframe
-              src={embedUrl}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
+            {isExternal ? (
+              <iframe
+                src={videoSrc}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="w-full h-full border-0"
+              ></iframe>
+            ) : (
+              <video
+                src={videoSrc}
+                controls
+                autoPlay
+                className="w-full h-full"
+              ></video>
+            )}
 
             {/* Кнопка закрытия */}
             <button
               onClick={() => setIsVideoOpen(false)}
               className={cn(
-                "absolute -top-10 right-2 bg-white p-1 rounded-full shadow-md transition-colors",
-                "hover:cursor-pointer hover:bg-gray-100 hover:[&_svg]:text-red-500"
+                "absolute top-4 right-4 bg-white/10 hover:bg-white/20 p-2 rounded-full backdrop-blur-md transition-colors group",
+                "hover:cursor-pointer"
               )}
               aria-label="Закрыть видео"
             >
-              <X className="text-black size-5"/>
+              <X className="text-white size-5 group-hover:text-red-400 transition-colors" />
             </button>
           </div>
         </div>
