@@ -119,6 +119,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   let maxPrice = 150000;
   const materialsList: { name: string; value: string }[] = [];
   const manufacturersList: { name: string; value: string }[] = [];
+  let characteristicsList: CharacteristicFilter[] = [];
 
   if (filteredProducts.length > 0) {
     const prices = filteredProducts.map((p) => p.inStock && p.stockPrice > 0 ? p.stockPrice : p.orderPrice).filter(p => !isNaN(p) && p !== null);
@@ -153,7 +154,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     materialsMap.forEach((v) => materialsList.push(v));
     manufacturersMap.forEach((v) => manufacturersList.push(v));
 
-    const characteristicsList: CharacteristicFilter[] = Array.from(charsMap.entries()).map(([name, data]) => ({
+    characteristicsList = Array.from(charsMap.entries()).map(([name, data]) => ({
       name,
       unit: data.unit,
       items: Array.from(data.values.entries()).map(([value, label]) => ({
@@ -161,11 +162,8 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
         value: value,
       })),
     }));
-
-    (currentCategory as any).characteristicsList = characteristicsList;
   }
 
-  const characteristicsList: CharacteristicFilter[] = (currentCategory as any)?.characteristicsList || [];
 
   const priceFromParam = parseInt(sp.priceFrom || "0", 10);
   const priceToParam = parseInt(sp.priceTo || "999999999", 10);

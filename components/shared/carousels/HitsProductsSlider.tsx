@@ -10,7 +10,7 @@ type Props = ClassName & {
 };
 
 export const HitsProductsSlider: React.FC<Props> = ({ className, products }) => {
-  const hitsProducts = products.filter(product =>
+  const hitsProducts = products.filter(() =>
     // product.labels?.some(label => label.slug === "hit")
     true
   );
