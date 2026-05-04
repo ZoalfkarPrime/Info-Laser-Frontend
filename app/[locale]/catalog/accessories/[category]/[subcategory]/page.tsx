@@ -1,5 +1,5 @@
 import {Container} from "@/components/shared/Container";
-import {Filters} from "@/components/shared/filters/Filters";
+import {Filters, CharacteristicFilter} from "@/components/shared/filters/Filters";
 import {ProductsGroupList} from "@/components/shared/products/ProductsGroupList";
 import {getProducts} from "@/api/api";
 import {CategoriesGoods} from "@/components/shared/categories/CategoriesGoods";
@@ -14,12 +14,17 @@ import qs from "qs";
 import {getTranslations} from "next-intl/server";
 
 interface SubcategoryPageProps {
-  params: Promise<{ category: string }>;
+  params: Promise<{ category: string; subcategory: string }>;
   searchParams: Promise<{
     page?: string;
     order_column?: string;
     order_dir?: "asc" | "desc";
     "filter[label_id]"?: string;
+    priceFrom?: string;
+    priceTo?: string;
+    materials?: string;
+    manufacturer?: string;
+    [key: string]: string | undefined;
   }>;
 }
 
@@ -82,6 +87,108 @@ const SubcategoryPage = async ({params, searchParams}: SubcategoryPageProps) => 
     )
     : [];
 
+  let minPrice = 0;
+  let maxPrice = 150000;
+  const materialsList: { name: string; value: string }[] = [];
+  const manufacturersList: { name: string; value: string }[] = [];
+  let characteristicsList: CharacteristicFilter[] = [];
+
+  if (filteredProducts.length > 0) {
+    const prices = filteredProducts.map((p) => p.inStock && p.stockPrice > 0 ? p.stockPrice : p.orderPrice).filter(p => !isNaN(p) && p !== null);
+    if (prices.length > 0) {
+      minPrice = Math.min(...prices);
+      maxPrice = Math.max(...prices);
+      if (minPrice === maxPrice) {
+        maxPrice += 10;
+      }
+    }
+
+    const materialsMap = new Map();
+    const manufacturersMap = new Map();
+    const charsMap = new Map<string, { unit: string | null; values: Map<string, string> }>();
+
+    filteredProducts.forEach((p) => {
+      p.materials?.forEach((m) => materialsMap.set(m.slug, { name: m.name, value: m.slug }));
+      if (p.laser_suppliers?.slug) {
+        manufacturersMap.set(p.laser_suppliers.slug, { name: p.laser_suppliers.name, value: p.laser_suppliers.slug });
+      }
+      p.productCharacteristics?.forEach((c) => {
+        if (!charsMap.has(c.name)) {
+          charsMap.set(c.name, { unit: c.unit, values: new Map() });
+        }
+        const charEntry = charsMap.get(c.name)!;
+        const label = c.unit ? `${c.value} ${c.unit}` : c.value;
+        if (c.value) {
+          charEntry.values.set(c.value, label ?? '');
+        }
+      });
+    });
+    materialsMap.forEach((v) => materialsList.push(v));
+    manufacturersMap.forEach((v) => manufacturersList.push(v));
+
+    characteristicsList = Array.from(charsMap.entries()).map(([name, data]) => ({
+      name,
+      unit: data.unit,
+      items: Array.from(data.values.entries()).map(([value, label]) => ({
+        name: label || value,
+        value: value,
+      })),
+    }));
+  }
+
+  const priceFromParam = parseInt(sp.priceFrom || "0", 10);
+  const priceToParam = parseInt(sp.priceTo || "999999999", 10);
+  const materialsFilter = sp.materials ? sp.materials.split(',') : [];
+  const mfgFilter = sp.manufacturer ? sp.manufacturer.split(',') : [];
+
+  const charFilters: Record<string, string[]> = {};
+  Object.keys(sp).forEach((key) => {
+    if (key.startsWith("char[")) {
+      const charName = key.replace("char[", "").replace("]", "");
+      charFilters[charName] = sp[key]?.split(",") || [];
+    }
+  });
+
+  filteredProducts = filteredProducts.filter((product) => {
+    let isValid = true;
+    const price = product.inStock && product.stockPrice > 0 ? product.stockPrice : product.orderPrice;
+
+    if (sp.priceFrom || sp.priceTo) {
+      if (price < priceFromParam || price > priceToParam) {
+        isValid = false;
+      }
+    }
+
+    if (isValid && materialsFilter.length > 0) {
+      if (!product.materials?.some((m) => materialsFilter.includes(m.slug))) {
+        isValid = false;
+      }
+    }
+
+    if (isValid && mfgFilter.length > 0) {
+      if (!product.laser_suppliers?.slug || !mfgFilter.includes(product.laser_suppliers.slug)) {
+        isValid = false;
+      }
+    }
+
+    if (isValid) {
+      for (const [charName, selectedValues] of Object.entries(charFilters)) {
+        if (selectedValues.length > 0) {
+          if (
+            !product.productCharacteristics?.some(
+              (c) => c.name === charName && c.value && selectedValues.includes(c.value)
+            )
+          ) {
+            isValid = false;
+            break;
+          }
+        }
+      }
+    }
+
+    return isValid;
+  });
+
   filteredProducts = sortProducts(filteredProducts, order_column, order_dir, filterLabelId);
 
   const totalProducts = filteredProducts.length;
@@ -139,7 +246,14 @@ const SubcategoryPage = async ({params, searchParams}: SubcategoryPageProps) => 
 
           <div className="flex gap-x-5">
             <aside className="flex-0 min-w-[280px]">
-              <Filters className="mb-3"/>
+              <Filters
+                className="mb-3"
+                materials={materialsList}
+                manufacturers={manufacturersList}
+                characteristics={characteristicsList}
+                minPrice={Math.max(0, minPrice)}
+                maxPrice={maxPrice}
+              />
               <BannerCategory/>
             </aside>
 

@@ -135,7 +135,7 @@ export default async function ArticlesPage() {
 
         <IndividualRequestForm className={"mb-15 max-md:mb-7"} />
 
-        {/* @ts-expect-error expected ts issue on SocialAndOnlineMini properties */}
+
         <SocialAndOnlineMini className={"mb-15 max-md:mb-7"} />
 
       </section>

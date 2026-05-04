@@ -4,7 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export const SocialList: React.FC<ClassName & { socialMedia: { youtube?: string, telegram?: string, whatsapp?: string, vk?: string } }> = ({ className, socialMedia }) => {
+import {
+  SOCIAL_TG_LINK,
+  SOCIAL_VK_LINK,
+  SOCIAL_WHATSAPP_LINK,
+  SOCIAL_YOUTUBE_LINK
+} from "@/lib/variables";
+
+export const SocialList: React.FC<ClassName & { socialMedia?: { youtube?: string, telegram?: string, whatsapp?: string, vk?: string } }> = ({
+  className,
+  socialMedia = {
+    youtube: SOCIAL_YOUTUBE_LINK,
+    telegram: SOCIAL_TG_LINK,
+    whatsapp: SOCIAL_WHATSAPP_LINK,
+    vk: SOCIAL_VK_LINK
+  }
+}) => {
   return (
     <ul className={cn(
       "flex gap-3",

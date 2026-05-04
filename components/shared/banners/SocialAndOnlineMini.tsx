@@ -5,10 +5,9 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { ClassName } from "@/types/types";
 
-interface ISocialAndOnlineMiniProps {
+interface ISocialAndOnlineMiniProps extends ClassName {
   leftBannerTitle?: string;
   rightBannerTitle?: string;
-  className?: ClassName
 }
 
 export const SocialAndOnlineMini: React.FC<ISocialAndOnlineMiniProps> = ({ className, leftBannerTitle, rightBannerTitle }) => {
