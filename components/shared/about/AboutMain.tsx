@@ -7,8 +7,7 @@ import WhyChooseInfolaser from "@/types/content/home/why-choose-infolaser";
 import { readContentAsJsonByFilter } from "@/services/content.service";
 import { HOME_PAGE_CONTENT } from "@/lib/variables";
 
-interface Props extends ClassName {
-}
+type Props = ClassName;
 
 export const AboutMain: React.FC<Props> = async ({ className }) => {
 
