@@ -17,16 +17,16 @@
     "@radix-ui/react-switch": "^1.1.3",
     "@radix-ui/react-tabs": "^1.1.3",
     "@types/qs": "^6.9.18",
-    "axios": "^1.15.0",
+    "axios": "^1.21.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.5.2",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "lucide-react": "^0.473.0",
-    "next": "15.2.4",
-    "next-intl": "^4.1.0",
-    "qs": "^6.14.0",
+    "next": "15.5.29",
+    "next-intl": "^4.14.9",
+    "qs": "^6.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
@@ -45,12 +45,16 @@
     "@types/react-dom": "^19",
     "@yandex/ymaps3-types": "^1.0.16530300",
     "eslint": "^9",
-    "eslint-config-next": "15.1.5",
+    "eslint-config-next": "15.5.29",
     "postcss": "^8",
     "tailwindcss": "^4.0.0",
     "typescript": "^5"
   },
   "engines": {
-  "node": "^24"
-}
+    "node": "^24"
+  },
+  "resolutions": {
+    "js-cookie": "^3.0.8",
+    "next/postcss": "^8.5.32"
+  }
 }
