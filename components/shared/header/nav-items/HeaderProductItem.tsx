@@ -135,6 +135,7 @@ export const HeaderProductItem: React.FC<Props> = ({className, onClick}) => {
                   <div className={cn(
                     "basis-sm",
                     "max-xl:basis-full max-xl:pt-1",
+                    "xl:max-h-[calc(85dvh-2.5rem)] xl:overflow-y-auto xl:scrollbar-none",
                   )}>
                     <TabsList
                       className={"flex flex-col items-start justify-start bg-inherit h-auto mb-1 max-xl:mb-0"}

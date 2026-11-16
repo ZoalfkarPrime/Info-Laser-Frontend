@@ -6,6 +6,7 @@ import {cn} from "@/lib/utils";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/Tabs";
 import Image from "next/image";
 import {ClassName, Material} from "@/types/types";
+import {DraggableTabsList} from "@/components/shared/tabs/DraggableTabsList";
 
 interface ProductMaterialsTabsProps extends ClassName {
   materials: Material[];
@@ -41,15 +42,15 @@ export const ProductMaterialsTabs: React.FC<ProductMaterialsTabsProps> = ({mater
           "max-xl:text-3xl",
           "max-md:text-2xl max-md:mb-5"
         )}>Обрабатываемые материалы</h2>
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex min-w-0 flex-col">
           <TabsList className="rounded-3xl" asChild>
-            <ul className={cn(
-              "flex place-self-center gap-x-1 mb-3 h-auto rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2",
-              "max-xl:place-self-start max-xl:justify-start max-xl:overflow-x-auto max-xl:overflow-y-hidden max-xl:max-w-full",
+            <DraggableTabsList className={cn(
+              "flex min-w-0 place-self-center justify-start gap-x-1 mb-3 h-auto max-w-full overflow-x-auto overflow-y-hidden rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2",
+              "max-xl:place-self-start",
               "max-md:rounded-4xl"
             )}>
               {materialsWithAssets.map((material) => (
-                <li key={material.id}>
+                <li key={material.id} className="shrink-0">
                   <TabsTrigger
                     value={String(material.id)}
                     className={cn(
@@ -77,7 +78,7 @@ export const ProductMaterialsTabs: React.FC<ProductMaterialsTabsProps> = ({mater
                   </TabsTrigger>
                 </li>
               ))}
-            </ul>
+            </DraggableTabsList>
           </TabsList>
 
           {materialsWithAssets.map((material) => (

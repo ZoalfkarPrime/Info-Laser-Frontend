@@ -1,8 +1,8 @@
 'use client'
 
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {Product} from "@/types/types";
+import { Product } from "@/types/types";
 
 // Тип корзины (массив товаров с количеством)
 interface CartItem extends Product {
@@ -28,7 +28,7 @@ export const useCart = () => {
   return context;
 };
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   // Загружаем корзину из LocalStorage при загрузке
@@ -51,13 +51,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
   // Функция для синхронизации корзины с сервером
   const syncCartWithServer = async (localCart: CartItem[]) => {
     try {
-      const response = await fetch("/api/products");
+      const response = await fetch("/api/products?limit=2000"); // Предположим, что у нас есть API для получения всех продуктов
 
       if (!response.ok) {
         throw new Error("Ошибка загрузки продуктов");
       }
 
-      const {products: freshProducts}: { products: Product[] } = await response.json();
+      const { products: freshProducts }: { products: Product[] } = await response.json();
 
       // Составляем словарь для быстрого поиска по id
       const byId = new Map(freshProducts.map(p => [p.id, p]));
@@ -66,7 +66,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
       const updatedCart: CartItem[] = localCart
         .map(item => {
           const fresh = byId.get(item.id);
-          return fresh ? {...fresh, quantity: item.quantity} : null;
+          return fresh ? { ...fresh, quantity: item.quantity } : null;
         })
         .filter((x): x is CartItem => x !== null);
 
@@ -82,7 +82,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
       console.error("Ошибка синхронизации корзины:", e);
     }
   };
-  
+
   // Добавить товар в корзину
   const addToCart = (product: Product) => {
     let message = "";
@@ -93,11 +93,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
 
       if (existingItem) {
         updatedCart = prevCart.map((item) =>
-          item.id === product.id ? {...item, quantity: item.quantity + 1} : item
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
         message = `Количество ${product.name} увеличено в корзине`;
       } else {
-        updatedCart = [...prevCart, {...product, quantity: 1}];
+        updatedCart = [...prevCart, { ...product, quantity: 1 }];
         message = `${product.name} добавлен в корзину`;
       }
 
@@ -119,7 +119,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
   const updateQuantity = (id: number, quantity: number) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.id === id ? {...item, quantity: Math.max(1, quantity)} : item
+        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
       )
     );
   };
@@ -130,7 +130,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
   };
 
   return (
-    <CartContext.Provider value={{cart, addToCart, removeFromCart, updateQuantity, clearCart}}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );

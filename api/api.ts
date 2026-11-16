@@ -5,7 +5,7 @@ import { API_BASE_URL } from "./client";
 
 const GET_CATALOG_DATA = `https://api.infolasers.ru/api/catalog`;
 const GET_CATEGORIES = `https://api.infolasers.ru/api/category/getall`;
-const GET_PRODUCTS = `https://api.infolasers.ru/api/product/getall`;
+const GET_PRODUCTS = `https://api.infolasers.ru/api/product/getall?limit=2000`;
 
 // Api получения массива категорий с продуктами, и аксессуаров. (Используется в header > Каталог)
 export async function getCatalogData(): Promise<{ product: Category[]; accessory: Category[]; }> {

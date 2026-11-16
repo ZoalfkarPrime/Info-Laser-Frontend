@@ -64,6 +64,14 @@
     text-wrap: balance;
 }
 
+@utility scrollbar-none {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 @layer utilities {
     html {
         scroll-behavior: smooth;
@@ -165,6 +173,15 @@
     * {
         scrollbar-width: thin;
         scrollbar-color: rgba(100, 100, 100, 0.4) transparent;
+    }
+
+    .scrollbar-none {
+        scrollbar-width: none !important;
+        scrollbar-color: auto;
+    }
+
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
     }
 }
 

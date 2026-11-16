@@ -16,6 +16,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/Carousel";
 import { ClassName } from "@/types/types";
+import { DraggableTabsList } from "@/components/shared/tabs/DraggableTabsList";
 
 interface UniqMachinesSliderProps extends ClassName {
   products: Product[];
@@ -52,14 +53,14 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({ classNam
           Представляем самые передовые и универсальные машины
         </h2>
 
-        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="flex flex-col">
+        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="flex min-w-0 flex-col">
           <TabsList className={cn("rounded-3xl")} asChild>
-            <ul className={cn(
-              "flex place-self-center gap-x-1 mb-3 h-auto rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2",
-              "max-xl:place-self-start max-xl:justify-start max-xl:overflow-x-auto max-xl:overflow-y-hidden max-xl:max-w-full"
+            <DraggableTabsList className={cn(
+              "flex min-w-0 place-self-center justify-start gap-x-1 mb-3 h-auto max-w-full overflow-x-auto overflow-y-hidden rounded-3xl border border-[#ABB4D7]/10 bg-[#ABB4D7] py-1 px-2",
+              "max-xl:place-self-start"
             )}>
               {uniqueCategories.map(category => (
-                <li key={category.id}>
+                <li key={category.id} className="shrink-0">
                   <TabsTrigger
                     value={String(category.id)}
                     className={cn(
@@ -74,7 +75,7 @@ export const UniqMachinesSlider: React.FC<UniqMachinesSliderProps> = ({ classNam
                   </TabsTrigger>
                 </li>
               ))}
-            </ul>
+            </DraggableTabsList>
           </TabsList>
 
           {uniqueCategories.map(category => {
