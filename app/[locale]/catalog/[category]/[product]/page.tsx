@@ -25,6 +25,7 @@ import { SimilarProductsSlider } from "@/components/shared/carousels/SimilarProd
 import { readContentAsJsonByFilter } from "@/services/content.service";
 import FeaturesBanner from "@/types/content/product/features-banner";
 import { PRODUCT_PAGE_CONTENT } from "@/lib/variables";
+import { decodeHtml } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{ product: string; category: string }>;
@@ -116,7 +117,9 @@ const ProductPage: React.FC<PageProps> = async ({ params }) => {
                 "flex items-center justify-between gap-3 font-semibold",
                 "max-md:flex-col max-md:items-start"
               )}>
-                <p className={cn("max-md:text-sm")}>{product.description}</p>
+                <p className={cn("max-md:text-sm")}>
+                  <div dangerouslySetInnerHTML={{ __html: decodeHtml(product.description) }} />
+                </p>
                 {Boolean(product.inStock) ?
                   (
                     <span
@@ -131,10 +134,10 @@ const ProductPage: React.FC<PageProps> = async ({ params }) => {
                   (
                     <span
                       className={cn(
-                        "inline-flex items-center shrink-0 gap-x-1 place-self-start text-xs text-[var(--green)] bg-[var(--green)] rounded-2xl p-2 mb-3 leading-none",
+                        "inline-flex items-center shrink-0 gap-x-1 place-self-start text-xs text-[var(--white)] bg-[var(--green)] rounded-2xl p-2 mb-3 leading-none",
                         "max-md:text-[10px] max-md:py-1 max-md:mb-2"
                       )}>
-                      <Clock3 className='text-[var(--green)]' size={12} />
+                      <Clock3 className='text-[var(--white)]' size={12} />
                       Под заказ
                     </span>
                   )
@@ -188,7 +191,12 @@ const ProductPage: React.FC<PageProps> = async ({ params }) => {
           )}>
             <div className={"mb-5"}>
               <h2 className={"text-2xl font-semibold mb-5 max-md:text-lg max-md:mb-3"}>Описание</h2>
-              <p className={"mb-2 max-md:text-sm"}>{product.fulldescription}</p>
+              <div
+                className={"mb-2 max-md:text-sm"}
+                dangerouslySetInnerHTML={{
+                  __html: decodeHtml(decodeHtml(product.fulldescription)),
+                }}
+              />
             </div>
             <BannerProduct />
           </section>

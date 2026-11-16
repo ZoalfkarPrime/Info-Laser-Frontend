@@ -47,6 +47,7 @@
 }
 
 @layer base {
+
     *,
     ::after,
     ::before,
@@ -191,6 +192,7 @@
         from {
             transform: translateX(0);
         }
+
         to {
             transform: translateX(-50%);
         }
@@ -200,6 +202,7 @@
         from {
             transform: translateX(-50%);
         }
+
         to {
             transform: translateX(0);
         }
@@ -228,6 +231,7 @@
     --red: #b82c2c;
     --pink: #CF26E9;
     --green: #00A94C;
+    --white: #FFFFFF;
     --gray: #F8F9FD;
     --gray-text: #9298AF;
     --gold: #E99826;
